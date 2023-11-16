@@ -8,6 +8,7 @@ SceneManager::~SceneManager() {
 	delete gameP_;
 	delete gameC_;
 	delete gameO_;
+	delete waveS_;
 }
 
 void SceneManager::Initialize() {
@@ -23,12 +24,14 @@ void SceneManager::Initialize() {
 	gameP_ = new GamePScene();
 	gameC_ = new GameCScene();
 	gameO_ = new GameOScene();
+	waveS_ = new WaveSelect();
 
 	//初期化
 	title_->Initialize();
 	gameP_->Initialize();
 	gameC_->Initialize();
 	gameO_->Initialize();
+	waveS_->Initialize();
 
 }
 
@@ -45,14 +48,30 @@ void SceneManager::Update() {
 		//タイトルのクラスから変更出来るか否かフラグ貰ってきてtrueだった場合
 		//ゲームプレイモードに移行する
 		if (title_->GetFlagChange()) {
-			sceneNum_ = GPlayMode;
+			sceneNum_ = WaveSelectMode;
 			title_->SetFlagChange(false);
-			
+
 			//deleteとnewと初期化(初期化だけでもよさそう感)
 			//動きによっては別な場所へ
 			title_ = new TitleScene();
 			title_->Initialize();
 		}
+		break;
+
+	case WaveSelectMode:
+
+		waveS_->Update();
+
+		if (waveS_->GetFlagChange()) {
+			sceneNum_ = GPlayMode;
+			waveS_->SetFlagChange(false);
+
+			//deleteとnewと初期化(初期化だけでもよさそう感)
+			//動きによっては別な場所へ
+			waveS_ = new WaveSelect();
+			waveS_->Initialize();
+		}
+
 		break;
 
 	case GPlayMode:
@@ -70,7 +89,7 @@ void SceneManager::Update() {
 			}
 			gameP_->SetFlagChange(false);
 
-			
+
 			//deleteとnewと初期化(初期化だけでもよさそう感)
 			//動きによっては別な場所へ
 			gameP_ = new GamePScene();
@@ -112,7 +131,7 @@ void SceneManager::Update() {
 
 			}
 
-			
+
 			//deleteとnewと初期化(初期化だけでもよさそう感)
 			//動きによっては別な場所へ
 			gameO_ = new GameOScene();
@@ -127,7 +146,7 @@ void SceneManager::Update() {
 
 #ifdef _DEBUG
 #pragma region ImGui関連
-	
+
 	ImGui::Begin("SceneModeCheck");
 	ImGui::Text("sceneNum_ %d\nNextScene[DIK_I] GameOver&Retry[DIK_O]", sceneNum_);
 	ImGui::End();
@@ -144,6 +163,12 @@ void SceneManager::Draw() {
 
 	case TitleMode:
 		title_->Draw();
+
+		break;
+
+	case WaveSelectMode:
+
+		waveS_->Draw();
 
 		break;
 

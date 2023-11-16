@@ -68,9 +68,8 @@ private:
 	char keys[256] = { 0 };
 	char preKeys[256] = { 0 };
 
-	//受け取りのせいですぐに変わるのでそれを防ぐためのラグ(後で消える)
+	//すぐに変わらないようにする屋tう
 	int changeTimingFrame_ = 0;
-
 	//リトライするかを判別するためのフラグ
 	bool flagRetry_ = false;
 

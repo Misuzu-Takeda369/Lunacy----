@@ -148,6 +148,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="SceneManager\GamePScene.cpp" />
     <ClCompile Include="SceneManager\SceneManager.cpp" />
     <ClCompile Include="SceneManager\TitleScene.cpp" />
+    <ClCompile Include="SceneManager\WaveSelect.cpp" />
     <ClCompile Include="UI\HpUI.cpp" />
     <ClCompile Include="UI\SpUI.cpp" />
     <ClCompile Include="UI\TimerUI.cpp" />
@@ -215,6 +216,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="SceneManager\GamePScene.h" />
     <ClInclude Include="SceneManager\SceneManager.h" />
     <ClInclude Include="SceneManager\TitleScene.h" />
+    <ClInclude Include="SceneManager\WaveSelect.h" />
     <ClInclude Include="ScreenSize.h" />
     <ClInclude Include="UI\HpUI.h" />
     <ClInclude Include="UI\SpUI.h" />

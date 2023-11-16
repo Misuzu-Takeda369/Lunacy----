@@ -13,16 +13,15 @@ void GameCScene::Initialize()
 
 	toTitleColor_ = { 255,255,255,255,0xFFFFFFFF };
 
-	memcpy(preKeys, preKeys, 256);
-	Novice::GetHitKeyStateAll(keys);
+	
 }
 
 void GameCScene::Update()
 {
 
-	keys; preKeys;
+	memcpy(preKeys, preKeys, 256);
+	Novice::GetHitKeyStateAll(keys);
 	//ここのif文でシーン移行出来るかを判別
-	//現在は4を押したときに移動
 	changeTimingFrame_++;
 
 	MouseBottonChack();
@@ -30,7 +29,7 @@ void GameCScene::Update()
 #ifdef _DEBUG
 	//ここのif文でシーン移行出来るかを判別
 	//現在は1を押したときに移動
-	if ((preKeys[DIK_I] == 0 && keys[DIK_I] != 0) && changeTimingFrame_ >= 30) {
+	if ((preKeys[DIK_I] == 0 && keys[DIK_I] != 0) && changeTimingFrame_ >= 60) {
 		flagChange_ = true;
 		changeTimingFrame_ = 0;
 	}
@@ -53,7 +52,7 @@ void GameCScene::Draw()
 void GameCScene::MouseBottonChack()
 {
 	//範囲に入っている場合に入っている場合左クリックするとスターとする
-	if (Novice::IsTriggerMouse(0) && changeTimingFrame_ >= 60) {
+	if (Novice::IsTriggerMouse(0)&& changeTimingFrame_ >= 60) {
 		flagChange_ = true;
 		changeTimingFrame_ = 0;
 	}

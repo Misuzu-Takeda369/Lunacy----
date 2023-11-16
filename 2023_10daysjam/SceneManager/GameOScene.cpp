@@ -19,13 +19,13 @@ void GameOScene::Initialize()
 	retryColor_ = { 255,255,255,255,0xFFFFFFFF };
 	toTitleColor_ = { 255,255,255,255,0xFFFFFFFF };
 
-	memcpy(preKeys, preKeys, 256);
-	Novice::GetHitKeyStateAll(keys);
 }
 
 void GameOScene::Update()
 {
-	
+
+	memcpy(preKeys, preKeys, 256);
+	Novice::GetHitKeyStateAll(keys);
 #pragma region シーン変換
 	
 	changeTimingFrame_++;
@@ -36,12 +36,12 @@ void GameOScene::Update()
 
 	//ここのif文でシーン移行出来るかを判別
 	//現在は0を押したときに移動タイトルへ
-	if ((preKeys[DIK_I] == 0 && keys[DIK_I] != 0) && changeTimingFrame_ >= 30) {
+	if ((preKeys[DIK_I] == 0 && keys[DIK_I] != 0) && changeTimingFrame_ >= 60) {
 		flagChange_ = true;
 		changeTimingFrame_ = 0;
 	}
 	//リトライする場合
-	else if ((preKeys[DIK_O] == 0 && keys[DIK_O] != 0) && changeTimingFrame_ >= 30) {
+	else if ((preKeys[DIK_O] == 0 && keys[DIK_O] != 0) && changeTimingFrame_ >= 60) {
 		flagChange_ = true;
 		flagRetry_ = true;
 		changeTimingFrame_ = 0;
@@ -77,10 +77,10 @@ void GameOScene::MouseBottonChack()
 	{
 		retryColor_.color = RED;
 		//範囲に入っている場合に入っている場合左クリックするとスターとする
-		if (Novice::IsTriggerMouse(0) && changeTimingFrame_ >= 60) {
+		if (Novice::IsTriggerMouse(0)) {
 			flagChange_ = true;
 			flagRetry_ = true;
-			changeTimingFrame_ = 0;
+			
 		}
 	}
 	else {
@@ -95,9 +95,8 @@ void GameOScene::MouseBottonChack()
 	{
 		toTitleColor_.color = RED;
 		//範囲に入っている場合に入っている場合左クリックするとスターとする
-		if (Novice::IsTriggerMouse(0) && changeTimingFrame_ >= 60) {
+		if (Novice::IsTriggerMouse(0) ) {
 			flagChange_ = true;
-			changeTimingFrame_ = 0;
 		}
 	}
 	else {

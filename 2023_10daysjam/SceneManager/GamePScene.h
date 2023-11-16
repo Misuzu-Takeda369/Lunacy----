@@ -116,10 +116,8 @@ private:
 	/// </summary>
 	int gameSModeNow_ = None;
 
-	//受け取りのせいですぐに変わるのでそれを防ぐためのラグ(後で消える)
-	//シーンチェンジとポーズ変更
+	//フレーム
 	int changeTimingFrame_ = 0;
-
 	//ゲームをうごかしているか
 	bool GameMove_ = false;
 

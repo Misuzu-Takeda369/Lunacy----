@@ -48,16 +48,20 @@ void GamePScene::Initialize()
 	/*popItem_ = new PopItem();
 	popItem_->Initialize();*/
 
-	memcpy(preKeys, preKeys, 256);
-	Novice::GetHitKeyStateAll(keys);
 
 }
 
 void GamePScene::Update()
 {
+	memcpy(preKeys, preKeys, 256);
+	Novice::GetHitKeyStateAll(keys);
+
+
 	switch (gameSModeNow_)
 	{
 	case None:
+
+		changeTimingFrame_++;
 
 		if (!GameMove_) {
 			//ここ押すと動き出す
@@ -113,10 +117,10 @@ void GamePScene::Update()
 			timerUi_->Update();
 
 #pragma region シーン変更含む
-			changeTimingFrame_++;
+			
 
 			///ポーズへ
-			if ((preKeys[DIK_P] == 0 && keys[DIK_P] != 0) && changeTimingFrame_ >= 30) {
+			if ((preKeys[DIK_P] == 0 && keys[DIK_P] != 0) && changeTimingFrame_ >= 60) {
 				GameMove_ = false;
 				gameSModeNow_ = Pause;
 				changeTimingFrame_ = 0;
@@ -127,13 +131,13 @@ void GamePScene::Update()
 #ifdef _DEBUG
 			//ここのif文でシーン移行出来るかを判別
 			//現在はIを押したときに移動
-			if ((preKeys[DIK_I] == 0 && keys[DIK_I] != 0) && changeTimingFrame_ >= 30) {
+			if ((preKeys[DIK_I] == 0 && keys[DIK_I] != 0) && changeTimingFrame_ >= 60) {
 				flagChange_ = true;
 				changeTimingFrame_ = 0;
 			}
 			//ここのif文でシーン移行出来るかを判別
 			//現在はOを押したときに移動(がめおべ)
-			if ((preKeys[DIK_O] == 0 && keys[DIK_O] != 0) && changeTimingFrame_ >= 30) {
+			if ((preKeys[DIK_O] == 0 && keys[DIK_O] != 0) && changeTimingFrame_ >= 60) {
 				flagChange_ = true;
 				flagGameOver_ = true;
 				changeTimingFrame_ = 0;
@@ -142,7 +146,6 @@ void GamePScene::Update()
 
 			if (timerUi_->GetterTimer() <= 0) {
 				//flagChange_ = true;
-				changeTimingFrame_ = 0;
 				GameMove_ = false;
 			}
 			//ここのif文でシーン移行出来るかを判別
@@ -150,7 +153,6 @@ void GamePScene::Update()
 			if ((player_->GetHp() <= 0) || (player_->GetSp() <= 0)) {
 				//flagChange_ = true;
 				flagGameOver_ = true;
-				changeTimingFrame_ = 0;
 				GameMove_ = false;
 			}
 
@@ -161,9 +163,9 @@ void GamePScene::Update()
 
 	case Pause:
 
-		changeTimingFrame_++;
+		
 		//解除
-		if ((preKeys[DIK_P] == 0 && keys[DIK_P] != 0) && changeTimingFrame_ >= 30) {
+		if ((preKeys[DIK_P] == 0 && keys[DIK_P] != 0) && changeTimingFrame_ >= 60) {
 			GameMove_ = true;
 			gameSModeNow_ = None;
 			changeTimingFrame_ = 0;
@@ -230,7 +232,6 @@ void GamePScene::Draw()
 
 #ifdef _DEBUG
 	Novice::ScreenPrintf(500, 500, "%d", CountNum_);
-	Novice::ScreenPrintf(500, 550, "%d", changeTimingFrame_);
 #endif // _DEBUG
 
 #pragma region UI関連(一番前に写す)

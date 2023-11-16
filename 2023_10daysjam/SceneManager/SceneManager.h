@@ -7,6 +7,7 @@
 #include "GamePScene.h"
 #include "GameCScene.h"
 #include "GameOScene.h"
+#include "WaveSelect.h"
 
 class SceneManager {
 public:
@@ -43,7 +44,7 @@ public:
 	enum SceneMode 
 	{
 		//タイトル,ゲームシーン、クリア、オーバー
-		TitleMode,GPlayMode, GClearMode, GOverMode
+		TitleMode, WaveSelectMode,GPlayMode, GClearMode, GOverMode
 	};
 	
 	/// <summary>
@@ -73,6 +74,7 @@ private:
 	GamePScene* gameP_ = nullptr;
 	GameCScene* gameC_ = nullptr;
 	GameOScene* gameO_ = nullptr;
+	WaveSelect* waveS_ = nullptr;
 
 	// シーン変更できるかどうか
 	bool flagChange_ = false;

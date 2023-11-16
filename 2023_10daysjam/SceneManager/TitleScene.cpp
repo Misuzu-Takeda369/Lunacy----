@@ -10,25 +10,25 @@ void TitleScene::Initialize()
 	startImage_ = Novice::LoadTexture("./Resources/images/Text/Start.png");
 	titleBack_= Novice::LoadTexture("./Resources/images/Back/Titleback_2.png");
 
-	memcpy(preKeys, preKeys, 256);
-	Novice::GetHitKeyStateAll(keys);
-
 	startPos_ = {
 		450,350
 	};
 	startColor_ = { 255,255,255,255,0xFFFFFFFF };
+
+	changeTimingFrame_ = 50;
 }
 
 void TitleScene::Update()
 {
-	keys; preKeys;
+	changeTimingFrame_++;
 
 	switch (titleSModeNow_)
 	{
 	case None:
+		//キーの処理
+		memcpy(preKeys, preKeys, 256);
+		Novice::GetHitKeyStateAll(keys);
 
-
-		changeTimingFrame_++;
 		//ここのif文でシーン移行出来るかを判別
 		
 		//マウスでのシーン移動
@@ -36,7 +36,7 @@ void TitleScene::Update()
 
 #ifdef _DEBUG
 		//現在は1を押したときに移動
-		if ((preKeys[DIK_I] == 0 && keys[DIK_I] != 0)&& changeTimingFrame_>= 60) {
+		if ((preKeys[DIK_I] == 0 && keys[DIK_I] != 0) && changeTimingFrame_ >= 60) {
 			flagChange_ = true;
 			changeTimingFrame_ = 0;
 		}
