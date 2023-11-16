@@ -24,7 +24,7 @@ void GameOScene::Initialize()
 void GameOScene::Update()
 {
 
-	memcpy(preKeys, preKeys, 256);
+	memcpy(preKeys, keys, 256);
 	Novice::GetHitKeyStateAll(keys);
 #pragma region シーン変換
 	

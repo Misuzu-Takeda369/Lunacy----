@@ -25,6 +25,7 @@ public:
 	};
 
 
+
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
@@ -41,24 +42,55 @@ public:
 	void Update();
 
 	/// <summary>
+	/// Wave毎の挙動　チュートリアル
+	/// </summary>
+	void TutorialUpdate();
+
+	/// <summary>
+	/// Wave毎の挙動　Wave1
+	/// </summary>
+	void Wave1Update();
+
+	/// <summary>
+	/// Wave毎の挙動　Wave2
+	/// </summary>
+	void Wave2Update();
+
+	/// <summary>
+	/// Wave毎の挙動　Wave3
+	/// </summary>
+	void Wave3Update();
+
+	/// <summary>
 	/// 前景描画
 	/// </summary>
 	void Draw();
+
+	/// <summary>
+	/// Wave毎の描写　チュートリアル
+	/// </summary>
+	void TutorialDraw();
+
+	/// <summary>
+	/// Wave毎の描写　Wave1
+	/// </summary>
+	void Wave1Draw();
+
+	/// <summary>
+	/// Wave毎の描写　Wave2
+	/// </summary>
+	void Wave2Draw();
+
+	/// <summary>
+	/// Wave毎の描写　Wave3
+	/// </summary>
+	void Wave3Draw();
 
 	/// <summary>
 	/// 当たり判定すべてを統括する関数
 	/// </summary>
 	void CheckCollisionAll();
 
-	/// <summary>
-	/// 一つ一つの当たり判定(没)
-	/// </summary>
-	//void CheckCollision(Object* ObjectA, Object* ObjectB);
-
-	/// <summary>
-	/// アイテムが実際にポップする関数(敵消滅と同じ所に実装)
-	/// </summary>
-	//void ItemPoping();
 
 	/// <summary>
 	/// アイテムが消える関数
@@ -74,6 +106,11 @@ public:
 	/// 敵が実際にポップする関数
 	/// </summary>
 	void EnemyPoping();
+
+	/// <summary>
+	/// Wave変更関数
+	/// </summary>
+	void WaveChange();
 
 	///ゲッターセッター
 
@@ -112,7 +149,7 @@ private:
 	char preKeys[256] = { 0 };
 
 	/// <summary>
-	/// 現在のタイトル画面のモード
+	/// 現在のゲームのモード
 	/// </summary>
 	int gameSModeNow_ = None;
 
@@ -121,7 +158,13 @@ private:
 	//ゲームをうごかしているか
 	bool GameMove_ = false;
 
+	//現在のwave
+	Wave nowWave_ = Tutorial;
 
+
+	/// <summary>
+	/// オブジェクト関連
+	/// </summary>
 	Player* player_ = nullptr;
 
 	//Enemy* enemy_ = nullptr;

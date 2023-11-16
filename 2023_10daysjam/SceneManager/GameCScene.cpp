@@ -19,7 +19,7 @@ void GameCScene::Initialize()
 void GameCScene::Update()
 {
 
-	memcpy(preKeys, preKeys, 256);
+	memcpy(preKeys, keys, 256);
 	Novice::GetHitKeyStateAll(keys);
 	//ここのif文でシーン移行出来るかを判別
 	changeTimingFrame_++;

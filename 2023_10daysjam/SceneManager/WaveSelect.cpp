@@ -18,7 +18,7 @@ void WaveSelect::Initialize()
 
 void WaveSelect::Update()
 {
-	memcpy(preKeys, preKeys, 256);
+	memcpy(preKeys, keys, 256);
 	Novice::GetHitKeyStateAll(keys);
 
 	changeTimingFrame_++;

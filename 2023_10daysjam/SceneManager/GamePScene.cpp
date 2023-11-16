@@ -42,27 +42,26 @@ void GamePScene::Initialize()
 	backGround_ = new BackGround();
 	backGround_->Initialize();
 
-	//PopItem* popItem = new PopItem();
-	//popItem->Initialize();
-
-	/*popItem_ = new PopItem();
-	popItem_->Initialize();*/
-
+	//多分後で変わる(初期化内容からがっつり変わる可能性)
+	nowWave_ = Tutorial;
 
 }
 
 void GamePScene::Update()
 {
-	memcpy(preKeys, preKeys, 256);
+	memcpy(preKeys, keys, 256);
 	Novice::GetHitKeyStateAll(keys);
 
 
+
+	//プレイモードがポーズか
 	switch (gameSModeNow_)
 	{
 	case None:
 
 		changeTimingFrame_++;
 
+		//止まってるか動いているか
 		if (!GameMove_) {
 			//ここ押すと動き出す
 			if (preKeys[DIK_SPACE] == 0 && keys[DIK_SPACE] != 0) {
@@ -73,48 +72,47 @@ void GamePScene::Update()
 				flagChange_ = true;
 			}
 
+			WaveChange();
+
 		}
 		else {
 
-			//敵の発生
-			EnemyPoping();
+			switch (nowWave_)
+			{
+			case Tutorial:
 
-			//ここプレイヤーからUIに変化点を受け取っておく
-			spUi_->SetSpChangingPoint(player_->GetSpChangingPoint());
+				TutorialUpdate();
 
-			//プレイヤーの挙動
-			player_->Update(keys, preKeys);
+				break;
 
-			//敵の動き
-			for (PopEnemy* enemies : enemy_) {
-					enemies->Update();
+			case Wave1:
+
+				Wave1Update();
+				break;
+
+			case Wave2:
+
+				Wave2Update();
+
+				break;
+
+			case Wave3:
+
+				Wave3Update();
+
+				break;
+
+			default:
+				break;
 			}
-
-
-			//アイテムの挙動
-			for (PopItem* popItem : popItem_) {
-				if (!popItem->IsDead()) {
-					popItem->Update();
-				}
-			}
-			
-			/*if (!popItem_->IsDead()) {
-				popItem_->Update();
-			}*/
-
-			//当たり判定
-			CheckCollisionAll();
-
-			//敵を消去してよいか
-			EnemyDead();
-			//アイテムを消してよいか
-			ItemDead();
 
 			hpUi_->Update(player_->GetPlayerDecreasedHp());
 
 			spUi_->Update(player_->GetPlayerDecreasedSp());
 
 			timerUi_->Update();
+
+		
 
 #pragma region シーン変更含む
 			
@@ -132,8 +130,11 @@ void GamePScene::Update()
 			//ここのif文でシーン移行出来るかを判別
 			//現在はIを押したときに移動
 			if ((preKeys[DIK_I] == 0 && keys[DIK_I] != 0) && changeTimingFrame_ >= 60) {
-				flagChange_ = true;
-				changeTimingFrame_ = 0;
+
+				if (nowWave_ == Wave3) {
+					flagChange_ = true;
+					changeTimingFrame_ = 0;
+				}
 			}
 			//ここのif文でシーン移行出来るかを判別
 			//現在はOを押したときに移動(がめおべ)
@@ -170,6 +171,7 @@ void GamePScene::Update()
 			gameSModeNow_ = None;
 			changeTimingFrame_ = 0;
 		}
+
 		break;
 
 	default:
@@ -189,33 +191,121 @@ void GamePScene::Update()
 	ImGui::Text("EnemyPop %d\n", EnemyPopFrame_);
 	ImGui::End();
 
+	ImGui::Begin("Wave");
+	ImGui::Text("Wave %d\n", nowWave_);
+	ImGui::End();
+
 
 #pragma endregion
 #endif // DEBUG
 }
 
+void GamePScene::TutorialUpdate()
+{
+}
+
+void GamePScene::Wave1Update()
+{
+	//敵の発生
+	EnemyPoping();
+
+	//ここプレイヤーからUIに変化点を受け取っておく
+	spUi_->SetSpChangingPoint(player_->GetSpChangingPoint());
+
+	//プレイヤーの挙動
+	player_->Update(keys, preKeys);
+
+	//敵の動き
+	for (PopEnemy* enemies : enemy_) {
+		enemies->Update();
+	}
+
+	//アイテムの挙動
+	for (PopItem* popItem : popItem_) {
+		if (!popItem->IsDead()) {
+			popItem->Update();
+		}
+	}
+
+	//当たり判定
+	CheckCollisionAll();
+
+	//敵を消去してよいか
+	EnemyDead();
+	//アイテムを消してよいか
+	ItemDead();
+}
+
+void GamePScene::Wave2Update()
+{
+}
+
+
+void GamePScene::Wave3Update()
+{
+}
 
 void GamePScene::Draw()
 {
-	switch (gameSModeNow_)
-	{
-	case None:
 
-		Novice::ScreenPrintf(550,620,"Start to Space");
+	switch (nowWave_)
+	{
+	case Tutorial:
+		TutorialDraw();
+
+		break;
+
+	case Wave1:
+		Wave1Draw();
+		break;
+
+	case Wave2:
+		Wave2Draw();
+		break;
+
+	case Wave3:
+		Wave3Draw();
 		break;
 
 	default:
 		break;
 	}
 
+	switch (gameSModeNow_)
+	{
+	case None:
+
+		break;
+
+	default:
+		break;
+	}
+
+#ifdef _DEBUG
+	Novice::ScreenPrintf(500, 500, "%d", CountNum_);
+#endif // _DEBUG
+
+#pragma region UI関連(一番前に写す)
+	hpUi_->Draw();
+	spUi_->Draw();
+	timerUi_->Draw();
+#pragma endregion
+}
+
+void GamePScene::TutorialDraw()
+{
+}
+
+void GamePScene::Wave1Draw()
+{
 	backGround_->Draw();
 
 	for (PopEnemy* enemies : enemy_) {
 
 		//if (enemies->GetIsDead()) {
-			enemies->Draw();
+		enemies->Draw();
 		//}
-		
+
 	}
 
 	/*for (PopItem* popItem : popItem_) {
@@ -229,22 +319,15 @@ void GamePScene::Draw()
 	}
 
 	player_->Draw();
+}
 
-#ifdef _DEBUG
-	Novice::ScreenPrintf(500, 500, "%d", CountNum_);
-#endif // _DEBUG
+void GamePScene::Wave2Draw()
+{
+}
 
-#pragma region UI関連(一番前に写す)
-	hpUi_->Draw();
-	spUi_->Draw();
-	timerUi_->Draw();
+void GamePScene::Wave3Draw()
+{
 
-	Novice::ScreenPrintf(1000, 10, "Move AD");
-	Novice::ScreenPrintf(1000, 30, "Jump W");
-	Novice::ScreenPrintf(1000, 50, "Attack Left Click");
-	Novice::ScreenPrintf(1000, 70, "ModeChange Right Click");
-
-#pragma endregion
 }
 
 void GamePScene::CheckCollisionAll()
@@ -416,4 +499,18 @@ void GamePScene::EnemyPoping()
 		EnemyPopFrame_ = 0;
 
 	}
+}
+
+void GamePScene::WaveChange()
+{
+	if ((nowWave_ == Tutorial) && (!keys[DIK_0] && preKeys[DIK_0])) {
+		nowWave_ = Wave1;
+	}
+	else if ((nowWave_ == Wave1) && (!keys[DIK_0] && preKeys[DIK_0])) {
+		nowWave_ = Wave2;
+	}
+	else if ((nowWave_ == Wave2) && (!keys[DIK_0] && preKeys[DIK_0])) {
+		nowWave_ = Wave3;
+	}
+
 }

@@ -45,4 +45,9 @@ enum CollisionType
 	Box
 };
 
+///Wave関連
+//wave関連
+enum Wave {
+	Tutorial, Wave1, Wave2, Wave3
+};
 

@@ -2,6 +2,7 @@
 
 #include "ImGuiManager.h"
 #include <stdint.h>
+#include "Function/UtilityStruct.h"
 //ここからシーン変換
 #include "TitleScene.h"
 #include "GamePScene.h"

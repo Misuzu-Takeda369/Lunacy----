@@ -26,7 +26,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		Novice::BeginFrame();
 
 		// キー入力を受け取る
-		memcpy(preKeys, preKeys, 256);
+		memcpy(preKeys, keys, 256);
 		Novice::GetHitKeyStateAll(keys);
 
 		///
