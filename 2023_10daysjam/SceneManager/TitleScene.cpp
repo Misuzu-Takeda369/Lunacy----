@@ -20,7 +20,6 @@ void TitleScene::Initialize()
 
 void TitleScene::Update()
 {
-	changeTimingFrame_++;
 
 	switch (titleSModeNow_)
 	{
@@ -31,6 +30,7 @@ void TitleScene::Update()
 
 		//ここのif文でシーン移行出来るかを判別
 		
+		changeTimingFrame_++;
 		//マウスでのシーン移動
 		MouseBottonChack();
 

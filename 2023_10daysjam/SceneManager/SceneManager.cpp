@@ -59,6 +59,7 @@ void SceneManager::Update() {
 				gameP_ = new GamePScene();
 				nowWave_ = Wave(maxWave_);
 				gameP_->Initialize(nowWave_);
+				title_->SetFlagChange(false);
 			}
 			else {
 
