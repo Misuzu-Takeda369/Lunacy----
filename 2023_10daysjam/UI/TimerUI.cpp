@@ -27,10 +27,11 @@ void TimerUI::Update()
 	timerDisplay_ = timer_ / 60;
 	
 	ConversionUIVer2();
-	ConversionUIVer1();
+	//ConversionUIVer1();
 
 	if (timer_<= 0) {
 		timer_ = 0;
+		moveX_ = 0;
 	}
 
 }

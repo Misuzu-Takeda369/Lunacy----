@@ -191,4 +191,7 @@ private:
 	//アイテムポップ関数
 	std::list<PopItem*>popItem_;
 	//PopItem* popItem_;
+
+	//waveが変わったときに入れる時間の奴
+	const int timerMax = 3600;
 };

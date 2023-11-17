@@ -151,6 +151,10 @@ void SceneManager::Update() {
 			//動きによっては別な場所へ
 			gameO_ = new GameOScene();
 			gameO_->Initialize();
+			//deleteとnewと初期化(初期化だけでもよさそう感)
+			//動きによっては別な場所へ
+			gameP_ = new GamePScene();
+			gameP_->Initialize(nowWave_);
 		}
 		break;
 

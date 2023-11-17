@@ -40,6 +40,18 @@ public:
 	/// <returns></returns>
 	int GetterTimer() { return timer_; };
 
+	/// <summary>
+	/// タイマーのセッター
+	/// </summary>
+	/// <returns></returns>
+	void SetterTimer(int timer) { timer_ = timer; };
+
+	/// <summary>
+	/// 移動量のリセット
+	/// </summary>
+	/// <param name="moveX"></param>
+	void SetterMoveX(int moveX) { moveX_ = moveX; };
+
 private:
 
 	IntState timerUIPos_;

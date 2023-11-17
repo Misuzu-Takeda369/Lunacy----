@@ -75,14 +75,12 @@ void GamePScene::Update()
 	memcpy(preKeys, keys, 256);
 	Novice::GetHitKeyStateAll(keys);
 
-
+	changeTimingFrame_++;
 
 	//プレイモードがポーズか
 	switch (gameSModeNow_)
 	{
 	case None:
-
-		changeTimingFrame_++;
 
 		//止まってるか動いているか
 		if (!GameMove_) {
@@ -166,12 +164,19 @@ void GamePScene::Update()
 				flagChange_ = true;
 				flagGameOver_ = true;
 				changeTimingFrame_ = 0;
+				////リトライ用の値渡し
+				//timerUi_->SetterTimer(timerMax);
+				//timerUi_->SetterMoveX(0);
+				//player_->SetSp(player_->GetPlayerSpMax());
 			}
 #endif // DEBUG
 
 			if (timerUi_->GetterTimer() <= 0) {
-				//flagChange_ = true;
-				GameMove_ = false;
+				if (nowWave_ == Wave3) {
+					flagChange_ = true;
+					changeTimingFrame_ = 0;
+					nowWave_ = Tutorial;
+				}
 			}
 			//ここのif文でシーン移行出来るかを判別
 			//現在はOを押したときに移動(がめおべ)
@@ -179,6 +184,10 @@ void GamePScene::Update()
 				//flagChange_ = true;
 				flagGameOver_ = true;
 				GameMove_ = false;
+				////リトライ用の値渡し?
+				//timerUi_->SetterTimer(timerMax);
+				//timerUi_->SetterMoveX(0);
+				//player_->SetSp(player_->GetPlayerSpMax());
 			}
 
 #pragma endregion 
@@ -436,29 +445,6 @@ void GamePScene::CheckCollisionAll()
 #pragma endregion
 }
 
-/*没
-void GamePScene::CheckCollision(Object* ObjectA, Object* ObjectB)
-{
-	if (CircleCollision(ObjectA->GetPosX(), ObjectA->GetPosY(), ObjectA->GetRadish(), ObjectB->GetPosX(), ObjectB->GetPosY(), ObjectB->GetRadish()))
-	{
-		ObjectA->OnCollision();
-		ObjectB->OnCollision();
-	}
-}
-*/
-
-//void GamePScene::ItemPoping()
-//{
-//
-//				
-//				PopItem* newItem = new PopItem();
-//				Vector2 pos = { enemies->GetPosX(), enemies->GetPosY() };
-//				newItem->Initialize( pos);
-//
-//				popItem_.push_back(newItem); 
-//	
-//}
-
 void GamePScene::ItemDead()
 {
 	
@@ -527,14 +513,40 @@ void GamePScene::EnemyPoping()
 
 void GamePScene::WaveChange()
 {
+	if ((nowWave_ == Tutorial) && (timerUi_->GetterTimer() <= 0)) {
+		nowWave_ = Wave1;
+		timerUi_->SetterTimer(timerMax);
+		timerUi_->SetterMoveX(0);
+	}
+	else if ((nowWave_ == Wave1) && (timerUi_->GetterTimer() <= 0)) {
+		nowWave_ = Wave2;
+		timerUi_->SetterTimer(timerMax);
+		timerUi_->SetterMoveX(0);
+	}
+	else if ((nowWave_ == Wave2) && (timerUi_->GetterTimer() <= 0)) {
+		nowWave_ = Wave3;
+		timerUi_->SetterTimer(timerMax);
+		timerUi_->SetterMoveX(0);
+	}
+
+#ifdef _DEBUG
+
 	if ((nowWave_ == Tutorial) && (!keys[DIK_0] && preKeys[DIK_0])) {
 		nowWave_ = Wave1;
+		timerUi_->SetterTimer(timerMax);
+		timerUi_->SetterMoveX(0);
 	}
 	else if ((nowWave_ == Wave1) && (!keys[DIK_0] && preKeys[DIK_0])) {
 		nowWave_ = Wave2;
+		timerUi_->SetterTimer(timerMax);
+		timerUi_->SetterMoveX(0);
 	}
 	else if ((nowWave_ == Wave2) && (!keys[DIK_0] && preKeys[DIK_0])) {
 		nowWave_ = Wave3;
+		timerUi_->SetterTimer(timerMax);
+		timerUi_->SetterMoveX(0);
 	}
+
+#endif // _DEBUG
 
 }

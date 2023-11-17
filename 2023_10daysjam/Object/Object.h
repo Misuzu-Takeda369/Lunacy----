@@ -45,6 +45,12 @@ public:
 	virtual float GetSp() { return sp_; };
 
 	/// <summary>
+	/// 現在のSP
+	/// </summary>
+	/// <returns></returns>
+	virtual float SetSp(float sp) { return sp_ = sp; };
+
+	/// <summary>
 	/// 当たり判定に使う用のゲッターX
 	/// </summary>
 	/// <returns></returns>
