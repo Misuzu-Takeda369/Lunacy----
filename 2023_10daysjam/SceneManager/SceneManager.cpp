@@ -35,7 +35,7 @@ void SceneManager::Initialize() {
 
 
 	nowWave_ = Tutorial;
-	maxWave_ = Wave1;
+	maxWave_ = Tutorial;
 }
 
 void SceneManager::Update() {
@@ -51,18 +51,35 @@ void SceneManager::Update() {
 		//タイトルのクラスから変更出来るか否かフラグ貰ってきてtrueだった場合
 		//ゲームプレイモードに移行する
 		if (title_->GetFlagChange()) {
-			sceneNum_ = WaveSelectMode;
-			title_->SetFlagChange(false);
 
-			//deleteとnewと初期化(初期化だけでもよさそう感)
-			//動きによっては別な場所へ
-			title_ = new TitleScene();
-			title_->Initialize();
+			//初めて起動したとき
+			if (maxWave_ == Tutorial) {
 
-			//deleteとnewと初期化(初期化だけでもよさそう感)
-			//動きによっては別な場所へ
-			waveS_ = new WaveSelect();
-			waveS_->Initialize(maxWave_);
+				sceneNum_ = GPlayMode;
+				gameP_ = new GamePScene();
+				nowWave_ = Wave(maxWave_);
+				gameP_->Initialize(nowWave_);
+			}
+			else {
+
+				//それ以降
+				sceneNum_ = WaveSelectMode;
+				title_->SetFlagChange(false);
+
+				//deleteとnewと初期化(初期化だけでもよさそう感)
+				//動きによっては別な場所へ
+				title_ = new TitleScene();
+				title_->Initialize();
+
+				//deleteとnewと初期化(初期化だけでもよさそう感)
+				//動きによっては別な場所へ
+				waveS_ = new WaveSelect();
+				waveS_->Initialize(maxWave_);
+
+			}
+			
+
+			
 		}
 		break;
 

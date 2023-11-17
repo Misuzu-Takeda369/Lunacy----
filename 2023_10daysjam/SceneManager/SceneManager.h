@@ -60,11 +60,6 @@ public:
 	/// <returns></returns>
 	uint32_t SetSceneNum(uint32_t sceneNum) { this->sceneNum_ = sceneNum;};
 
-	/// <summary>
-	/// 現在のwaveを受け取る
-	/// </summary>
-	/// <param name="nowWave"></param>
-	//void SetKeepWave(Wave& nowWave) { keepWave_ = nowWave; };
 	
 
 private:
