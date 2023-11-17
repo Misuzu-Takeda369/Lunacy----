@@ -44,6 +44,9 @@
     <Filter Include="Back">
       <UniqueIdentifier>{9039e1d5-74ef-4f73-83a5-17a1487848c3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Tutrial">
+      <UniqueIdentifier>{475f1d6f-592a-4c1d-84a7-a700b4d01d65}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp">
@@ -174,6 +177,9 @@
     </ClCompile>
     <ClCompile Include="Animation\PlayerFall.cpp">
       <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="TutrialText\TutrialText.cpp">
+      <Filter>Tutrial</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -365,6 +371,9 @@
     </ClInclude>
     <ClInclude Include="Animation\PlayerFall.h">
       <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="TutrialText\TutrialText.h">
+      <Filter>Tutrial</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
