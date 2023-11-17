@@ -35,7 +35,7 @@ void SceneManager::Initialize() {
 
 
 	nowWave_ = Tutorial;
-	maxWave_ = Tutorial;
+	maxWave_ = Wave1;
 }
 
 void SceneManager::Update() {
@@ -62,7 +62,7 @@ void SceneManager::Update() {
 			//deleteとnewと初期化(初期化だけでもよさそう感)
 			//動きによっては別な場所へ
 			waveS_ = new WaveSelect();
-			waveS_->Initialize((Wave&)maxWave_);
+			waveS_->Initialize(maxWave_);
 		}
 		break;
 

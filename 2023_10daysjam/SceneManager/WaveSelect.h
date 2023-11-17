@@ -2,6 +2,9 @@
 #include <Novice.h>
 #include "Function/UtilityStruct.h"
 
+//何個選択肢があるのか
+const int selectNum_ = 4;
+
 class WaveSelect
 {
 public:
@@ -20,7 +23,7 @@ public:
 	/// </summary>
 	void Initialize();
 
-	void Initialize(Wave& nowWave);
+	void Initialize(int& maxWave);
 
 	/// <summary>
 	/// 毎フレーム処理
@@ -36,6 +39,11 @@ public:
 	/// マウスでのシーン変換
 	/// </summary>
 	void MouseBottonChack();
+
+	/// <summary>
+	/// ロードの時の
+	/// </summary>
+	void ColorLode();
 
 	/// <summary>
 	/// シーン変更管理のゲッター
@@ -76,6 +84,26 @@ private:
 
 	//マウスの位置(Yも無いと関数動かん)
 	IntState mousePos_ = { 0,0 };
+
+	
+	//選択用の文字
+	IntState selectLetter_[selectNum_];
+	//表示用の色
+	UnitColor selectColor_[selectNum_];
+
+	//画像数
+	int image_[selectNum_];
+
+
+	//チュートリアル用の文字サイズ
+	const IntState tutrialSize_={
+		128,128
+	};
+
+	//文字用の文字サイズ
+	const IntState textSize_ = {
+		384,128
+	};
 
 };
 
