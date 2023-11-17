@@ -20,6 +20,8 @@ public:
 	/// </summary>
 	void Initialize();
 
+	void Initialize(Wave& nowWave);
+
 	/// <summary>
 	/// 毎フレーム処理
 	/// </summary>
@@ -47,11 +49,26 @@ public:
 	/// <returns></returns>
 	bool SetFlagChange(bool flagChange) { return this->flagChange_ = flagChange; };
 
+
+	/// <summary>
+	/// 選択したwaveを受け取る
+	/// </summary>
+	/// <param name="nowWave"></param>
+	Wave GetNowWave() { return nowWave_; };
+
 private:
 	// シーン変更できるかどうか
 	bool flagChange_ = false;
 
-	int changeTimingFrame_ = 0;
+	const int changeTimingFrameMax_ = 10;
+	int changeTimingFrame_ = changeTimingFrameMax_;
+
+	//waveの解除等と現在のwaveをつなぐ奴(プレイヤーが選択した奴)
+	Wave nowWave_ = Tutorial;
+
+	//プレイヤーが一番進んだ分(数を数えたいのでint)
+	int maxWave_ = Tutorial;
+
 
 	// キー入力結果を受け取る箱(多分デバック用)
 	char keys[256] = { 0 };

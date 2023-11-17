@@ -34,6 +34,8 @@ public:
 	/// <summary>
 	/// 初期化
 	/// </summary>
+	void Initialize(Wave& nowWave);
+
 	void Initialize();
 
 	/// <summary>
@@ -132,7 +134,11 @@ public:
 	/// <returns></returns>
 	bool GetFlagGameOver() { return flagGameOver_; };
 
-
+	/// <summary>
+	/// 現在のwaveを受け取る
+	/// </summary>
+	/// <param name="nowWave"></param>
+	Wave GetNowWave() { return nowWave_; };
 
 
 private:
@@ -153,12 +159,12 @@ private:
 	/// </summary>
 	int gameSModeNow_ = None;
 
-	//フレーム
+	const int changeTimingFrameMax_ = 10;
 	int changeTimingFrame_ = 0;
 	//ゲームをうごかしているか
 	bool GameMove_ = false;
 
-	//現在のwave
+	//現在のwave(ここでWaveを管理するどこで再開か等)
 	Wave nowWave_ = Tutorial;
 
 

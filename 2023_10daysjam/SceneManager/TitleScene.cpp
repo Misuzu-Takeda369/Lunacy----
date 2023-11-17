@@ -11,11 +11,11 @@ void TitleScene::Initialize()
 	titleBack_= Novice::LoadTexture("./Resources/images/Back/Titleback_2.png");
 
 	startPos_ = {
-		450,350
+		750,350
 	};
 	startColor_ = { 255,255,255,255,0xFFFFFFFF };
 
-	changeTimingFrame_ = 50;
+	changeTimingFrame_ = 0;
 }
 
 void TitleScene::Update()
@@ -36,7 +36,7 @@ void TitleScene::Update()
 
 #ifdef _DEBUG
 		//現在は1を押したときに移動
-		if ((preKeys[DIK_I] == 0 && keys[DIK_I] != 0) && changeTimingFrame_ >= 60) {
+		if ((preKeys[DIK_I] == 0 && keys[DIK_I] != 0) && changeTimingFrame_ >= changeTimingFrameMax_) {
 			flagChange_ = true;
 			changeTimingFrame_ = 0;
 		}
@@ -61,7 +61,7 @@ void TitleScene::Draw()
 	//Novice::DrawBox(0, 0, 1280, 720, 0.0f, 0x30182CFF, kFillModeSolid);
 	Novice::DrawSprite(0, 0, titleBack_, 1.0f/2.0f, 1.0f / 2.0f, 0.0f, WHITE);
 	//タイトル
-	Novice::DrawSprite(250,50, titleImage_,1.0f,1.0f,0.0f,WHITE);
+	Novice::DrawSprite(startPos_.x_ - 200,50, titleImage_,1.0f,1.0f,0.0f,WHITE);
 	//文字の奴
 	Novice::DrawSprite(startPos_.x_, startPos_.y_, startImage_, 1.0f, 1.0f, 0.0f, startColor_.color);
 }
@@ -77,7 +77,7 @@ void TitleScene::MouseBottonChack()
 	{
 		startColor_.color = RED;
 		//はじめるに入っている場合左クリックするとスターとする
-		if (Novice::IsTriggerMouse(0) && changeTimingFrame_ >= 60) {
+		if (Novice::IsTriggerMouse(0) && changeTimingFrame_ >= changeTimingFrameMax_) {
 			flagChange_ = true;
 			changeTimingFrame_ = 0;
 		}

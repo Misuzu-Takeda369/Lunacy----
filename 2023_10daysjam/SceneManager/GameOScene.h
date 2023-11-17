@@ -69,6 +69,7 @@ private:
 	char preKeys[256] = { 0 };
 
 	//すぐに変わらないようにする屋tう
+	const int changeTimingFrameMax_ = 10;
 	int changeTimingFrame_ = 0;
 	//リトライするかを判別するためのフラグ
 	bool flagRetry_ = false;

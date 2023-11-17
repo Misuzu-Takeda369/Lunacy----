@@ -69,7 +69,8 @@ private:
 	/// </summary>
 	int titleSModeNow_ = None;
 
-	int changeTimingFrame_ = 60;
+	const int changeTimingFrameMax_ = 10;
+	int changeTimingFrame_ = 0;
 	///リソース関連
 	int titleImage_ = 0;
 	int startImage_ = 0;

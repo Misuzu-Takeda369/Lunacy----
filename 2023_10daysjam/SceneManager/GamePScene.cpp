@@ -23,6 +23,29 @@ GamePScene::~GamePScene()
 	
 }
 
+void GamePScene::Initialize(Wave& nowWave)
+{
+	CountNum_ = 0;
+	player_ = new Player();
+	player_->Initialize();
+
+
+	hpUi_ = new HpUI();
+	hpUi_->Initialize();
+
+	spUi_ = new SpUI();
+	spUi_->Initialize();
+
+	timerUi_ = new TimerUI();
+	timerUi_->Initialize();
+
+	backGround_ = new BackGround();
+	backGround_->Initialize();
+
+	//多分後で変わる(初期化内容からがっつり変わる可能性)
+	nowWave_ = nowWave;
+}
+
 void GamePScene::Initialize()
 {
 	CountNum_ = 0;
@@ -72,7 +95,6 @@ void GamePScene::Update()
 				flagChange_ = true;
 			}
 
-			WaveChange();
 
 		}
 		else {
@@ -112,13 +134,14 @@ void GamePScene::Update()
 
 			timerUi_->Update();
 
+			WaveChange();
 		
 
 #pragma region シーン変更含む
 			
 
 			///ポーズへ
-			if ((preKeys[DIK_P] == 0 && keys[DIK_P] != 0) && changeTimingFrame_ >= 60) {
+			if ((preKeys[DIK_P] == 0 && keys[DIK_P] != 0) && changeTimingFrame_ >= changeTimingFrameMax_) {
 				GameMove_ = false;
 				gameSModeNow_ = Pause;
 				changeTimingFrame_ = 0;
@@ -129,16 +152,17 @@ void GamePScene::Update()
 #ifdef _DEBUG
 			//ここのif文でシーン移行出来るかを判別
 			//現在はIを押したときに移動
-			if ((preKeys[DIK_I] == 0 && keys[DIK_I] != 0) && changeTimingFrame_ >= 60) {
+			if ((preKeys[DIK_I] == 0 && keys[DIK_I] != 0) && changeTimingFrame_ >= changeTimingFrameMax_) {
 
 				if (nowWave_ == Wave3) {
 					flagChange_ = true;
 					changeTimingFrame_ = 0;
+					nowWave_ = Tutorial;
 				}
 			}
 			//ここのif文でシーン移行出来るかを判別
 			//現在はOを押したときに移動(がめおべ)
-			if ((preKeys[DIK_O] == 0 && keys[DIK_O] != 0) && changeTimingFrame_ >= 60) {
+			if ((preKeys[DIK_O] == 0 && keys[DIK_O] != 0) && changeTimingFrame_ >= changeTimingFrameMax_) {
 				flagChange_ = true;
 				flagGameOver_ = true;
 				changeTimingFrame_ = 0;
@@ -166,7 +190,7 @@ void GamePScene::Update()
 
 		
 		//解除
-		if ((preKeys[DIK_P] == 0 && keys[DIK_P] != 0) && changeTimingFrame_ >= 60) {
+		if ((preKeys[DIK_P] == 0 && keys[DIK_P] != 0) && changeTimingFrame_ >= changeTimingFrameMax_) {
 			GameMove_ = true;
 			gameSModeNow_ = None;
 			changeTimingFrame_ = 0;
@@ -192,7 +216,7 @@ void GamePScene::Update()
 	ImGui::End();
 
 	ImGui::Begin("Wave");
-	ImGui::Text("Wave %d\n", nowWave_);
+	ImGui::Text("Wave %d\n[DIK_0]WaveChange", nowWave_);
 	ImGui::End();
 
 

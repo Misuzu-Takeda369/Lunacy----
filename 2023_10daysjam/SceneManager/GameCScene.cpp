@@ -29,9 +29,9 @@ void GameCScene::Update()
 #ifdef _DEBUG
 	//ここのif文でシーン移行出来るかを判別
 	//現在は1を押したときに移動
-	if ((preKeys[DIK_I] == 0 && keys[DIK_I] != 0) && changeTimingFrame_ >= 60) {
-		flagChange_ = true;
-		changeTimingFrame_ = 0;
+	if ((preKeys[DIK_I] == 0 && keys[DIK_I] != 0) && changeTimingFrame_ >= changeTimingFrameMax_) {
+			flagChange_ = true;
+			changeTimingFrame_ = 0;
 	}
 #endif // _DEBUG
 
@@ -52,7 +52,7 @@ void GameCScene::Draw()
 void GameCScene::MouseBottonChack()
 {
 	//範囲に入っている場合に入っている場合左クリックするとスターとする
-	if (Novice::IsTriggerMouse(0)&& changeTimingFrame_ >= 60) {
+	if (Novice::IsTriggerMouse(0)&& changeTimingFrame_ >= changeTimingFrameMax_) {
 		flagChange_ = true;
 		changeTimingFrame_ = 0;
 	}

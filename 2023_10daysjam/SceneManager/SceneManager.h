@@ -60,6 +60,11 @@ public:
 	/// <returns></returns>
 	uint32_t SetSceneNum(uint32_t sceneNum) { this->sceneNum_ = sceneNum;};
 
+	/// <summary>
+	/// 現在のwaveを受け取る
+	/// </summary>
+	/// <param name="nowWave"></param>
+	//void SetKeepWave(Wave& nowWave) { keepWave_ = nowWave; };
 	
 
 private:
@@ -80,5 +85,9 @@ private:
 	// シーン変更できるかどうか
 	bool flagChange_ = false;
 
+	//waveの解除等と現在のwaveをつなぐ奴(プレイヤーが選択した奴)
+	Wave nowWave_ = Tutorial;
 
+	//プレイヤーが一番進んだ分(数を数えたいのでint)
+	int maxWave_ = Tutorial;
 };

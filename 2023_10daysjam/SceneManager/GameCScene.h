@@ -56,6 +56,7 @@ private:
 	// シーン変更できるかどうか
 	bool flagChange_ = false; 
 	//受け取りのせいですぐに変わるのでそれを防ぐためのラグ(後で消える)
+	const int changeTimingFrameMax_ = 10;
 	int changeTimingFrame_ = 0;
 
 	int gameClearImage_ = 0;

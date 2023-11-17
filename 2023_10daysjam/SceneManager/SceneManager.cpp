@@ -33,6 +33,9 @@ void SceneManager::Initialize() {
 	gameO_->Initialize();
 	waveS_->Initialize();
 
+
+	nowWave_ = Tutorial;
+	maxWave_ = Tutorial;
 }
 
 void SceneManager::Update() {
@@ -55,6 +58,11 @@ void SceneManager::Update() {
 			//動きによっては別な場所へ
 			title_ = new TitleScene();
 			title_->Initialize();
+
+			//deleteとnewと初期化(初期化だけでもよさそう感)
+			//動きによっては別な場所へ
+			waveS_ = new WaveSelect();
+			waveS_->Initialize((Wave&)maxWave_);
 		}
 		break;
 
@@ -66,10 +74,14 @@ void SceneManager::Update() {
 			sceneNum_ = GPlayMode;
 			waveS_->SetFlagChange(false);
 
+
+			//現在のwaveを受け取る
+			nowWave_ = waveS_->GetNowWave();
 			//deleteとnewと初期化(初期化だけでもよさそう感)
 			//動きによっては別な場所へ
-			waveS_ = new WaveSelect();
-			waveS_->Initialize();
+			gameP_ = new GamePScene();
+			gameP_->Initialize(nowWave_);
+
 		}
 
 		break;
@@ -83,17 +95,20 @@ void SceneManager::Update() {
 		if (gameP_->GetFlagChange()) {
 			if (gameP_->GetFlagGameOver()) {
 				sceneNum_ = GOverMode;
+				
 			}
 			else {
 				sceneNum_ = GClearMode;
 			}
+
+			//現在のwaveを受け取る
+			nowWave_ = gameP_->GetNowWave();
+			if (maxWave_ < nowWave_) {
+				maxWave_ = nowWave_;
+			}
+
 			gameP_->SetFlagChange(false);
 
-
-			//deleteとnewと初期化(初期化だけでもよさそう感)
-			//動きによっては別な場所へ
-			gameP_ = new GamePScene();
-			gameP_->Initialize();
 		}
 		break;
 

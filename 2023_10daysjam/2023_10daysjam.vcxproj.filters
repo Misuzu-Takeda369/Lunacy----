@@ -166,6 +166,9 @@
     </ClCompile>
     <ClCompile Include="C:\KamataEngine\DirectXGame\2d\ImGuiManager.cpp" />
     <ClCompile Include="DummyObject.cpp" />
+    <ClCompile Include="SceneManager\WaveSelect.cpp">
+      <Filter>SceneManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -348,5 +351,8 @@
     </ClInclude>
     <ClInclude Include="ColorDefineEx.h" />
     <ClInclude Include="DummyObject.h" />
+    <ClInclude Include="SceneManager\WaveSelect.h">
+      <Filter>SceneManager</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
