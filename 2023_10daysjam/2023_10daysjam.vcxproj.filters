@@ -169,6 +169,12 @@
     <ClCompile Include="SceneManager\WaveSelect.cpp">
       <Filter>SceneManager</Filter>
     </ClCompile>
+    <ClCompile Include="Animation\PlayerJump.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation\PlayerFall.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -353,6 +359,12 @@
     <ClInclude Include="DummyObject.h" />
     <ClInclude Include="SceneManager\WaveSelect.h">
       <Filter>SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\PlayerJump.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\PlayerFall.h">
+      <Filter>Animation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

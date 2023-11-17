@@ -116,7 +116,9 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="Animation\PlayerAttack2Anim.cpp" />
     <ClCompile Include="Animation\PlayerAttackAnim.cpp" />
     <ClCompile Include="Animation\PlayerAttackAnim1.cpp" />
+    <ClCompile Include="Animation\PlayerFall.cpp" />
     <ClCompile Include="Animation\PlayerIdolAnim.cpp" />
+    <ClCompile Include="Animation\PlayerJump.cpp" />
     <ClCompile Include="Animation\PlayerRunAnim.cpp" />
     <ClCompile Include="Back\BackGround.cpp" />
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\StringUtility.cpp" />
@@ -162,7 +164,9 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="Animation\PlayerAttack2Anim.h" />
     <ClInclude Include="Animation\PlayerAttackAnim.h" />
     <ClInclude Include="Animation\PlayerAttackAnim1.h" />
+    <ClInclude Include="Animation\PlayerFall.h" />
     <ClInclude Include="Animation\PlayerIdolAnim.h" />
+    <ClInclude Include="Animation\PlayerJump.h" />
     <ClInclude Include="Animation\PlayerRunAnim.h" />
     <ClInclude Include="Back\BackGround.h" />
     <ClInclude Include="C:\KamataEngine\DirectXGame\base\StringUtility.h" />

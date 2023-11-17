@@ -190,6 +190,7 @@ private:
 	//ジャンプのラグ
 	int jumpLag_ = 10;
 	///ジャンプ関連
+	const float baseJumpSpeed_ = 35.f;
 	
 	///攻撃関連
 	//現在の攻撃type
@@ -203,6 +204,7 @@ private:
 
 	//攻撃している時間仮近距離(多分eff・animeでいらなくなる)
 	int attackframe_ = 30;
+	const int baseAttackFrame_ = 10;
 
 	//アイテムを取得中か
 	bool getItem_ = false;

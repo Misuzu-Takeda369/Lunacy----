@@ -7,6 +7,8 @@ PlayerAnimation::~PlayerAnimation()
 	delete _run;
 	delete _attack1;
 	delete _attack2;
+	delete _jump;
+	delete _fall;
 	for (LunaMentalEffect* effect : _lunaticEffect) {
 		delete effect;
 	}
@@ -28,6 +30,10 @@ void PlayerAnimation::Initialize()
 	_attack1->Initialize();
 	_attack2 = new PlayerAttack2Anim;
 	_attack2->Initialize();
+	_jump = new PlayerJump;
+	_jump->Initialize();
+	_fall = new PlayerFall;
+	_fall->Initialize();
 
 	_now = new Animation;
 	_now->Initialize();
@@ -50,9 +56,17 @@ void PlayerAnimation::Update(Vector2 pos, STATE main, SABSTATE sab)
 		_now = (Animation*)_run;
 		break;
 	case JUMP:
-		_run->Update(pos);
-		_run->SetDirection(_isDirectionRight);
-		_now = (Animation*)_run;
+		if (_jumpSpeed < 0) {
+			_fall->Update(pos);
+			_fall->SetDirection(_isDirectionRight);
+			_now = (Animation*)_fall;
+		}
+		else {
+			_jump->SetIsActive(true);
+			_jump->Update(pos);
+			_jump->SetDirection(_isDirectionRight);
+			_now = (Animation*)_jump;
+		}
 		break;
 	case DEAD:
 		break;
@@ -98,6 +112,10 @@ void PlayerAnimation::Update(Vector2 pos, STATE main, SABSTATE sab)
 	if (sab != _ATTACK && main != ATTACK) {
 		_attack1->SetActive(false);
 	}
+	if (main != JUMP) {
+		_jump->SetIsActive(false);
+		_fall->SetIsActive(false);
+	}
 
 	if (_maindState == Lunatic) {
 		_lunaEffectTimer++;
@@ -138,6 +156,13 @@ void PlayerAnimation::SetMaindState(const MaindState& state)
 	_idol->SetIsLunatic(_maindState);
 	_attack2->SetIsLunatic(_maindState);
 	_run->SetIsLunatic(_maindState);
+	_jump->SetIsLunatic(_maindState);
+	_fall->SetIsLunatic(_maindState);
+}
+
+void PlayerAnimation::SetJumpSpeed(float num)
+{
+	_jumpSpeed = num;
 }
 
 void PlayerAnimation::Draw()

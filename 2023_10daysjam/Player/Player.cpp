@@ -27,7 +27,7 @@ void Player::Initialize()
 	decreasedHp_ = maxHp_ - hp_;
 	decreasedSp_ = maxSp_ - sp_;
 
-	jumpSpeed_ = 30.0f;
+	jumpSpeed_ = baseJumpSpeed_;
 
 	jumpFrag_ = false;
 	jumpLag_ = 10;
@@ -78,6 +78,7 @@ void Player::Update(char* keys, char* preKeys)
 	playerAnimation_->Update(Vector2(charaBase_.pos_.x, charaBase_.pos_.y), playerState_, sabState_);
 	playerAnimation_->SetDirection(playerDirectionM_);
 	playerAnimation_->SetMaindState(maindStateNow_);
+	playerAnimation_->SetJumpSpeed(jumpSpeed_);
 
 
 	jewel_->Update(charaBase_.pos_, playerAttackTypeNow_, playerDirectionM_);
@@ -182,14 +183,20 @@ void Player::Jump()
 {
 	//ジャンプの挙動
 	if (jumpFrag_) {
-		jumpSpeed_ += charaBase_.speed_.y;
+		
+		if (jumpSpeed_ < 0) {
+			jumpSpeed_ += -1.2f;
+		}
+		else {
+			jumpSpeed_ += charaBase_.speed_.y;
+		}
 		charaBase_.pos_.y -= jumpSpeed_;
 
 
 		if (charaBase_.pos_.y >= standardPos_.y) {
 			jumpFrag_ = false;
 			charaBase_.pos_.y = standardPos_.y;
-			jumpSpeed_ = 25.0f;
+			jumpSpeed_ = baseJumpSpeed_;
 		}
 	}
 	else {
@@ -282,7 +289,7 @@ void Player::Attack()
 			attackFrag_ = false;
 			delete mAttack_;
 			mAttack_ = nullptr;
-			attackframe_ = 30;
+			attackframe_ = baseAttackFrame_;
 		}
 	}
 
