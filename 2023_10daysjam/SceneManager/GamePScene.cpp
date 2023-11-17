@@ -8,6 +8,7 @@ GamePScene::~GamePScene()
 	delete spUi_;
 	delete timerUi_;
 	delete backGround_;
+	delete tutrialtext_;
 
 	//delete enemy_;
 
@@ -42,6 +43,9 @@ void GamePScene::Initialize(Wave& nowWave)
 	backGround_ = new BackGround();
 	backGround_->Initialize();
 
+	tutrialtext_ = new TutrialText();
+	tutrialtext_->Initialize();
+
 	//多分後で変わる(初期化内容からがっつり変わる可能性)
 	nowWave_ = nowWave;
 }
@@ -64,6 +68,9 @@ void GamePScene::Initialize()
 
 	backGround_ = new BackGround();
 	backGround_->Initialize();
+
+	tutrialtext_ = new TutrialText();
+	tutrialtext_->Initialize();
 
 	//多分後で変わる(初期化内容からがっつり変わる可能性)
 	nowWave_ = Tutorial;
@@ -164,10 +171,6 @@ void GamePScene::Update()
 				flagChange_ = true;
 				flagGameOver_ = true;
 				changeTimingFrame_ = 0;
-				////リトライ用の値渡し
-				//timerUi_->SetterTimer(timerMax);
-				//timerUi_->SetterMoveX(0);
-				//player_->SetSp(player_->GetPlayerSpMax());
 			}
 #endif // DEBUG
 
@@ -184,10 +187,6 @@ void GamePScene::Update()
 				//flagChange_ = true;
 				flagGameOver_ = true;
 				GameMove_ = false;
-				////リトライ用の値渡し?
-				//timerUi_->SetterTimer(timerMax);
-				//timerUi_->SetterMoveX(0);
-				//player_->SetSp(player_->GetPlayerSpMax());
 			}
 
 #pragma endregion 
@@ -235,6 +234,7 @@ void GamePScene::Update()
 
 void GamePScene::TutorialUpdate()
 {
+	tutrialtext_->Update();
 }
 
 void GamePScene::Wave1Update()
@@ -327,6 +327,7 @@ void GamePScene::Draw()
 
 void GamePScene::TutorialDraw()
 {
+	tutrialtext_->Draw();
 }
 
 void GamePScene::Wave1Draw()

@@ -11,6 +11,7 @@
 #include "Object/Object.h"
 #include "Enemy/PopEnemy.h"
 #include "Back/BackGround.h"
+#include "TutrialText/TutrialText.h"
 
 /// <summary>
 /// プレイシーンのクラス
@@ -187,6 +188,7 @@ private:
 	SpUI* spUi_ = nullptr;
 	TimerUI* timerUi_ = nullptr;
 	BackGround* backGround_ = nullptr;
+	TutrialText* tutrialtext_ = nullptr;
 
 	//アイテムポップ関数
 	std::list<PopItem*>popItem_;
