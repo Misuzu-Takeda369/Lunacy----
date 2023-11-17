@@ -188,7 +188,7 @@ private:
 	//ジャンプするかのフラグ
 	bool jumpFrag_ = false;
 	//ジャンプのラグ
-	int jumpLag_ = 10;
+	int jumpLag_ = 0;
 	///ジャンプ関連
 	const float baseJumpSpeed_ = 35.f;
 	

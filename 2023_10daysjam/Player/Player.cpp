@@ -30,7 +30,7 @@ void Player::Initialize()
 	jumpSpeed_ = baseJumpSpeed_;
 
 	jumpFrag_ = false;
-	jumpLag_ = 10;
+	jumpLag_ = 0;
 
 	playerAttackTypeNow_ = Plane;
 	attackFrag_ = false;
@@ -174,7 +174,7 @@ void Player::Move(char* keys, char* preKeys)
 	Jump();
 	if (((preKeys[DIK_UP] == 0 && keys[DIK_UP] != 0) || (preKeys[DIK_W] == 0 && keys[DIK_W] != 0)) && jumpLag_ <= 0) {
 		jumpFrag_ = true;
-		jumpLag_ = 10;
+		jumpLag_ = 0;
 	}
 
 }
