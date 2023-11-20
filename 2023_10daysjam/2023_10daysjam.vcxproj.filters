@@ -190,6 +190,9 @@
     <ClCompile Include="UI\EHpUI.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="Animation\BladeSlimeAnim.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -389,6 +392,9 @@
     </ClInclude>
     <ClInclude Include="UI\EHpUI.h">
       <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\BladeSlimeAnim.h">
+      <Filter>Animation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

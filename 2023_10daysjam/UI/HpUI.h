@@ -4,6 +4,7 @@
 #include <Novice.h>
 #include "ImGuiManager.h"
 #include "Function/UtilityStruct.h"
+#include "Function/Function.h"
 
 /// <summary>
 /// HP表示のクラス
@@ -29,6 +30,7 @@ public:
 	/// </summary>
 	void Draw();
 
+
 private:
 
 	//左端
@@ -46,6 +48,11 @@ private:
 	int moveX_ = 0;
 	//移動する量(HPが1減るたびに動く量)
 	int moveSpeedX_ = 1;
+
+	//ゲージの色変更
+	int preValue = 0;
+	unsigned int texture_;
+	UnitColor color_;
 
 };
 

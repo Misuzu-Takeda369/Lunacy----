@@ -137,7 +137,7 @@ protected:
 	bool hit_ = false;
 	//被弾のクールタイム
 	int hitCoolTime_ = 0;
-	const int MaxHitCoolTime_ = 20;
+	const int MaxHitCoolTime_ = 60;
 
 
 };

@@ -58,7 +58,7 @@ bool CircleCollision(float aX, float aY, float aRadius, float bX, float bY, floa
 /// <param name="animationNum">何番目かの変数</param>
 /// /// <param name="maxFrame">アニメーションの合計フレーム数</param>
 /// <returns></returns>
-uint32_t AnimationNum(uint32_t animationNum,uint32_t maxFrame);
+uint32_t AnimationNum(uint32_t animationNum, uint32_t maxFrame);
 
 
 /// <summary>
@@ -77,7 +77,10 @@ void TranslateWave(float& pos, const float& theta, float range1, float range2);
 /// <param name="theta"></param>
 void CircumferentialMovement(Vector2& v, const float& theta);
 
-bool IsCollisionCircleAndBox(Vector2 posA, float radiusA, Vector2 posB, float heigthB, float widthB);
-bool IsCollisonBox(Vector2 posA, float heigthA, float widthA, Vector2 posB, float heigthB, float widthB);
-
+/// <summary>
+/// オブジェクト同士の衝突判定(矩形の座標は中心基準)
+/// </summary>
+/// <param name="objA">オブジェクト1</param>
+/// <param name="objB">オブジェクト2</param>
+/// <returns></returns>
 bool IsCollision(Object* objA, Object* objB);

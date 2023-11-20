@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "EnemyBase.h"
 #include "Animation/Enemy1Anim.h"
+#include "Animation/BladeSlimeAnim.h"
 
 class NHEnemy :public EnemyBase
 {
@@ -35,7 +36,8 @@ private:
 	const float nomalPoint_ = 50.0f;
 
 	//アニメーション
-	Enemy1Anim* animation_ = nullptr;
+	//Enemy1Anim* animation_ = nullptr;
+	BladeSlimeAnim* animation_ = nullptr;
 
 };
 

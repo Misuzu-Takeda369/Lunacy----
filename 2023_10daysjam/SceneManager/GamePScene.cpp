@@ -264,10 +264,6 @@ void GamePScene::Update()
 #endif // DEBUG
 }
 
-
-
-
-
 void GamePScene::Draw()
 {
 
@@ -299,6 +295,7 @@ void GamePScene::Draw()
 	}
 #pragma endregion
 
+	player_->Draw();
 
 	for (PopEnemy* enemies : enemy_) {
 
@@ -314,7 +311,7 @@ void GamePScene::Draw()
 		}
 	}
 
-	player_->Draw();
+	
 
 #ifdef _DEBUG
 	Novice::ScreenPrintf(500, 500, "%d", CountNum_);
@@ -338,7 +335,6 @@ void GamePScene::Draw()
 
 
 }
-
 
 void GamePScene::CheckCollisionAll()
 {

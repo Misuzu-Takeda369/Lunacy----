@@ -20,8 +20,11 @@ void NHEnemy::Initialize(Vector2 pos, Vector2 speed, float radius)
 	moveEnemy_ = { 0.0f,0.0f };
 
 	//アニメーション初期化
-	animation_ = new Enemy1Anim;
+	animation_ = new BladeSlimeAnim;
 	animation_->Initialize();
+
+
+	
 
 }
 

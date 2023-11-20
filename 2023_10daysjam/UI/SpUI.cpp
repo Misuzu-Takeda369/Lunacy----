@@ -8,7 +8,7 @@ void SpUI::Initialize()
 	//右下端
 	Rpos_ = { sizeX_,sizeY_ };
 	//画像
-	image_ = Novice::LoadTexture("./Resources/images/UI/HPBar_kari.png");
+	image_ = Novice::LoadTexture("./Resources/images/UI/HPBar_2.png");
 	frameImage_ = Novice::LoadTexture("./Resources/images/UI/HPBar_box2.png");
 	lineImage_ = Novice::LoadTexture("./Resources/images/UI/LunaticLin_kari.png");
 
@@ -34,7 +34,7 @@ void SpUI::Update(float decreasedSp)
 void SpUI::Draw()
 {
 	//決まった範囲に画像写すタイプ
-	Novice::DrawSpriteRect(Lpos_.x_, Lpos_.y_, 0 + moveX_, 0, sizeX_, sizeY_, image_, ((float)500 / 1000), 0.5, 0, WHITE);
+	Novice::DrawSpriteRect(Lpos_.x_, Lpos_.y_, 0 + moveX_, 0, sizeX_, sizeY_, image_, ((float)500 / 1000), 0.5, 0, color_.color);
 	//画像写す範囲を徐々に狭めていくタイプ
 	//Novice::DrawQuad(Lpos_.x_, Lpos_.y_, (Lpos_.x_ + Rpos_.x_) - moveX_, Lpos_.y_, Lpos_.x_, Lpos_.y_ + Rpos_.y_, (Lpos_.x_ + Rpos_.x_) - moveX_, Lpos_.y_ + Rpos_.y_
 		//, 0, 0, sizeX_, sizeY_, image_, WHITE);
