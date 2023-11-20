@@ -295,7 +295,7 @@ void GamePScene::Draw()
 	}
 #pragma endregion
 
-	player_->Draw();
+	player_->Draw()
 
 	for (PopEnemy* enemies : enemy_) {
 
