@@ -187,6 +187,9 @@
     <ClCompile Include="MousePointer\MousePointer.cpp">
       <Filter>MousePointer</Filter>
     </ClCompile>
+    <ClCompile Include="UI\EHpUI.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -383,6 +386,9 @@
     </ClInclude>
     <ClInclude Include="MousePointer\MousePointer.h">
       <Filter>MousePointer</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\EHpUI.h">
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

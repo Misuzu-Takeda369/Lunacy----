@@ -60,6 +60,13 @@ public:
 	/// </summary>
 	/// <returns></returns>
 	virtual float GetPosY() { return charaBase_.pos_.y; };
+
+	/// <summary>
+	/// 位置のゲッター2つまとめて入れたい時用
+	/// </summary>
+	/// <returns></returns>
+	virtual Vector2 GetPos() { return charaBase_.pos_; };
+
 	/// <summary>
 	/// 当たり判定に使う用のゲッター半径
 	/// </summary>

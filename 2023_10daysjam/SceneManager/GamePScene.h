@@ -2,10 +2,12 @@
 #include "Novice.h"
 #include "ImGuiManager.h"
 #include "Function/Function.h"
-#include "Player/Player.h"
+#pragma region UI
 #include "UI/HpUI.h"
 #include "UI/SpUI.h"
 #include "UI/TimerUI.h"
+#pragma endregion
+#include "Player/Player.h"
 #include "Item/PopItem.h"
 #include <list>
 #include "Object/Object.h"

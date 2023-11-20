@@ -15,13 +15,14 @@ GamePScene::~GamePScene()
 	for (PopEnemy* enemies : enemy_) {
 		delete enemies;
 	}
-	
-	
-	
+
+
+
 	for (PopItem* popItem : popItem_) {
 		delete popItem;
 	}
-	
+
+
 }
 
 void GamePScene::Initialize(Wave& nowWave)
@@ -140,10 +141,10 @@ void GamePScene::Update()
 			timerUi_->Update();
 
 			WaveChange();
-		
+
 
 #pragma region シーン変更含む
-			
+
 
 			///ポーズへ
 			if ((preKeys[DIK_P] == 0 && keys[DIK_P] != 0) && changeTimingFrame_ >= changeTimingFrameMax_) {
@@ -196,7 +197,7 @@ void GamePScene::Update()
 
 	case Pause:
 
-		
+
 		//解除
 		if ((preKeys[DIK_P] == 0 && keys[DIK_P] != 0) && changeTimingFrame_ >= changeTimingFrameMax_) {
 			GameMove_ = true;
@@ -322,6 +323,10 @@ void GamePScene::Draw()
 	hpUi_->Draw();
 	spUi_->Draw();
 	timerUi_->Draw();
+
+	for (EHpUI* enemyHpUi : enemyHpUi_) {
+		enemyHpUi->Draw();
+	}
 #pragma endregion
 }
 
@@ -384,7 +389,7 @@ void GamePScene::CheckCollisionAll()
 		}
 		//enemies;
 
-		
+
 	}
 #pragma endregion
 
@@ -392,63 +397,63 @@ void GamePScene::CheckCollisionAll()
 #pragma region プレイヤー近距離と敵本体
 	if (playerMA) {
 		for (PopEnemy* enemies : enemy_) {
- 
+
 			if (IsCollision(playerMA, enemies) == true) {
 				float damege = playerMA->GetAttackPoint();
 				enemies->OnCollision(damege);
 			}
-			
+
 		}
 	}
 #pragma endregion
 
 #pragma region プレイヤー遠距離と敵本体
 
-	
-		for (PopEnemy* enemies : enemy_) {
 
-			
-			for (PlayerLAttack* playerLAtteck : playerLA) {
+	for (PopEnemy* enemies : enemy_) {
 
-				if (playerLAtteck) {
 
-					if (IsCollision(playerLAtteck, enemies) == true) {
+		for (PlayerLAttack* playerLAtteck : playerLA) {
 
-						float damege = playerLAtteck->GetAttackPoint();
-						enemies->OnCollision(damege);
+			if (playerLAtteck) {
 
-					}
+				if (IsCollision(playerLAtteck, enemies) == true) {
+
+					float damege = playerLAtteck->GetAttackPoint();
+					enemies->OnCollision(damege);
+
 				}
-
 			}
 
 		}
+
+	}
 #pragma endregion
 
 #pragma region プレイヤー本体とアイテム
-		for (PopItem* popItem : popItem_) {
-			//ここで動いたのでプレイヤー関連では無さソう
-			//float recover = popItem->GetRecoverState();
-			//player_->UsedItem(recover);
-
-			
-			if (IsCollision(player_, popItem) == true) {
-				float recover = popItem->GetRecoverState();
-				player_->UsedItem(recover);
-				popItem->OnColistion();
-			}
-			
-			
-			//enemies;
+	for (PopItem* popItem : popItem_) {
+		//ここで動いたのでプレイヤー関連では無さソう
+		//float recover = popItem->GetRecoverState();
+		//player_->UsedItem(recover);
 
 
+		if (IsCollision(player_, popItem) == true) {
+			float recover = popItem->GetRecoverState();
+			player_->UsedItem(recover);
+			popItem->OnColistion();
 		}
+
+
+		//enemies;
+
+
+	}
 #pragma endregion
 }
 
 void GamePScene::ItemDead()
 {
-	
+
 	popItem_.remove_if([](PopItem* popItem) {
 		if (popItem->IsDead()) {
 			delete popItem;
@@ -457,7 +462,7 @@ void GamePScene::ItemDead()
 
 		return false;
 		});
-	
+
 
 	/*
 	if (popItem_->IsDead()) {
@@ -491,7 +496,7 @@ void GamePScene::EnemyDead()
 
 		return false;
 		});
-	
+
 }
 
 void GamePScene::EnemyPoping()
@@ -500,13 +505,11 @@ void GamePScene::EnemyPoping()
 
 	if (EnemyPopFrame_ >= consEnemyPopFrame_) {
 
-		
+
 		PopEnemy* newEnemy = new PopEnemy();
 
 		newEnemy->Initialize(player_->GetMaindStateNow());
 		enemy_.push_back(newEnemy);
-		
-
 		EnemyPopFrame_ = 0;
 
 	}
