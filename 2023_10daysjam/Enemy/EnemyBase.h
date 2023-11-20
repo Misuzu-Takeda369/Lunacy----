@@ -47,5 +47,8 @@ protected:
 	//敵が移動した量
 	Vector2 moveEnemy_;
 
+	//被弾のクールタイム
+	int hitCoolTime_ = 0;
+	const int MaxHitCoolTime_ = 5;
 };
 
