@@ -267,7 +267,8 @@ void Player::Attack()
 		}
 
 		mAttack_ = new PlayerMAttack();
-		mAttack_->Initialize(playerAttackTypeNow_, maindStateNow_, playerDirectionA_);
+		//mAttack_->Initialize(playerAttackTypeNow_, maindStateNow_, playerDirectionA_);
+		mAttack_->Initialize(playerAttackTypeNow_, maindStateNow_, playerDirectionM_);
 
 
 		//攻撃力の設定
@@ -284,7 +285,9 @@ void Player::Attack()
 
 		//近距離用当たり判定が起きている時場合
 		if (mAttack_) {
-			mAttack_->Update(charaBase_.pos_, playerDirectionA_);
+			//mAttack_->Update(charaBase_.pos_, playerDirectionA_);
+			mAttack_->Update(charaBase_.pos_, playerDirectionM_);
+			
 		}
 
 		//アニメーション入るまで仮フレーム
