@@ -138,7 +138,7 @@ private:
 	//精神状態が変わる値の変数(koko)
 	float spChangingPoint_ = 250.0f;
 	//magic攻撃時のSP減少量
-	float attackSpDown_ = 20.0f;
+	float attackSpDown_ = 50.0f;
 
 	//近距離用の当たり判定用クラス
 	PlayerMAttack* mAttack_ = nullptr;
@@ -158,7 +158,7 @@ private:
 	//ジャンプするかのフラグ
 	bool jumpFrag_ = false;
 	//ジャンプのラグ
-	int jumpLag_ = 0;
+	//int jumpLag_ = 0;
 	///ジャンプ関連
 	const float baseJumpSpeed_ = 35.f;
 	

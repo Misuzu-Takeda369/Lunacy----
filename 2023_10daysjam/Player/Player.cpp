@@ -30,7 +30,7 @@ void Player::Initialize()
 	jumpSpeed_ = baseJumpSpeed_;
 
 	jumpFrag_ = false;
-	jumpLag_ = 10;
+	//jumpLag_ = 10;
 
 	playerAttackTypeNow_ = Plane;
 	attackFrag_ = false;
@@ -131,7 +131,6 @@ void Player::Update(char* keys, char* preKeys)
 
 void Player::Draw()
 {
-	jewel_->Draw();
 
 #ifdef _DEBUG
 	//プレイヤー本体
@@ -141,6 +140,7 @@ void Player::Draw()
 	Novice::DrawBox(900, 100, 50, 50, 0.0f, maindColor_, kFillModeSolid);
 #endif // _DEBUG
 
+	jewel_->Draw();
 	playerAnimation_->Draw();
 
 	//近距離用当たり判定が起きている時場合
@@ -176,9 +176,8 @@ void Player::Move(char* keys, char* preKeys)
 	}
 	//縦
 	Jump();
-	if (((preKeys[DIK_UP] == 0 && keys[DIK_UP] != 0) || (preKeys[DIK_W] == 0 && keys[DIK_W] != 0)) && jumpLag_ <= 0) {
+	if (((preKeys[DIK_UP] == 0 && keys[DIK_UP] != 0) || (preKeys[DIK_W] == 0 && keys[DIK_W] != 0))) {
 		jumpFrag_ = true;
-		jumpLag_ = 10;
 	}
 
 }
@@ -202,9 +201,6 @@ void Player::Jump()
 			charaBase_.pos_.y = standardPos_.y;
 			jumpSpeed_ = baseJumpSpeed_;
 		}
-	}
-	else {
-		jumpLag_--;
 	}
 }
 
@@ -296,7 +292,9 @@ void Player::Attack()
 		if (attackframe_ <= 0) {
 			attackFrag_ = false;
 			delete mAttack_;
+
 			mAttack_ = nullptr;
+
 			attackframe_ = baseAttackFrame_;
 		}
 	}

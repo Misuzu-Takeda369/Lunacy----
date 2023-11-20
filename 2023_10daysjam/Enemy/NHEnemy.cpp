@@ -14,7 +14,6 @@ void NHEnemy::Initialize(Vector2 pos, Vector2 speed, float radius)
 	attackPoint_ = nomalPoint_;
 
 
-	//敵が死んでいるか
 	isDead_ = false;
 
 	//敵が移動した量
