@@ -99,28 +99,6 @@ public:
 	/// </summary>
 	void ItemCoolCheak();
 
-	/// <summary>
-	/// 最大値のHP
-	/// </summary>
-	/// <returns></returns>
-	float GetPlayerHpMax() { return maxHp_; };
-	/// <summary>
-	/// 最大値のSP
-	/// </summary>
-	/// <returns></returns>
-	float GetPlayerSpMax() { return maxSp_; };
-
-	/// <summary>
-	/// 最大-現在のHP
-	/// </summary>
-	/// <returns></returns>
-	float GetPlayerDecreasedHp() { return decreasedHp_; };
-	/// <summary>
-	/// 最大-現在のSP
-	/// </summary>
-	/// <returns></returns>
-	float GetPlayerDecreasedSp() { return decreasedSp_; };
-
 	bool GetAttackFrag() { return attackFrag_; };
 
 	/// <summary>
@@ -150,14 +128,6 @@ private:
 	//STATE用変数
 	STATE playerState_ = IDOL;
 	SABSTATE sabState_ = _NONE;
-
-	//Hp,Sp関連(最大、現在,減少量)
-	const float maxHp_ = 500.0f;
-	const float maxSp_ = 500.0f;
-	float decreasedHp_;
-	float decreasedSp_;
-	
-	
 
 	//プレイヤーの向き(攻撃の向き)
 	PlayerDirection playerDirectionA_ = RIGHT;

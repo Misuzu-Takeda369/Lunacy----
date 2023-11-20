@@ -9,6 +9,7 @@ PopEnemy::~PopEnemy()
 	//delete E_Bullet;
 	delete nHEnemy_;
 	delete nSEnemy_;
+	delete eHUi_;
 }
 
 void PopEnemy::Initialize(MaindState maindStateNow)
@@ -55,7 +56,13 @@ void PopEnemy::Initialize(MaindState maindStateNow)
 
 		nHEnemy_ = new NHEnemy();
 		nHEnemy_->Initialize(charaBase_.pos_, charaBase_.speed_, charaBase_.radius_);
-		hp_ = nHEnemy_->GetHp();
+		//hp_ = nHEnemy_->GetHp();
+
+		hp_ = nHEnemy_->GetHpMax();
+		maxHp_ = (nHEnemy_->GetHpMax());
+
+		decreasedHp_ = maxHp_ - hp_;
+		
 
 		break;
 
@@ -71,7 +78,12 @@ void PopEnemy::Initialize(MaindState maindStateNow)
 		isDead_ = true;
 		break;
 	}
+
 #pragma endregion
+
+	//Hpゲージ
+	eHUi_ = new EHpUI();
+	eHUi_->Initialize(charaBase_.pos_);
 
 }
 
@@ -114,6 +126,11 @@ void PopEnemy::Update()
 		break;
 	}
 
+	//ゲージ処理用
+	decreasedHp_ = maxHp_ - hp_;
+
+	eHUi_->Update(decreasedHp_, charaBase_.pos_);
+
 
 #ifdef _DEBUG
 #pragma region ImGui関連
@@ -143,6 +160,8 @@ void PopEnemy::Draw()
 		break;
 	}
 
+
+	eHUi_->Draw();
 }
 
 void PopEnemy::OnCollision(float& damege)

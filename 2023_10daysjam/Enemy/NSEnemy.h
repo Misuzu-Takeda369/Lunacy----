@@ -23,7 +23,7 @@ public:
 
 private:
 
-	const float maxHp_ = 1.0f;
+	const float maxHp_ = 10.0f;
 
 	const float nomalPoint_ = 10.0f;
 	float lunaticPoint_;

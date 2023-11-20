@@ -134,9 +134,9 @@ void GamePScene::Update()
 				break;
 			}
 
-			hpUi_->Update(player_->GetPlayerDecreasedHp());
+			hpUi_->Update(player_->GetDecreasedHp());
 
-			spUi_->Update(player_->GetPlayerDecreasedSp());
+			spUi_->Update(player_->GetDecreasedSp());
 
 			timerUi_->Update();
 
@@ -323,10 +323,6 @@ void GamePScene::Draw()
 	hpUi_->Draw();
 	spUi_->Draw();
 	timerUi_->Draw();
-
-	for (EHpUI* enemyHpUi : enemyHpUi_) {
-		enemyHpUi->Draw();
-	}
 #pragma endregion
 }
 

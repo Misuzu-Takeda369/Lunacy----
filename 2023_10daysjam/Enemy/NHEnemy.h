@@ -19,11 +19,17 @@ public:
 	/// 前景描画
 	/// </summary>
 	void Draw() override;
+
+	/// <summary>
+	/// 最大値のHP
+	/// </summary>
+	/// <returns></returns>
+	float GetHpMax() { return maxHp_; };
 	
 private:
 
 	//体力の最大値
-	const float maxHp_ = 1.0f;
+	const float maxHp_ = 10.0f;
 
 	//コイツの火力
 	const float nomalPoint_ = 10.0f;

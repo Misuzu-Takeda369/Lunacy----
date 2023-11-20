@@ -5,6 +5,8 @@
 #include "NSEnemy.h"
 #include "Function/Function.h"
 #include "EnemyBase.h"
+//ここに敵のUIを搭載(シーンの方だとめんどいことになるので)
+#include "UI/EHpUI.h"
 #define ENEMY_MAX 10
 
 //敵クラス(総括クラスポップ用に変更)
@@ -48,6 +50,11 @@ private:
 	int rumNum_ = 0;
 	//敵の種類用
 	EnemyType enemyType_ = NONE;
+
+	//Hpゲージ用
+	EHpUI* eHUi_ = nullptr;
+
+	float maxHp_;
 
 };
 

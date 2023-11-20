@@ -35,15 +35,15 @@ private:
 	IntState Rpos_ = { 0,0 };
 	//画像
 	int image_ = 0;
-	int frameImage_ = 0;
+	//int frameImage_ = 0;
 	//写したいサイズ
 	const int sizeX_ = 64;
-	const int sizeY_ = 32;
+	const int sizeY_ = 4;
 
 	//移動した合計
 	int moveX_ = 0;
 	//移動する量(HPが1減るたびに動く量)
-	int moveSpeedX_ = 1;
+	int moveSpeedX_ = 5;
 
 };
 

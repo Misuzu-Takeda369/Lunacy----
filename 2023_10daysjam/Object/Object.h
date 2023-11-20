@@ -51,6 +51,28 @@ public:
 	virtual float SetSp(float sp) { return sp_ = sp; };
 
 	/// <summary>
+	/// 最大値のHP
+	/// </summary>
+	/// <returns></returns>
+	virtual float GetHpMax() { return maxHp_; };
+	/// <summary>
+	/// 最大値のSP
+	/// </summary>
+	/// <returns></returns>
+	virtual float GetSpMax() { return maxSp_; };
+
+	/// <summary>
+	/// 最大-現在のHP
+	/// </summary>
+	/// <returns></returns>
+	virtual float GetDecreasedHp() { return decreasedHp_; };
+	/// <summary>
+	/// 最大-現在のSP
+	/// </summary>
+	/// <returns></returns>
+	virtual float GetDecreasedSp() { return decreasedSp_; };
+
+	/// <summary>
 	/// 当たり判定に使う用のゲッターX
 	/// </summary>
 	/// <returns></returns>
@@ -93,6 +115,12 @@ protected:
 
 	float hp_;
 	float sp_;
+
+	//Hp,Sp関連(最大、現在,減少量)
+	const float maxHp_ = 500.0f;
+	const float maxSp_ = 500.0f;
+	float decreasedHp_;
+	float decreasedSp_;
 
 	//現在の狂気度
 	MaindState maindStateNow_ = Normal;
