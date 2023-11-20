@@ -37,7 +37,7 @@ private:
 	IntState mousePos_ = { 0,0 };
 
 	//画像のサイズ
-	const IntState pointerSize = {64,64};
+	const IntState pointerSize = {32,32};
 
 	int pointerImage_;
 

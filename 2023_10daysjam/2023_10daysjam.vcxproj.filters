@@ -47,6 +47,9 @@
     <Filter Include="Tutrial">
       <UniqueIdentifier>{475f1d6f-592a-4c1d-84a7-a700b4d01d65}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MousePointer">
+      <UniqueIdentifier>{f9794a83-3fc6-4b17-88e9-734de7f80d0d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp">
@@ -180,6 +183,9 @@
     </ClCompile>
     <ClCompile Include="TutrialText\TutrialText.cpp">
       <Filter>Tutrial</Filter>
+    </ClCompile>
+    <ClCompile Include="MousePointer\MousePointer.cpp">
+      <Filter>MousePointer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -374,6 +380,9 @@
     </ClInclude>
     <ClInclude Include="TutrialText\TutrialText.h">
       <Filter>Tutrial</Filter>
+    </ClInclude>
+    <ClInclude Include="MousePointer\MousePointer.h">
+      <Filter>MousePointer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

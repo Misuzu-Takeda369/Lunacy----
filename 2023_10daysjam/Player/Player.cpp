@@ -1,5 +1,5 @@
 ﻿#include "Player.h"
-
+#include "ScreenSize.h"
 
 Player::~Player()
 {
@@ -30,7 +30,7 @@ void Player::Initialize()
 	jumpSpeed_ = baseJumpSpeed_;
 
 	jumpFrag_ = false;
-	jumpLag_ = 0;
+	jumpLag_ = 10;
 
 	playerAttackTypeNow_ = Plane;
 	attackFrag_ = false;
@@ -50,11 +50,11 @@ void Player::Initialize()
 	playerAnimation_ = new PlayerAnimation();
 	playerAnimation_->Initialize();
 
-	jewel_= new PlayerJewel();
-	jewel_->Initialize( charaBase_.color_);
+	jewel_ = new PlayerJewel();
+	jewel_->Initialize(charaBase_.color_);
 
 	collisionType_ = Box;
-	boxSize_ = {32.0f,128.0f};
+	boxSize_ = { 32.0f,128.0f };
 
 
 	hit_ = false;
@@ -160,12 +160,16 @@ void Player::Move(char* keys, char* preKeys)
 	if (1) {
 		//横移動
 		if (keys[DIK_LEFT] || keys[DIK_A]) {
-			charaBase_.pos_.x -= charaBase_.speed_.x;
+			if (charaBase_.pos_.x >= MimWindowWidth + boxSize_.x) {
+				charaBase_.pos_.x -= charaBase_.speed_.x;
+			}
 			playerDirectionM_ = LEFT;
 			//playerState_ = MOVE;
 		}
 		else if (keys[DIK_RIGHT] || keys[DIK_D]) {
-			charaBase_.pos_.x += charaBase_.speed_.x;
+			if (charaBase_.pos_.x <= kWindowWidth - boxSize_.x) {
+				charaBase_.pos_.x += charaBase_.speed_.x;
+			}
 			playerDirectionM_ = RIGHT;
 			//playerState_ = MOVE;
 		}
@@ -174,7 +178,7 @@ void Player::Move(char* keys, char* preKeys)
 	Jump();
 	if (((preKeys[DIK_UP] == 0 && keys[DIK_UP] != 0) || (preKeys[DIK_W] == 0 && keys[DIK_W] != 0)) && jumpLag_ <= 0) {
 		jumpFrag_ = true;
-		jumpLag_ = 0;
+		jumpLag_ = 10;
 	}
 
 }
@@ -183,7 +187,7 @@ void Player::Jump()
 {
 	//ジャンプの挙動
 	if (jumpFrag_) {
-		
+
 		if (jumpSpeed_ < 0) {
 			jumpSpeed_ += -1.2f;
 		}
@@ -289,7 +293,7 @@ void Player::Attack()
 			attackFrag_ = false;
 			delete mAttack_;
 			mAttack_ = nullptr;
-			attackframe_ = MaxHitCoolTime_;
+			attackframe_ = baseAttackFrame_;
 		}
 	}
 
@@ -369,7 +373,7 @@ void Player::OnCollision(float& damage, EnemyType& enemytype)
 			sp_ -= damage;
 			hit_ = true;
 		}
-	
+
 
 
 #ifdef _DEBUG
@@ -385,7 +389,7 @@ void Player::UsedItem(float& recover) {
 	getItem_ = true;
 	charaBase_.color_ = GREEN;*/
 
-	
+
 	if (!getItem_) {
 		sp_ += recover;
 		getItem_ = true;
@@ -396,7 +400,7 @@ void Player::UsedItem(float& recover) {
 		}
 
 
-		if (sp_>= maxHp_) {
+		if (sp_ >= maxHp_) {
 			sp_ = maxHp_;
 		}
 
@@ -405,7 +409,7 @@ void Player::UsedItem(float& recover) {
 #endif // _DEBUG
 
 	}
-	
+
 }
 
 
@@ -425,11 +429,11 @@ void Player::CoolCheak()
 			else {
 				charaBase_.color_ = RED;
 			}
-			
+
 #endif // _DEBUG
 		}
 	}
-	
+
 }
 
 void Player::ItemCoolCheak()

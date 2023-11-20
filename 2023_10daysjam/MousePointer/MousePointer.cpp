@@ -20,12 +20,12 @@ void MousePointer::Initialize()
 
 void MousePointer::Update()
 {
-	Novice::SetMouseCursorVisibility(0);
+	//Novice::SetMouseCursorVisibility(0);
 
 	Novice::GetMousePosition(&mousePos_.x_, &mousePos_.y_);
 }
 
 void MousePointer::Draw()
 {
-	Novice::DrawSprite(mousePos_.x_ + (pointerSize.x_/2), mousePos_.y_ + (pointerSize.y_ / 2), pointerImage_,1,1,0.0f,WHITE);
+	Novice::DrawSprite(mousePos_.x_ - (pointerSize.x_/2), mousePos_.y_ - (pointerSize.y_ / 2), pointerImage_,1,1,0.0f,WHITE);
 }
