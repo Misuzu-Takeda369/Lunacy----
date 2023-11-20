@@ -36,6 +36,24 @@ void TimerUI::Update()
 
 }
 
+void TimerUI::Update(Wave nowWave)
+{
+	if (nowWave != Tutorial) {
+		timer_--;
+	}
+	
+	timerDisplay_ = timer_ / 60;
+
+	ConversionUIVer2();
+	//ConversionUIVer1();
+
+	if (timer_ <= 0) {
+		timer_ = 0;
+		moveX_ = 0;
+	}
+
+}
+
 void TimerUI::Draw()
 {
 

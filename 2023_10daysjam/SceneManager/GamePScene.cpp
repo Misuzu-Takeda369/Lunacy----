@@ -167,7 +167,7 @@ void GamePScene::Update()
 
 			spUi_->Update(player_->GetDecreasedSp());
 
-			timerUi_->Update();
+			timerUi_->Update(nowWave_);
 
 #pragma endregion
 
@@ -295,7 +295,7 @@ void GamePScene::Draw()
 	}
 #pragma endregion
 
-	player_->Draw()
+	player_->Draw();
 
 	for (PopEnemy* enemies : enemy_) {
 
@@ -484,7 +484,8 @@ void GamePScene::EnemyPoping()
 
 void GamePScene::WaveChange()
 {
-	if ((nowWave_ == Tutorial) && (timerUi_->GetterTimer() <= 0)) {
+	//右クリック押したら終わる
+	if ((nowWave_ == Tutorial) && (preKeys[DIK_9] == 0 && keys[DIK_9] != 0)) {
 		nowWave_ = Wave1;
 		timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);

@@ -20,6 +20,11 @@ public:
 	void Update();
 
 	/// <summary>
+	/// 毎フレーム処理
+	/// </summary>
+	void Update(Wave nowWave);
+
+	/// <summary>
 	/// 前景描画
 	/// </summary>
 	void Draw();
