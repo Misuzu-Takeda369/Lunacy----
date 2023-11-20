@@ -417,7 +417,7 @@ void GamePScene::CheckCollisionAll()
 
 					float damege = playerLAtteck->GetAttackPoint();
 					enemies->OnCollision(damege);
-
+					playerLAtteck->OnCollision();
 				}
 			}
 

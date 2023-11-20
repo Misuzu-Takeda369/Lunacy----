@@ -40,6 +40,10 @@ public:
 	/// <returns></returns>
 	float GetAttackPoint() { return attackPoint_; };
 
+	/// <summary>
+	/// 当たった時の挙動
+	/// </summary>
+	void OnCollision();
 
 private:
 

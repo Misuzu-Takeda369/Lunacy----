@@ -73,6 +73,3 @@ void PlayerMAttack::DeterminingAttackPower(float hp, float maxHp)
 	}
 }
 
-void PlayerMAttack::OnCollision()
-{
-}

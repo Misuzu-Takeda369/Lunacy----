@@ -34,12 +34,6 @@ public:
 	void DeterminingAttackPower(float hp, float maxHp);
 
 	/// <summary>
-	/// 当たった時の挙動
-	/// </summary>
-	void OnCollision();
-
-
-	/// <summary>
 	/// 攻撃力受け取り
 	/// </summary>
 	/// <returns></returns>
