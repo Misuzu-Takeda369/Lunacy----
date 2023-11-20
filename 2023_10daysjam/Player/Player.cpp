@@ -289,7 +289,7 @@ void Player::Attack()
 			attackFrag_ = false;
 			delete mAttack_;
 			mAttack_ = nullptr;
-			attackframe_ = baseAttackFrame_;
+			attackframe_ = MaxHitCoolTime_;
 		}
 	}
 

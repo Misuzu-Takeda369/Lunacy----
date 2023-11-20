@@ -1,6 +1,7 @@
 #include <Novice.h>
 #include "SceneManager/SceneManager.h"
 #include "ScreenSize.h"
+#include "MousePointer/MousePointer.h"
 
 
 const char kWindowTitle[] = "Lunacy -月の宝珠-";
@@ -20,6 +21,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	SceneManager* sceneManager_ = new SceneManager();
 	sceneManager_->Initialize();
 
+	//マウスカーソルの画像写すやつ(ずっとそうなのでマネージャーの外に置いておく)
+	MousePointer* mousePointer_ = new MousePointer();
+	mousePointer_->Initialize();
+
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
 		// フレームの開始
@@ -33,6 +38,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		/// ↓更新処理ここから
 		///
 		//更新
+		mousePointer_->Update();
 		sceneManager_->Update();
 
 		
@@ -46,6 +52,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 		//描く
 		sceneManager_->Draw();
+		mousePointer_->Draw();
 		///
 		/// ↑描画処理ここまで
 		///
@@ -61,7 +68,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	//デリート
 	delete sceneManager_;
-
+	delete mousePointer_;
 	// ライブラリの終了
 	Novice::Finalize();
 	return 0;

@@ -34,8 +34,8 @@ void SceneManager::Initialize() {
 	waveS_->Initialize();
 
 
-	nowWave_ = Tutorial;
-	maxWave_ = Tutorial;
+	nowWave_ = Wave1;
+	maxWave_ = Wave1;
 }
 
 void SceneManager::Update() {

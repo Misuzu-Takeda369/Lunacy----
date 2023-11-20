@@ -140,6 +140,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="Item\PopItem.cpp" />
     <ClCompile Include="Item\SpRecoverItem.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MousePointer\MousePointer.cpp" />
     <ClCompile Include="Object\Object.cpp" />
     <ClCompile Include="Player\Player.cpp" />
     <ClCompile Include="Player\PlayerJewel.cpp" />
@@ -211,6 +212,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="Item\ItemBase.h" />
     <ClInclude Include="Item\PopItem.h" />
     <ClInclude Include="Item\SpRecoverItem.h" />
+    <ClInclude Include="MousePointer\MousePointer.h" />
     <ClInclude Include="Object\Object.h" />
     <ClInclude Include="Player\Player.h" />
     <ClInclude Include="Player\PlayerJewel.h" />

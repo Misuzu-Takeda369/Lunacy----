@@ -23,12 +23,13 @@ public:
 private:
 
 	//体力の最大値
-	const float maxHp_ = 10.0f;
+	const float maxHp_ = 1.0f;
 
 	//コイツの火力
 	const float nomalPoint_ = 10.0f;
 
 	//アニメーション
 	Enemy1Anim* animation_ = nullptr;
+
 };
 
