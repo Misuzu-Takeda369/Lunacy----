@@ -21,6 +21,12 @@ public:
 	/// </summary>
 	void Draw() override;
 
+	/// <summary>
+	/// 最大値のHP
+	/// </summary>
+	/// <returns></returns>
+	float GetHpMax() { return maxHp_; };
+
 private:
 
 	const float maxHp_ = 10.0f;

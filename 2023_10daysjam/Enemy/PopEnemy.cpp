@@ -72,6 +72,10 @@ void PopEnemy::Initialize(MaindState maindStateNow)
 		nSEnemy_ = new NSEnemy();
 		nSEnemy_->Initialize(charaBase_.pos_, charaBase_.speed_, charaBase_.radius_);
 		hp_ = nSEnemy_->GetHp();
+
+		maxHp_ = (nSEnemy_->GetHpMax());
+
+		decreasedHp_ = maxHp_ - hp_;
 		break;
 
 	default:

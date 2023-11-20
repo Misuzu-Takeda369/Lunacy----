@@ -105,40 +105,71 @@ void GamePScene::Update()
 		}
 		else {
 
+#pragma region 特定のWaveでしか機能しない
 			switch (nowWave_)
 			{
 			case Tutorial:
-
-				TutorialUpdate();
-
+				tutrialtext_->Update();
+				
 				break;
 
 			case Wave1:
 
-				Wave1Update();
 				break;
 
 			case Wave2:
 
-				Wave2Update();
+				
 
 				break;
 
 			case Wave3:
 
-				Wave3Update();
-
+				
 				break;
 
 			default:
 				break;
 			}
+#pragma endregion
+			//敵の発生
+			EnemyPoping();
+
+			//ここプレイヤーからUIに変化点を受け取っておく
+			spUi_->SetSpChangingPoint(player_->GetSpChangingPoint());
+
+			//プレイヤーの挙動
+			player_->Update(keys, preKeys);
+
+			//敵の動き
+			for (PopEnemy* enemies : enemy_) {
+				enemies->Update();
+			}
+
+			//アイテムの挙動
+			for (PopItem* popItem : popItem_) {
+				if (!popItem->IsDead()) {
+					popItem->Update();
+				}
+			}
+
+			//当たり判定
+			CheckCollisionAll();
+
+			//敵を消去してよいか
+			EnemyDead();
+			//アイテムを消してよいか
+			ItemDead();
+#pragma region UI関連
+
 
 			hpUi_->Update(player_->GetDecreasedHp());
 
 			spUi_->Update(player_->GetDecreasedSp());
 
 			timerUi_->Update();
+
+#pragma endregion
 
 			WaveChange();
 
@@ -233,77 +264,66 @@ void GamePScene::Update()
 #endif // DEBUG
 }
 
-void GamePScene::TutorialUpdate()
-{
-	tutrialtext_->Update();
-}
-
-void GamePScene::Wave1Update()
-{
-	//敵の発生
-	EnemyPoping();
-
-	//ここプレイヤーからUIに変化点を受け取っておく
-	spUi_->SetSpChangingPoint(player_->GetSpChangingPoint());
-
-	//プレイヤーの挙動
-	player_->Update(keys, preKeys);
-
-	//敵の動き
-	for (PopEnemy* enemies : enemy_) {
-		enemies->Update();
-	}
-
-	//アイテムの挙動
-	for (PopItem* popItem : popItem_) {
-		if (!popItem->IsDead()) {
-			popItem->Update();
-		}
-	}
-
-	//当たり判定
-	CheckCollisionAll();
-
-	//敵を消去してよいか
-	EnemyDead();
-	//アイテムを消してよいか
-	ItemDead();
-}
-
-void GamePScene::Wave2Update()
-{
-}
 
 
-void GamePScene::Wave3Update()
-{
-}
+
 
 void GamePScene::Draw()
 {
 
+	backGround_->Draw();
+
+#pragma region 特定のWAVEのみに写る処理
 	switch (nowWave_)
 	{
 	case Tutorial:
-		TutorialDraw();
+
+		tutrialtext_->Draw();
 
 		break;
 
 	case Wave1:
-		Wave1Draw();
+
 		break;
 
 	case Wave2:
-		Wave2Draw();
+	
 		break;
 
 	case Wave3:
-		Wave3Draw();
+		
 		break;
 
 	default:
 		break;
 	}
+#pragma endregion
+
+
+	for (PopEnemy* enemies : enemy_) {
+
+		//if (enemies->GetIsDead()) {
+		enemies->Draw();
+		//}
+
+	}
+
+	for (PopItem* popItem : popItem_) {
+		if (!popItem->IsDead()) {
+			popItem->Draw();
+		}
+	}
+
+	player_->Draw();
+
+#ifdef _DEBUG
+	Novice::ScreenPrintf(500, 500, "%d", CountNum_);
+#endif // _DEBUG
+
+#pragma region UI関連(一番前に写す)
+	hpUi_->Draw();
+	spUi_->Draw();
+	timerUi_->Draw();
 
 	switch (gameSModeNow_)
 	{
@@ -314,56 +334,11 @@ void GamePScene::Draw()
 	default:
 		break;
 	}
-
-#ifdef _DEBUG
-	Novice::ScreenPrintf(500, 500, "%d", CountNum_);
-#endif // _DEBUG
-
-#pragma region UI関連(一番前に写す)
-	hpUi_->Draw();
-	spUi_->Draw();
-	timerUi_->Draw();
 #pragma endregion
-}
 
-void GamePScene::TutorialDraw()
-{
-	tutrialtext_->Draw();
-}
-
-void GamePScene::Wave1Draw()
-{
-	backGround_->Draw();
-
-	for (PopEnemy* enemies : enemy_) {
-
-		//if (enemies->GetIsDead()) {
-		enemies->Draw();
-		//}
-
-	}
-
-	/*for (PopItem* popItem : popItem_) {
-		popItem->Draw();
-	}*/
-
-	for (PopItem* popItem : popItem_) {
-		if (!popItem->IsDead()) {
-			popItem->Draw();
-		}
-	}
-
-	player_->Draw();
-}
-
-void GamePScene::Wave2Draw()
-{
-}
-
-void GamePScene::Wave3Draw()
-{
 
 }
+
 
 void GamePScene::CheckCollisionAll()
 {

@@ -253,7 +253,8 @@ void Player::Attack()
 		if ((playerAttackTypeNow_ == Magic)) {
 
 			PlayerLAttack* newlAttack = new PlayerLAttack();
-			newlAttack->Initialize(playerAttackTypeNow_, maindStateNow_, playerDirectionA_, charaBase_.pos_);
+			//newlAttack->Initialize(playerAttackTypeNow_, maindStateNow_, playerDirectionA_, charaBase_.pos_);
+			newlAttack->Initialize(playerAttackTypeNow_, maindStateNow_, playerDirectionM_, charaBase_.pos_);
 			lAttack_.push_back(newlAttack);
 		}
 
