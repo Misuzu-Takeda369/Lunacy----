@@ -46,50 +46,13 @@ public:
 	/// </summary>
 	void Update();
 
-	/// <summary>
-	/// Wave毎の挙動　チュートリアル
-	/// </summary>
-	void TutorialUpdate();
 
-	/// <summary>
-	/// Wave毎の挙動　Wave1
-	/// </summary>
-	void Wave1Update();
-
-	/// <summary>
-	/// Wave毎の挙動　Wave2
-	/// </summary>
-	void Wave2Update();
-
-	/// <summary>
-	/// Wave毎の挙動　Wave3
-	/// </summary>
-	void Wave3Update();
 
 	/// <summary>
 	/// 前景描画
 	/// </summary>
 	void Draw();
 
-	/// <summary>
-	/// Wave毎の描写　チュートリアル
-	/// </summary>
-	void TutorialDraw();
-
-	/// <summary>
-	/// Wave毎の描写　Wave1
-	/// </summary>
-	void Wave1Draw();
-
-	/// <summary>
-	/// Wave毎の描写　Wave2
-	/// </summary>
-	void Wave2Draw();
-
-	/// <summary>
-	/// Wave毎の描写　Wave3
-	/// </summary>
-	void Wave3Draw();
 
 	/// <summary>
 	/// 当たり判定すべてを統括する関数
