@@ -15,6 +15,8 @@ private:
 	unsigned int texture_[maxFrame];
 	unsigned int rectTex_;
 	unsigned int rectTexATK_;
+	unsigned int lunaTex_;
+	unsigned int lunaTexATK_;
 	int frame = 0;
 	int frame2 = 0;
 	int atkFrame = 0;

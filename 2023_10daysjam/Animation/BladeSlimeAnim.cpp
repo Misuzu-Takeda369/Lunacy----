@@ -7,6 +7,9 @@ void BladeSlimeAnim::Initialize()
 	texture_[1] = Novice::LoadTexture("./Resources/images/AnimResources/bladeSlime_Attack.png");
 	rectTex_ = Novice::LoadTexture("./Resources/images/AnimResources/blades.png");
 	rectTexATK_ = Novice::LoadTexture("./Resources/images/AnimResources/bladesA.png");
+	lunaTex_ = Novice::LoadTexture("./Resources/images/AnimResources/bladesMind.png");
+	lunaTexATK_ = Novice::LoadTexture("./Resources/images/AnimResources/bladesMindA.png");
+	
 	_timer = 0;
 	atkFrame = 0;
 	frame2 = 0;
@@ -64,6 +67,15 @@ void BladeSlimeAnim::Draw(unsigned int color)
 		}
 	}
 	else {
+
+		if (state_ == ATTACK) {
+			Novice::DrawSpriteRect((int)(_pos.x - _spriteRadius.x * _direction), (int)(_pos.y - _spriteRadius.y), 1024 * atkFrame, 0, 1024, 512, lunaTexATK_,
+				0.25f * _direction * 0.2f, 0.25f, 0, WHITE);
+		}
+		else {
+			Novice::DrawSpriteRect((int)(_pos.x - _spriteRadius.x * _direction), (int)(_pos.y - _spriteRadius.y), 1024 * frame2, 0, 1024, 512, lunaTex_,
+				0.25f * _direction * 0.2f, 0.25f, 0, WHITE);
+		}
 		color;
 	}
 }
