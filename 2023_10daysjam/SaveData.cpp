@@ -114,3 +114,4 @@ void SaveData::WriteData()
 	writeFile << "hour," << playHour_ << "," << std::endl;
 	writeFile.close();
 }
+

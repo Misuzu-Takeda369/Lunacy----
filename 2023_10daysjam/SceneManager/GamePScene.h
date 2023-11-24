@@ -74,7 +74,6 @@ public:
 	/// 敵が実際にポップする関数
 	/// </summary>
 	void EnemyPoping();
-
 	void EnemyPoping(Wave& nowWave);
 
 	/// <summary>

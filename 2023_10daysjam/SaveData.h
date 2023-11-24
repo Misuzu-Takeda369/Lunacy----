@@ -12,11 +12,20 @@ public:
 	int GetPlayHour() { return playHour_; }
 	int GetPlayMin() { return playMin_; }
 	int GetPlaySecond() { return playSecond_; }
+
+	/// <summary>
+	/// 受け取り用
+	/// </summary>
+	/// <returns></returns>
+	int GetLastWave() {return lastWave_;};
+
 protected:
 	void LoadData();
 	void GetWaveData();
 	void GetTimeData();
 	void WriteData();
+
+
 	std::stringstream datas_;
 	int lastWave_;
 	int checkPointWave_;

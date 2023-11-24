@@ -20,10 +20,19 @@ public:
 	//後から場所だけ敵から受け取る
 	void Initialize(MaindState maindStateNow);
 
+	void Initialize(MaindState maindStateNow,Wave nowWave);
+
 	void Update() override;
 	void Draw() override;
 
 	void OnCollision(float& damege);
+
+
+	/// <summary>
+	/// 敵の生成(敵の種類やタイプをここで判断)
+	/// </summary>
+	/// <param name="nowWave">現在のwave</param>
+	void EnemyBorn(Wave nowWave);
 
 	/// <summary>
 	/// クールタイムか否か

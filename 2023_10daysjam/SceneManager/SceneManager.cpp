@@ -40,8 +40,8 @@ void SceneManager::Initialize() {
 	saveData_->Initialize();
 	dataScene_->Initialize();
 
-	nowWave_ = Wave1;
-	maxWave_ = Wave1;
+	nowWave_ = Tutorial;
+	maxWave_ = saveData_->GetLastWave();
 }
 
 void SceneManager::Update() {
@@ -89,6 +89,7 @@ void SceneManager::Update() {
 
 
 		}
+
 		if (title_->GetToPlayDataFlag()) {
 			sceneNum_ = PlayDataMode;
 			title_->SetToPlayDataFlag(false);
@@ -151,9 +152,9 @@ void SceneManager::Update() {
 		if (gameC_->GetFlagChange()) {
 			sceneNum_ = TitleMode;
 			gameC_->SetFlagChange(false);
-
 			//deleteとnewと初期化(初期化だけでもよさそう感)
 			//動きによっては別な場所へ
+			saveData_->OnResultUpdate(maxWave_);
 			gameC_ = new GameCScene();
 			gameC_->Initialize();
 		}
@@ -179,6 +180,7 @@ void SceneManager::Update() {
 
 			//deleteとnewと初期化(初期化だけでもよさそう感)
 			//動きによっては別な場所へ
+			saveData_->OnResultUpdate(maxWave_);
 			gameO_ = new GameOScene();
 			gameO_->Initialize();
 			//deleteとnewと初期化(初期化だけでもよさそう感)

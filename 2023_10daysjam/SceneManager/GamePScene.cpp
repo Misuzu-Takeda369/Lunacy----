@@ -254,7 +254,7 @@ void GamePScene::Update()
 	ImGui::End();
 
 	ImGui::Begin("EnemyPop");
-	ImGui::Text("EnemyPop %d\n", EnemyPopFrame_);
+	ImGui::Text("EnemyPop %d\nWave1 260,wave2&3 180\n", EnemyPopFrame_);
 	ImGui::End();
 
 	ImGui::Begin("Wave");
@@ -477,7 +477,7 @@ void GamePScene::EnemyPoping()
 
 		PopEnemy* newEnemy = new PopEnemy();
 
-		newEnemy->Initialize(player_->GetMaindStateNow());
+		newEnemy->Initialize(player_->GetMaindStateNow(),nowWave_);
 		enemy_.push_back(newEnemy);
 		EnemyPopFrame_ = 0;
 
@@ -502,7 +502,7 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 
 			PopEnemy* newEnemy = new PopEnemy();
 
-			newEnemy->Initialize(player_->GetMaindStateNow());
+			newEnemy->Initialize(player_->GetMaindStateNow(), nowWave);
 			enemy_.push_back(newEnemy);
 			EnemyPopFrame_ = 0;
 
@@ -517,7 +517,7 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 
 			PopEnemy* newEnemy = new PopEnemy();
 
-			newEnemy->Initialize(player_->GetMaindStateNow());
+			newEnemy->Initialize(player_->GetMaindStateNow(), nowWave);
 			enemy_.push_back(newEnemy);
 			EnemyPopFrame_ = 0;
 
@@ -531,7 +531,7 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 
 			PopEnemy* newEnemy = new PopEnemy();
 
-			newEnemy->Initialize(player_->GetMaindStateNow());
+			newEnemy->Initialize(player_->GetMaindStateNow(), nowWave);
 			enemy_.push_back(newEnemy);
 			EnemyPopFrame_ = 0;
 
