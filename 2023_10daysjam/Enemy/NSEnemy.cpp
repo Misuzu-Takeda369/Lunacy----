@@ -23,8 +23,11 @@ void NSEnemy::Initialize(Vector2 pos, Vector2 speed, float radius)
 	//敵が移動した量
 	moveEnemy_ = { 0.0f,0.0f };
 
+	////アニメーション初期化
+	//animation_ = new Enemy1Anim;
+	//animation_->Initialize();
 	//アニメーション初期化
-	animation_ = new Enemy1Anim;
+	animation_ = new BladeSlimeAnim;
 	animation_->Initialize();
 }
 

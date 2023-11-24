@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "EnemyBase.h"
 #include "Animation/Enemy1Anim.h"
+#include "Animation/BladeSlimeAnim.h"
 
 class NSEnemy :
     public EnemyBase
@@ -35,6 +36,7 @@ private:
 	float lunaticPoint_;
 
 	//アニメーション
-	Enemy1Anim* animation_ = nullptr;
+	//Enemy1Anim* animation_ = nullptr;
+	BladeSlimeAnim* animation_ = nullptr;
 };
 
