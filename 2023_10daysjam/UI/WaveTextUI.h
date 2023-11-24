@@ -43,7 +43,7 @@ private:
 	int image_ = 0;
 	//写したいサイズ
 	const int sizeX_ = 500;
-	const int sizeY_ = 96;
+	const int sizeY_ = 64;
 
 	//移動した合計
 	int moveX_ = 0;
