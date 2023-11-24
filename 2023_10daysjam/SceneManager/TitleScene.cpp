@@ -16,6 +16,8 @@ void TitleScene::Initialize()
 	startColor_ = { 255,255,255,255,0xFFFFFFFF };
 
 	changeTimingFrame_ = 0;
+
+	bookMark_ = Novice::LoadTexture("./Resources/images/databook.png");
 }
 
 void TitleScene::Update()
@@ -64,6 +66,8 @@ void TitleScene::Draw()
 	Novice::DrawSprite(startPos_.x_ - 200,50, titleImage_,1.0f,1.0f,0.0f,WHITE);
 	//文字の奴
 	Novice::DrawSprite(startPos_.x_, startPos_.y_, startImage_, 1.0f, 1.0f, 0.0f, startColor_.color);
+
+	Novice::DrawSprite(bookPos_.x_, bookPos_.y_, bookMark_, 0.25f, 0.25f, 0, WHITE);
 }
 
 void TitleScene::MouseBottonChack()
@@ -84,6 +88,15 @@ void TitleScene::MouseBottonChack()
 	}
 	else {
 		startColor_.color = WHITE;
+	}
+
+	if ((mousePos_.x_ >= bookPos_.x_ && mousePos_.x_ <= bookPos_.x_ + bookSize_)
+		&&
+		(mousePos_.y_ >= bookPos_.y_ && mousePos_.y_ <= bookPos_.y_ + bookSize_)) {
+
+		if (Novice::IsTriggerMouse(0)) {
+			toPlayData_ = true;
+		}
 	}
 }
 

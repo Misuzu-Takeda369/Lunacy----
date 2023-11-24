@@ -110,7 +110,7 @@ void GamePScene::Update()
 			{
 			case Tutorial:
 				tutrialtext_->Update();
-				
+
 				break;
 
 			case Wave1:
@@ -119,21 +119,23 @@ void GamePScene::Update()
 
 			case Wave2:
 
-				
+
 
 				break;
 
 			case Wave3:
 
-				
+
 				break;
 
 			default:
 				break;
 			}
 #pragma endregion
+
 			//敵の発生
-			EnemyPoping();
+			//EnemyPoping();
+			EnemyPoping(nowWave_);
 
 			//ここプレイヤーからUIに変化点を受け取っておく
 			spUi_->SetSpChangingPoint(player_->GetSpChangingPoint());
@@ -283,11 +285,11 @@ void GamePScene::Draw()
 		break;
 
 	case Wave2:
-	
+
 		break;
 
 	case Wave3:
-		
+
 		break;
 
 	default:
@@ -311,7 +313,7 @@ void GamePScene::Draw()
 		}
 	}
 
-	
+
 
 #ifdef _DEBUG
 	Novice::ScreenPrintf(500, 500, "%d", CountNum_);
@@ -470,7 +472,7 @@ void GamePScene::EnemyPoping()
 {
 	EnemyPopFrame_++;
 
-	if (EnemyPopFrame_ >= consEnemyPopFrame_) {
+	if (EnemyPopFrame_ >= consEnemyPopFrameWave1_) {
 
 
 		PopEnemy* newEnemy = new PopEnemy();
@@ -479,6 +481,66 @@ void GamePScene::EnemyPoping()
 		enemy_.push_back(newEnemy);
 		EnemyPopFrame_ = 0;
 
+	}
+}
+
+void GamePScene::EnemyPoping(Wave& nowWave)
+{
+	EnemyPopFrame_++;
+
+	//Waveg事に枠タイミングを分けている
+	switch (nowWave)
+	{
+	case Tutorial:
+
+		break;
+
+	case Wave1:
+
+		if (EnemyPopFrame_ >= consEnemyPopFrameWave1_) {
+
+
+			PopEnemy* newEnemy = new PopEnemy();
+
+			newEnemy->Initialize(player_->GetMaindStateNow());
+			enemy_.push_back(newEnemy);
+			EnemyPopFrame_ = 0;
+
+		}
+
+		break;
+
+	case Wave2:
+
+		if (EnemyPopFrame_ >= consEnemyPopFrameWave2_) {
+
+
+			PopEnemy* newEnemy = new PopEnemy();
+
+			newEnemy->Initialize(player_->GetMaindStateNow());
+			enemy_.push_back(newEnemy);
+			EnemyPopFrame_ = 0;
+
+		}
+
+		break;
+	case Wave3:
+
+		if (EnemyPopFrame_ >= consEnemyPopFrameWave3_) {
+
+
+			PopEnemy* newEnemy = new PopEnemy();
+
+			newEnemy->Initialize(player_->GetMaindStateNow());
+			enemy_.push_back(newEnemy);
+			EnemyPopFrame_ = 0;
+
+		}
+
+		break;
+
+	default:
+		break;
 	}
 }
 

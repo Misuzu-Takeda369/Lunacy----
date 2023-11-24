@@ -22,17 +22,17 @@ void SceneManager::Initialize() {
 
 	//インスタンス作成
 	title_ = new TitleScene();
-	gameP_ = new GamePScene();
+	/*gameP_ = new GamePScene();
 	gameC_ = new GameCScene();
 	gameO_ = new GameOScene();
-	waveS_ = new WaveSelect();
+	waveS_ = new WaveSelect();*/
 
 	//初期化
 	title_->Initialize();
-	gameP_->Initialize();
+	/*gameP_->Initialize();
 	gameC_->Initialize();
 	gameO_->Initialize();
-	waveS_->Initialize();
+	waveS_->Initialize();*/
 
 	saveData_ = new SaveData;
 	dataScene_ = new PlayDataScene;

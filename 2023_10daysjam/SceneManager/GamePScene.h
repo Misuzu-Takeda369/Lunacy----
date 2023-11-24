@@ -75,6 +75,8 @@ public:
 	/// </summary>
 	void EnemyPoping();
 
+	void EnemyPoping(Wave& nowWave);
+
 	/// <summary>
 	/// Wave変更関数
 	/// </summary>
@@ -144,9 +146,13 @@ private:
 	std::list<PopEnemy*>enemy_;
 
 	//敵がポップする間隔
-	const int consEnemyPopFrame_ = 180;
+	const int consEnemyPopFrameWave1_ = 260;
+	//敵がポップする間隔
+	const int consEnemyPopFrameWave2_ = 180;
+	//敵がポップする間隔
+	const int consEnemyPopFrameWave3_ = 180;
 	//敵がポップするまでを数える
-	int EnemyPopFrame_ = consEnemyPopFrame_;
+	int EnemyPopFrame_ = consEnemyPopFrameWave1_;
 
 
 	HpUI* hpUi_ = nullptr;
