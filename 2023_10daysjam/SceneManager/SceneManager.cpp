@@ -9,6 +9,7 @@ SceneManager::~SceneManager() {
 	delete gameC_;
 	delete gameO_;
 	delete waveS_;
+	delete saveData_;
 }
 
 void SceneManager::Initialize() {
@@ -33,6 +34,11 @@ void SceneManager::Initialize() {
 	gameO_->Initialize();
 	waveS_->Initialize();
 
+	saveData_ = new SaveData;
+	dataScene_ = new PlayDataScene;
+
+	//nowWave_ = Tutorial;
+	//maxWave_ = Tutorial;
 
 	nowWave_ = Wave1;
 	maxWave_ = Wave1;
@@ -78,9 +84,14 @@ void SceneManager::Update() {
 				waveS_->Initialize(maxWave_);
 
 			}
-			
 
-			
+		}
+
+		//セーブデータ関連
+		if (title_->GetToPlayDataFlag()) {
+			sceneNum_ = PlayDataMode;
+			title_->SetToPlayDataFlag(false);
+			dataScene_->SetSaveData(saveData_);
 		}
 		break;
 
@@ -113,7 +124,7 @@ void SceneManager::Update() {
 		if (gameP_->GetFlagChange()) {
 			if (gameP_->GetFlagGameOver()) {
 				sceneNum_ = GOverMode;
-				
+
 			}
 			else {
 				sceneNum_ = GClearMode;
@@ -176,6 +187,15 @@ void SceneManager::Update() {
 		}
 		break;
 
+	case PlayDataMode:
+		dataScene_->SetSaveData(saveData_);
+		dataScene_->Update();
+		if (dataScene_->GetSceneChangeFlag()) {
+			sceneNum_ = TitleMode;
+			dataScene_->SetSceneChangeFlag(false);
+		}
+		break;
+
 	default:
 
 		break;
@@ -191,7 +211,7 @@ void SceneManager::Update() {
 #pragma endregion
 #endif // DEBUG
 
-}
+	}
 
 void SceneManager::Draw() {
 
@@ -223,6 +243,9 @@ void SceneManager::Draw() {
 		gameO_->Draw();
 
 		break;
+
+	case PlayDataMode:
+		dataScene_->Draw();
 
 	default:
 		break;

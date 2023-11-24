@@ -147,9 +147,11 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="Player\PlayerJewel.cpp" />
     <ClCompile Include="Player\PlayerLAttack.cpp" />
     <ClCompile Include="Player\PlayerMAttack.cpp" />
+    <ClCompile Include="SaveData.cpp" />
     <ClCompile Include="SceneManager\GameCScene.cpp" />
     <ClCompile Include="SceneManager\GameOScene.cpp" />
     <ClCompile Include="SceneManager\GamePScene.cpp" />
+    <ClCompile Include="SceneManager\PlayDataScene.cpp" />
     <ClCompile Include="SceneManager\SceneManager.cpp" />
     <ClCompile Include="SceneManager\TitleScene.cpp" />
     <ClCompile Include="SceneManager\WaveSelect.cpp" />
@@ -221,9 +223,11 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="Player\PlayerJewel.h" />
     <ClInclude Include="Player\PlayerLAttack.h" />
     <ClInclude Include="Player\PlayerMAttack.h" />
+    <ClInclude Include="SaveData.h" />
     <ClInclude Include="SceneManager\GameCScene.h" />
     <ClInclude Include="SceneManager\GameOScene.h" />
     <ClInclude Include="SceneManager\GamePScene.h" />
+    <ClInclude Include="SceneManager\PlayDataScene.h" />
     <ClInclude Include="SceneManager\SceneManager.h" />
     <ClInclude Include="SceneManager\TitleScene.h" />
     <ClInclude Include="SceneManager\WaveSelect.h" />

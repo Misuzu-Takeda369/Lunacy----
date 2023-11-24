@@ -55,6 +55,13 @@ public:
 	/// <returns></returns>
 	bool SetFlagChange(bool flagChange) { return this->flagChange_ = flagChange; };
 
+	/// <summary>
+	/// セーブデータ
+	/// </summary>
+	/// <returns></returns>
+	bool GetToPlayDataFlag() { return toPlayData_; }
+	void SetToPlayDataFlag(bool flag) { toPlayData_ = flag; }
+
 private:
 
 	//シーン変更できるかどうか
@@ -83,5 +90,12 @@ private:
 	//マウスの位置(Yも無いと関数動かん)
 	IntState mousePos_ = { 0,0 };
 	UnitColor startColor_ = { 255,255,255,255,0xFFFFFFFF };
+
+
+
+	unsigned int bookMark_;
+	bool toPlayData_ = false;
+	IntState bookPos_ = { 1150,580 };
+	int bookSize_ = int(512 * 0.25);
 
 };

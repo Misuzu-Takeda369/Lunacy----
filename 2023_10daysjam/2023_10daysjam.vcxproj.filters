@@ -50,6 +50,9 @@
     <Filter Include="MousePointer">
       <UniqueIdentifier>{f9794a83-3fc6-4b17-88e9-734de7f80d0d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Save">
+      <UniqueIdentifier>{b2b2a3e0-f45c-4d5b-a925-3fdf52b75ebf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp">
@@ -192,6 +195,12 @@
     </ClCompile>
     <ClCompile Include="Animation\BladeSlimeAnim.cpp">
       <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveData.cpp">
+      <Filter>Save</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\PlayDataScene.cpp">
+      <Filter>SceneManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -395,6 +404,12 @@
     </ClInclude>
     <ClInclude Include="Animation\BladeSlimeAnim.h">
       <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveData.h">
+      <Filter>Save</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\PlayDataScene.h">
+      <Filter>SceneManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
