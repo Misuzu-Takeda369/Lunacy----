@@ -22,23 +22,23 @@ void SceneManager::Initialize() {
 
 	//インスタンス作成
 	title_ = new TitleScene();
-	/*gameP_ = new GamePScene();
+	gameP_ = new GamePScene();
 	gameC_ = new GameCScene();
 	gameO_ = new GameOScene();
-	waveS_ = new WaveSelect();*/
-
-	//初期化
-	title_->Initialize();
-	/*gameP_->Initialize();
-	gameC_->Initialize();
-	gameO_->Initialize();
-	waveS_->Initialize();*/
+	waveS_ = new WaveSelect();
 
 	saveData_ = new SaveData;
 	dataScene_ = new PlayDataScene;
 
-	//nowWave_ = Tutorial;
-	//maxWave_ = Tutorial;
+	//初期化
+	title_->Initialize();
+	gameP_->Initialize();
+	gameC_->Initialize();
+	gameO_->Initialize();
+	waveS_->Initialize();
+
+	saveData_->Initialize();
+	dataScene_->Initialize();
 
 	nowWave_ = Wave1;
 	maxWave_ = Wave1;
@@ -46,6 +46,7 @@ void SceneManager::Initialize() {
 
 void SceneManager::Update() {
 
+	saveData_->Update();
 	// シーン毎の更新
 	switch (sceneNum_) {
 
@@ -85,9 +86,9 @@ void SceneManager::Update() {
 
 			}
 
-		}
 
-		//セーブデータ関連
+
+		}
 		if (title_->GetToPlayDataFlag()) {
 			sceneNum_ = PlayDataMode;
 			title_->SetToPlayDataFlag(false);
@@ -195,7 +196,6 @@ void SceneManager::Update() {
 			dataScene_->SetSceneChangeFlag(false);
 		}
 		break;
-
 	default:
 
 		break;
@@ -208,10 +208,15 @@ void SceneManager::Update() {
 	ImGui::Text("sceneNum_ %d\nNextScene[DIK_I] GameOver&Retry[DIK_O]", sceneNum_);
 	ImGui::End();
 
+	ImGui::Begin("SaveDataCheck");
+	ImGui::Text("wave:%d", saveData_->GetWave());
+	ImGui::Text("PlayTime %02d:%02d:%02d", saveData_->GetPlayHour(), saveData_->GetPlayMin(), saveData_->GetPlaySecond());
+	ImGui::End();
+
 #pragma endregion
 #endif // DEBUG
 
-	}
+}
 
 void SceneManager::Draw() {
 

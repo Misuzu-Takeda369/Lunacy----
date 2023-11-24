@@ -13,8 +13,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	Novice::Initialize(kWindowTitle, kWindowWidth, kWindowHeight);
 
 	// キー入力結果を受け取る箱
-	char keys[256] = {0};
-	char preKeys[256] = {0};
+	char keys[256] = { 0 };
+	char preKeys[256] = { 0 };
 
 
 	//シーン管理する奴の初期化
@@ -43,12 +43,12 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		mousePointer_->Update();
 		sceneManager_->Update();
 
-		
+
 		///
 		/// ↑更新処理ここまで
 		///
 
-		
+
 		//
 		/// ↓描画処理ここから
 		///
@@ -66,10 +66,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		if (preKeys[DIK_ESCAPE] == 0 && keys[DIK_ESCAPE] != 0) {
 			break;
 		}
-		save = sceneManager_->GetSaveData();
-		save->OnBeforeCloseUpdate();
-
 	}
+	save = sceneManager_->GetSaveData();
+	save->OnBeforeCloseUpdate();
 
 	//デリート
 	delete sceneManager_;
