@@ -34,6 +34,8 @@ void BladeSlimeAnim::Update(Vector2 pos)
 void BladeSlimeAnim::Draw(unsigned int color)
 {
 	Novice::DrawSprite((int)(_pos.x - _spriteRadius.x*_direction), (int)(_pos.y - _spriteRadius.y), texture_[frame], 0.25f*_direction, 0.25f, 0, color);
+	
+	
 }
 
 void BladeSlimeAnim::SetState(STATE state)

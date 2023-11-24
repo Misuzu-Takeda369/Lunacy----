@@ -35,8 +35,10 @@ public:
 	//敵が死んでいるか
 	virtual bool GetIsDead() { return isDead_; };
 
-
-
+	virtual void SetDirection(bool right)
+	{
+		_right =right;
+	};
 
 protected:
 
@@ -50,5 +52,7 @@ protected:
 	//被弾のクールタイム
 	int hitCoolTime_ = 0;
 	const int MaxHitCoolTime_ = 5;
+
+	bool _right;
 };
 

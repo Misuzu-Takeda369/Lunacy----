@@ -40,7 +40,7 @@ void NHEnemy::Update()
 
 	//アニメーションUpdate
 	animation_->Update(charaBase_.pos_);
-	
+	animation_->SetDirection(_right);
 
 
 #ifdef _DEBUG

@@ -28,5 +28,6 @@ void Enemy1Anim::Update(Vector2 pos)
 void Enemy1Anim::Draw(unsigned int color)
 {
 	Novice::DrawSprite((int)(_pos.x-_spriteRadius.x), (int)(_pos.y-_spriteRadius.y), texture_[frame], 0.25f, 0.25f, 0, color);
-	//Novice::DrawSprite((int)(_pos.x + _spriteRadius.x), (int)(_pos.y - _spriteRadius.y), texture_[frame], -0.25f, 0.25f, 0, color);
+
+
 }

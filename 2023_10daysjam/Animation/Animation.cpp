@@ -17,7 +17,7 @@ void Animation::SetActive(bool flag)
 
 void Animation::SetDirection(bool right)
 {
-	right;
+	_right = right;
 }
 
 void Animation::SetIsLunatic(MaindState state)

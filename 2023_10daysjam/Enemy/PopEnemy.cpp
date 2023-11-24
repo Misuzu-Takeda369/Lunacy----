@@ -135,7 +135,8 @@ void PopEnemy::OnCollision(float& damege)
 
 void PopEnemy::EnemyBorn(Wave nowWave)
 {
-	//nowWave;
+	bool right = true;
+
 	switch (nowWave)
 	{
 	case Tutorial:
@@ -175,12 +176,14 @@ void PopEnemy::EnemyBorn(Wave nowWave)
 		//
 		if (rumNum_ == 1) {
 			enemyType_ = HPNOMAL;
+			
+			right = true;
 		}
 		else if (rumNum_ == 2) {
 			enemyType_ = HPNOMAL;
-			charaBase_.pos_.x = 0.0f;
-			charaBase_.speed_.x = - charaBase_.speed_.x;
-
+			charaBase_.pos_.x = -100.0f;
+			charaBase_.speed_.x = -charaBase_.speed_.x;
+			right = false;
 		}
 		else if (rumNum_ == 3) {
 
@@ -190,7 +193,7 @@ void PopEnemy::EnemyBorn(Wave nowWave)
 			else {
 				enemyType_ = HPNOMAL;
 			}
-			
+			right = true;
 		}
 		else if (rumNum_ == 4) {
 
@@ -203,6 +206,7 @@ void PopEnemy::EnemyBorn(Wave nowWave)
 
 			charaBase_.pos_.x = -100.0f;
 			charaBase_.speed_.x = -charaBase_.speed_.x;
+			right = false;
 		}
 		else {
 			enemyType_ = NONE;
@@ -251,6 +255,7 @@ void PopEnemy::EnemyBorn(Wave nowWave)
 
 		nHEnemy_ = new NHEnemy();
 		nHEnemy_->Initialize(charaBase_.pos_, charaBase_.speed_, charaBase_.radius_);
+		nHEnemy_->SetDirection(right);
 		//hp_ = nHEnemy_->GetHp();
 
 		hp_ = nHEnemy_->GetHpMax();
@@ -266,6 +271,8 @@ void PopEnemy::EnemyBorn(Wave nowWave)
 
 		nSEnemy_ = new NSEnemy();
 		nSEnemy_->Initialize(charaBase_.pos_, charaBase_.speed_, charaBase_.radius_);
+		nSEnemy_->SetDirection(right);
+
 		hp_ = nSEnemy_->GetHp();
 
 		maxHp_ = (nSEnemy_->GetHpMax());

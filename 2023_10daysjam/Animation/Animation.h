@@ -26,6 +26,7 @@ protected:
 	int _timer = 0;
 	UnitColor _color=defaultColor;
 	bool _isLunatic;
+	bool _right;
 
 };
 

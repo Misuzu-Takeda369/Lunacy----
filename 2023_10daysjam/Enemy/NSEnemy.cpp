@@ -38,7 +38,7 @@ void NSEnemy::Update()
 
 	//アニメーションUpdate
 	animation_->Update(charaBase_.pos_);
-
+	animation_->SetDirection(_right);
 
 
 }
@@ -50,5 +50,6 @@ void NSEnemy::Draw()
 #endif
 	//アニメーションDraw
 	animation_->Draw(charaBase_.color_);
+	
 
 }
