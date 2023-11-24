@@ -160,6 +160,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="UI\HpUI.cpp" />
     <ClCompile Include="UI\SpUI.cpp" />
     <ClCompile Include="UI\TimerUI.cpp" />
+    <ClCompile Include="UI\WaveTextUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation\Animation.h" />
@@ -237,6 +238,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="UI\HpUI.h" />
     <ClInclude Include="UI\SpUI.h" />
     <ClInclude Include="UI\TimerUI.h" />
+    <ClInclude Include="UI\WaveTextUI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

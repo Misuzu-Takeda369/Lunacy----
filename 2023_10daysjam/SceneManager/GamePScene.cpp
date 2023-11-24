@@ -9,6 +9,7 @@ GamePScene::~GamePScene()
 	delete timerUi_;
 	delete backGround_;
 	delete tutrialtext_;
+	delete waveTextUi_;
 
 	//delete enemy_;
 
@@ -49,6 +50,9 @@ void GamePScene::Initialize(Wave& nowWave)
 
 	//多分後で変わる(初期化内容からがっつり変わる可能性)
 	nowWave_ = nowWave;
+
+	waveTextUi_ = new WaveTextUI;
+	waveTextUi_->Initialize(nowWave_);
 }
 
 void GamePScene::Initialize()
@@ -170,6 +174,8 @@ void GamePScene::Update()
 			spUi_->Update(player_->GetDecreasedSp());
 
 			timerUi_->Update(nowWave_);
+
+			waveTextUi_->Update(nowWave_);
 
 #pragma endregion
 
@@ -323,6 +329,7 @@ void GamePScene::Draw()
 	hpUi_->Draw();
 	spUi_->Draw();
 	timerUi_->Draw();
+	waveTextUi_->Draw();
 
 	switch (gameSModeNow_)
 	{

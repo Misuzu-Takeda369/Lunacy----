@@ -202,6 +202,9 @@
     <ClCompile Include="SceneManager\PlayDataScene.cpp">
       <Filter>SceneManager</Filter>
     </ClCompile>
+    <ClCompile Include="UI\WaveTextUI.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -410,6 +413,9 @@
     </ClInclude>
     <ClInclude Include="SceneManager\PlayDataScene.h">
       <Filter>SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\WaveTextUI.h">
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
