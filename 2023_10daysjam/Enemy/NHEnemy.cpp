@@ -1,4 +1,5 @@
 ﻿#include"NHEnemy.h"
+#include "Animation/BladeSlimeAnim.h"
 
 void NHEnemy::Initialize(Vector2 pos, Vector2 speed, float radius)
 {

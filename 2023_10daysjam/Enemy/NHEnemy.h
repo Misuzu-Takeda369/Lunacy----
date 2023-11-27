@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "EnemyBase.h"
 #include "Animation/Enemy1Anim.h"
-#include "Animation/BladeSlimeAnim.h"
+
 
 class NHEnemy :public EnemyBase
 {

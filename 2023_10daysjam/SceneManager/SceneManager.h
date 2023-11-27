@@ -9,8 +9,8 @@
 #include "GameCScene.h"
 #include "GameOScene.h"
 #include "WaveSelect.h"
-//#include"SaveData.h"
-//#include "PlayDataScene.h"
+#include"SaveData.h"
+#include "PlayDataScene.h"
 
 class SceneManager {
 public:
@@ -63,7 +63,7 @@ public:
 	uint32_t SetSceneNum(uint32_t sceneNum) { this->sceneNum_ = sceneNum;};
 
 	//mainに渡す用
-	//SaveData* GetSaveData() { return saveData_; }
+	SaveData* GetSaveData() { return saveData_; }
 	
 
 private:
@@ -80,7 +80,7 @@ private:
 	GameCScene* gameC_ = nullptr;
 	GameOScene* gameO_ = nullptr;
 	WaveSelect* waveS_ = nullptr;
-	//PlayDataScene* dataScene_ = nullptr;
+	PlayDataScene* dataScene_ = nullptr;
 
 	// シーン変更できるかどうか
 	bool flagChange_ = false;
@@ -91,5 +91,5 @@ private:
 	//プレイヤーが一番進んだ分(数を数えたいのでint)
 	int maxWave_ = Tutorial;
 
-	//SaveData* saveData_ = nullptr;
+	SaveData* saveData_ = nullptr;
 };
