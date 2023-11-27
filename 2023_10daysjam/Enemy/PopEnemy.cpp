@@ -33,6 +33,72 @@ void PopEnemy::Initialize(MaindState maindStateNow, Wave nowWave)
 	//敵の生成
 	EnemyBorn(nowWave);
 
+//確認で戻した奴
+//	bool right = true;
+//
+//#pragma region ポップした時の判別
+//	rumNum_ = RandomRange(1, 3);
+//
+//	//
+//	if (rumNum_ == 1 || rumNum_ == 2) {
+//		enemyType_ = HPNOMAL;
+//		right = true;
+//	}
+//	else if (rumNum_ == 3) {
+//
+//		if (maindStateNow_ == Lunatic) {
+//			enemyType_ = SPNOMAL;
+//			right = true;
+//		}
+//		else {
+//			enemyType_ = NONE;
+//		}
+//
+//	}
+//	else {
+//		enemyType_ = NONE;
+//	}
+//
+//
+//	//出現
+//	switch (enemyType_)
+//	{
+//	case HPNOMAL:
+//
+//		nHEnemy_ = new NHEnemy();
+//		nHEnemy_->Initialize(charaBase_.pos_, charaBase_.speed_, charaBase_.radius_);
+//		nHEnemy_->SetDirection(right);
+//		//hp_ = nHEnemy_->GetHp();
+//
+//		hp_ = nHEnemy_->GetHpMax();
+//		maxHp_ = (nHEnemy_->GetHpMax());
+//
+//		decreasedHp_ = maxHp_ - hp_;
+//
+//
+//		break;
+//
+//	case SPNOMAL:
+//
+//
+//		nSEnemy_ = new NSEnemy();
+//		nSEnemy_->Initialize(charaBase_.pos_, charaBase_.speed_, charaBase_.radius_);
+//		nSEnemy_->SetDirection(right);
+//
+//		hp_ = nSEnemy_->GetHp();
+//
+//		maxHp_ = (nSEnemy_->GetHpMax());
+//
+//		decreasedHp_ = maxHp_ - hp_;
+//		break;
+//
+//	default:
+//		isDead_ = true;
+//		break;
+//	}
+//
+//#pragma endregion
+
 	//Hpゲージ
 	eHUi_ = new EHpUI();
 	eHUi_->Initialize(charaBase_.pos_);
@@ -140,6 +206,7 @@ void PopEnemy::EnemyBorn(Wave nowWave)
 	switch (nowWave)
 	{
 	case Tutorial:
+
 		break;
 	case Wave1:
 
@@ -149,11 +216,13 @@ void PopEnemy::EnemyBorn(Wave nowWave)
 		//
 		if (rumNum_ == 1 || rumNum_ == 2) {
 			enemyType_ = HPNOMAL;
+			right = true;
 		}
 		else if (rumNum_ == 3) {
 
 			if (maindStateNow_ == Lunatic) {
 				enemyType_ = SPNOMAL;
+				right = true;
 			}
 			else {
 				enemyType_ = NONE;

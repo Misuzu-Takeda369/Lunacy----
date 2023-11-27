@@ -2,7 +2,7 @@
 #include "SceneManager/SceneManager.h"
 #include "ScreenSize.h"
 #include "MousePointer/MousePointer.h"
-#include "SaveData.h"
+//#include "SaveData.h"
 
 const char kWindowTitle[] = "Lunacy -月の宝珠-";
 
@@ -25,7 +25,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	MousePointer* mousePointer_ = new MousePointer();
 	mousePointer_->Initialize();
 
-	SaveData* save = new SaveData();
+	//SaveData* save = new SaveData();
 
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
@@ -67,8 +67,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			break;
 		}
 	}
-	save = sceneManager_->GetSaveData();
-	save->OnBeforeCloseUpdate();
+	/*save = sceneManager_->GetSaveData();
+	save->OnBeforeCloseUpdate();*/
 
 	//デリート
 	delete sceneManager_;

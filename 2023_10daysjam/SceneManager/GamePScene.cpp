@@ -503,7 +503,7 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 
 		EnemyPopFrame_++;
 
-		if (EnemyPopFrame_ >= consEnemyPopFrameWave1_) {
+		if (EnemyPopFrame_ >= consEnemyPopFrameWave2_) {
 
 
 			PopEnemy* newEnemy = new PopEnemy();
@@ -555,10 +555,10 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 void GamePScene::WaveChange()
 {
 	//右クリック押したら終わる
-	if ((nowWave_ == Tutorial) && (preKeys[DIK_9] == 0 && keys[DIK_9] != 0)) {
+	if ((nowWave_ == Tutorial) && (preKeys[DIK_1] == 0 && keys[DIK_1] != 0)) {
 		nowWave_ = Wave1;
-		timerUi_->SetterTimer(timerMax);
-		timerUi_->SetterMoveX(0);
+		/*timerUi_->SetterTimer(timerMax);
+		timerUi_->SetterMoveX(0);*/
 		/*waveTextUi_->Update(nowWave_);*/
 	}
 	else if ((nowWave_ == Wave1) && (timerUi_->GetterTimer() <= 0)) {
@@ -580,8 +580,8 @@ void GamePScene::WaveChange()
 
 	if ((nowWave_ == Tutorial) && (!keys[DIK_0] && preKeys[DIK_0])) {
 		nowWave_ = Wave1;
-		timerUi_->SetterTimer(timerMax);
-		timerUi_->SetterMoveX(0);
+		/*timerUi_->SetterTimer(timerMax);
+		timerUi_->SetterMoveX(0);*/
 		//waveTextUi_->Update(nowWave_);
 	}
 	else if ((nowWave_ == Wave1) && (!keys[DIK_0] && preKeys[DIK_0])) {

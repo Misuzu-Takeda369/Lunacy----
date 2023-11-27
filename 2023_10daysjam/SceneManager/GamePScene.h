@@ -152,7 +152,7 @@ private:
 	//敵がポップする間隔
 	const int consEnemyPopFrameWave3_ = 180;
 	//敵がポップするまでを数える
-	int EnemyPopFrame_ = consEnemyPopFrameWave1_;
+	int EnemyPopFrame_ = 0;
 
 
 	HpUI* hpUi_ = nullptr;
