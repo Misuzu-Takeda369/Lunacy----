@@ -275,31 +275,31 @@ void GamePScene::Draw()
 
 	backGround_->Draw();
 
-#pragma region 特定のWAVEのみに写る処理
-	switch (nowWave_)
-	{
-	case Tutorial:
-
-		tutrialtext_->Draw();
-
-		break;
-
-	case Wave1:
-
-		break;
-
-	case Wave2:
-
-		break;
-
-	case Wave3:
-
-		break;
-
-	default:
-		break;
-	}
-#pragma endregion
+//#pragma region 特定のWAVEのみに写る処理
+//	switch (nowWave_)
+//	{
+//	case Tutorial:
+//
+//		tutrialtext_->Draw();
+//
+//		break;
+//
+//	case Wave1:
+//
+//		break;
+//
+//	case Wave2:
+//
+//		break;
+//
+//	case Wave3:
+//
+//		break;
+//
+//	default:
+//		break;
+//	}
+//#pragma endregion
 
 	player_->Draw();
 
