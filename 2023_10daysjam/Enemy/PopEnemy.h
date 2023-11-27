@@ -46,6 +46,8 @@ public:
 	 /// <returns></returns>
 	 EnemyType GetEnemyType() { return enemyType_; };
 
+	
+
 private:
 
 	//通常の敵

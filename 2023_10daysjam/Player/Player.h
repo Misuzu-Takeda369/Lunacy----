@@ -120,6 +120,26 @@ public:
 	/// <returns></returns>
 	const std::list<PlayerLAttack*>& GetBullet() { return lAttack_; };
 
+	/// <summary>
+	/// チュートリアルに引っ張る用のプレイヤースピード
+	/// </summary>
+	/// <returns></returns>
+	float GetPlayerSpeedX() { return charaBase_.speed_.x; };
+
+	/// <summary>
+	/// チュートリアル用攻撃タイプ
+	/// </summary>
+	/// <returns></returns>
+	PlayerAttackType GetPlayerAttackTypeNow() { return playerAttackTypeNow_; };
+
+	/// <summary>
+	/// チュートリアル用ゲージ管理
+	/// </summary>
+	/// <param name="spPoint"></param>
+	/// <returns></returns>
+	void SetSpChangingPoint(float spPoint) { spChangingPoint_ = spPoint; };
+	
+
 private:
 
 	//マウスの位置(Yも無いと関数動かん)

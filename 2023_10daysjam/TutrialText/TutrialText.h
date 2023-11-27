@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "Novice.h"
+#include <Novice.h>
 #include "ImGuiManager.h"
 #include "Function/Function.h"
 

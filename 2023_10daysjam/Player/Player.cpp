@@ -402,8 +402,8 @@ void Player::UsedItem(float& recover) {
 		}
 
 
-		if (sp_ >= maxHp_) {
-			sp_ = maxHp_;
+		if (sp_ >= maxSp_) {
+			sp_ = maxSp_;
 		}
 
 #ifdef _DEBUG

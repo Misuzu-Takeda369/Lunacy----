@@ -14,7 +14,7 @@
 #include "Object/Object.h"
 #include "Enemy/PopEnemy.h"
 #include "Back/BackGround.h"
-#include "TutrialText/TutrialText.h"
+#include "TutrialText/TutrialSystem.h"
 
 /// <summary>
 /// プレイシーンのクラス
@@ -74,7 +74,7 @@ public:
 	/// <summary>
 	/// 敵が実際にポップする関数
 	/// </summary>
-	void EnemyPoping();
+	//void EnemyPoping();
 	void EnemyPoping(Wave& nowWave);
 
 	/// <summary>
@@ -159,7 +159,6 @@ private:
 	SpUI* spUi_ = nullptr;
 	TimerUI* timerUi_ = nullptr;
 	BackGround* backGround_ = nullptr;
-	TutrialText* tutrialtext_ = nullptr;
 	WaveTextUI* waveTextUi_ = nullptr;
 
 	//アイテムポップ関数
@@ -168,4 +167,9 @@ private:
 
 	//waveが変わったときに入れる時間の奴
 	const int timerMax = 3600;
+
+	//チュートリアルの挙動用
+	TutrialSystem* tutrialSystem_ = nullptr;
+	//現在出ている敵の数(ENEMY_MAXになると減るまで敵がでなくなる)(チュートリアル用)
+	int countEnemy_ = 0;
 };

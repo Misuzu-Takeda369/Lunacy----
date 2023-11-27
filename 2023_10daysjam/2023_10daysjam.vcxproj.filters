@@ -205,6 +205,9 @@
     <ClCompile Include="UI\WaveTextUI.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="TutrialText\TutrialSystem.cpp">
+      <Filter>Tutrial</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -416,6 +419,9 @@
     </ClInclude>
     <ClInclude Include="UI\WaveTextUI.h">
       <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TutrialText\TutrialSystem.h">
+      <Filter>Tutrial</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
