@@ -9,7 +9,7 @@ GamePScene::~GamePScene()
 	delete timerUi_;
 	delete backGround_;
 	delete tutrialtext_;
-	//delete waveTextUi_;
+	delete waveTextUi_;
 
 	//delete enemy_;
 
@@ -51,8 +51,8 @@ void GamePScene::Initialize(Wave& nowWave)
 	//多分後で変わる(初期化内容からがっつり変わる可能性)
 	nowWave_ = nowWave;
 
-	/*waveTextUi_ = new WaveTextUI;
-	waveTextUi_->Initialize(nowWave_);*/
+	waveTextUi_ = new WaveTextUI;
+	waveTextUi_->Initialize(nowWave_);
 }
 
 void GamePScene::Initialize()
@@ -327,7 +327,7 @@ void GamePScene::Draw()
 	hpUi_->Draw();
 	spUi_->Draw();
 	timerUi_->Draw();
-	//waveTextUi_->Draw();
+	waveTextUi_->Draw();
 
 	/*switch (gameSModeNow_)
 	{
@@ -559,19 +559,19 @@ void GamePScene::WaveChange()
 		nowWave_ = Wave1;
 		/*timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);*/
-		/*waveTextUi_->Update(nowWave_);*/
+		waveTextUi_->Update(nowWave_);
 	}
 	else if ((nowWave_ == Wave1) && (timerUi_->GetterTimer() <= 0)) {
 		nowWave_ = Wave2;
 		timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);
-		/*waveTextUi_->Update(nowWave_);*/
+		waveTextUi_->Update(nowWave_);
 	}
 	else if ((nowWave_ == Wave2) && (timerUi_->GetterTimer() <= 0)) {
 		nowWave_ = Wave3;
 		timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);
-		//waveTextUi_->Update(nowWave_);
+		waveTextUi_->Update(nowWave_);
 	}
 
 	
@@ -582,19 +582,19 @@ void GamePScene::WaveChange()
 		nowWave_ = Wave1;
 		/*timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);*/
-		//waveTextUi_->Update(nowWave_);
+		waveTextUi_->Update(nowWave_);
 	}
 	else if ((nowWave_ == Wave1) && (!keys[DIK_0] && preKeys[DIK_0])) {
 		nowWave_ = Wave2;
 		timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);
-		//waveTextUi_->Update(nowWave_);
+		waveTextUi_->Update(nowWave_);
 	}
 	else if ((nowWave_ == Wave2) && (!keys[DIK_0] && preKeys[DIK_0])) {
 		nowWave_ = Wave3;
 		timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);
-		//waveTextUi_->Update(nowWave_);
+		waveTextUi_->Update(nowWave_);
 	}
 
 
