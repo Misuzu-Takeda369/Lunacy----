@@ -9,7 +9,7 @@ GamePScene::~GamePScene()
 	delete timerUi_;
 	delete backGround_;
 	delete tutrialtext_;
-	delete waveTextUi_;
+	//delete waveTextUi_;
 
 	//delete enemy_;
 
@@ -51,8 +51,8 @@ void GamePScene::Initialize(Wave& nowWave)
 	//多分後で変わる(初期化内容からがっつり変わる可能性)
 	nowWave_ = nowWave;
 
-	waveTextUi_ = new WaveTextUI;
-	waveTextUi_->Initialize(nowWave_);
+	/*waveTextUi_ = new WaveTextUI;
+	waveTextUi_->Initialize(nowWave_);*/
 }
 
 void GamePScene::Initialize()
@@ -109,33 +109,33 @@ void GamePScene::Update()
 		}
 		else {
 
-#pragma region 特定のWaveでしか機能しない
-			switch (nowWave_)
-			{
-			case Tutorial:
-				tutrialtext_->Update();
-
-				break;
-
-			case Wave1:
-
-				break;
-
-			case Wave2:
-
-
-
-				break;
-
-			case Wave3:
-
-
-				break;
-
-			default:
-				break;
-			}
-#pragma endregion
+//#pragma region 特定のWaveでしか機能しない
+//			switch (nowWave_)
+//			{
+//			case Tutorial:
+//				tutrialtext_->Update();
+//
+//				break;
+//
+//			case Wave1:
+//
+//				break;
+//
+//			case Wave2:
+//
+//
+//
+//				break;
+//
+//			case Wave3:
+//
+//
+//				break;
+//
+//			default:
+//				break;
+//			}
+//#pragma endregion
 
 			//敵の発生
 			//EnemyPoping();
@@ -174,8 +174,6 @@ void GamePScene::Update()
 			spUi_->Update(player_->GetDecreasedSp());
 
 			timerUi_->Update(nowWave_);
-
-			waveTextUi_->Update(nowWave_);
 
 #pragma endregion
 
@@ -329,9 +327,9 @@ void GamePScene::Draw()
 	hpUi_->Draw();
 	spUi_->Draw();
 	timerUi_->Draw();
-	waveTextUi_->Draw();
+	//waveTextUi_->Draw();
 
-	switch (gameSModeNow_)
+	/*switch (gameSModeNow_)
 	{
 	case None:
 
@@ -339,7 +337,7 @@ void GamePScene::Draw()
 
 	default:
 		break;
-	}
+	}*/
 #pragma endregion
 
 
@@ -493,7 +491,6 @@ void GamePScene::EnemyPoping()
 
 void GamePScene::EnemyPoping(Wave& nowWave)
 {
-	EnemyPopFrame_++;
 
 	//Waveg事に枠タイミングを分けている
 	switch (nowWave)
@@ -503,6 +500,8 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 		break;
 
 	case Wave1:
+
+		EnemyPopFrame_++;
 
 		if (EnemyPopFrame_ >= consEnemyPopFrameWave1_) {
 
@@ -518,6 +517,7 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 		break;
 
 	case Wave2:
+		EnemyPopFrame_++;
 
 		if (EnemyPopFrame_ >= consEnemyPopFrameWave2_) {
 
@@ -532,6 +532,7 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 
 		break;
 	case Wave3:
+		EnemyPopFrame_++;
 
 		if (EnemyPopFrame_ >= consEnemyPopFrameWave3_) {
 
@@ -558,17 +559,22 @@ void GamePScene::WaveChange()
 		nowWave_ = Wave1;
 		timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);
+		/*waveTextUi_->Update(nowWave_);*/
 	}
 	else if ((nowWave_ == Wave1) && (timerUi_->GetterTimer() <= 0)) {
 		nowWave_ = Wave2;
 		timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);
+		/*waveTextUi_->Update(nowWave_);*/
 	}
 	else if ((nowWave_ == Wave2) && (timerUi_->GetterTimer() <= 0)) {
 		nowWave_ = Wave3;
 		timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);
+		//waveTextUi_->Update(nowWave_);
 	}
+
+	
 
 #ifdef _DEBUG
 
@@ -576,17 +582,22 @@ void GamePScene::WaveChange()
 		nowWave_ = Wave1;
 		timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);
+		//waveTextUi_->Update(nowWave_);
 	}
 	else if ((nowWave_ == Wave1) && (!keys[DIK_0] && preKeys[DIK_0])) {
 		nowWave_ = Wave2;
 		timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);
+		//waveTextUi_->Update(nowWave_);
 	}
 	else if ((nowWave_ == Wave2) && (!keys[DIK_0] && preKeys[DIK_0])) {
 		nowWave_ = Wave3;
 		timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);
+		//waveTextUi_->Update(nowWave_);
 	}
+
+
 
 #endif // _DEBUG
 

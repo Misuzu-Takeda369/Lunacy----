@@ -6,7 +6,7 @@
 #include "UI/HpUI.h"
 #include "UI/SpUI.h"
 #include "UI/TimerUI.h"
-#include "UI/WaveTextUI.h"
+//#include "UI/WaveTextUI.h"
 #pragma endregion
 #include "Player/Player.h"
 #include "Item/PopItem.h"
@@ -160,7 +160,7 @@ private:
 	TimerUI* timerUi_ = nullptr;
 	BackGround* backGround_ = nullptr;
 	TutrialText* tutrialtext_ = nullptr;
-	WaveTextUI* waveTextUi_ = nullptr;
+	//WaveTextUI* waveTextUi_ = nullptr;
 
 	//アイテムポップ関数
 	std::list<PopItem*>popItem_;

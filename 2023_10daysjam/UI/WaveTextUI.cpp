@@ -8,10 +8,7 @@ void WaveTextUI::Initialize(Wave& nowWave)
 	Rpos_ = { sizeX_,sizeY_ };
 	//画像
 	image_ = Novice::LoadTexture("./Resources/images/Text/WaveLatter_kari.png");
-	//移動した合計
-	moveX_ = 0;
-	//移動する量(HPが1たび増減するたびに動く量)
-	moveSpeedX_ = 1;
+
 
 	nowWave_ = nowWave;
 	nowWaveNum_ = (int)nowWave_;

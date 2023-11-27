@@ -42,7 +42,7 @@ void NSEnemy::Update()
 	//アニメーションUpdate
 	animation_->Update(charaBase_.pos_);
 	animation_->SetDirection(_right);
-
+	animation_->SetMaindState(Lunatic);
 
 }
 
