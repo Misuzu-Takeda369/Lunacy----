@@ -20,8 +20,8 @@ void NHEnemy::Initialize(Vector2 pos, Vector2 speed, float radius)
 	moveEnemy_ = { 0.0f,0.0f };
 
 	////アニメーション初期化
-	//animation_ = new BladeSlimeAnim;
-	//animation_->Initialize();
+	animation_ = new BladeSlimeAnim();
+	animation_->Initialize();
 
 
 	
@@ -40,8 +40,8 @@ void NHEnemy::Update()
 
 	////アニメーションUpdate
 	//animation_->Update(charaBase_.pos_);
-	//animation_->SetDirection(_right);
-	//animation_->SetMaindState(Normal);
+	/*animation_->SetDirection(_right);
+	animation_->SetMaindState(Normal);*/
 
 
 #ifdef _DEBUG

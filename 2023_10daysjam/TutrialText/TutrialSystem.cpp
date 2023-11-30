@@ -31,7 +31,7 @@ void TutrialSystem::Update(MaindState Pmaind, PlayerAttackType Patteck)
 	memcpy(preKeys, keys, 256);
 	Novice::GetHitKeyStateAll(keys);
 
-	tutrialtext_->Update();
+	
 
 	switch (nowExprestion_)
 	{
@@ -133,11 +133,14 @@ void TutrialSystem::Update(MaindState Pmaind, PlayerAttackType Patteck)
 		if (jumpCount_ >= 3) {
 			nowExprestion_ = AttackNomal;
 		}
+
+		break;
+
 	default:
 		break;
 	}
-
 	tutrialtext_->SetImageNum(imageNum_);
+	tutrialtext_->Update();
 }
 
 void TutrialSystem::Draw()

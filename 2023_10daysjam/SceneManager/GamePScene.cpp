@@ -56,6 +56,8 @@ void GamePScene::Initialize(Wave& nowWave)
 
 	tutrialSystem_ = new TutrialSystem;
 	tutrialSystem_->Initialize(player_->GetPlayerSpeedX());
+
+	//ここで敵を産むすぐに殺す
 }
 
 void GamePScene::Initialize()
@@ -597,6 +599,9 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 
 void GamePScene::WaveChange()
 {
+	if (tutrialSystem_->GetIsDead()== true) {
+		delete tutrialSystem_;
+	}
 	//右クリック押したら終わる
 	if ((nowWave_ == Tutorial) && tutrialSystem_->GetIsDead()) {
 		nowWave_ = Wave1;
@@ -604,7 +609,6 @@ void GamePScene::WaveChange()
 		/*timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);*/
 		player_->SetSp(player_->GetSpMax());
-		
 	}
 	else if ((nowWave_ == Wave1) && (timerUi_->GetterTimer() <= 0)) {
 		nowWave_ = Wave2;

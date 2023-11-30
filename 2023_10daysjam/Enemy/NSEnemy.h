@@ -36,7 +36,7 @@ private:
 	float lunaticPoint_;
 
 	//アニメーション
-	//Enemy1Anim* animation_ = nullptr;
+	//enemy1anim* animation_ = nullptr;
 	BladeSlimeAnim* animation_ = nullptr;
 };
 
