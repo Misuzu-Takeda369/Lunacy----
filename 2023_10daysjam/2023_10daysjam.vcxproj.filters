@@ -16,9 +16,6 @@
     <Filter Include="Animation">
       <UniqueIdentifier>{c0e8fc65-0820-47f2-b934-d3375fecce95}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Item">
-      <UniqueIdentifier>{d85723e0-118c-4eb4-b856-7c9cf9425c00}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object">
       <UniqueIdentifier>{5b01f0df-eab4-4d82-b50f-375bea3d6355}</UniqueIdentifier>
     </Filter>
@@ -52,6 +49,9 @@
     </Filter>
     <Filter Include="Save">
       <UniqueIdentifier>{b2b2a3e0-f45c-4d5b-a925-3fdf52b75ebf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Item">
+      <UniqueIdentifier>{d85723e0-118c-4eb4-b856-7c9cf9425c00}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

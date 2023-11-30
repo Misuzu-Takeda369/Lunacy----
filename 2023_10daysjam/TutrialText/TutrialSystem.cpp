@@ -21,6 +21,9 @@ void TutrialSystem::Initialize(float Pspeedx)
 	nowPattack_ = Plane;
 
 	IsDead_ = false;
+	imageNum_ = 0;
+
+	frameCool_ = 0;
 }
 
 void TutrialSystem::Update(MaindState Pmaind, PlayerAttackType Patteck)
@@ -33,6 +36,8 @@ void TutrialSystem::Update(MaindState Pmaind, PlayerAttackType Patteck)
 	switch (nowExprestion_)
 	{
 	case TutrialSystem::Move:
+		//画像num
+		imageNum_ = 0;
 		//一定距離右方向へ進ませる
 		if (keys[DIK_D] || keys[DIK_RIGHT]) {
 			//推し続けているだけカウントが進む
@@ -47,9 +52,22 @@ void TutrialSystem::Update(MaindState Pmaind, PlayerAttackType Patteck)
 		}
 		break;
 	case TutrialSystem::AttackNomal:
+		imageNum_ = 4;
 		//敵の当たり判定で追記したので特になし
 		break;
 	case TutrialSystem::AttackChange:
+
+		//画像表示の為の処理
+		if (countchange_ == 0) {
+			imageNum_ = 5;
+		}
+		else if (countchange_ == 1) {
+			imageNum_ = 6;
+		}
+		else if (countchange_ == 2) {
+			imageNum_ = 7;
+		}
+
 		//右クリック3回押す
 		if (Novice::IsTriggerMouse(1)) {
 			nowPattack_ = Patteck;
@@ -63,21 +81,49 @@ void TutrialSystem::Update(MaindState Pmaind, PlayerAttackType Patteck)
 		break;
 	case TutrialSystem::AttackMagic:
 		//倒す(2回目)
+		imageNum_ = 8;
 		break;
 	case TutrialSystem::LunaMode:
+
+		if (imageNum_ == 8) {
+			imageNum_ = 9;
+		}
+		frameCool_++;
 		//ゲージあげてチラ見せでもいいかもしれない
 		if (Novice::IsTriggerMouse(0)) {
-			nowExprestion_ = Free;
+			if (imageNum_ == 9 && frameCool_>= frameCoolMAX_) {
+				imageNum_ = 10;
+				frameCool_ = 0;
+			}
+			else if (imageNum_ == 10 && frameCool_ >= frameCoolMAX_) {
+				nowExprestion_ = Free;
+				frameCool_ = 0;
+			}
+			
 		}
 		break;
 	case TutrialSystem::Free:
 
-		//if (Novice::IsTriggerMouse(0)) {
+		imageNum_ = 11;
+		frameCool_++;
+		if (Novice::IsTriggerMouse(0) && frameCool_ >= frameCoolMAX_) {
 			IsDead_ = true;
-		//}
+		}
 
 		break;
 	case TutrialSystem::Junp:
+		
+		//画像表示の為の処理
+		if (jumpCount_== 0) {
+			imageNum_ = 1;
+		}
+		else if (jumpCount_ == 1) {
+			imageNum_ = 2;
+		}
+		else if (jumpCount_ == 2) {
+			imageNum_ = 3;
+		}
+
 		//3回飛ばせる
 		if ((preKeys[DIK_W] == 0 && keys[DIK_W] != 0 )|| (preKeys[DIK_UP] == 0 && keys[DIK_UP] != 0)) {
 			//押した分だけカウント
@@ -90,6 +136,8 @@ void TutrialSystem::Update(MaindState Pmaind, PlayerAttackType Patteck)
 	default:
 		break;
 	}
+
+	tutrialtext_->SetImageNum(imageNum_);
 }
 
 void TutrialSystem::Draw()

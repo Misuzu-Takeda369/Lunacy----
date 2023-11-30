@@ -3,6 +3,7 @@
 #include "ImGuiManager.h"
 #include "Function/Function.h"
 #include "TutrialText.h"
+//#define TEXT_MAX 12
 
 class TutrialSystem
 {
@@ -84,5 +85,11 @@ private:
 
 	///free
 	bool IsDead_ = false;
+
+	//テキストの現在のnum
+	int imageNum_;
+
+	int frameCool_ = 0;
+	const int frameCoolMAX_ = 60;
 };
 

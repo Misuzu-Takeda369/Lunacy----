@@ -116,7 +116,7 @@ void GamePScene::Update()
 				tutrialSystem_->Update(player_->GetMaindStateNow(),player_->GetPlayerAttackTypeNow());
 
 				if (tutrialSystem_->GetNowExprestion() == 4 ) {
-					player_->SetSpChangingPoint(480.0f);
+					player_->SetSpChangingPoint(500.0f);
 				}
 				else {
 					player_->SetSpChangingPoint(250.0f);
@@ -411,6 +411,11 @@ void GamePScene::CheckCollisionAll()
 					enemies->OnCollision(damege);
 					playerLAtteck->OnCollision();
 
+
+					///チュートリアル用(事故った時用)
+					if ((tutrialSystem_->GetNowExprestion() == 1) && (enemies->GetIsDead() == true)) {
+						tutrialSystem_->SetNowExprestion(2);
+					}
 					///チュートリアル用
 					if ((tutrialSystem_->GetNowExprestion() == 3) && (enemies->GetIsDead() == true)) {
 						tutrialSystem_->SetNowExprestion(4);
@@ -539,7 +544,7 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 
 		EnemyPopFrame_++;
 
-		if (EnemyPopFrame_ >= consEnemyPopFrameWave2_) {
+		if (EnemyPopFrame_ >= consEnemyPopFrameWave1_) {
 
 
 			PopEnemy* newEnemy = new PopEnemy();
