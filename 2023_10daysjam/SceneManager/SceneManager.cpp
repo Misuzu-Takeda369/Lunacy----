@@ -40,9 +40,10 @@ void SceneManager::Initialize() {
 	saveData_->Initialize();
 	dataScene_->Initialize();
 
-	nowWave_ = Tutorial;
-	maxWave_ = Tutorial;
+	//nowWave_ = Tutorial;
+	//maxWave_ = Tutorial;
 	maxWave_ = saveData_->GetLastWave();
+	//nowWave_ = Wave(maxWave_);
 }
 
 void SceneManager::Update() {
@@ -65,7 +66,7 @@ void SceneManager::Update() {
 
 				sceneNum_ = GPlayMode;
 				gameP_ = new GamePScene();
-				nowWave_ = Wave(maxWave_);
+				nowWave_ = Tutorial;
 				gameP_->Initialize(nowWave_);
 				title_->SetFlagChange(false);
 			}

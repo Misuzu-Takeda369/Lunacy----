@@ -46,11 +46,13 @@ void GamePScene::Initialize(Wave& nowWave)
 	backGround_ = new BackGround();
 	backGround_->Initialize();
 
+	//多分後で変わる(初期化内容からがっつり変わる可能性)
+	nowWave_ = nowWave;
+
 	waveTextUi_ = new WaveTextUI;
 	waveTextUi_->Initialize(nowWave_);
 
-	//多分後で変わる(初期化内容からがっつり変わる可能性)
-	nowWave_ = nowWave;
+	
 
 	tutrialSystem_ = new TutrialSystem;
 	tutrialSystem_->Initialize(player_->GetPlayerSpeedX());
@@ -183,7 +185,7 @@ void GamePScene::Update()
 #pragma endregion
 
 			WaveChange();
-
+			waveTextUi_->Update(nowWave_);
 
 #pragma region シーン変更含む
 
@@ -602,19 +604,18 @@ void GamePScene::WaveChange()
 		/*timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);*/
 		player_->SetSp(player_->GetSpMax());
-		waveTextUi_->Update(nowWave_);
+		
 	}
 	else if ((nowWave_ == Wave1) && (timerUi_->GetterTimer() <= 0)) {
 		nowWave_ = Wave2;
 		timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);
-		waveTextUi_->Update(nowWave_);
+		
 	}
 	else if ((nowWave_ == Wave2) && (timerUi_->GetterTimer() <= 0)) {
 		nowWave_ = Wave3;
 		timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);
-		waveTextUi_->Update(nowWave_);
 	}
 
 
