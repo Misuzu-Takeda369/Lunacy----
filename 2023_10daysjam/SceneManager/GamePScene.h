@@ -170,6 +170,9 @@ private:
 
 	//チュートリアルの挙動用
 	TutrialSystem* tutrialSystem_ = nullptr;
-	//現在出ている敵の数(ENEMY_MAXになると減るまで敵がでなくなる)(チュートリアル用)
-	int countEnemy_ = 0;
+	//チュートリアル用敵がいっぱい出てこないようにするため
+	int countEnemy_;
+	//敵が出てこなかったときに数える奴
+	int enemyNotAppeared_;
+
 };

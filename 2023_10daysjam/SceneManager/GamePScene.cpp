@@ -52,7 +52,7 @@ void GamePScene::Initialize(Wave& nowWave)
 	waveTextUi_ = new WaveTextUI;
 	waveTextUi_->Initialize(nowWave_);
 
-	
+
 
 	tutrialSystem_ = new TutrialSystem;
 	tutrialSystem_->Initialize(player_->GetPlayerSpeedX());
@@ -122,9 +122,9 @@ void GamePScene::Update()
 			{
 			case Tutorial:
 
-				tutrialSystem_->Update(player_->GetMaindStateNow(),player_->GetPlayerAttackTypeNow());
+				tutrialSystem_->Update(player_->GetMaindStateNow(), player_->GetPlayerAttackTypeNow());
 
-				if (tutrialSystem_->GetNowExprestion() == 4 ) {
+				if (tutrialSystem_->GetNowExprestion() == 4) {
 					player_->SetSpChangingPoint(500.0f);
 				}
 				else {
@@ -289,31 +289,31 @@ void GamePScene::Draw()
 
 	backGround_->Draw();
 
-	#pragma region 特定のWAVEのみに写る処理
-		switch (nowWave_)
-		{
-		case Tutorial:
-	
-			tutrialSystem_->Draw();
-	
-			break;
-	
-		case Wave1:
-	
-			break;
-	
-		case Wave2:
-	
-			break;
-	
-		case Wave3:
-	
-			break;
-	
-		default:
-			break;
-		}
-	#pragma endregion
+#pragma region 特定のWAVEのみに写る処理
+	switch (nowWave_)
+	{
+	case Tutorial:
+
+		tutrialSystem_->Draw();
+
+		break;
+
+	case Wave1:
+
+		break;
+
+	case Wave2:
+
+		break;
+
+	case Wave3:
+
+		break;
+
+	default:
+		break;
+	}
+#pragma endregion
 
 	player_->Draw();
 
@@ -335,6 +335,8 @@ void GamePScene::Draw()
 
 #ifdef _DEBUG
 	Novice::ScreenPrintf(500, 500, "%d", CountNum_);
+	Novice::ScreenPrintf(500, 600, "%d", enemyNotAppeared_);
+
 #endif // _DEBUG
 
 #pragma region UI関連(一番前に写す)
@@ -530,11 +532,12 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 	switch (nowWave)
 	{
 	case Tutorial:
-		
+
 		if ((tutrialSystem_->GetNowExprestion() == 1) && countEnemy_ == 0) {
 			PopEnemy* newEnemy = new PopEnemy();
 
-			newEnemy->Initialize(player_->GetMaindStateNow(), nowWave);
+			newEnemy->Initialize(player_->GetMaindStateNow(), nowWave, enemyNotAppeared_);
+			enemyNotAppeared_ = newEnemy->EnemyNotAppeared();
 			enemy_.push_back(newEnemy);
 			countEnemy_ = 1;
 		}
@@ -542,7 +545,8 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 		if ((tutrialSystem_->GetNowExprestion() == 3) && countEnemy_ == 1) {
 			PopEnemy* newEnemy = new PopEnemy();
 
-			newEnemy->Initialize(player_->GetMaindStateNow(), nowWave);
+			newEnemy->Initialize(player_->GetMaindStateNow(), nowWave, enemyNotAppeared_);
+			enemyNotAppeared_ = newEnemy->EnemyNotAppeared();
 			enemy_.push_back(newEnemy);
 			countEnemy_ = 4;
 		}
@@ -557,7 +561,8 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 
 
 			PopEnemy* newEnemy = new PopEnemy();
-			newEnemy->Initialize(player_->GetMaindStateNow(), nowWave);
+			newEnemy->Initialize(player_->GetMaindStateNow(), nowWave, enemyNotAppeared_);
+			enemyNotAppeared_ = newEnemy->EnemyNotAppeared();
 			enemy_.push_back(newEnemy);
 			EnemyPopFrame_ = 0;
 
@@ -573,7 +578,8 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 
 			PopEnemy* newEnemy = new PopEnemy();
 
-			newEnemy->Initialize(player_->GetMaindStateNow(), nowWave);
+			newEnemy->Initialize(player_->GetMaindStateNow(), nowWave, enemyNotAppeared_);
+			enemyNotAppeared_ = newEnemy->EnemyNotAppeared();
 			enemy_.push_back(newEnemy);
 			EnemyPopFrame_ = 0;
 
@@ -588,7 +594,8 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 
 			PopEnemy* newEnemy = new PopEnemy();
 
-			newEnemy->Initialize(player_->GetMaindStateNow(), nowWave);
+			newEnemy->Initialize(player_->GetMaindStateNow(), nowWave, enemyNotAppeared_);
+			enemyNotAppeared_ = newEnemy->EnemyNotAppeared();
 			enemy_.push_back(newEnemy);
 			EnemyPopFrame_ = 0;
 
@@ -599,11 +606,15 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 	default:
 		break;
 	}
+
+
+
+
 }
 
 void GamePScene::WaveChange()
 {
-	if (tutrialSystem_->GetIsDead()== true) {
+	if (tutrialSystem_->GetIsDead() == true) {
 		delete tutrialSystem_;
 	}
 	//右クリック押したら終わる
@@ -618,7 +629,7 @@ void GamePScene::WaveChange()
 		nowWave_ = Wave2;
 		timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);
-		
+
 	}
 	else if ((nowWave_ == Wave2) && (timerUi_->GetterTimer() <= 0)) {
 		nowWave_ = Wave3;

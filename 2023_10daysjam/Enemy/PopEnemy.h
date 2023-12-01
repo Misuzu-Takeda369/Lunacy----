@@ -20,7 +20,7 @@ public:
 	//後から場所だけ敵から受け取る
 	//void Initialize(MaindState maindStateNow);
 
-	void Initialize(MaindState maindStateNow,Wave nowWave);
+	void Initialize(MaindState maindStateNow,Wave nowWave, int enemyNotAppeared);
 
 	void Update() override;
 	void Draw() override;
@@ -46,7 +46,11 @@ public:
 	 /// <returns></returns>
 	 EnemyType GetEnemyType() { return enemyType_; };
 
-	
+	 /// <summary>
+	 /// 敵が出てきていない回数
+	 /// </summary>
+	 /// <param name="num">回数</param>
+	 int EnemyNotAppeared() {return enemyNotAppeared_;}
 
 private:
 
@@ -66,6 +70,9 @@ private:
 	EHpUI* eHUi_ = nullptr;
 
 	float maxHp_;
+
+	//敵が出てこなかったときに数える奴
+	int enemyNotAppeared_;
 
 };
 

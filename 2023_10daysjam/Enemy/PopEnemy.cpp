@@ -14,7 +14,7 @@ PopEnemy::~PopEnemy()
 
 
 
-void PopEnemy::Initialize(MaindState maindStateNow, Wave nowWave)
+void PopEnemy::Initialize(MaindState maindStateNow, Wave nowWave, int enemyNotAppeared)
 {
 
 	charaBase_.pos_ = { 1400.f,550.0f };
@@ -30,6 +30,11 @@ void PopEnemy::Initialize(MaindState maindStateNow, Wave nowWave)
 	collisionType_ = Circle;
 	boxSize_ = { charaBase_.radius_,charaBase_.radius_ };
 
+	enemyNotAppeared_ = enemyNotAppeared;
+
+	/*if (enemyNotAppeared_ >= 2) {
+		enemyNotAppeared_ = 0;
+	}*/
 	//敵の生成
 	EnemyBorn(nowWave);
 
@@ -37,6 +42,7 @@ void PopEnemy::Initialize(MaindState maindStateNow, Wave nowWave)
 	//Hpゲージ
 	eHUi_ = new EHpUI();
 	eHUi_->Initialize(charaBase_.pos_);
+
 }
 
 void PopEnemy::Update()
@@ -89,8 +95,9 @@ void PopEnemy::Update()
 
 	ImGui::Begin("EnemyHp");
 	ImGui::Text("EnemyHp %f\n", hp_);
-
+	ImGui::Text("enemyNotAppeared_ %d\n", enemyNotAppeared_);
 	ImGui::End();
+
 #pragma endregion
 #endif // DEBUG
 }
@@ -149,28 +156,45 @@ void PopEnemy::EnemyBorn(Wave nowWave)
 
 #pragma region ポップした時の判別
 		rumNum_ = RandomRange(1, 3);
-
+		//rumNum_ = 3;
 		//
 		if (rumNum_ == 1 || rumNum_ == 2) {
 			enemyType_ = HPNOMAL;
+			enemyNotAppeared_ = 0;
 			right = true;
 		}
 		else if (rumNum_ == 3) {
 
 			if (maindStateNow_ == Lunatic) {
 				enemyType_ = SPNOMAL;
+				enemyNotAppeared_ = 0;
 				right = true;
 			}
 			else {
-				enemyType_ = NONE;
+				if (enemyNotAppeared_ == 2) {
+					enemyType_ = HPNOMAL;
+					enemyNotAppeared_ = 0;
+				}
+				else {
+					enemyType_ = NONE;
+					enemyNotAppeared_++;
+				}
 			}
 
 		}
 		else {
-			enemyType_ = NONE;
+			if (enemyNotAppeared_ >= 2) {
+				enemyType_ = HPNOMAL;
+				enemyNotAppeared_ = 0;
+			}
+			else {
+				enemyType_ = NONE;
+				enemyNotAppeared_++;
+			}
 		}
 
-		
+
+
 
 #pragma endregion
 		break;
@@ -181,18 +205,20 @@ void PopEnemy::EnemyBorn(Wave nowWave)
 
 		//
 		if (rumNum_ == 1) {
+			enemyNotAppeared_ = 0;
 			enemyType_ = HPNOMAL;
-			
+
 			right = true;
 		}
 		else if (rumNum_ == 2) {
+			enemyNotAppeared_ = 0;
 			enemyType_ = HPNOMAL;
 			charaBase_.pos_.x = -100.0f;
 			charaBase_.speed_.x = -charaBase_.speed_.x;
 			right = false;
 		}
 		else if (rumNum_ == 3) {
-
+			enemyNotAppeared_ = 0;
 			if (maindStateNow_ == Lunatic) {
 				enemyType_ = SPNOMAL;
 			}
@@ -203,6 +229,7 @@ void PopEnemy::EnemyBorn(Wave nowWave)
 		}
 		else if (rumNum_ == 4) {
 
+			enemyNotAppeared_ = 0;
 			if (maindStateNow_ == Lunatic) {
 				enemyType_ = SPNOMAL;
 			}
@@ -215,10 +242,17 @@ void PopEnemy::EnemyBorn(Wave nowWave)
 			right = false;
 		}
 		else {
-			enemyType_ = NONE;
+			if (enemyNotAppeared_ >= 2) {
+				enemyType_ = HPNOMAL;
+				enemyNotAppeared_ = 0;
+			}
+			else {
+				enemyType_ = NONE;
+				enemyNotAppeared_++;
+			}
 		}
 
-	
+
 
 #pragma endregion
 		break;
@@ -230,29 +264,41 @@ void PopEnemy::EnemyBorn(Wave nowWave)
 		//
 		if (rumNum_ == 1 || rumNum_ == 2) {
 			enemyType_ = HPNOMAL;
+			enemyNotAppeared_ = 0;
 		}
 		else if (rumNum_ == 3) {
 
 			if (maindStateNow_ == Lunatic) {
 				enemyType_ = SPNOMAL;
+				enemyNotAppeared_ = 0;
 			}
 			else {
 				enemyType_ = NONE;
 			}
-
+			
 		}
 		else {
-			enemyType_ = NONE;
+			if (enemyNotAppeared_ >= 2) {
+				enemyType_ = HPNOMAL;
+				enemyNotAppeared_ = 0;
+			}
+			else {
+				enemyType_ = NONE;
+				enemyNotAppeared_++;
+			}
+
 		}
 
-	
+
 
 #pragma endregion
+
 		break;
 
 	default:
 		break;
 	}
+
 
 	//出現
 	switch (enemyType_)
@@ -284,6 +330,7 @@ void PopEnemy::EnemyBorn(Wave nowWave)
 		maxHp_ = (nSEnemy_->GetHpMax());
 
 		decreasedHp_ = maxHp_ - hp_;
+
 		break;
 
 	default:
