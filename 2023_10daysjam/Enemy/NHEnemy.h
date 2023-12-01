@@ -1,11 +1,13 @@
 ﻿#pragma once
 #include "EnemyBase.h"
-#include "Animation/Enemy1Anim.h"
-#include "Animation/BladeSlimeAnim.h"
+//#include "Animation/Enemy1Anim.h"
+#include "Animation/BladeSlimeAnimH.h"
 
 class NHEnemy :public EnemyBase
 {
 public:
+
+	~NHEnemy();
 	/// <summary>
 	/// 初期化
 	/// </summary>

@@ -1,14 +1,12 @@
-#include "BladeSlimeAnim.h"
+#include "BladeSlimeAnimH.h"
 #include "Function/Function.h"
 
 void BladeSlimeAnim::Initialize()
 {
-	texture_[0] = Novice::LoadTexture("./Resources/images/AnimResources/bladeSlime.png");
-	texture_[1] = Novice::LoadTexture("./Resources/images/AnimResources/bladeSlime_Attack.png");
+	
 	rectTex_ = Novice::LoadTexture("./Resources/images/AnimResources/blades.png");
 	rectTexATK_ = Novice::LoadTexture("./Resources/images/AnimResources/bladesA.png");
-	lunaTex_ = Novice::LoadTexture("./Resources/images/AnimResources/bladesMind.png");
-	lunaTexATK_ = Novice::LoadTexture("./Resources/images/AnimResources/bladesMindA.png");
+	
 	
 	_timer = 0;
 	atkFrame = 0;
@@ -37,7 +35,7 @@ void BladeSlimeAnim::Update(Vector2 pos)
 		}
 	}
 	else {
-		frame = 0;
+		//frame = 0;
 		atkFrame = 0;
 		isAttacking_ = false;
 		if (_timer >= 7) {
@@ -58,26 +56,15 @@ void BladeSlimeAnim::Draw(unsigned int color)
 {
 	if (maindState_ == Normal) {
 		if (state_ == ATTACK) {
-			Novice::DrawSpriteRect((int)(_pos.x - _spriteRadius.x * _direction), (int)(_pos.y - _spriteRadius.y), 1024 * atkFrame, 0, 1024, 512, rectTexATK_,
-				0.25f * _direction * 0.2f, 0.25f, 0, WHITE);
+			Novice::DrawSpriteRect((int)(_pos.x - _spriteRadius.x * _direction), (int)(_pos.y - _spriteRadius.y), 256 * atkFrame, 0, 128, 128, rectTexATK_,
+				1 * _direction * 0.2f, 1, 0, WHITE);
 		}
 		else {
-			Novice::DrawSpriteRect((int)(_pos.x - _spriteRadius.x * _direction), (int)(_pos.y - _spriteRadius.y), 1024 * frame2, 0, 1024, 512, rectTex_,
-				0.25f * _direction * 0.2f, 0.25f, 0, WHITE);
+			Novice::DrawSpriteRect((int)(_pos.x - _spriteRadius.x * _direction), (int)(_pos.y - _spriteRadius.y), 256 * frame2, 0, 256, 128, rectTex_,
+				1 * _direction * 0.2f, 1, 0, WHITE);
 		}
 	}
-	else {
-
-		if (state_ == ATTACK) {
-			Novice::DrawSpriteRect((int)(_pos.x - _spriteRadius.x * _direction), (int)(_pos.y - _spriteRadius.y), 1024 * atkFrame, 0, 1024, 512, lunaTexATK_,
-				0.25f * _direction * 0.2f, 0.25f, 0, WHITE);
-		}
-		else {
-			Novice::DrawSpriteRect((int)(_pos.x - _spriteRadius.x * _direction), (int)(_pos.y - _spriteRadius.y), 1024 * frame2, 0, 1024, 512, lunaTex_,
-				0.25f * _direction * 0.2f, 0.25f, 0, WHITE);
-		}
-		color;
-	}
+	color;
 }
 
 void BladeSlimeAnim::SetState(STATE state)

@@ -18,7 +18,7 @@ public:
 	~PopEnemy();
 
 	//後から場所だけ敵から受け取る
-	void Initialize(MaindState maindStateNow);
+	//void Initialize(MaindState maindStateNow);
 
 	void Initialize(MaindState maindStateNow,Wave nowWave);
 

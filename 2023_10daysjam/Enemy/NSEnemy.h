@@ -1,12 +1,14 @@
 ﻿#pragma once
 #include "EnemyBase.h"
-#include "Animation/Enemy1Anim.h"
-#include "Animation/BladeSlimeAnim.h"
+//#include "Animation/Enemy1Anim.h"
+#include "Animation/BladeSlimeAnimS.h"
 
 class NSEnemy :
     public EnemyBase
 {
 public:
+
+	~NSEnemy();
 	/// <summary>
 	/// 初期化
 	/// </summary>
@@ -37,6 +39,6 @@ private:
 
 	//アニメーション
 	//enemy1anim* animation_ = nullptr;
-	BladeSlimeAnim* animation_ = nullptr;
+	BladeSlimeAnimS* animation_ = nullptr;
 };
 

@@ -193,7 +193,7 @@
     <ClCompile Include="UI\EHpUI.cpp">
       <Filter>UI</Filter>
     </ClCompile>
-    <ClCompile Include="Animation\BladeSlimeAnim.cpp">
+    <ClCompile Include="Animation\BladeSlimeAnimH.cpp">
       <Filter>Animation</Filter>
     </ClCompile>
     <ClCompile Include="SaveData.cpp">
@@ -207,6 +207,9 @@
     </ClCompile>
     <ClCompile Include="TutrialText\TutrialSystem.cpp">
       <Filter>Tutrial</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation\BladeSlimeAnimS.cpp">
+      <Filter>Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -408,7 +411,7 @@
     <ClInclude Include="UI\EHpUI.h">
       <Filter>UI</Filter>
     </ClInclude>
-    <ClInclude Include="Animation\BladeSlimeAnim.h">
+    <ClInclude Include="Animation\BladeSlimeAnimH.h">
       <Filter>Animation</Filter>
     </ClInclude>
     <ClInclude Include="SaveData.h">
@@ -422,6 +425,9 @@
     </ClInclude>
     <ClInclude Include="TutrialText\TutrialSystem.h">
       <Filter>Tutrial</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\BladeSlimeAnimS.h">
+      <Filter>Animation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

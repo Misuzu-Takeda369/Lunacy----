@@ -58,6 +58,11 @@ void GamePScene::Initialize(Wave& nowWave)
 	tutrialSystem_->Initialize(player_->GetPlayerSpeedX());
 
 	//ここで敵を産むすぐに殺す
+	/*EnemyPoping(nowWave_);
+	for (PopItem* popItem : popItem_) {
+		delete popItem;
+	}*/
+	//ここで敵を産むすぐに殺す(重くなるタイミングが2回出てきた)
 }
 
 void GamePScene::Initialize()
@@ -552,7 +557,6 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 
 
 			PopEnemy* newEnemy = new PopEnemy();
-
 			newEnemy->Initialize(player_->GetMaindStateNow(), nowWave);
 			enemy_.push_back(newEnemy);
 			EnemyPopFrame_ = 0;

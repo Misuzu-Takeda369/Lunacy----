@@ -1,5 +1,10 @@
 ﻿#include"NHEnemy.h"
 
+NHEnemy::~NHEnemy()
+{
+	delete animation_;
+}
+
 void NHEnemy::Initialize(Vector2 pos, Vector2 speed, float radius)
 {
 	charaBase_.pos_ = pos;
@@ -39,9 +44,9 @@ void NHEnemy::Update()
 
 
 	////アニメーションUpdate
-	//animation_->Update(charaBase_.pos_);
-	/*animation_->SetDirection(_right);
-	animation_->SetMaindState(Normal);*/
+	animation_->Update(charaBase_.pos_);
+	animation_->SetDirection(_right);
+	animation_->SetMaindState(Normal);
 
 
 #ifdef _DEBUG
@@ -65,7 +70,7 @@ void NHEnemy::Draw()
 	Novice::DrawEllipse(int(charaBase_.pos_.x), int(charaBase_.pos_.y), int(charaBase_.radius_), int(charaBase_.radius_), 0.0f, charaBase_.color_, kFillModeSolid);
 #endif
 	//アニメーションDraw
-	//animation_->Draw(charaBase_.color_);
+	animation_->Draw(charaBase_.color_);
 }
 
 

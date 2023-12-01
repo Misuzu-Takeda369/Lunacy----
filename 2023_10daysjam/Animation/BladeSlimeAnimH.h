@@ -11,13 +11,13 @@ public:
 	void SetDirection(bool right)override;
 	void SetMaindState(const MaindState& state);//敵の攻撃タイプ まだ通常しかない
 private:
-	static const int maxFrame = 2;
-	unsigned int texture_[maxFrame];
+	/*static const int maxFrame = 2;
+	unsigned int texture_[maxFrame];*/
 	unsigned int rectTex_;
 	unsigned int rectTexATK_;
-	unsigned int lunaTex_;
-	unsigned int lunaTexATK_;
-	int frame = 0;
+	/*unsigned int lunaTex_;
+	unsigned int lunaTexATK_;*/
+	//int frame = 0;
 	int frame2 = 0;
 	int atkFrame = 0;
 	bool isAttacking_ = false;

@@ -1,6 +1,11 @@
 ﻿#include "NSEnemy.h"
 
 
+NSEnemy::~NSEnemy()
+{
+	delete animation_;
+}
+
 void NSEnemy::Initialize(Vector2 pos, Vector2 speed, float radius)
 {
 	charaBase_.pos_ = pos;
@@ -27,7 +32,7 @@ void NSEnemy::Initialize(Vector2 pos, Vector2 speed, float radius)
 	/*animation_ = new Enemy1Anim;
 	animation_->Initialize();*/
 	//アニメーション初期化
-	animation_ = new BladeSlimeAnim;
+	animation_ = new BladeSlimeAnimS();
 	animation_->Initialize();
 }
 
