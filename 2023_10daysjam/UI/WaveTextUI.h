@@ -42,7 +42,7 @@ private:
 	//画像
 	int image_ = 0;
 	//写したいサイズ
-	const int sizeX_ = 500;
+	const int sizeX_ = 125;
 	const int sizeY_ = 64;
 
 	

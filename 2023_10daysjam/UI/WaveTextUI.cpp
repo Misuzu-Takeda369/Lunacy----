@@ -22,5 +22,5 @@ void WaveTextUI::Update(Wave& nowWave)
 
 void WaveTextUI::Draw()
 {
-	Novice::DrawSpriteRect(Lpos_.x_, Lpos_.y_, 0 + (sizeX_* nowWaveNum_), 0, sizeX_, sizeY_, image_, 0.25, 1, 0, WHITE);
+	Novice::DrawSpriteRect(Lpos_.x_, Lpos_.y_, 0 + (sizeX_* nowWaveNum_), 0, sizeX_, sizeY_, image_, 1.0f, 1, 0, WHITE);
 }
