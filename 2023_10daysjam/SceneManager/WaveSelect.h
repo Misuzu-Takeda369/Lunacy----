@@ -93,6 +93,7 @@ private:
 
 	//画像数
 	int image_[selectNum_];
+	int backImage_;
 
 
 	//チュートリアル用の文字サイズ

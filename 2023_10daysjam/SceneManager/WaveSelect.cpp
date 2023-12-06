@@ -41,11 +41,13 @@ void WaveSelect::Initialize(int& maxWave)
 		450,50 + (textSize_.y_ * 4)
 	};
 	
-	image_[0] = Novice::LoadTexture("./Resources/images/Text/tutrial_kari.png");
-	image_[1] = Novice::LoadTexture("./Resources/images/Text/wave1_kari.png");
-	image_[2] = Novice::LoadTexture("./Resources/images/Text/wave2_kari.png");
-	image_[3] = Novice::LoadTexture("./Resources/images/Text/wave3_kari.png");
+	image_[0] = Novice::LoadTexture("./Resources/images/Text/tutrial.png");
+	image_[1] = Novice::LoadTexture("./Resources/images/Text/wave1.png");
+	image_[2] = Novice::LoadTexture("./Resources/images/Text/wave2.png");
+	image_[3] = Novice::LoadTexture("./Resources/images/Text/wave3.png");
 	
+	backImage_ = Novice::LoadTexture("./Resources/images/Back/Titleback_1.png");
+
 	ColorLode();
 }
 
@@ -72,6 +74,10 @@ void WaveSelect::Update()
 
 void WaveSelect::Draw()
 {
+	//背景
+	Novice::DrawSprite(0,0, backImage_,1, 1, 0.0f, 0x93829CFF);
+
+
 
 	for (int i = 0; i < selectNum_; i++) {
 
