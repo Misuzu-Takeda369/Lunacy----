@@ -147,11 +147,11 @@ private:
 	std::list<PopEnemy*>enemy_;
 
 	//敵がポップする間隔
-	const int consEnemyPopFrameWave1_ = 260;
+	const int consEnemyPopFrameWave1_ = 180;
 	//敵がポップする間隔
-	const int consEnemyPopFrameWave2_ = 180;
+	const int consEnemyPopFrameWave2_ = 90;
 	//敵がポップする間隔
-	const int consEnemyPopFrameWave3_ = 180;
+	const int consEnemyPopFrameWave3_ = 90;
 	//敵がポップするまでを数える
 	int EnemyPopFrame_ = 0;
 

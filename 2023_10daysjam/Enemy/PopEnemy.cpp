@@ -18,7 +18,7 @@ void PopEnemy::Initialize(MaindState maindStateNow, Wave nowWave, int enemyNotAp
 {
 
 	charaBase_.pos_ = { 1400.f,550.0f };
-	charaBase_.speed_ = { 0.8f,0.3f };
+	charaBase_.speed_ = { 2.0f,0.3f };
 	charaBase_.radius_ = 50;
 
 	maindStateNow_ = maindStateNow;

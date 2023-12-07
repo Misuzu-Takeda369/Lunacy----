@@ -241,12 +241,22 @@ void GamePScene::Update()
 			}
 #endif // DEBUG
 
-			if (timerUi_->GetterTimer() <= 0) {
-				if (nowWave_ == Wave4){
+			//if (timerUi_->GetterTimer() <= 0) {
+			//	if (nowWave_ == Wave3){
+			//		flagChange_ = true;
+			//		changeTimingFrame_ = 0;
+			//		nowWave_ = Tutorial;
+			//	}
+			//}
+
+			///クリア条件の変更
+			if (apostelEvent_->GetHp() <= 0) {
+				if (nowWave_ == Wave4) {
 					flagChange_ = true;
 					changeTimingFrame_ = 0;
 					nowWave_ = Tutorial;
 				}
+
 			}
 			//ここのif文でシーン移行出来るかを判別
 			//現在はOを押したときに移動(がめおべ)
@@ -659,7 +669,7 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 
 		break;
 	case Wave4:
-		
+
 		break;
 
 	default:

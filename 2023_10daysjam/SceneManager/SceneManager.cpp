@@ -43,7 +43,7 @@ void SceneManager::Initialize() {
 	//nowWave_ = Tutorial;
 	//maxWave_ = Tutorial;
 	maxWave_ = saveData_->GetLastWave();
-	//nowWave_ = Wave(maxWave_);
+	nowWave_ = Wave(maxWave_);
 }
 
 void SceneManager::Update() {
@@ -195,6 +195,7 @@ void SceneManager::Update() {
 	case PlayDataMode:
 		dataScene_->SetSaveData(saveData_);
 		dataScene_->Update();
+
 		if (dataScene_->GetSceneChangeFlag()) {
 			sceneNum_ = TitleMode;
 			dataScene_->SetSceneChangeFlag(false);
