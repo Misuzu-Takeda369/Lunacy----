@@ -9,6 +9,7 @@ GamePScene::~GamePScene()
 	delete timerUi_;
 	delete backGround_;
 	delete waveTextUi_;
+	delete apostelEvent_;
 
 	delete tutrialSystem_;
 
@@ -57,6 +58,9 @@ void GamePScene::Initialize(Wave& nowWave)
 	tutrialSystem_ = new TutrialSystem;
 	tutrialSystem_->Initialize(player_->GetPlayerSpeedX());
 
+	apostelEvent_ = new ApostelEvent;
+	apostelEvent_->Initialize();
+
 	//ここで敵を産むすぐに殺す
 	/*enemyImage_[0];
 	enemyImage_[1];
@@ -84,6 +88,11 @@ void GamePScene::Initialize()
 	backGround_ = new BackGround();
 	backGround_->Initialize();
 
+	tutrialSystem_ = new TutrialSystem;
+	tutrialSystem_->Initialize(player_->GetPlayerSpeedX());
+
+	apostelEvent_ = new ApostelEvent;
+	apostelEvent_->Initialize();
 
 	//多分後で変わる(初期化内容からがっつり変わる可能性)
 	nowWave_ = Tutorial;
@@ -146,6 +155,12 @@ void GamePScene::Update()
 
 
 				break;
+
+			case Wave4:
+				apostelEvent_->SetPlayerInfo(player_->GetCharaBase());
+				apostelEvent_->Update();
+				break;
+
 			default:
 				break;
 			}
@@ -227,7 +242,7 @@ void GamePScene::Update()
 #endif // DEBUG
 
 			if (timerUi_->GetterTimer() <= 0) {
-				if (nowWave_ == Wave3) {
+				if (nowWave_ == Wave4){
 					flagChange_ = true;
 					changeTimingFrame_ = 0;
 					nowWave_ = Tutorial;
@@ -308,6 +323,9 @@ void GamePScene::Draw()
 
 	case Wave3:
 
+		break;
+	case Wave4:
+		apostelEvent_->Draw();
 		break;
 
 	default:
@@ -459,6 +477,44 @@ void GamePScene::CheckCollisionAll()
 
 	}
 #pragma endregion
+
+
+#pragma region プレイヤー攻撃とボス
+	if (playerMA) {
+
+		if (IsCollision(playerMA, apostelEvent_->GetObjectInfo()) == true) {
+			float damege = playerMA->GetAttackPoint();
+			apostelEvent_->OnCollision(damege);
+		}
+	}
+
+	for (PlayerLAttack* playerLAtteck : playerLA) {
+
+		if (playerLAtteck) {
+
+			if (IsCollision(playerLAtteck, apostelEvent_->GetObjectInfo()) == true) {
+
+				float damege = playerLAtteck->GetAttackPoint();
+				apostelEvent_->OnCollision(damege);
+				playerLAtteck->OnCollision();
+			}
+		}
+
+	}
+
+#pragma endregion
+
+#pragma region プレイヤーとボス攻撃
+	for (Apostel_MagicBall* magicBall : apostelEvent_->GetMagicBall()) {
+		if (IsCollision(magicBall, player_) == true) {
+
+			float damage = magicBall->GetAttackPoint();
+			EnemyType enemytype = magicBall->GetAttributeType();
+			player_->OnCollision(damage, enemytype);
+		}
+
+	}
+#pragma endregion
 }
 
 void GamePScene::ItemDead()
@@ -602,6 +658,9 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 		}
 
 		break;
+	case Wave4:
+		
+		break;
 
 	default:
 		break;
@@ -633,7 +692,11 @@ void GamePScene::WaveChange()
 		timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);
 	}
-
+	else if ((nowWave_ == Wave3) && (timerUi_->GetterTimer() <= 0)) {
+		nowWave_ = Wave4;
+		timerUi_->SetterTimer(timerMax);
+		timerUi_->SetterMoveX(0);
+	}
 
 
 #ifdef _DEBUG
@@ -655,6 +718,13 @@ void GamePScene::WaveChange()
 		timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);
 		waveTextUi_->Update(nowWave_);
+	}
+	else if ((nowWave_ == Wave3) && (!keys[DIK_0] && preKeys[DIK_0])) {
+		nowWave_ = Wave4;
+		timerUi_->SetterTimer(timerMax);
+		timerUi_->SetterMoveX(0);
+		waveTextUi_->Update(nowWave_);
+
 	}
 
 

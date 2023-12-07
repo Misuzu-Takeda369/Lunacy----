@@ -38,7 +38,7 @@ void TimerUI::Update()
 
 void TimerUI::Update(Wave nowWave)
 {
-	if (nowWave != Tutorial) {
+	if ((nowWave != Tutorial)&&(nowWave != Wave4)) {
 		timer_--;
 	}
 	

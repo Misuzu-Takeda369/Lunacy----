@@ -15,6 +15,7 @@
 #include "Enemy/PopEnemy.h"
 #include "Back/BackGround.h"
 #include "TutrialText/TutrialSystem.h"
+#include "Event/ApostelEvent/ApostelEvent.h"
 
 /// <summary>
 /// プレイシーンのクラス
@@ -160,6 +161,7 @@ private:
 	TimerUI* timerUi_ = nullptr;
 	BackGround* backGround_ = nullptr;
 	WaveTextUI* waveTextUi_ = nullptr;
+	ApostelEvent* apostelEvent_ = nullptr;
 
 	//アイテムポップ関数
 	std::list<PopItem*>popItem_;

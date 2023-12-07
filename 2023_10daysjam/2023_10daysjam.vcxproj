@@ -110,6 +110,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation\Animation.cpp" />
+    <ClCompile Include="Animation\ApostelAnim.cpp" />
     <ClCompile Include="Animation\BladeSlimeAnimH.cpp" />
     <ClCompile Include="Animation\BladeSlimeAnimS.cpp" />
     <ClCompile Include="Animation\Effect\LunaMental.cpp" />
@@ -136,6 +137,10 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="Enemy\NSEnemy.cpp" />
     <ClCompile Include="Enemy\NHEnemy.cpp" />
     <ClCompile Include="Enemy\PopEnemy.cpp" />
+    <ClCompile Include="Event\ApostelEvent\Apostel.cpp" />
+    <ClCompile Include="Event\ApostelEvent\ApostelEvent.cpp" />
+    <ClCompile Include="Event\ApostelEvent\Apostel_MagicBall.cpp" />
+    <ClCompile Include="Event\ApostelEvent\Apostel_ThrowMine.cpp" />
     <ClCompile Include="Function\Easing.cpp" />
     <ClCompile Include="Function\Function.cpp" />
     <ClCompile Include="Item\ItemBase.cpp" />
@@ -167,6 +172,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
   <ItemGroup>
     <ClInclude Include="Animation\Animation.h" />
     <ClInclude Include="Animation\AnimationStruct.h" />
+    <ClInclude Include="Animation\ApostelAnim.h" />
     <ClInclude Include="Animation\BladeSlimeAnimH.h" />
     <ClInclude Include="Animation\BladeSlimeAnimS.h" />
     <ClInclude Include="Animation\Effect\LunaMental.h" />
@@ -215,6 +221,10 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="Enemy\NSEnemy.h" />
     <ClInclude Include="Enemy\NHEnemy.h" />
     <ClInclude Include="Enemy\PopEnemy.h" />
+    <ClInclude Include="Event\ApostelEvent\Apostel.h" />
+    <ClInclude Include="Event\ApostelEvent\ApostelEvent.h" />
+    <ClInclude Include="Event\ApostelEvent\Apostel_MagicBall.h" />
+    <ClInclude Include="Event\ApostelEvent\Apostel_ThrowMine.h" />
     <ClInclude Include="Function\Easing.h" />
     <ClInclude Include="Function\Function.h" />
     <ClInclude Include="Function\UtilityStruct.h" />

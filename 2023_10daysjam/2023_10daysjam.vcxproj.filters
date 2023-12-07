@@ -53,6 +53,12 @@
     <Filter Include="Item">
       <UniqueIdentifier>{d85723e0-118c-4eb4-b856-7c9cf9425c00}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Event">
+      <UniqueIdentifier>{2b78a0dd-cee4-4c01-b170-0d305adcf972}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Event\ApostelEvent">
+      <UniqueIdentifier>{b7a6a878-e310-4132-956e-d7a564dd3ec2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp">
@@ -210,6 +216,21 @@
     </ClCompile>
     <ClCompile Include="Animation\BladeSlimeAnimS.cpp">
       <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation\ApostelAnim.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Event\ApostelEvent\Apostel.cpp">
+      <Filter>Event\ApostelEvent</Filter>
+    </ClCompile>
+    <ClCompile Include="Event\ApostelEvent\Apostel_MagicBall.cpp">
+      <Filter>Event\ApostelEvent</Filter>
+    </ClCompile>
+    <ClCompile Include="Event\ApostelEvent\Apostel_ThrowMine.cpp">
+      <Filter>Event\ApostelEvent</Filter>
+    </ClCompile>
+    <ClCompile Include="Event\ApostelEvent\ApostelEvent.cpp">
+      <Filter>Event\ApostelEvent</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -428,6 +449,21 @@
     </ClInclude>
     <ClInclude Include="Animation\BladeSlimeAnimS.h">
       <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\ApostelAnim.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Event\ApostelEvent\Apostel.h">
+      <Filter>Event\ApostelEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="Event\ApostelEvent\Apostel_MagicBall.h">
+      <Filter>Event\ApostelEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="Event\ApostelEvent\Apostel_ThrowMine.h">
+      <Filter>Event\ApostelEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="Event\ApostelEvent\ApostelEvent.h">
+      <Filter>Event\ApostelEvent</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
