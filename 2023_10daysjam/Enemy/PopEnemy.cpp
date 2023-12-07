@@ -199,6 +199,8 @@ void PopEnemy::EnemyBorn(Wave nowWave)
 #pragma endregion
 		break;
 	case Wave2:
+	case Wave3:
+	case Wave4:
 
 #pragma region ポップした時の判別
 		rumNum_ = RandomRange(1, 5);
@@ -255,44 +257,6 @@ void PopEnemy::EnemyBorn(Wave nowWave)
 
 
 #pragma endregion
-		break;
-	case Wave3:
-
-#pragma region ポップした時の判別
-		rumNum_ = RandomRange(1, 3);
-
-		//
-		if (rumNum_ == 1 || rumNum_ == 2) {
-			enemyType_ = HPNOMAL;
-			enemyNotAppeared_ = 0;
-		}
-		else if (rumNum_ == 3) {
-
-			if (maindStateNow_ == Lunatic) {
-				enemyType_ = SPNOMAL;
-				enemyNotAppeared_ = 0;
-			}
-			else {
-				enemyType_ = NONE;
-			}
-			
-		}
-		else {
-			if (enemyNotAppeared_ >= 2) {
-				enemyType_ = HPNOMAL;
-				enemyNotAppeared_ = 0;
-			}
-			else {
-				enemyType_ = NONE;
-				enemyNotAppeared_++;
-			}
-
-		}
-
-
-
-#pragma endregion
-
 		break;
 
 	default:

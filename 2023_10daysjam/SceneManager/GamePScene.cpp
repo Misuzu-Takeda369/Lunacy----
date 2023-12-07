@@ -670,6 +670,18 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 		break;
 	case Wave4:
 
+		EnemyPopFrame_++;
+
+		if (EnemyPopFrame_ >= consEnemyPopFrameBoss_) {
+
+
+			PopEnemy* newEnemy = new PopEnemy();
+			newEnemy->Initialize(player_->GetMaindStateNow(), nowWave, enemyNotAppeared_);
+			enemyNotAppeared_ = newEnemy->EnemyNotAppeared();
+			enemy_.push_back(newEnemy);
+			EnemyPopFrame_ = 0;
+
+		}
 		break;
 
 	default:
