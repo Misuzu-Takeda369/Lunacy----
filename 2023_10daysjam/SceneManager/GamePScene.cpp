@@ -670,18 +670,19 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 		break;
 	case Wave4:
 
-		EnemyPopFrame_++;
+		///SP回復の手助け(救済処置用に123の時より遅いペースで出現させるようにしている)
+		//EnemyPopFrame_++;
 
-		if (EnemyPopFrame_ >= consEnemyPopFrameBoss_) {
+		//if (EnemyPopFrame_ >= consEnemyPopFrameBoss_) {
 
 
-			PopEnemy* newEnemy = new PopEnemy();
-			newEnemy->Initialize(player_->GetMaindStateNow(), nowWave, enemyNotAppeared_);
-			enemyNotAppeared_ = newEnemy->EnemyNotAppeared();
-			enemy_.push_back(newEnemy);
-			EnemyPopFrame_ = 0;
+		//	PopEnemy* newEnemy = new PopEnemy();
+		//	newEnemy->Initialize(player_->GetMaindStateNow(), nowWave, enemyNotAppeared_);
+		//	enemyNotAppeared_ = newEnemy->EnemyNotAppeared();
+		//	enemy_.push_back(newEnemy);
+		//	EnemyPopFrame_ = 0;
 
-		}
+		//}
 		break;
 
 	default:
