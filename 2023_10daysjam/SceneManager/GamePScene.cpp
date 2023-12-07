@@ -611,9 +611,9 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 
 void GamePScene::WaveChange()
 {
-	if (tutrialSystem_->GetIsDead() == true) {
+	/*if (tutrialSystem_->GetIsDead() == true) {
 		delete tutrialSystem_;
-	}
+	}*/
 	//右クリック押したら終わる
 	if ((nowWave_ == Tutorial) && tutrialSystem_->GetIsDead()) {
 		nowWave_ = Wave1;
