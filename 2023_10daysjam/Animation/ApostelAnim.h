@@ -8,6 +8,7 @@ public:
 	void Draw(unsigned int color);
 	void SetState(STATE state);
 	void SetDirection(bool right)override;
+	void SetColorRGBA(int R, int G, int B, int A);
 private:
 	static const int maxFrame = 1;
 	unsigned int rectTex_;
@@ -19,5 +20,6 @@ private:
 	STATE state_ = STATE::IDOL;
 	bool _right;
 	MaindState maindState_ = MaindState::Normal;
+	unsigned int color_ = WHITE;
 };
 

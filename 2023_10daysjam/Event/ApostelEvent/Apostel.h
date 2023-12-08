@@ -4,6 +4,7 @@
 #include "Animation/ApostelAnim.h"
 #include "UI/EHpUI.h"
 #include "Apostel_MagicBall.h"
+#include "Apostel_ThrowMine.h"
 class Apostel :public EnemyBase
 
 {
@@ -45,9 +46,10 @@ public:
 	{
 		_right = right;
 	};
+	int GetPhase() { return phase_; }
 
-	const std::list<Apostel_MagicBall*>& GetMagicBall() { return magicBall_; };
-	
+	const std::list<Apostel_MagicBall*>& GetMagicBall() { return magicBall_; }
+	const std::list<Apostel_ThrowMine*>& GetThrowMine() { return throwMine_; }
 
 protected:
 
@@ -59,6 +61,8 @@ protected:
 	void DrawProjectile();
 	void UpdateProjectile();
 	void DeleteProjectile();
+	void MagicBallFire();
+	void ThrowMineFire();
 	//敵が死んでいるか
 	bool isDead_;
 
@@ -73,12 +77,13 @@ protected:
 	const float maxHP_ = 100;
 
 	STATE state_ = IDOL;
+	SABSTATE sabState_ = SABSTATE::_NONE;
 
 	enum Phase {
-		first,
-		second,
-		third,
-		dead
+		dead, //0 
+		first, //1
+		second, //2
+		third, //3
 	};
 	Phase phase_ = first;
 
@@ -89,9 +94,13 @@ protected:
 	int moveDirection_ = 1; //向き
 	int magicBallCoolTimeCounter_ = 0;
 	int magicBallCoolTime_ = 60;
+	int throwMineCoolTimeCounter_ = 0;
+	int throwMineCoolTime_ = 30;
 	float flowingTheta_ = 0;
 	Vector2 center_;
+	UnitColor color_;
 
 	std::list<Apostel_MagicBall*> magicBall_;
+	std::list<Apostel_ThrowMine*> throwMine_;
 };
 

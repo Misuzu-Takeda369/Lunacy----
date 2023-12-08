@@ -10,6 +10,9 @@ Apostel::~Apostel()
 	for (Apostel_MagicBall* magicBall : magicBall_) {
 		delete magicBall;
 	}
+	for (Apostel_ThrowMine* mine : throwMine_) {
+		delete mine;
+	}
 }
 
 void Apostel::Initialize(Vector2 pos, Vector2 speed, float radius)
@@ -31,6 +34,8 @@ void Apostel::Initialize(Vector2 pos, Vector2 speed, float radius)
 	hitCoolTime_ = 0;
 	center_ = charaBase_.pos_;
 	flowingTheta_ = 0;
+	phase_ = first;
+	color_.R = 255; color_.G = 255; color_.B = 255; color_.A = 255;
 }
 
 void Apostel::Update()
@@ -48,14 +53,25 @@ void Apostel::Update()
 		Phase_Second();
 		if (hp_ <= maxHP_ * 0.25f) {
 			phase_ =third; //HP25%以下でフェーズ3に移行
+			state_ = MOVE;
+			sabState_ = _ATTACK;
 		}
 		break;
 	case Apostel::third:
+		Phase_Third();
 		if (hp_ <= 0.0f) {
 			phase_ = dead; //HP0%以下で死亡状態に移行
 		}
 		break;
 	case Apostel::dead:
+		if (color_.A <= 0) {
+			color_.A = 0;
+			isDead_ = true;
+		}
+		else {
+			color_.A-=5;
+		}
+		anim_->SetColorRGBA(color_.R, color_.G, color_.B, color_.A);
 		break;
 	default:
 		break;
@@ -78,6 +94,7 @@ void Apostel::Update()
 		_right = false;
 	}
 	UpdateProjectile();
+	DeleteProjectile();
 }
 
 void Apostel::Draw()
@@ -179,10 +196,7 @@ void Apostel::Phase_First()
 		break;
 	case ATTACK:
 		if (magicBallCoolTimeCounter_ <= 0) {
-			Apostel_MagicBall* newMagicBall = new Apostel_MagicBall;
-			newMagicBall->Initialize(charaBase_);
-			_right = newMagicBall->GetDirection();
-			magicBall_.push_back(newMagicBall);
+			MagicBallFire();
 			magicBallCoolTimeCounter_ = magicBallCoolTime_ + RandomRange(-20, 60);
 		}
 		actChangeTime_++;
@@ -209,14 +223,64 @@ void Apostel::Phase_Second()
 	switch (state_)
 	{
 	case IDOL:
+		actChangeTime_++;
+		if (actChangeTime_ >= 60) {
+			state_ = MOVE;
+			//移動方向の決定
+			int num2 = RandomRange(1, 10);
+			if (num2 > 5) {
+				moveDirection_ = 1;
+				_right = true;
+			}
+			else {
+				moveDirection_ = -1;
+				_right = false;
+			}
+			actChangeTime_ = 0;
+		}
 		break;
 	case MOVE:
+		actChangeTime_++;
+		charaBase_.pos_.x += 5 * moveDirection_;
+		//移動中攻撃
+		throwMineCoolTimeCounter_--;
+		if (throwMineCoolTimeCounter_ <= 0) {
+			sabState_ = _ATTACK;
+			ThrowMineFire();
+			throwMineCoolTimeCounter_ = throwMineCoolTime_ + RandomRange(-20, 30);
+		}
+		if (1) {
+			//ある程度の時間で行動変化
+			int num = RandomRange(1, 25);
+			if (actChangeTime_ >= 40 + num) {
+				int num2 = RandomRange(1, 8);
+				if (num2 < 5) {
+					state_ = IDOL;
+				}
+				else if (num2 > 3) {
+					state_ = ATTACK;
+				}
+				actChangeTime_ = 0;
+				//確率で方向転換
+				int num3 = RandomRange(1, 10);
+				if (num3 > 5) {
+					moveDirection_ = 1;
+					_right = true;
+				}
+				else {
+					moveDirection_ = -1;
+					_right = false;
+				}
+			}
+			//
+		}
 		break;
 	case JUMP:
 		break;
 	case DEAD:
 		break;
 	case ATTACK:
+		state_ = IDOL;
 		break;
 	case SKILL:
 		break;
@@ -229,6 +293,68 @@ void Apostel::Phase_Second()
 
 void Apostel::Phase_Third()
 {
+	flowingTheta_ += 0.05f;
+	charaBase_.pos_.y = (1.f * std::cosf(flowingTheta_) + 2.f * std::sinf(flowingTheta_)) + center_.y;
+	switch (state_)
+	{
+	case IDOL:
+		break;
+	case MOVE:
+
+		charaBase_.pos_.x += 5 * moveDirection_;
+
+		actChangeTime_++;
+		if (1) {
+			//ある程度の時間で行動変化
+			int num = RandomRange(1, 25);
+			if (actChangeTime_ >= 40 + num) {
+				actChangeTime_ = 0;
+				//確率で方向転換
+				int num3 = RandomRange(1, 10);
+				if (num3 > 5) {
+					moveDirection_ = 1;
+					_right = true;
+				}
+				else {
+					moveDirection_ = -1;
+					_right = false;
+				}
+			}
+		}
+			break;
+	case JUMP:
+		break;
+	case DEAD:
+		break;
+	case ATTACK:
+		break;
+	case SKILL:
+		break;
+	case SPECIAL:
+		break;
+	default:
+		break;
+		
+	}
+	if (sabState_ == _ATTACK) {
+		//投げ地雷
+		throwMineCoolTimeCounter_--;
+		if (throwMineCoolTimeCounter_ <= 0) {
+			sabState_ = _ATTACK;
+			ThrowMineFire();
+			throwMineCoolTimeCounter_ = throwMineCoolTime_ + RandomRange(-10, 50);
+		}
+		//魔玉
+		magicBallCoolTimeCounter_--;
+		if (magicBallCoolTimeCounter_ <= 0) {
+			MagicBallFire();
+			int num = RandomRange(0, 10);
+			if (num < 4) {
+				MagicBallFire();
+			}
+			magicBallCoolTimeCounter_ = magicBallCoolTime_ + RandomRange(10, 70);
+		}
+	}
 }
 
 void Apostel::CoolCheak()
@@ -249,6 +375,9 @@ void Apostel::DrawProjectile()
 
 		magicBall->Draw();
 	}
+	for (Apostel_ThrowMine* mine : throwMine_) {
+		mine->Draw();
+	}
 }
 
 void Apostel::UpdateProjectile()
@@ -256,6 +385,10 @@ void Apostel::UpdateProjectile()
 	for (Apostel_MagicBall* magicBall : magicBall_) {
 
 		magicBall->Update();
+	}
+	for (Apostel_ThrowMine* mine : throwMine_) {
+
+		mine->Update();
 	}
 }
 
@@ -269,4 +402,28 @@ void Apostel::DeleteProjectile()
 
 		return false;
 		});
+	throwMine_.remove_if([](Apostel_ThrowMine* mine) {
+		if (mine->IsDead()) {
+			delete mine;
+			return true;
+		}
+
+		return false;
+		});
+}
+
+void Apostel::MagicBallFire()
+{
+	Apostel_MagicBall* newMagicBall = new Apostel_MagicBall;
+	newMagicBall->Initialize(charaBase_);
+	_right = newMagicBall->GetDirection();
+	magicBall_.push_back(newMagicBall);
+}
+
+void Apostel::ThrowMineFire()
+{
+	Apostel_ThrowMine* newThrowMine = new Apostel_ThrowMine;
+	newThrowMine->Initialize(charaBase_, playerBase_.pos_);
+	_right = newThrowMine->GetDirection();
+	throwMine_.push_back(newThrowMine);
 }

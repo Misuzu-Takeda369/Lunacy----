@@ -260,9 +260,8 @@ void GamePScene::Update()
 			//		nowWave_ = Tutorial;
 			//	}
 			//}
-
 			///クリア条件の変更
-			if (apostelEvent_->GetHp() <= 0) {
+			if (apostelEvent_->GetIsDead()) {
 				if (nowWave_ == Wave4) {
 					flagChange_ = true;
 					changeTimingFrame_ = 0;

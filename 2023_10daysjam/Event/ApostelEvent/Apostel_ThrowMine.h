@@ -3,6 +3,7 @@
 //時限爆弾をプレイヤーの現在位置(横)に向かって投げる/爆破する
 class Apostel_ThrowMine :public Object
 {
+public:
 	/// <summary>
 	/// 初期化
 	/// </summary>
@@ -34,6 +35,9 @@ class Apostel_ThrowMine :public Object
 			return attackPoint_;
 		return 0;
 	}
+	bool GetIsActive() {
+		return isActive_;
+	}
 	EnemyType GetAttributeType() { return (EnemyType)attribute_; };
 
 private:
@@ -50,6 +54,24 @@ private:
 	bool isActive_ = false;
 	int timeCounter_; //時間カウント
 	const int baseActiveTime_ = 60; //アクティブにするまでの時間
+	const float maxRadius_ = 90.f;//最大爆発衝突範囲
 	float groundLevel_ = 614.f; //地面の位置
+	int blinkingTimer_ = 0;
+	bool blinking_ = true;
 };
 
+/*
+ ***衝突判定***
+
+	for (Apostel_ThrowMine* mine : apostelEvent_->GetThrowMine()) {
+		if (mine->GetIsActive()) {
+			if (IsCollision(mine, player_) == true) {
+
+				float damage = mine->GetAttackPoint();
+				EnemyType enemytype = mine->GetAttributeType();
+				player_->OnCollision(damage, enemytype);
+			}
+		}
+
+	}
+*/

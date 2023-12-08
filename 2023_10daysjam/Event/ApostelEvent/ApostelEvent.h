@@ -13,13 +13,8 @@ public:
 	Object* GetObjectInfo() { return (Object*)apostel_; }
 	void OnCollision(float& dmg) { apostel_->OnCollision(dmg); }
 	const std::list<Apostel_MagicBall*>& GetMagicBall() { return apostel_->GetMagicBall(); }
-
-	///判定用
-	float GetHp() {return hp_;}
-
+	const std::list<Apostel_ThrowMine*>& GetThrowMine() { return apostel_->GetThrowMine(); }
 private:
 	Apostel* apostel_ = nullptr;
-
-	float hp_;
 };
 

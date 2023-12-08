@@ -1,4 +1,5 @@
 #include "ApostelAnim.h"
+#include "Function/Function.h"
 
 void ApostelAnim::Initialize()
 {
@@ -13,6 +14,7 @@ void ApostelAnim::Initialize()
 	_isActive = true;
 	isAttacking_ = false;
 	state_ = IDOL;
+	color_ = WHITE;
 }
 
 void ApostelAnim::Update(Vector2 pos)
@@ -29,7 +31,7 @@ void ApostelAnim::Update(Vector2 pos)
 void ApostelAnim::Draw(unsigned int color)
 {
 	color;
-	Novice::DrawSprite((int)(_pos.x - _spriteRadius.x * _direction), (int)_pos.y - (int)(_spriteRadius.x ), rectTex_, 0.25f * _direction, 0.25f, 0, WHITE);
+	Novice::DrawSprite((int)(_pos.x - _spriteRadius.x * _direction), (int)_pos.y - (int)(_spriteRadius.x ), rectTex_, 0.25f * _direction, 0.25f, 0, color_);
 }
 
 void ApostelAnim::SetState(STATE state)
@@ -40,4 +42,9 @@ void ApostelAnim::SetState(STATE state)
 void ApostelAnim::SetDirection(bool right)
 {
 	_right = right;
+}
+
+void ApostelAnim::SetColorRGBA(int R, int G, int B, int A)
+{
+	color_ = GetColorValue(R, G, B, A);
 }
