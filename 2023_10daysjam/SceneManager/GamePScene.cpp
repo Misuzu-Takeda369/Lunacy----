@@ -503,7 +503,6 @@ void GamePScene::CheckCollisionAll()
 	}
 #pragma endregion
 
-
 #pragma region プレイヤー攻撃とボス
 	if (playerMA) {
 
@@ -536,6 +535,18 @@ void GamePScene::CheckCollisionAll()
 			float damage = magicBall->GetAttackPoint();
 			EnemyType enemytype = magicBall->GetAttributeType();
 			player_->OnCollision(damage, enemytype);
+		}
+
+	}
+
+	for (Apostel_ThrowMine* mine : apostelEvent_->GetThrowMine()) {
+		if (mine->GetIsActive()) {
+			if (IsCollision(mine, player_) == true) {
+
+				float damage = mine->GetAttackPoint();
+				EnemyType enemytype = mine->GetAttributeType();
+				player_->OnCollision(damage, enemytype);
+			}
 		}
 
 	}
