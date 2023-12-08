@@ -20,7 +20,7 @@ void MousePointer::Initialize()
 
 void MousePointer::Update()
 {
-	//Novice::SetMouseCursorVisibility(0);
+	Novice::SetMouseCursorVisibility(0);
 
 	Novice::GetMousePosition(&mousePos_.x_, &mousePos_.y_);
 }

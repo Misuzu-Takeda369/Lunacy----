@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#define Wave_MAX 4
+#define Wave_MAX 5
 
 /// <summary>
 /// 色用の構造体

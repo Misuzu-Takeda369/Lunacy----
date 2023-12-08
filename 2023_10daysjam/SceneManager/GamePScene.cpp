@@ -94,6 +94,7 @@ void GamePScene::Initialize()
 	tutrialSystem_ = new TutrialSystem;
 	tutrialSystem_->Initialize(player_->GetPlayerSpeedX());
 
+	//boss
 	apostelEvent_ = new ApostelEvent;
 	apostelEvent_->Initialize();
 
@@ -241,7 +242,6 @@ void GamePScene::Update()
 				if (nowWave_ == Wave3) {
 					flagChange_ = true;
 					changeTimingFrame_ = 0;
-					nowWave_ = Tutorial;
 				}
 			}
 			//ここのif文でシーン移行出来るかを判別
@@ -252,20 +252,11 @@ void GamePScene::Update()
 				changeTimingFrame_ = 0;
 			}
 #endif // DEBUG
-
-			//if (timerUi_->GetterTimer() <= 0) {
-			//	if (nowWave_ == Wave3){
-			//		flagChange_ = true;
-			//		changeTimingFrame_ = 0;
-			//		nowWave_ = Tutorial;
-			//	}
-			//}
 			///クリア条件の変更
 			if (apostelEvent_->GetIsDead()) {
 				if (nowWave_ == Wave4) {
 					flagChange_ = true;
 					changeTimingFrame_ = 0;
-					nowWave_ = Tutorial;
 				}
 
 			}
@@ -503,54 +494,56 @@ void GamePScene::CheckCollisionAll()
 	}
 #pragma endregion
 
+	if (nowWave_ == Wave4) {
 #pragma region プレイヤー攻撃とボス
-	if (playerMA) {
+		if (playerMA) {
 
-		if (IsCollision(playerMA, apostelEvent_->GetObjectInfo()) == true) {
-			float damege = playerMA->GetAttackPoint();
-			apostelEvent_->OnCollision(damege);
-		}
-	}
-
-	for (PlayerLAttack* playerLAtteck : playerLA) {
-
-		if (playerLAtteck) {
-
-			if (IsCollision(playerLAtteck, apostelEvent_->GetObjectInfo()) == true) {
-
-				float damege = playerLAtteck->GetAttackPoint();
+			if (IsCollision(playerMA, apostelEvent_->GetObjectInfo()) == true) {
+				float damege = playerMA->GetAttackPoint();
 				apostelEvent_->OnCollision(damege);
-				playerLAtteck->OnCollision();
 			}
 		}
 
-	}
+		for (PlayerLAttack* playerLAtteck : playerLA) {
+
+			if (playerLAtteck) {
+
+				if (IsCollision(playerLAtteck, apostelEvent_->GetObjectInfo()) == true) {
+
+					float damege = playerLAtteck->GetAttackPoint();
+					apostelEvent_->OnCollision(damege);
+					playerLAtteck->OnCollision();
+				}
+			}
+
+		}
 
 #pragma endregion
 
 #pragma region プレイヤーとボス攻撃
-	for (Apostel_MagicBall* magicBall : apostelEvent_->GetMagicBall()) {
-		if (IsCollision(magicBall, player_) == true) {
+		for (Apostel_MagicBall* magicBall : apostelEvent_->GetMagicBall()) {
+			if (IsCollision(magicBall, player_) == true) {
 
-			float damage = magicBall->GetAttackPoint();
-			EnemyType enemytype = magicBall->GetAttributeType();
-			player_->OnCollision(damage, enemytype);
-		}
-
-	}
-
-	for (Apostel_ThrowMine* mine : apostelEvent_->GetThrowMine()) {
-		if (mine->GetIsActive()) {
-			if (IsCollision(mine, player_) == true) {
-
-				float damage = mine->GetAttackPoint();
-				EnemyType enemytype = mine->GetAttributeType();
+				float damage = magicBall->GetAttackPoint();
+				EnemyType enemytype = magicBall->GetAttributeType();
 				player_->OnCollision(damage, enemytype);
 			}
+
 		}
 
-	}
+		for (Apostel_ThrowMine* mine : apostelEvent_->GetThrowMine()) {
+			if (mine->GetIsActive()) {
+				if (IsCollision(mine, player_) == true) {
+
+					float damage = mine->GetAttackPoint();
+					EnemyType enemytype = mine->GetAttributeType();
+					player_->OnCollision(damage, enemytype);
+				}
+			}
+
+		}
 #pragma endregion
+	}
 
 #pragma region プレイヤー本体と浮遊敵
 

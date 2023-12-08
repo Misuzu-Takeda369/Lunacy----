@@ -79,4 +79,6 @@ private:
 	int moveX_ = 0;
 	//移動する量(HPが1減るたびに動く量)
 	int moveSpeedX_ = 9;
+
+	UnitColor color_;
 };

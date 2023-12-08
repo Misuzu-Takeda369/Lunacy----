@@ -12,6 +12,11 @@ void SaveData::Initialize()
 
 void SaveData::OnResultUpdate(const int& wave)
 {
+	//クリア時に上書き(しないほうがトピックに合う気がする最高waveも見せつけられるので)
+	//if ((lastWave_ < wave) || (wave == 0)) {
+	//	lastWave_ = wave;
+	//	WriteData();
+	//}
 	if (lastWave_ < wave) {
 		lastWave_ = wave;
 		WriteData();

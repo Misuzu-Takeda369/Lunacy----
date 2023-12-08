@@ -96,6 +96,8 @@ void SceneManager::Update() {
 			sceneNum_ = PlayDataMode;
 			title_->SetToPlayDataFlag(false);
 			dataScene_->SetSaveData(saveData_);
+			int num = RandomRange(0, dataScene_->GetMaxTips());
+			dataScene_->SetTips(num);
 		}
 		break;
 
@@ -104,31 +106,16 @@ void SceneManager::Update() {
 		waveS_->Update();
 
 		if (waveS_->GetFlagChange()) {
+			sceneNum_ = GPlayMode;
+			waveS_->SetFlagChange(false);
 
-			//waveS_->SetFlagChange(false);
-			////現在のwaveを受け取る
-			//nowWave_ = waveS_->GetNowWave();
-			////deleteとnewと初期化(初期化だけでもよさそう感)
-			////動きによっては別な場所へ
-			//gameP_ = new GamePScene();
-			//gameP_->Initialize(nowWave_);
 
-			if (waveS_->GetTitleChangeFlag()) {
-				sceneNum_ = TitleMode;
-				waveS_->SetFlagChange(false);
-
-			}
-			else {
-				sceneNum_ = GPlayMode;
-				waveS_->SetFlagChange(false);
-				//現在のwaveを受け取る
-				nowWave_ = waveS_->GetNowWave();
-				//deleteとnewと初期化(初期化だけでもよさそう感)
-				//動きによっては別な場所へ
-				gameP_ = new GamePScene();
-				gameP_->Initialize(nowWave_);
-			}
-
+			//現在のwaveを受け取る
+			nowWave_ = waveS_->GetNowWave();
+			//deleteとnewと初期化(初期化だけでもよさそう感)
+			//動きによっては別な場所へ
+			gameP_ = new GamePScene();
+			gameP_->Initialize(nowWave_);
 
 		}
 
