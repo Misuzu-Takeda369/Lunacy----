@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include "Enemy/EnemyBase.h"
 #include "Function/Function.h"
+
+#include "Animation/FlyEye.h"
 class FHEnemy :public EnemyBase
 {
 public:
@@ -46,6 +48,9 @@ private:
 	float theta = 0.0f;
 	//グラフ？何倍か(基準が1なので)
 	float ampli = 30.0f;
+
+	//浮遊敵情報
+	FlyEye* flyeye_ = nullptr;
 
 };
 

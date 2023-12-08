@@ -2,6 +2,7 @@
 
 FHEnemy::~FHEnemy()
 {
+	delete flyeye_;
 }
 
 void FHEnemy::Initialize(Vector2 pos, Vector2 speed, float radius)
@@ -28,6 +29,10 @@ void FHEnemy::Initialize(Vector2 pos, Vector2 speed, float radius)
 
 	//敵が移動した量
 	moveEnemy_ = { 0.0f,0.0f };
+
+	//アニメーション初期化
+	flyeye_ = new FlyEye();
+	flyeye_->Initialize();
 }
 
 void FHEnemy::Update()
@@ -35,6 +40,9 @@ void FHEnemy::Update()
 	Move();
 	//敵の自然死
 	NaturalDeath();
+	flyeye_->Update(charaBase_.pos_);
+	flyeye_->SetDirection(_right);
+	
 }
 
 void FHEnemy::Draw()
@@ -42,6 +50,7 @@ void FHEnemy::Draw()
 #ifdef _DEBUG
 	Novice::DrawEllipse(int(charaBase_.pos_.x), int(charaBase_.pos_.y), int(charaBase_.radius_), int(charaBase_.radius_), 0.0f, charaBase_.color_, kFillModeSolid);
 #endif
+	flyeye_->Draw(WHITE);
 }
 
 void FHEnemy::Move()

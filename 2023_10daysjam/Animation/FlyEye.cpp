@@ -4,8 +4,8 @@
 void FlyEye::Initialize()
 {
 	
-	rectTex_ = Novice::LoadTexture("./Resources/images/AnimResources/flyEye.png");
-	rectTexATK_ = Novice::LoadTexture("./Resources/images/AnimResources/flyEye.png");
+	rectTex_ = Novice::LoadTexture("./Resources/images/AnimResources/flyEyemini.png");
+	rectTexATK_ = Novice::LoadTexture("./Resources/images/AnimResources/flyEyemini.png");
 
 	_timer = 0;
 	atkFrame = 0;
@@ -54,12 +54,17 @@ void FlyEye::Update(Vector2 pos)
 void FlyEye::Draw(unsigned int color)
 {
 	if (state_ == ATTACK) {
-		Novice::DrawSpriteRect((int)(_pos.x - _spriteRadius.x * _direction), (int)(_pos.y - _spriteRadius.y), 512 * atkFrame, 0, 512, 512, rectTexATK_,
-			0.25f * _direction * 0.166f, 0.25f, 0, WHITE);
+	/*	Novice::DrawSpriteRect((int)(_pos.x - _spriteRadius.x * _direction), (int)(_pos.y - _spriteRadius.y), 512 * atkFrame, 0, 512, 512, rectTexATK_,
+			0.25f * _direction * 0.166f, 0.25f, 0, WHITE);*/
+		Novice::DrawSpriteRect((int)(_pos.x - _spriteRadius.x * _direction), (int)(_pos.y - _spriteRadius.y), 128 * atkFrame, 0, 128, 128, rectTexATK_,
+			1.0f * _direction * 0.166f, 1.0f, 0, WHITE);
+
 	}
 	else {
-		Novice::DrawSpriteRect((int)(_pos.x - _spriteRadius.x * _direction), (int)(_pos.y - _spriteRadius.y), 512 * frame2, 0, 512, 512, rectTex_,
-			0.25f * _direction * 0.166f, 0.25f, 0, WHITE);
+		/*Novice::DrawSpriteRect((int)(_pos.x - _spriteRadius.x * _direction), (int)(_pos.y - _spriteRadius.y), 512 * frame2, 0, 512, 512, rectTex_,
+			0.25f * _direction * 0.166f, 0.25f, 0, WHITE);*/
+		Novice::DrawSpriteRect((int)(_pos.x - _spriteRadius.x * _direction), (int)(_pos.y - _spriteRadius.y), 128 * frame2, 0, 128, 128, rectTex_,
+			1.0f * _direction * 0.166f, 1.0f, 0, WHITE);
 	}
 
 	color;
