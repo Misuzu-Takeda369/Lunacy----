@@ -17,6 +17,8 @@ void WaveSelect::Initialize()
 	nowWave_ = Tutorial;
 
 	maxWave_ = Tutorial;
+
+	titleChangeFlag_ = false;
 }
 
 void WaveSelect::Initialize(int& maxWave)
@@ -27,6 +29,8 @@ void WaveSelect::Initialize(int& maxWave)
 
 	nowWave_ = Tutorial;
 	maxWave_ = maxWave;
+
+	titleChangeFlag_ = false;
 
 	selectLetter_[0] = {
 		100,50 + (textSize_.y_ * 4)
@@ -48,6 +52,7 @@ void WaveSelect::Initialize(int& maxWave)
 	//image_[4] = Novice::LoadTexture("./Resources/images/Text/wave3.png");
 	
 	backImage_ = Novice::LoadTexture("./Resources/images/Back/Titleback_1.png");
+	backTitleImage_ = Novice::LoadTexture("./Resources/images/UI/backbutton.png");
 
 	ColorLode();
 }
@@ -59,6 +64,7 @@ void WaveSelect::Update()
 
 	changeTimingFrame_++;
 
+	//ステージへ移動
 	MouseBottonChack();
 
 #ifdef _DEBUG
@@ -85,6 +91,7 @@ void WaveSelect::Draw()
 		Novice::DrawSprite(selectLetter_[i].x_, selectLetter_[i].y_, image_[i],1,1, 0.0f,selectColor_[i].color);
 	}
 
+	Novice::DrawSprite(selectLetter_[0].x_, 10, backTitleImage_, 0.25, 0.25, 0.0f, WHITE);
 }
 
 void WaveSelect::MouseBottonChack()
@@ -183,6 +190,27 @@ void WaveSelect::MouseBottonChack()
 			selectColor_[3].color = WHITE;
 		}
 	}
+
+#pragma endregion
+
+#pragma region BackTitle
+
+	
+		if ((mousePos_.x_ >= selectLetter_[0].x_ && mousePos_.x_ <= selectLetter_[0].x_ + tutrialSize_.x_)
+			&&
+			(mousePos_.y_ >= 10 && mousePos_.y_ <= 10 + tutrialSize_.y_))
+		{
+		
+			if (Novice::IsTriggerMouse(0) && changeTimingFrame_ >= changeTimingFrameMax_) {
+				flagChange_ = true;
+				titleChangeFlag_ = true;
+				changeTimingFrame_ = 0;
+			}
+
+
+		}
+	
+	
 
 #pragma endregion
 }

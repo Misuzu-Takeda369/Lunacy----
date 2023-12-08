@@ -64,12 +64,21 @@ public:
 	/// <param name="nowWave"></param>
 	Wave GetNowWave() { return nowWave_; };
 
+	/// <summary>
+	/// タイトルに戻るか否か
+	/// </summary>
+	/// <returns></returns>
+	bool GetTitleChangeFlag() {return titleChangeFlag_;};
+
 private:
 	// シーン変更できるかどうか
 	bool flagChange_ = false;
 
 	const int changeTimingFrameMax_ = 10;
 	int changeTimingFrame_ = changeTimingFrameMax_;
+
+	//タイトルへ戻るか
+	bool titleChangeFlag_;
 
 	//waveの解除等と現在のwaveをつなぐ奴(プレイヤーが選択した奴)
 	Wave nowWave_ = Tutorial;
@@ -94,6 +103,7 @@ private:
 	//画像数
 	int image_[selectNum_];
 	int backImage_;
+	int backTitleImage_;
 
 
 	//チュートリアル用の文字サイズ
