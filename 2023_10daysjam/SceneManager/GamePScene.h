@@ -16,6 +16,7 @@
 #include "Back/BackGround.h"
 #include "TutrialText/TutrialSystem.h"
 #include "Event/ApostelEvent/ApostelEvent.h"
+#include "Enemy/Frying/FryingPopEnemy.h"
 
 /// <summary>
 /// プレイシーンのクラス
@@ -73,10 +74,22 @@ public:
 	void EnemyDead();
 
 	/// <summary>
-	/// 敵が実際にポップする関数
+	/// 飛んでる敵の死亡
 	/// </summary>
-	//void EnemyPoping();
+	void FryingEnemyDead();
+
+	/// <summary>
+	/// 敵が実際にポップする関数(空中飛んでるやつ)
+	/// </summary>
+	void FryEnemyPoping();
+
+	/// <summary>
+	/// 敵が実際にポップする奴(地上)
+	/// </summary>
+	/// <param name="nowWave">現在のwave</param>
 	void EnemyPoping(Wave& nowWave);
+
+
 
 	/// <summary>
 	/// Wave変更関数
@@ -146,16 +159,25 @@ private:
 	//敵複数化
 	std::list<PopEnemy*>enemy_;
 
+	//飛んでる敵の複数化
+	std::list<FryingEnemy*>fryingEnemy_;
+
 	//敵がポップする間隔
 	const int consEnemyPopFrameWave1_ = 180;
 	//敵がポップする間隔
 	const int consEnemyPopFrameWave2_ = 90;
 	//敵がポップする間隔
-	const int consEnemyPopFrameWave3_ = 90;
+	const int consEnemyPopFrameWave3_ = 180;
 	//敵がポップする間隔
 	const int consEnemyPopFrameBoss_ = 360;
 	//敵がポップするまでを数える
 	int EnemyPopFrame_ = 0;
+
+	//敵がポップする間隔(浮遊)
+	const int consEnemyPopFrameFry_ = 360;
+	//敵がポップするまでを数える(浮遊)
+	int fryEnemyPopFrame_ = 0;
+
 
 
 	HpUI* hpUi_ = nullptr;

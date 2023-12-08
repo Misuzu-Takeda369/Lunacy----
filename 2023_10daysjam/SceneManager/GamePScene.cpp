@@ -19,6 +19,9 @@ GamePScene::~GamePScene()
 		delete enemies;
 	}
 
+	for (FryingEnemy* fryingenemis : fryingEnemy_) {
+		delete fryingenemis;
+	}
 
 
 	for (PopItem* popItem : popItem_) {
@@ -152,7 +155,16 @@ void GamePScene::Update()
 				break;
 
 			case Wave3:
+				//飛ぶ敵の出現処理
+				FryEnemyPoping();
 
+				//敵の動き
+				for (FryingEnemy* fryingenemis : fryingEnemy_) {
+					fryingenemis->Update();
+				}
+
+				//敵の消滅条件
+				FryingEnemyDead();
 
 				break;
 
@@ -333,6 +345,10 @@ void GamePScene::Draw()
 
 	case Wave3:
 
+		//敵の動き
+		for (FryingEnemy* fryingenemis : fryingEnemy_) {
+			fryingenemis->Draw();
+		}
 		break;
 	case Wave4:
 		apostelEvent_->Draw();
@@ -525,6 +541,63 @@ void GamePScene::CheckCollisionAll()
 
 	}
 #pragma endregion
+
+#pragma region プレイヤー本体と浮遊敵
+
+	for (FryingEnemy* enemies : fryingEnemy_) {
+
+		if (IsCollision(player_, enemies) == true) {
+			float damege = enemies->GetAttackPoint();
+			EnemyType enemytype = enemies->GetEnemyType();
+			player_->OnCollision(damege, enemytype);
+			//enemies->
+		}
+		//enemies;
+
+
+	}
+#pragma endregion 
+
+#pragma region プレイヤー近距離と浮遊敵
+
+	//わざと魔法でしか倒せない敵でも面白そう
+	if (playerMA && player_->GetPlayerAttackTypeNow() == Magic) {
+		for (FryingEnemy* enemies : fryingEnemy_) {
+
+			if (IsCollision(playerMA, enemies) == true) {
+				float damege = playerMA->GetAttackPoint();
+				enemies->OnCollision(damege);
+			}
+
+		}
+	}
+#pragma endregion
+
+#pragma region プレイヤー遠距離と浮遊敵
+
+
+	for (FryingEnemy* enemies : fryingEnemy_) {
+
+
+		for (PlayerLAttack* playerLAtteck : playerLA) {
+
+			if (playerLAtteck) {
+
+				if (IsCollision(playerLAtteck, enemies) == true) {
+
+					float damege = playerLAtteck->GetAttackPoint();
+					enemies->OnCollision(damege);
+					playerLAtteck->OnCollision();
+
+
+				}
+			}
+
+		}
+
+	}
+#pragma endregion
+
 }
 
 void GamePScene::ItemDead()
@@ -563,7 +636,6 @@ void GamePScene::EnemyDead()
 			}
 		}
 	}
-
 	enemy_.remove_if([](PopEnemy* enemies) {
 		if (enemies->GetIsDead()) {
 			delete enemies;
@@ -573,6 +645,19 @@ void GamePScene::EnemyDead()
 		return false;
 		});
 
+}
+
+void GamePScene::FryingEnemyDead()
+{
+	
+	fryingEnemy_.remove_if([](FryingEnemy* fryenemies) {
+		if (fryenemies->GetIsDead()) {
+			delete fryenemies;
+			return true;
+		}
+
+		return false;
+		});
 }
 
 //void GamePScene::EnemyPoping()
@@ -590,6 +675,23 @@ void GamePScene::EnemyDead()
 //
 //	}
 //}
+
+void GamePScene::FryEnemyPoping()
+{
+	fryEnemyPopFrame_++;
+
+	if (fryEnemyPopFrame_ >= consEnemyPopFrameFry_) {
+
+
+		FryingEnemy* newEnemy = new FryingEnemy();
+		
+		newEnemy->Initialize(player_->GetMaindStateNow(), enemyNotAppeared_);
+		enemyNotAppeared_ = newEnemy->EnemyNotAppeared();
+		fryingEnemy_.push_back(newEnemy);
+		fryEnemyPopFrame_ = 0;
+
+	}
+}
 
 void GamePScene::EnemyPoping(Wave& nowWave)
 {

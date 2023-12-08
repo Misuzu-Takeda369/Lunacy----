@@ -115,6 +115,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="Animation\BladeSlimeAnimS.cpp" />
     <ClCompile Include="Animation\Effect\LunaMental.cpp" />
     <ClCompile Include="Animation\Enemy1Anim.cpp" />
+    <ClCompile Include="Animation\FlyEye.cpp" />
     <ClCompile Include="Animation\PlayerAnimation.cpp" />
     <ClCompile Include="Animation\PlayerAttack2Anim.cpp" />
     <ClCompile Include="Animation\PlayerAttackAnim.cpp" />
@@ -134,6 +135,8 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="DummyObject.cpp" />
     <ClCompile Include="Enemy\EnemyBase.cpp" />
     <ClCompile Include="Enemy\EnemyBullet.cpp" />
+    <ClCompile Include="Enemy\Frying\FHEnemy.cpp" />
+    <ClCompile Include="Enemy\Frying\FryingPopEnemy.cpp" />
     <ClCompile Include="Enemy\NSEnemy.cpp" />
     <ClCompile Include="Enemy\NHEnemy.cpp" />
     <ClCompile Include="Enemy\PopEnemy.cpp" />
@@ -177,6 +180,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="Animation\BladeSlimeAnimS.h" />
     <ClInclude Include="Animation\Effect\LunaMental.h" />
     <ClInclude Include="Animation\Enemy1Anim.h" />
+    <ClInclude Include="Animation\FlyEye.h" />
     <ClInclude Include="Animation\PlayerAnimation.h" />
     <ClInclude Include="Animation\PlayerAttack2Anim.h" />
     <ClInclude Include="Animation\PlayerAttackAnim.h" />
@@ -218,6 +222,8 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="DummyObject.h" />
     <ClInclude Include="Enemy\EnemyBase.h" />
     <ClInclude Include="Enemy\EnemyBullet.h" />
+    <ClInclude Include="Enemy\Frying\FHEnemy.h" />
+    <ClInclude Include="Enemy\Frying\FryingPopEnemy.h" />
     <ClInclude Include="Enemy\NSEnemy.h" />
     <ClInclude Include="Enemy\NHEnemy.h" />
     <ClInclude Include="Enemy\PopEnemy.h" />

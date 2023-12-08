@@ -59,6 +59,9 @@
     <Filter Include="Event\ApostelEvent">
       <UniqueIdentifier>{b7a6a878-e310-4132-956e-d7a564dd3ec2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Enemy\Frying">
+      <UniqueIdentifier>{757cf8a2-206c-4a50-89e0-47b4a14b2063}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp">
@@ -231,6 +234,15 @@
     </ClCompile>
     <ClCompile Include="Event\ApostelEvent\ApostelEvent.cpp">
       <Filter>Event\ApostelEvent</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy\Frying\FryingPopEnemy.cpp">
+      <Filter>Enemy\Frying</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation\FlyEye.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy\Frying\FHEnemy.cpp">
+      <Filter>Enemy\Frying</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -464,6 +476,15 @@
     </ClInclude>
     <ClInclude Include="Event\ApostelEvent\ApostelEvent.h">
       <Filter>Event\ApostelEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy\Frying\FryingPopEnemy.h">
+      <Filter>Enemy\Frying</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\FlyEye.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy\Frying\FHEnemy.h">
+      <Filter>Enemy\Frying</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

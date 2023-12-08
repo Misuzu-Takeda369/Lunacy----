@@ -127,7 +127,7 @@ public:
 	float GetPlayerSpeedX() { return charaBase_.speed_.x; };
 
 	/// <summary>
-	/// チュートリアル用攻撃タイプ
+	/// 攻撃タイプ判別
 	/// </summary>
 	/// <returns></returns>
 	PlayerAttackType GetPlayerAttackTypeNow() { return playerAttackTypeNow_; };
