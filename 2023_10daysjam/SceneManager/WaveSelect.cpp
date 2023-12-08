@@ -45,6 +45,7 @@ void WaveSelect::Initialize(int& maxWave)
 	image_[1] = Novice::LoadTexture("./Resources/images/Text/wave1.png");
 	image_[2] = Novice::LoadTexture("./Resources/images/Text/wave2.png");
 	image_[3] = Novice::LoadTexture("./Resources/images/Text/wave3.png");
+	//image_[4] = Novice::LoadTexture("./Resources/images/Text/wave3.png");
 	
 	backImage_ = Novice::LoadTexture("./Resources/images/Back/Titleback_1.png");
 
