@@ -100,8 +100,8 @@ void Apostel::Update()
 void Apostel::Draw()
 {
 	DrawProjectile();
-	Novice::DrawBox(int(charaBase_.pos_.x - (boxSize_.x / 2.f)),int(charaBase_.pos_.y - (boxSize_.y / 2.f)),
-		int(boxSize_.x),int( boxSize_.y), 0, WHITE, kFillModeWireFrame);
+	/*Novice::DrawBox(int(charaBase_.pos_.x - (boxSize_.x / 2.f)),int(charaBase_.pos_.y - (boxSize_.y / 2.f)),
+		int(boxSize_.x),int( boxSize_.y), 0, WHITE, kFillModeWireFrame);*/
 	anim_->Draw(charaBase_.color_);
 	hpUI_->Draw();
 	

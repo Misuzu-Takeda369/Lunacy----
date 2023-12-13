@@ -71,6 +71,7 @@ private:
 	IntState Rpos_ = { 0,0 };
 	//画像
 	int image_ = 0;
+	int frameImage_ = 0;
 	//写したいサイズ
 	const int sizeX_ = 500;
 	const int sizeY_ = 32;

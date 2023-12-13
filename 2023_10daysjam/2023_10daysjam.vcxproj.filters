@@ -244,6 +244,9 @@
     <ClCompile Include="Enemy\Frying\FHEnemy.cpp">
       <Filter>Enemy\Frying</Filter>
     </ClCompile>
+    <ClCompile Include="Animation\Effect\SceneChangeEase.cpp">
+      <Filter>Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -485,6 +488,9 @@
     </ClInclude>
     <ClInclude Include="Enemy\Frying\FHEnemy.h">
       <Filter>Enemy\Frying</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\Effect\SceneChangeEase.h">
+      <Filter>Effect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

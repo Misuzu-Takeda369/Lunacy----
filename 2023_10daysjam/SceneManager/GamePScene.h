@@ -143,6 +143,10 @@ private:
 
 	const int changeTimingFrameMax_ = 10;
 	int changeTimingFrame_ = 0;
+
+	//始めるまでの時間(後で消す)
+	int startFrame_ = 0;
+
 	//ゲームをうごかしているか
 	bool GameMove_ = false;
 
@@ -167,7 +171,7 @@ private:
 	//敵がポップする間隔
 	const int consEnemyPopFrameWave2_ = 90;
 	//敵がポップする間隔
-	const int consEnemyPopFrameWave3_ = 180;
+	const int consEnemyPopFrameWave3_ = 90;
 	//敵がポップする間隔
 	const int consEnemyPopFrameBoss_ = 360;
 	//敵がポップするまでを数える

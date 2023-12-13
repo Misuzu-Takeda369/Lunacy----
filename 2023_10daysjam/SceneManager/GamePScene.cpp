@@ -117,10 +117,22 @@ void GamePScene::Update()
 
 		//止まってるか動いているか
 		if (!GameMove_) {
+
+			startFrame_++;
+
+			if (startFrame_ >= 10) {
+				GameMove_ = true;
+				startFrame_ = 0;
+			}
+
+#ifdef _DEBUG
 			//ここ押すと動き出す
 			if (preKeys[DIK_SPACE] == 0 && keys[DIK_SPACE] != 0) {
 				GameMove_ = true;
 			}
+#endif // DEBUG
+
+		
 
 			if ((timerUi_->GetterTimer() <= 0) || ((player_->GetHp() <= 0) || (player_->GetSp() <= 0))) {
 				flagChange_ = true;
@@ -545,62 +557,63 @@ void GamePScene::CheckCollisionAll()
 #pragma endregion
 	}
 
+	if (nowWave_ == Wave3) {
 #pragma region プレイヤー本体と浮遊敵
 
-	for (FryingEnemy* enemies : fryingEnemy_) {
+		for (FryingEnemy* enemies : fryingEnemy_) {
 
-		if (IsCollision(player_, enemies) == true) {
-			float damege = enemies->GetAttackPoint();
-			EnemyType enemytype = enemies->GetEnemyType();
-			player_->OnCollision(damege, enemytype);
-			//enemies->
+			if (IsCollision(player_, enemies) == true) {
+				float damege = enemies->GetAttackPoint();
+				EnemyType enemytype = enemies->GetEnemyType();
+				player_->OnCollision(damege, enemytype);
+				//enemies->
+			}
+			//enemies;
+
+
 		}
-		//enemies;
-
-
-	}
 #pragma endregion 
 
 #pragma region プレイヤー近距離と浮遊敵
 
-	//わざと魔法でしか倒せない敵でも面白そう
-	if (playerMA && player_->GetPlayerAttackTypeNow() == Magic) {
-		for (FryingEnemy* enemies : fryingEnemy_) {
+		//わざと魔法でしか倒せない敵でも面白そう
+		if (playerMA && player_->GetPlayerAttackTypeNow() == Magic) {
+			for (FryingEnemy* enemies : fryingEnemy_) {
 
-			if (IsCollision(playerMA, enemies) == true) {
-				float damege = playerMA->GetAttackPoint();
-				enemies->OnCollision(damege);
+				if (IsCollision(playerMA, enemies) == true) {
+					float damege = playerMA->GetAttackPoint();
+					enemies->OnCollision(damege);
+				}
+
 			}
-
 		}
-	}
 #pragma endregion
 
 #pragma region プレイヤー遠距離と浮遊敵
 
 
-	for (FryingEnemy* enemies : fryingEnemy_) {
+		for (FryingEnemy* enemies : fryingEnemy_) {
 
 
-		for (PlayerLAttack* playerLAtteck : playerLA) {
+			for (PlayerLAttack* playerLAtteck : playerLA) {
 
-			if (playerLAtteck) {
+				if (playerLAtteck) {
 
-				if (IsCollision(playerLAtteck, enemies) == true) {
+					if (IsCollision(playerLAtteck, enemies) == true) {
 
-					float damege = playerLAtteck->GetAttackPoint();
-					enemies->OnCollision(damege);
-					playerLAtteck->OnCollision();
+						float damege = playerLAtteck->GetAttackPoint();
+						enemies->OnCollision(damege);
+						playerLAtteck->OnCollision();
 
 
+					}
 				}
+
 			}
 
 		}
-
-	}
 #pragma endregion
-
+	}
 }
 
 void GamePScene::ItemDead()

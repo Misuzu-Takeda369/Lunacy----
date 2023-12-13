@@ -16,6 +16,7 @@ void TimerUI::Initialize()
 	Rpos_ = { sizeX_,sizeY_ };
 	//画像
 	image_ = Novice::LoadTexture("./Resources/images/UI/HPBar_2.png");
+	frameImage_ = Novice::LoadTexture("./Resources/images/UI/Timer&BossFrame.png");
 
 	//移動した合計
 	moveX_ = 0;
@@ -68,6 +69,9 @@ void TimerUI::Draw()
 	//画像写す範囲を徐々に狭めていくタイプ
 	//Novice::DrawQuad(Lpos_.x_, Lpos_.y_, (Lpos_.x_ + Rpos_.x_) - moveX_, Lpos_.y_, Lpos_.x_, Lpos_.y_ + Rpos_.y_, (Lpos_.x_ + Rpos_.x_) - moveX_, Lpos_.y_ + Rpos_.y_
 		//, 0, 0, sizeX_, sizeY_, image_, WHITE);
+	
+	//フレーム
+	Novice::DrawSpriteRect(Lpos_.x_, Lpos_.y_, 0 , 0, sizeX_, sizeY_, frameImage_, ((float)500 / 1000), 1.0, 0, WHITE);
 
 
 }

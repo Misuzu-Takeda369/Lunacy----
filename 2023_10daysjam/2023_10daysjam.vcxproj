@@ -114,6 +114,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="Animation\BladeSlimeAnimH.cpp" />
     <ClCompile Include="Animation\BladeSlimeAnimS.cpp" />
     <ClCompile Include="Animation\Effect\LunaMental.cpp" />
+    <ClCompile Include="Animation\Effect\SceneChangeEase.cpp" />
     <ClCompile Include="Animation\Enemy1Anim.cpp" />
     <ClCompile Include="Animation\FlyEye.cpp" />
     <ClCompile Include="Animation\PlayerAnimation.cpp" />
@@ -179,6 +180,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="Animation\BladeSlimeAnimH.h" />
     <ClInclude Include="Animation\BladeSlimeAnimS.h" />
     <ClInclude Include="Animation\Effect\LunaMental.h" />
+    <ClInclude Include="Animation\Effect\SceneChangeEase.h" />
     <ClInclude Include="Animation\Enemy1Anim.h" />
     <ClInclude Include="Animation\FlyEye.h" />
     <ClInclude Include="Animation\PlayerAnimation.h" />

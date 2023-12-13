@@ -10,6 +10,8 @@ SceneManager::~SceneManager() {
 	delete gameO_;
 	delete waveS_;
 	delete saveData_;
+
+	delete changing_;
 }
 
 void SceneManager::Initialize() {
@@ -44,6 +46,10 @@ void SceneManager::Initialize() {
 	//maxWave_ = Tutorial;
 	maxWave_ = saveData_->GetLastWave();
 	nowWave_ = Wave(maxWave_);
+
+	changing_ = new SceneChangeEase();
+	changing_->Initialize();
+
 }
 
 void SceneManager::Update() {
@@ -69,6 +75,7 @@ void SceneManager::Update() {
 				nowWave_ = Tutorial;
 				gameP_->Initialize(nowWave_);
 				title_->SetFlagChange(false);
+				
 			}
 			else {
 
@@ -85,6 +92,7 @@ void SceneManager::Update() {
 				//動きによっては別な場所へ
 				waveS_ = new WaveSelect();
 				waveS_->Initialize(maxWave_);
+				changing_->Draw();
 
 			}
 
@@ -98,6 +106,7 @@ void SceneManager::Update() {
 			dataScene_->SetSaveData(saveData_);
 			int num = RandomRange(0, dataScene_->GetMaxTips());
 			dataScene_->SetTips(num);
+			
 		}
 		break;
 
@@ -106,16 +115,28 @@ void SceneManager::Update() {
 		waveS_->Update();
 
 		if (waveS_->GetFlagChange()) {
-			sceneNum_ = GPlayMode;
-			waveS_->SetFlagChange(false);
+
+			if (waveS_->GetTitleChangeFlag()) {
+
+				sceneNum_ = TitleMode;
+				waveS_->SetFlagChange(false);
+
+			}
+			else {
+
+				sceneNum_ = GPlayMode;
+				waveS_->SetFlagChange(false);
 
 
-			//現在のwaveを受け取る
-			nowWave_ = waveS_->GetNowWave();
-			//deleteとnewと初期化(初期化だけでもよさそう感)
-			//動きによっては別な場所へ
-			gameP_ = new GamePScene();
-			gameP_->Initialize(nowWave_);
+				//現在のwaveを受け取る
+				nowWave_ = waveS_->GetNowWave();
+				//deleteとnewと初期化(初期化だけでもよさそう感)
+				//動きによっては別な場所へ
+				gameP_ = new GamePScene();
+				gameP_->Initialize(nowWave_);
+
+			}
+			
 
 		}
 
@@ -130,7 +151,6 @@ void SceneManager::Update() {
 		if (gameP_->GetFlagChange()) {
 			if (gameP_->GetFlagGameOver()) {
 				sceneNum_ = GOverMode;
-
 			}
 			else {
 				sceneNum_ = GClearMode;
@@ -158,6 +178,10 @@ void SceneManager::Update() {
 			gameC_->SetFlagChange(false);
 			//deleteとnewと初期化(初期化だけでもよさそう感)
 			//動きによっては別な場所へ
+
+			//wave数消えるので没
+			/*maxWave_ = Tutorial;*/
+
 			saveData_->OnResultUpdate(maxWave_);
 			gameC_ = new GameCScene();
 			gameC_->Initialize();
@@ -178,7 +202,6 @@ void SceneManager::Update() {
 			else {
 				sceneNum_ = TitleMode;
 				gameO_->SetFlagChange(false);
-
 			}
 
 
@@ -238,6 +261,7 @@ void SceneManager::Draw() {
 	case WaveSelectMode:
 
 		waveS_->Draw();
+		
 
 		break;
 
@@ -262,5 +286,7 @@ void SceneManager::Draw() {
 	default:
 		break;
 	}
+
+	
 }
 

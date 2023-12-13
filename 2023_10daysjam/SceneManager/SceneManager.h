@@ -11,6 +11,8 @@
 #include "WaveSelect.h"
 #include"SaveData.h"
 #include "PlayDataScene.h"
+///シーンが変わるときのエフェクト
+#include "Animation/Effect/SceneChangeEase.h"
 
 class SceneManager {
 public:
@@ -92,4 +94,8 @@ private:
 	int maxWave_ = Tutorial;
 
 	SaveData* saveData_ = nullptr;
+
+	//シーン変わるときのえふぇくtおクラス
+	SceneChangeEase* changing_ = nullptr;
+
 };
