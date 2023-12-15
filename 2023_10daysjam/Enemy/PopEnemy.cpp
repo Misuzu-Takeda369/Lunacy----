@@ -41,7 +41,7 @@ void PopEnemy::Initialize(MaindState maindStateNow, Wave nowWave, int enemyNotAp
 
 	//Hpゲージ
 	eHUi_ = new EHpUI();
-	eHUi_->Initialize(charaBase_.pos_);
+	eHUi_->Initialize(charaBase_.pos_,6);
 
 }
 

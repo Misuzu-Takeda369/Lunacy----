@@ -34,7 +34,7 @@ void FryingEnemy::Initialize(MaindState maindStateNow, int enemyNotAppeared)
 
 	//Hpゲージ
 	eHUi_ = new EHpUI();
-	eHUi_->Initialize(charaBase_.pos_);
+	eHUi_->Initialize(charaBase_.pos_,6);
 
 }
 

@@ -15,7 +15,7 @@ public:
 	/// <summary>
 	/// 初期化
 	/// </summary>
-	void Initialize(Vector2 pos);
+	void Initialize(Vector2 pos, int moveSpeedX);
 
 	/// <summary>
 	/// 毎フレーム処理

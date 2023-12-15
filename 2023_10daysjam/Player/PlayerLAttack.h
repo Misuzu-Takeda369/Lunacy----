@@ -64,7 +64,7 @@ private:
 	//最終的に判断する攻撃力
 	float attackPoint_ = 0.0f;
 	//計算時の倍率
-	const float attackMultiples_ = 2.0f;
+	const float attackMultiples_ = 0.02f;
 
 	//攻撃力(magic時　変動あり)
 	float magicAttackPoint_ = 5.0f;

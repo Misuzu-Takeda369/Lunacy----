@@ -30,7 +30,7 @@ void Apostel::Initialize(Vector2 pos, Vector2 speed, float radius)
 	collisionType_ = Box;
 	boxSize_ = { 256.f * 0.25f,512.f * 0.25f };
 	hpUI_ = new EHpUI;
-	hpUI_->Initialize(charaBase_.pos_);
+	hpUI_->Initialize(charaBase_.pos_,5);
 	hitCoolTime_ = 0;
 	center_ = charaBase_.pos_;
 	flowingTheta_ = 0;

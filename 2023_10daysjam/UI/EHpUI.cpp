@@ -1,6 +1,6 @@
 ﻿#include "EHpUI.h"
 
-void EHpUI::Initialize(Vector2 pos)
+void EHpUI::Initialize(Vector2 pos, int moveSpeedX)
 {
 	//左上端
 	Lpos_ = { int(pos.x) - 32,int(pos.y) - 64 };
@@ -12,7 +12,7 @@ void EHpUI::Initialize(Vector2 pos)
 	//移動した合計
 	moveX_ = 0;
 	//移動する量(HPが1たび増減するたびに動く量)
-	moveSpeedX_ = 6;
+	moveSpeedX_ = moveSpeedX; 
 }
 
 void EHpUI::Update(float decreasedHp, Vector2 pos)
