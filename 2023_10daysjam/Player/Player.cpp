@@ -154,6 +154,31 @@ void Player::Draw()
 
 }
 
+void Player::Draw(Vector2 ShakePos)
+{
+
+#ifdef _DEBUG
+	//プレイヤー本体
+	Novice::DrawEllipse(int(charaBase_.pos_.x), int(charaBase_.pos_.y), int(charaBase_.radius_), int(charaBase_.radius_), 0.0f, charaBase_.color_, kFillModeSolid);
+
+	Novice::DrawLine(0, int(standardPos_.y + charaBase_.radius_), 1280, int(standardPos_.y + charaBase_.radius_), BLACK);
+	Novice::DrawBox(900, 100, 50, 50, 0.0f, maindColor_, kFillModeSolid);
+#endif // _DEBUG
+
+	jewel_->Draw();
+	playerAnimation_->Draw();
+
+	//近距離用当たり判定が起きている時場合
+	if (mAttack_) {
+		mAttack_->Draw();
+	}
+
+	for (PlayerLAttack* lAttack : lAttack_) {
+		lAttack->Draw();
+	}
+
+}
+
 void Player::Move(char* keys, char* preKeys)
 {
 
@@ -272,7 +297,7 @@ void Player::Attack()
 		mAttack_->DeterminingAttackPower(hp_, maxHp_);
 
 		for (PlayerLAttack* lAttack : lAttack_) {
-			lAttack->DeterminingAttackPower(hp_, maxHp_);
+			lAttack->DeterminingAttackPower(hp_, maxHp_,sp_,maxSp_);
 		}
 
 	}

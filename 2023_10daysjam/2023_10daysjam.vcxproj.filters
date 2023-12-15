@@ -247,6 +247,9 @@
     <ClCompile Include="Animation\Effect\SceneChangeEase.cpp">
       <Filter>Effect</Filter>
     </ClCompile>
+    <ClCompile Include="Animation\Effect\HitEffect.cpp">
+      <Filter>Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -490,6 +493,9 @@
       <Filter>Enemy\Frying</Filter>
     </ClInclude>
     <ClInclude Include="Animation\Effect\SceneChangeEase.h">
+      <Filter>Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\Effect\HitEffect.h">
       <Filter>Effect</Filter>
     </ClInclude>
   </ItemGroup>

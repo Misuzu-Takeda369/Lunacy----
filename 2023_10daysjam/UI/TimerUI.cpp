@@ -3,9 +3,9 @@
 
 void TimerUI::Initialize()
 {
-	timerUIPos_ = {50,650};
+	timerUIPos_ = { 50,650 };
 	timer_ = 3600;
-	timerDisplay_ = timer_/60;
+	timerDisplay_ = timer_ / 60;
 	timerMaxDis_ = 60;
 
 	color_.color = YELLOW;
@@ -28,11 +28,11 @@ void TimerUI::Update()
 {
 	timer_--;
 	timerDisplay_ = timer_ / 60;
-	
+
 	ConversionUIVer2();
 	//ConversionUIVer1();
 
-	if (timer_<= 0) {
+	if (timer_ <= 0) {
 		timer_ = 0;
 		moveX_ = 0;
 	}
@@ -41,10 +41,10 @@ void TimerUI::Update()
 
 void TimerUI::Update(Wave nowWave)
 {
-	if ((nowWave != Tutorial)&&(nowWave != Wave4)) {
+	if ((nowWave != Tutorial) && (nowWave != Wave4)) {
 		timer_--;
 	}
-	
+
 	timerDisplay_ = timer_ / 60;
 
 	ConversionUIVer2();
@@ -61,7 +61,7 @@ void TimerUI::Draw()
 {
 
 #ifdef _DEBUG
-	Novice::ScreenPrintf(timerUIPos_.x_, timerUIPos_.y_,"Timer: %d", timerDisplay_);
+	Novice::ScreenPrintf(timerUIPos_.x_, timerUIPos_.y_, "Timer: %d", timerDisplay_);
 #endif // _DEBUG
 
 	//決まった範囲に画像写すタイプ
@@ -69,10 +69,23 @@ void TimerUI::Draw()
 	//画像写す範囲を徐々に狭めていくタイプ
 	//Novice::DrawQuad(Lpos_.x_, Lpos_.y_, (Lpos_.x_ + Rpos_.x_) - moveX_, Lpos_.y_, Lpos_.x_, Lpos_.y_ + Rpos_.y_, (Lpos_.x_ + Rpos_.x_) - moveX_, Lpos_.y_ + Rpos_.y_
 		//, 0, 0, sizeX_, sizeY_, image_, WHITE);
-	
-	//フレーム
-	Novice::DrawSpriteRect(Lpos_.x_, Lpos_.y_, 0 , 0, sizeX_, sizeY_, frameImage_, ((float)500 / 1000), 1.0, 0, WHITE);
 
+	//フレーム
+	Novice::DrawSpriteRect(Lpos_.x_, Lpos_.y_, 0, 0, sizeX_, sizeY_, frameImage_, ((float)500 / 1000), 1.0, 0, WHITE);
+
+
+}
+
+void TimerUI::Draw(Vector2 ShakePos)
+{
+	//決まった範囲に画像写すタイプ
+	Novice::DrawSpriteRect(Lpos_.x_ + int(ShakePos.x), Lpos_.y_ + int(ShakePos.y), 0 + moveX_, 0, sizeX_, sizeY_, image_, ((float)500 / 1000), 0.5, 0, color_.color);
+	//画像写す範囲を徐々に狭めていくタイプ
+	//Novice::DrawQuad(Lpos_.x_, Lpos_.y_, (Lpos_.x_ + Rpos_.x_) - moveX_, Lpos_.y_, Lpos_.x_, Lpos_.y_ + Rpos_.y_, (Lpos_.x_ + Rpos_.x_) - moveX_, Lpos_.y_ + Rpos_.y_
+		//, 0, 0, sizeX_, sizeY_, image_, WHITE);
+
+	//フレーム
+	Novice::DrawSpriteRect(Lpos_.x_ + int(ShakePos.x), Lpos_.y_ + int(ShakePos.y), 0, 0, sizeX_, sizeY_, frameImage_, ((float)500 / 1000), 1.0, 0, WHITE);
 
 }
 
@@ -85,8 +98,8 @@ void TimerUI::ConversionUIVer1()
 
 void TimerUI::ConversionUIVer2()
 {
-	if (timer_%7 == 0) {
-		
+	if (timer_ % 7 == 0) {
+
 		moveX_ += 1;
 	}
 }

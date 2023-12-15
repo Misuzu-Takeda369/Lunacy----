@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "Function/UtilityStruct.h"
+#include <Vector2.h>
 #include <Novice.h>
 
 class BackGround
@@ -19,6 +20,8 @@ public:
 	/// 前景描画
 	/// </summary>
 	void Draw();
+
+	void Draw(Vector2 ShakePos);
 
 
 private:

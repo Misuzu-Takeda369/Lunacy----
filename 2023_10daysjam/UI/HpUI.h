@@ -29,6 +29,7 @@ public:
 	/// 前景描画
 	/// </summary>
 	void Draw();
+	void Draw(Vector2 ShakePos);
 
 
 private:

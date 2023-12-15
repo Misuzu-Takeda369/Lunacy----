@@ -34,6 +34,8 @@ public:
 	/// </summary>
 	void Draw() override;
 
+	void Draw(Vector2 ShakePos);
+
 	/// <summary>
 	/// キー入力
 	/// </summary>

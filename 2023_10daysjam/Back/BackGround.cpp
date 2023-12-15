@@ -15,3 +15,9 @@ void BackGround::Draw()
 	Novice::DrawSprite(0,0, backImage_,1.0f, 1.0f,0.0f,WHITE);
 	Novice::DrawSprite(0, 614, scaffoldImage_, 1.0f, 1.0f, 0.0f, WHITE);
 }
+
+void BackGround::Draw(Vector2 ShakePos)
+{
+	Novice::DrawSprite(0, 0, backImage_, 1.0f, 1.0f, 0.0f, WHITE);
+	Novice::DrawSprite(0 + int(ShakePos.x), 614+ int(ShakePos.y), scaffoldImage_, 1.0f, 1.0f, 0.0f, WHITE);
+}

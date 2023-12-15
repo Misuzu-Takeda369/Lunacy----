@@ -176,6 +176,8 @@ void PlayerAnimation::Draw()
 	}
 }
 
+
+
 void PlayerAnimation::AddLunaEffect(const Vector2& pos)
 {
 	LunaMentalEffect* obj = new LunaMentalEffect();

@@ -22,5 +22,12 @@ void WaveTextUI::Update(Wave& nowWave)
 
 void WaveTextUI::Draw()
 {
-	Novice::DrawSpriteRect(Lpos_.x_, Lpos_.y_, 0 + (sizeX_* nowWaveNum_), 0, 125, sizeY_, image_, 0.25f, 1.0f, 0, WHITE);
+	Novice::DrawSpriteRect(Lpos_.x_, Lpos_.y_, 0 + (sizeX_ * nowWaveNum_), 0, 125, sizeY_, image_, 0.25f, 1.0f, 0, WHITE);
+}
+
+void WaveTextUI::Draw(Vector2 ShakePos)
+{
+
+	Novice::DrawSpriteRect(Lpos_.x_ + int(ShakePos.x), Lpos_.y_ + int(ShakePos.y), 0 + (sizeX_ * nowWaveNum_), 0, 125, sizeY_, image_, 0.25f, 1.0f, 0, WHITE);
+
 }

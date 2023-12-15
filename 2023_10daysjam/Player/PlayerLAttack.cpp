@@ -1,6 +1,8 @@
 ﻿#include "PlayerLAttack.h"
 #include <cassert>
 
+
+
 void PlayerLAttack::Initialize(PlayerAttackType& playerAttackTypeNow, MaindState& maindStateNow, PlayerDirection& playerDirection, Vector2& playerPos)
 {
 	charaBase_ = {
@@ -48,7 +50,7 @@ void PlayerLAttack::Draw()
 
 }
 
-void PlayerLAttack::DeterminingAttackPower(float hp,float maxHp)
+void PlayerLAttack::DeterminingAttackPower(float hp,float maxHp, float sp, float maxSp)
 {
 	if (playerAttackTypeNow_ ==1) {
 
@@ -56,8 +58,10 @@ void PlayerLAttack::DeterminingAttackPower(float hp,float maxHp)
 			attackPoint_ = magicAttackPoint_;
 		}
 		else {
-			magicAttackPoint_ = magicAttackPoint_ + ((maxHp - hp) * attackMultiples_);
-			attackPoint_ = magicAttackPoint_;
+			//magicAttackPoint_ = magicAttackPoint_ + ((maxHp - hp) * attackMultiples_);
+			float multiplyHp = std::clamp(((maxHp- hp)/ hp),1.0f,3.0f);
+			float multiplySp = std::clamp((1.0f + (maxSp- sp)/ sp), 1.0f, 3.0f);
+			attackPoint_ = magicAttackPoint_ * (multiplyHp+ multiplySp);
 		}
 
 	}

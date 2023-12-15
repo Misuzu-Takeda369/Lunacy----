@@ -28,6 +28,7 @@ GamePScene::~GamePScene()
 		delete popItem;
 	}
 
+	delete hitEffect_;
 
 }
 
@@ -70,6 +71,10 @@ void GamePScene::Initialize(Wave& nowWave)
 	enemyImage_[2];
 	enemyImage_[3];*/
 	//ここで敵を産むすぐに殺す(重くなるタイミングが2回出てきた)
+
+	hitEffect_ = new HitEffect();
+	hitEffect_->Initialize();
+
 }
 
 void GamePScene::Initialize()
@@ -229,6 +234,9 @@ void GamePScene::Update()
 
 			timerUi_->Update(nowWave_);
 
+			//ここ...?
+			hitEffect_->Update();
+
 #pragma endregion
 
 			WaveChange();
@@ -326,7 +334,8 @@ void GamePScene::Update()
 void GamePScene::Draw()
 {
 
-	backGround_->Draw();
+	//backGround_->Draw();
+	backGround_->Draw(hitEffect_->GetShakePos());
 
 #pragma region 特定のWAVEのみに写る処理
 	switch (nowWave_)
@@ -385,11 +394,19 @@ void GamePScene::Draw()
 
 #endif // _DEBUG
 
+	hitEffect_->Draw();
+
 #pragma region UI関連(一番前に写す)
-	hpUi_->Draw();
+
+	/*hpUi_->Draw();
 	spUi_->Draw();
 	timerUi_->Draw();
-	waveTextUi_->Draw();
+	waveTextUi_->Draw();*/
+
+	hpUi_->Draw(hitEffect_->GetShakePos());
+	spUi_->Draw(hitEffect_->GetShakePos());
+	timerUi_->Draw(hitEffect_->GetShakePos());
+	waveTextUi_->Draw(hitEffect_->GetShakePos());
 
 	/*switch (gameSModeNow_)
 	{
@@ -421,6 +438,7 @@ void GamePScene::CheckCollisionAll()
 			float damege = enemies->GetAttackPoint();
 			EnemyType enemytype = enemies->GetEnemyType();
 			player_->OnCollision(damege, enemytype);
+			hitEffect_->OnColistion();
 			//enemies->
 		}
 		//enemies;
@@ -539,6 +557,7 @@ void GamePScene::CheckCollisionAll()
 				float damage = magicBall->GetAttackPoint();
 				EnemyType enemytype = magicBall->GetAttributeType();
 				player_->OnCollision(damage, enemytype);
+				hitEffect_->OnColistion();
 			}
 
 		}
@@ -550,6 +569,7 @@ void GamePScene::CheckCollisionAll()
 					float damage = mine->GetAttackPoint();
 					EnemyType enemytype = mine->GetAttributeType();
 					player_->OnCollision(damage, enemytype);
+					hitEffect_->OnColistion();
 				}
 			}
 
@@ -566,6 +586,7 @@ void GamePScene::CheckCollisionAll()
 				float damege = enemies->GetAttackPoint();
 				EnemyType enemytype = enemies->GetEnemyType();
 				player_->OnCollision(damege, enemytype);
+				hitEffect_->OnColistion();
 				//enemies->
 			}
 			//enemies;

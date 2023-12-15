@@ -38,8 +38,22 @@ void SpUI::Draw()
 	//画像写す範囲を徐々に狭めていくタイプ
 	//Novice::DrawQuad(Lpos_.x_, Lpos_.y_, (Lpos_.x_ + Rpos_.x_) - moveX_, Lpos_.y_, Lpos_.x_, Lpos_.y_ + Rpos_.y_, (Lpos_.x_ + Rpos_.x_) - moveX_, Lpos_.y_ + Rpos_.y_
 		//, 0, 0, sizeX_, sizeY_, image_, WHITE);
-	
-	Novice::DrawSprite(Lpos_.x_+int(spChangingPoint_-16), Lpos_.y_ , lineImage_,1,1,0.0f,WHITE);
+
+	Novice::DrawSprite(Lpos_.x_ + int(spChangingPoint_ - 16), Lpos_.y_, lineImage_, 1, 1, 0.0f, WHITE);
 	//フレーム
-	Novice::DrawSpriteRect(Lpos_.x_, Lpos_.y_, sizeX_+1, 0, sizeX_, sizeY_, frameImage_, ((float)500 / 1000), 0.5, 0, WHITE);
+	Novice::DrawSpriteRect(Lpos_.x_, Lpos_.y_, sizeX_ + 1, 0, sizeX_, sizeY_, frameImage_, ((float)500 / 1000), 0.5, 0, WHITE);
+}
+
+void SpUI::Draw(Vector2 ShakePos)
+{
+	//決まった範囲に画像写すタイプ
+	Novice::DrawSpriteRect(Lpos_.x_ + int(ShakePos.x), Lpos_.y_ + int(ShakePos.y), 0 + moveX_ , 0 , sizeX_, sizeY_, image_, ((float)500 / 1000), 0.5, 0, color_.color);
+	//画像写す範囲を徐々に狭めていくタイプ
+	//Novice::DrawQuad(Lpos_.x_, Lpos_.y_, (Lpos_.x_ + Rpos_.x_) - moveX_, Lpos_.y_, Lpos_.x_, Lpos_.y_ + Rpos_.y_, (Lpos_.x_ + Rpos_.x_) - moveX_, Lpos_.y_ + Rpos_.y_
+		//, 0, 0, sizeX_, sizeY_, image_, WHITE);
+
+	Novice::DrawSprite(Lpos_.x_ + int(spChangingPoint_ - 16) + int(ShakePos.x), Lpos_.y_ + int(ShakePos.y), lineImage_, 1, 1, 0.0f, WHITE);
+	//フレーム
+	Novice::DrawSpriteRect(Lpos_.x_ + int(ShakePos.x), Lpos_.y_ + int(ShakePos.x), sizeX_ + 1, 0, sizeX_, sizeY_, frameImage_, ((float)500 / 1000), 0.5, 0, WHITE);
+
 }

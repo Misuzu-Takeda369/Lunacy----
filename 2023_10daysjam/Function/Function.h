@@ -84,3 +84,5 @@ void CircumferentialMovement(Vector2& v, const float& theta);
 /// <param name="objB">オブジェクト2</param>
 /// <returns></returns>
 bool IsCollision(Object* objA, Object* objB);
+
+

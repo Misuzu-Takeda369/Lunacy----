@@ -1,5 +1,9 @@
 ﻿#pragma once
 #include "Object/Object.h"
+#include <iostream>
+#include <iostream>
+#include <algorithm>
+
 
 class PlayerLAttack : public Object
 {
@@ -32,7 +36,7 @@ public:
 	/// <summary>
 	/// 攻撃力を決める関数
 	/// </summary>
-	void DeterminingAttackPower(float hp, float maxHp);
+	void DeterminingAttackPower(float hp, float maxHp, float sp, float maxSp);
 
 	/// <summary>
 	/// 攻撃力受け取り

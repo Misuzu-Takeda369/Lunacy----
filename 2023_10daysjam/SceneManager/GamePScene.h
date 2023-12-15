@@ -17,6 +17,7 @@
 #include "TutrialText/TutrialSystem.h"
 #include "Event/ApostelEvent/ApostelEvent.h"
 #include "Enemy/Frying/FryingPopEnemy.h"
+#include "Animation/Effect/HitEffect.h"
 
 /// <summary>
 /// プレイシーンのクラス
@@ -190,6 +191,8 @@ private:
 	BackGround* backGround_ = nullptr;
 	WaveTextUI* waveTextUi_ = nullptr;
 	ApostelEvent* apostelEvent_ = nullptr;
+
+	HitEffect* hitEffect_ = nullptr;
 
 	//アイテムポップ関数
 	std::list<PopItem*>popItem_;
