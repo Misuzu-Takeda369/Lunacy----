@@ -30,7 +30,7 @@ void Apostel::Initialize(Vector2 pos, Vector2 speed, float radius)
 	collisionType_ = Box;
 	boxSize_ = { 256.f * 0.25f,512.f * 0.25f };
 	hpUI_ = new EHpUI;
-	hpUI_->Initialize(charaBase_.pos_,5);
+	hpUI_->Initialize(charaBase_.pos_,1);
 	hitCoolTime_ = 0;
 	center_ = charaBase_.pos_;
 	flowingTheta_ = 0;
@@ -82,6 +82,8 @@ void Apostel::Update()
 	hpUI_->Update(hp_, charaBase_.pos_);
 	CoolCheak();
 
+	decreasedHp_ = maxHP_ - hp_;
+
 	//端制限
 	if (charaBase_.pos_.x <= MimWindowWidth + boxSize_.x) {
 		charaBase_.pos_.x = MimWindowWidth + boxSize_.x;
@@ -103,7 +105,7 @@ void Apostel::Draw()
 	/*Novice::DrawBox(int(charaBase_.pos_.x - (boxSize_.x / 2.f)),int(charaBase_.pos_.y - (boxSize_.y / 2.f)),
 		int(boxSize_.x),int( boxSize_.y), 0, WHITE, kFillModeWireFrame);*/
 	anim_->Draw(charaBase_.color_);
-	hpUI_->Draw();
+	//hpUI_->Draw();
 	
 }
 

@@ -90,7 +90,7 @@ void TutrialSystem::Update(MaindState Pmaind, PlayerAttackType Patteck)
 		}
 		frameCool_++;
 		//ゲージあげてチラ見せでもいいかもしれない
-		if (Novice::IsTriggerMouse(1)) {
+		if (Novice::IsTriggerMouse(0)) {
 			if (imageNum_ == 9 && frameCool_>= frameCoolMAX_) {
 				imageNum_ = 10;
 				frameCool_ = 0;
@@ -106,7 +106,7 @@ void TutrialSystem::Update(MaindState Pmaind, PlayerAttackType Patteck)
 
 		imageNum_ = 11;
 		frameCool_++;
-		if (Novice::IsTriggerMouse(1) && frameCool_ >= frameCoolMAX_) {
+		if (Novice::IsTriggerMouse(0) && frameCool_ >= frameCoolMAX_) {
 			IsDead_ = true;
 		}
 

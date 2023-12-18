@@ -7,7 +7,7 @@ void BHpUI::Initialize()
 	
 	bossHpDisplay_ = 60;
 
-	color_.color = RED;
+	color_.color = 0xE756FFFF;
 
 	//左端
 	Lpos_ = { bossHpUIPos_ };

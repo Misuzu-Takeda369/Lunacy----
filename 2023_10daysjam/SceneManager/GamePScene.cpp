@@ -80,6 +80,17 @@ void GamePScene::Initialize(Wave& nowWave)
 	bossHpUi_ = new BHpUI();
 	bossHpUi_->Initialize();
 
+	//敵のスポーン
+	if (nowWave_==Wave1) {
+		EnemyPopFrame_ = consEnemyPopFrameWave1_;
+	}
+	else if(nowWave_ == Wave2){
+		EnemyPopFrame_ = consEnemyPopFrameWave2_;
+	}
+	else if (nowWave_ == Wave3) {
+		EnemyPopFrame_ = consEnemyPopFrameWave3_;
+	}
+
 }
 
 void GamePScene::Initialize()
@@ -143,7 +154,7 @@ void GamePScene::Update()
 #endif // DEBUG
 
 		
-
+			//シーン変換(オーバーかクリアか)
 			if ((timerUi_->GetterTimer() <= 0) || ((player_->GetHp() <= 0) || (player_->GetSp() <= 0))) {
 				flagChange_ = true;
 			}
@@ -236,6 +247,7 @@ void GamePScene::Update()
 			EnemyDead();
 			//アイテムを消してよいか
 			ItemDead();
+			backGround_->SetPlayerSP(player_->GetSp(), player_->GetSpMax());
 #pragma region UI関連
 
 
