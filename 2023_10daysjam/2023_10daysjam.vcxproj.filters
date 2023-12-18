@@ -41,9 +41,6 @@
     <Filter Include="Back">
       <UniqueIdentifier>{9039e1d5-74ef-4f73-83a5-17a1487848c3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Tutrial">
-      <UniqueIdentifier>{475f1d6f-592a-4c1d-84a7-a700b4d01d65}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MousePointer">
       <UniqueIdentifier>{f9794a83-3fc6-4b17-88e9-734de7f80d0d}</UniqueIdentifier>
     </Filter>
@@ -61,6 +58,9 @@
     </Filter>
     <Filter Include="Enemy\Frying">
       <UniqueIdentifier>{757cf8a2-206c-4a50-89e0-47b4a14b2063}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Tutrial">
+      <UniqueIdentifier>{475f1d6f-592a-4c1d-84a7-a700b4d01d65}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -194,7 +194,7 @@
       <Filter>Animation</Filter>
     </ClCompile>
     <ClCompile Include="TutrialText\TutrialText.cpp">
-      <Filter>Tutrial</Filter>
+      <Filter>UI\Tutrial</Filter>
     </ClCompile>
     <ClCompile Include="MousePointer\MousePointer.cpp">
       <Filter>MousePointer</Filter>
@@ -215,7 +215,7 @@
       <Filter>UI</Filter>
     </ClCompile>
     <ClCompile Include="TutrialText\TutrialSystem.cpp">
-      <Filter>Tutrial</Filter>
+      <Filter>UI\Tutrial</Filter>
     </ClCompile>
     <ClCompile Include="Animation\BladeSlimeAnimS.cpp">
       <Filter>Animation</Filter>
@@ -249,6 +249,9 @@
     </ClCompile>
     <ClCompile Include="Animation\Effect\HitEffect.cpp">
       <Filter>Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\BHpUI.cpp">
+      <Filter>UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -442,7 +445,7 @@
       <Filter>Animation</Filter>
     </ClInclude>
     <ClInclude Include="TutrialText\TutrialText.h">
-      <Filter>Tutrial</Filter>
+      <Filter>UI\Tutrial</Filter>
     </ClInclude>
     <ClInclude Include="MousePointer\MousePointer.h">
       <Filter>MousePointer</Filter>
@@ -463,7 +466,7 @@
       <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="TutrialText\TutrialSystem.h">
-      <Filter>Tutrial</Filter>
+      <Filter>UI\Tutrial</Filter>
     </ClInclude>
     <ClInclude Include="Animation\BladeSlimeAnimS.h">
       <Filter>Animation</Filter>
@@ -497,6 +500,9 @@
     </ClInclude>
     <ClInclude Include="Animation\Effect\HitEffect.h">
       <Filter>Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\BHpUI.h">
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

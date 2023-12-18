@@ -392,14 +392,29 @@ void Player::OnCollision(float& damage, EnemyType& enemytype)
 {
 	if (!hit_) {
 
-		if (enemytype == HPNOMAL) {
-			hp_ -= damage;
-			hit_ = true;
+		if (maindStateNow_ == Normal) {
+			if (enemytype == HPNOMAL) {
+				hp_ -= damage;
+				hit_ = true;
+			}
+			else {
+				sp_ -= damage;
+				hit_ = true;
+			}
 		}
-		else {
-			sp_ -= damage;
-			hit_ = true;
+		else
+		{
+			///狂気モードの時に被弾したら通常時よりも減少量が増える
+			if (enemytype == HPNOMAL) {
+				hp_ -= damage + ((hitMagnification_ * decreasedHp_)+10);
+				hit_ = true;
+			}
+			else {
+				sp_ -= damage;
+				hit_ = true;
+			}
 		}
+		
 
 
 

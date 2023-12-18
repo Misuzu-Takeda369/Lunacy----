@@ -1,4 +1,4 @@
-#include "ApostelEvent.h"
+﻿#include "ApostelEvent.h"
 
 ApostelEvent::~ApostelEvent()
 {
@@ -14,6 +14,8 @@ void ApostelEvent::Initialize()
 void ApostelEvent::Update()
 {
 	apostel_->Update();
+	//ゲージ用
+	getHp_ = int(apostel_->GetDecreasedHp());
 }
 
 void ApostelEvent::Draw()

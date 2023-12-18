@@ -18,6 +18,7 @@
 #include "Event/ApostelEvent/ApostelEvent.h"
 #include "Enemy/Frying/FryingPopEnemy.h"
 #include "Animation/Effect/HitEffect.h"
+#include "UI/BHpUI.h"
 
 /// <summary>
 /// プレイシーンのクラス
@@ -193,6 +194,8 @@ private:
 	ApostelEvent* apostelEvent_ = nullptr;
 
 	HitEffect* hitEffect_ = nullptr;
+	BHpUI* bossHpUi_ = nullptr;
+	
 
 	//アイテムポップ関数
 	std::list<PopItem*>popItem_;

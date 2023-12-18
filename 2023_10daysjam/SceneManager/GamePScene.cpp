@@ -13,6 +13,8 @@ GamePScene::~GamePScene()
 
 	delete tutrialSystem_;
 
+	delete bossHpUi_;
+
 	//delete enemy_;
 
 	for (PopEnemy* enemies : enemy_) {
@@ -74,6 +76,9 @@ void GamePScene::Initialize(Wave& nowWave)
 
 	hitEffect_ = new HitEffect();
 	hitEffect_->Initialize();
+
+	bossHpUi_ = new BHpUI();
+	bossHpUi_->Initialize();
 
 }
 
@@ -189,6 +194,12 @@ void GamePScene::Update()
 			case Wave4:
 				apostelEvent_->SetPlayerInfo(player_->GetCharaBase());
 				apostelEvent_->Update();
+
+				////Hp引っ張っていきたいのでごり押しでObjectへ変更
+				//apostelObject = apostelEvent_->GetObjectInfo();
+				//Hpゲージの挙動
+				bossHpUi_->Update(apostelEvent_->GetDicHp());
+
 				break;
 
 			default:
@@ -405,8 +416,15 @@ void GamePScene::Draw()
 
 	hpUi_->Draw(hitEffect_->GetShakePos());
 	spUi_->Draw(hitEffect_->GetShakePos());
-	timerUi_->Draw(hitEffect_->GetShakePos());
+	if (nowWave_ == Wave4) {
+		bossHpUi_->Draw(hitEffect_->GetShakePos());
+	}
+	else {
+		timerUi_->Draw(hitEffect_->GetShakePos());
+	}
 	waveTextUi_->Draw(hitEffect_->GetShakePos());
+
+	
 
 	/*switch (gameSModeNow_)
 	{

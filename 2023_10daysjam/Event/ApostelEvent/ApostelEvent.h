@@ -14,7 +14,16 @@ public:
 	void OnCollision(float& dmg) { apostel_->OnCollision(dmg); }
 	const std::list<Apostel_MagicBall*>& GetMagicBall() { return apostel_->GetMagicBall(); }
 	const std::list<Apostel_ThrowMine*>& GetThrowMine() { return apostel_->GetThrowMine(); }
+
+	/// <summary>
+	/// ゲージ用にHpだけ受け取る奴
+	/// </summary>
+	/// <returns></returns>
+	int GetDicHp() { return getHp_; };
+	//void SetDicHp(int dichp) { getHp_ = dichp; };
+
 private:
 	Apostel* apostel_ = nullptr;
+	int getHp_;
 };
 

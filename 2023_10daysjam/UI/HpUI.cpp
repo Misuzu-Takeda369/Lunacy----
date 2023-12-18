@@ -69,7 +69,7 @@ void HpUI::Draw()
 		, 0, 0, sizeX_, sizeY_, image_, color_.color);
 
 	//フレーム
-	Novice::DrawSpriteRect(Lpos_.x_, Lpos_.y_,0,0, sizeX_, sizeY_, frameImage_, ((float)500 / 1000),1,0,WHITE);
+	Novice::DrawSpriteRect(Lpos_.x_, Lpos_.y_,0,0, 0, sizeY_, frameImage_, ((float)500 / 1000),1,0,WHITE);
 }
 
 void HpUI::Draw(Vector2 ShakePos)

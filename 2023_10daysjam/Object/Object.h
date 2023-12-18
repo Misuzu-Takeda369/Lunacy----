@@ -119,8 +119,8 @@ protected:
 	//Hp,Sp関連(最大、現在,減少量)
 	const float maxHp_ = 500.0f;
 	const float maxSp_ = 500.0f;
-	float decreasedHp_;
-	float decreasedSp_;
+	float decreasedHp_ = maxHp_- hp_;
+	float decreasedSp_ = maxSp_ - sp_;
 
 	//現在の狂気度
 	MaindState maindStateNow_ = Normal;

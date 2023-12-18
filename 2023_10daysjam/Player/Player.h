@@ -204,6 +204,9 @@ private:
 	int getCoolTime_ = 0;
 	const int MaxGetCoolTime_ = 10;
 
+	//狂気時の被弾倍率
+	const float hitMagnification_ = 0.2f;
+
 	
 };
 
