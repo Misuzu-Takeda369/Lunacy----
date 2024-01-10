@@ -41,7 +41,7 @@ void PopEnemy::Initialize(MaindState maindStateNow, Wave nowWave, int enemyNotAp
 
 	//Hpゲージ
 	eHUi_ = new EHpUI();
-	eHUi_->Initialize(charaBase_.pos_,6);
+	eHUi_->Initialize(charaBase_.pos_, float(hp_));
 
 }
 
@@ -84,10 +84,9 @@ void PopEnemy::Update()
 		break;
 	}
 
-	//ゲージ処理用
-	decreasedHp_ = maxHp_ - hp_;
+	
 
-	eHUi_->Update(decreasedHp_, charaBase_.pos_);
+	eHUi_->Update(float(hp_), charaBase_.pos_);
 
 
 #ifdef _DEBUG

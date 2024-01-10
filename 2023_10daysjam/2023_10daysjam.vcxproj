@@ -248,6 +248,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="Player\PlayerJewel.h" />
     <ClInclude Include="Player\PlayerLAttack.h" />
     <ClInclude Include="Player\PlayerMAttack.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SaveData.h" />
     <ClInclude Include="SceneManager\GameCScene.h" />
     <ClInclude Include="SceneManager\GameOScene.h" />
@@ -265,6 +266,12 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="UI\SpUI.h" />
     <ClInclude Include="UI\TimerUI.h" />
     <ClInclude Include="UI\WaveTextUI.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Lunacy -月の宝珠-.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

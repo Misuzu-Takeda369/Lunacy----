@@ -71,10 +71,10 @@ protected:
 
 	//被弾のクールタイム
 	int hitCoolTime_ = 0;
-	const int MaxHitCoolTime_ = 5;
+	const int MaxHitCoolTime_ = 10;
 
 	bool _right; //アニメーションに渡すようの向き
-	const float maxHP_ = 100;
+	const float maxHP_ = 666;
 
 	STATE state_ = IDOL;
 	SABSTATE sabState_ = SABSTATE::_NONE;

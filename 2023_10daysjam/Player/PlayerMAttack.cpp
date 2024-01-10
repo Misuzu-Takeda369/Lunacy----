@@ -55,7 +55,7 @@ void PlayerMAttack::Draw()
 #endif // DEBUG
 }
 
-void PlayerMAttack::DeterminingAttackPower(float hp, float maxHp)
+void PlayerMAttack::DeterminingAttackPower(float hp, float maxHp, float sp, float maxSp)
 {
 	if (playerAttackTypeNow_ == 1) {
 
@@ -63,8 +63,10 @@ void PlayerMAttack::DeterminingAttackPower(float hp, float maxHp)
 			attackPoint_ = magicAttackPoint_;
 		}
 		else {
-			magicAttackPoint_ +=  ((maxHp - hp) * attackMultiples_);
-			attackPoint_ = magicAttackPoint_;
+			//magicAttackPoint_ = magicAttackPoint_ + ((maxHp - hp) * attackMultiples_);
+			float multiplyHp = std::clamp(((maxHp - hp) / hp), 1.0f, 3.0f);
+			float multiplySp = std::clamp((1.0f + (maxSp - sp) / sp), 1.0f, 3.0f);
+			attackPoint_ = magicAttackPoint_ * (multiplyHp + multiplySp);
 		}
 
 	}

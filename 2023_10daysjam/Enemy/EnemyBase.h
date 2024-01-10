@@ -51,7 +51,7 @@ protected:
 
 	//被弾のクールタイム
 	int hitCoolTime_ = 0;
-	const int MaxHitCoolTime_ = 5;
+	const int MaxHitCoolTime_ = 10;
 
 	bool _right;
 };

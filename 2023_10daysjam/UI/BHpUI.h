@@ -85,5 +85,7 @@ private:
 	int moveSpeedX_ = 5;
 
 	UnitColor color_;
+
+	int keepstate = 0;
 };
 

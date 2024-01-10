@@ -504,5 +504,12 @@
     <ClInclude Include="UI\BHpUI.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Lunacy -月の宝珠-.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico" />
   </ItemGroup>
 </Project>

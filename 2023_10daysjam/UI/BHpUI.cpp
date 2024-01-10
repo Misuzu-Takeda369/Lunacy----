@@ -20,14 +20,25 @@ void BHpUI::Initialize()
 	//移動した合計
 	moveX_ = 0;
 	//移動する量(HPが1減るたびに動く量)
-	moveSpeedX_ = 5;
+	moveSpeedX_ = 1;
 }
 
 void BHpUI::Update(int decreasedHp)
 {
+	//hp_ = int(decreasedHp);
+	hp_ = int(decreasedHp) + keepstate;
+	//moveX_ = (moveSpeedX_)*hp_;
+
+	if (hp_ %2 == 0) {
+		moveX_ = (moveSpeedX_)*hp_;
+		keepstate = 0;
+	}
+	else {
+		hp_--;
+		moveX_ = (moveSpeedX_)*hp_;
+		keepstate = 1;
+	}
 	
-	hp_ = int(decreasedHp);
-	moveX_ = (moveSpeedX_)*hp_;
 
 	//ConversionUIVer2();
 	//ConversionUIVer1();

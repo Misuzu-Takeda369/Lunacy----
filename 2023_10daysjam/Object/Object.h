@@ -96,6 +96,12 @@ public:
 	virtual float GetRadish() { return charaBase_.radius_; };
 
 	/// <summary>
+	/// 攻撃されているか
+	/// </summary>
+	/// <returns></returns>
+	virtual bool GetHit() {return hit_;};
+
+	/// <summary>
 	/// 攻撃力受け取り
 	/// </summary>
 	/// <returns></returns>

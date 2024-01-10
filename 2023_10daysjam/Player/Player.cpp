@@ -294,7 +294,7 @@ void Player::Attack()
 
 
 		//攻撃力の設定
-		mAttack_->DeterminingAttackPower(hp_, maxHp_);
+		mAttack_->DeterminingAttackPower(hp_, maxHp_,sp_,maxSp_);
 
 		for (PlayerLAttack* lAttack : lAttack_) {
 			lAttack->DeterminingAttackPower(hp_, maxHp_,sp_,maxSp_);

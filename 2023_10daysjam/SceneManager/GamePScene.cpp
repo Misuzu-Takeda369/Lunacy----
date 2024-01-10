@@ -482,7 +482,7 @@ void GamePScene::CheckCollisionAll()
 	if (playerMA) {
 		for (PopEnemy* enemies : enemy_) {
 
-			if (IsCollision(playerMA, enemies) == true) {
+			if ((IsCollision(playerMA, enemies) == true) && enemies->GetHit() == false) {
 				float damege = playerMA->GetAttackPoint();
 				enemies->OnCollision(damege);
 
