@@ -3,14 +3,23 @@
 #include "ScreenSize.h"
 #include "MousePointer/MousePointer.h"
 #include "SaveData.h"
+//#include "resource.h"
 
 const char kWindowTitle[] = "Lunacy -月の宝珠-";
 
 // Windowsアプリでのエントリーポイント(main関数)
-int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
+int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE, LPSTR, int) {
+
+	// 略
+	/*WNDCLASSEX wcx;
+	wcx.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_ICON1));
+	wcx.hIconSm = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_ICON1));*/
 
 	// ライブラリの初期化
 	Novice::Initialize(kWindowTitle, kWindowWidth, kWindowHeight);
+
+	
+
 
 	// キー入力結果を受け取る箱
 	char keys[256] = { 0 };

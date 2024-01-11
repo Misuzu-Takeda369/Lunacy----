@@ -62,9 +62,6 @@
     <Filter Include="UI\Tutrial">
       <UniqueIdentifier>{475f1d6f-592a-4c1d-84a7-a700b4d01d65}</UniqueIdentifier>
     </Filter>
-    <Filter Include="iconResource">
-      <UniqueIdentifier>{8cc62d4d-b48c-497c-9864-7bf94ace9d87}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp">
@@ -507,18 +504,5 @@
     <ClInclude Include="UI\BHpUI.h">
       <Filter>UI</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>iconResource</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="icon1.ico">
-      <Filter>iconResource</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Lunacy -月の宝珠-.rc">
-      <Filter>iconResource</Filter>
-    </ResourceCompile>
   </ItemGroup>
 </Project>
