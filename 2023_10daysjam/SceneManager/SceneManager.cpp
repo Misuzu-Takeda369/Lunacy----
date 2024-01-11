@@ -201,6 +201,7 @@ void SceneManager::Update() {
 				else {
 					sceneNum_ = GClearMode;
 				}
+				//ここにポーズからタイトル戻れるようにする
 
 				//現在のwaveを受け取る
 				nowWave_ = gameP_->GetNowWave();
@@ -224,6 +225,8 @@ void SceneManager::Update() {
 			gameC_->Update();
 		}
 		//シーン変換
+		
+
 		//クリアシーンのクラスから変更出来るか否かフラグ貰ってきてtrueだった場合
 		//別のシーンに移行する
 		if (gameC_->GetFlagChange()) {

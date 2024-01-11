@@ -211,6 +211,6 @@ private:
 	//敵が出てこなかったときに数える奴
 	int enemyNotAppeared_;
 
-	/*int enemyImage_[4];*/
+	
 
 };

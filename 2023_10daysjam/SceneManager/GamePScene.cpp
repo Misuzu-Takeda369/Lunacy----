@@ -438,15 +438,18 @@ void GamePScene::Draw()
 
 	
 
-	/*switch (gameSModeNow_)
+	switch (gameSModeNow_)
 	{
-	case None:
+	case Pause:
 
+		Novice::DrawBox(0,0,kWindowWidth,kWindowHeight,0.0f,0x000000A5,kFillModeSolid);
+
+		Novice::ScreenPrintf(500,400,"Tatlenimodoru,Pdege-munimodoru,setumeinogazougaattakigasuru");
 		break;
 
 	default:
 		break;
-	}*/
+	}
 #pragma endregion
 
 
