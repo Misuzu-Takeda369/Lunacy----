@@ -60,171 +60,265 @@ void SceneManager::Update() {
 
 	case TitleMode:
 
-		title_->Update();
+		if (changing_->GetNowEffectMode() == After) {
+			changing_->ChangeAfter();
+		}
+		else if (changing_->GetNowEffectMode() == Nochange) {
+			title_->Update();
+		}
 
 		//シーン変換
 		//タイトルのクラスから変更出来るか否かフラグ貰ってきてtrueだった場合
 		//ゲームプレイモードに移行する
 		if (title_->GetFlagChange()) {
 
-			//初めて起動したとき
-			if (maxWave_ == Tutorial) {
+			//変更フラグを受け取った時
+			changing_->SetNowEffectMode(Before);
+			changing_->ChangeBefore();
+			//シーンが変わるとき
 
-				sceneNum_ = GPlayMode;
-				gameP_ = new GamePScene();
-				nowWave_ = Tutorial;
-				gameP_->Initialize(nowWave_);
-				title_->SetFlagChange(false);
-				
+			if (changing_->GetNowEffectMode() == After) {
+
+				//初めて起動したとき
+				if (maxWave_ == Tutorial) {
+					sceneNum_ = GPlayMode;
+					gameP_ = new GamePScene();
+					nowWave_ = Tutorial;
+					gameP_->Initialize(nowWave_);
+					title_->SetFlagChange(false);
+
+				}
+				else {
+
+					//それ以降
+					sceneNum_ = WaveSelectMode;
+					title_->SetFlagChange(false);
+
+					//deleteとnewと初期化(初期化だけでもよさそう感)
+					//動きによっては別な場所へ
+					title_ = new TitleScene();
+					title_->Initialize();
+
+					//deleteとnewと初期化(初期化だけでもよさそう感)
+					//動きによっては別な場所へ
+					waveS_ = new WaveSelect();
+					waveS_->Initialize(maxWave_);
+
+				}
 			}
-			else {
-
-				//それ以降
-				sceneNum_ = WaveSelectMode;
-				title_->SetFlagChange(false);
-
-				//deleteとnewと初期化(初期化だけでもよさそう感)
-				//動きによっては別な場所へ
-				title_ = new TitleScene();
-				title_->Initialize();
-
-				//deleteとnewと初期化(初期化だけでもよさそう感)
-				//動きによっては別な場所へ
-				waveS_ = new WaveSelect();
-				waveS_->Initialize(maxWave_);
-				changing_->Draw();
-
-			}
-
-
 
 		}
 
 		if (title_->GetToPlayDataFlag()) {
-			sceneNum_ = PlayDataMode;
-			title_->SetToPlayDataFlag(false);
-			dataScene_->SetSaveData(saveData_);
-			int num = RandomRange(0, dataScene_->GetMaxTips());
-			dataScene_->SetTips(num);
-			
+
+			//変更フラグを受け取った時
+			changing_->SetNowEffectMode(Before);
+			changing_->ChangeBefore();
+			//変更フラグを受け取った時
+
+			if (changing_->GetNowEffectMode() == After) {
+
+				sceneNum_ = PlayDataMode;
+				title_->SetToPlayDataFlag(false);
+				dataScene_->SetSaveData(saveData_);
+				int num = RandomRange(0, dataScene_->GetMaxTips());
+				dataScene_->SetTips(num);
+			}
+
 		}
 		break;
 
 	case WaveSelectMode:
 
-		waveS_->Update();
+		if (changing_->GetNowEffectMode() == After) {
+			changing_->ChangeAfter();
+		}
+		else if (changing_->GetNowEffectMode() == Nochange) {
+			waveS_->Update();
+		}
+
 
 		if (waveS_->GetFlagChange()) {
 
-			if (waveS_->GetTitleChangeFlag()) {
+			//変更フラグを受け取った時
+			changing_->SetNowEffectMode(Before);
+			changing_->ChangeBefore();
 
-				sceneNum_ = TitleMode;
-				waveS_->SetFlagChange(false);
+			if (changing_->GetNowEffectMode() == After) {
 
+				if (waveS_->GetTitleChangeFlag()) {
+
+					sceneNum_ = TitleMode;
+					waveS_->SetFlagChange(false);
+
+				}
+				else {
+
+					sceneNum_ = GPlayMode;
+					waveS_->SetFlagChange(false);
+
+
+					//現在のwaveを受け取る
+					nowWave_ = waveS_->GetNowWave();
+					//deleteとnewと初期化(初期化だけでもよさそう感)
+					//動きによっては別な場所へ
+					gameP_ = new GamePScene();
+					gameP_->Initialize(nowWave_);
+
+				}
 			}
-			else {
-
-				sceneNum_ = GPlayMode;
-				waveS_->SetFlagChange(false);
-
-
-				//現在のwaveを受け取る
-				nowWave_ = waveS_->GetNowWave();
-				//deleteとnewと初期化(初期化だけでもよさそう感)
-				//動きによっては別な場所へ
-				gameP_ = new GamePScene();
-				gameP_->Initialize(nowWave_);
-
-			}
-			
 
 		}
 
 		break;
 
 	case GPlayMode:
-		gameP_->Update();
+
+		if (changing_->GetNowEffectMode() == After) {
+			changing_->ChangeAfter();
+		}
+		else if (changing_->GetNowEffectMode() == Nochange) {
+			gameP_->Update();
+		}
+
+	
 
 		//シーン変換
 		//プレイモードのクラスから変更出来るか否かフラグ貰ってきてtrueだった場合
 		//別のシーンに移行する
 		if (gameP_->GetFlagChange()) {
-			if (gameP_->GetFlagGameOver()) {
-				sceneNum_ = GOverMode;
-			}
-			else {
-				sceneNum_ = GClearMode;
-			}
 
-			//現在のwaveを受け取る
-			nowWave_ = gameP_->GetNowWave();
-			if (maxWave_ < nowWave_) {
-				maxWave_ = nowWave_;
-			}
+			//変更フラグを受け取った時
+			changing_->SetNowEffectMode(Before);
+			changing_->ChangeBefore();
+			//変更フラグを受け取った時
 
-			gameP_->SetFlagChange(false);
+			if (changing_->GetNowEffectMode() == After) {
+
+				if (gameP_->GetFlagGameOver()) {
+					sceneNum_ = GOverMode;
+				}
+				else {
+					sceneNum_ = GClearMode;
+				}
+
+				//現在のwaveを受け取る
+				nowWave_ = gameP_->GetNowWave();
+				if (maxWave_ < nowWave_) {
+					maxWave_ = nowWave_;
+				}
+
+				gameP_->SetFlagChange(false);
+
+			}
 
 		}
 		break;
 
 	case GClearMode:
-		gameC_->Update();
 
+		if (changing_->GetNowEffectMode() == After) {
+			changing_->ChangeAfter();
+		}
+		else if (changing_->GetNowEffectMode() == Nochange) {
+			gameC_->Update();
+		}
 		//シーン変換
 		//クリアシーンのクラスから変更出来るか否かフラグ貰ってきてtrueだった場合
 		//別のシーンに移行する
 		if (gameC_->GetFlagChange()) {
-			sceneNum_ = TitleMode;
-			gameC_->SetFlagChange(false);
-			//deleteとnewと初期化(初期化だけでもよさそう感)
-			//動きによっては別な場所へ
 
-			//wave数消えるので没
-			/*maxWave_ = Tutorial;*/
+			//変更フラグを受け取った時
+			changing_->SetNowEffectMode(Before);
+			changing_->ChangeBefore();
+			//変更フラグを受け取った時
 
-			saveData_->OnResultUpdate(maxWave_);
-			gameC_ = new GameCScene();
-			gameC_->Initialize();
+			if (changing_->GetNowEffectMode() == After) {
+				
+
+				sceneNum_ = TitleMode;
+				gameC_->SetFlagChange(false);
+				//deleteとnewと初期化(初期化だけでもよさそう感)
+				//動きによっては別な場所へ
+
+				//wave数消えるので没
+				/*maxWave_ = Tutorial;*/
+
+				saveData_->OnResultUpdate(maxWave_);
+				gameC_ = new GameCScene();
+				gameC_->Initialize();
+			}
 		}
 		break;
 
 	case GOverMode:
-		gameO_->Update();
+
+		if (changing_->GetNowEffectMode() == After) {
+			changing_->ChangeAfter();
+		}
+		else if (changing_->GetNowEffectMode() == Nochange) {
+			gameO_->Update();
+		}
 
 		//シーン変換
 		//オーバーシーンのクラスから変更出来るか否かフラグ貰ってきてtrueだった場合
 		//別のシーンに移行する
 		if (gameO_->GetFlagChange()) {
 
-			if (gameO_->GetFlagRetry()) {
-				sceneNum_ = GPlayMode;
-			}
-			else {
-				sceneNum_ = TitleMode;
-				gameO_->SetFlagChange(false);
-			}
+			//変更フラグを受け取った時
+			changing_->SetNowEffectMode(Before);
+			changing_->ChangeBefore();
+			//変更フラグを受け取った時
+
+			if (changing_->GetNowEffectMode() == After) {
 
 
-			//deleteとnewと初期化(初期化だけでもよさそう感)
-			//動きによっては別な場所へ
-			saveData_->OnResultUpdate(maxWave_);
-			gameO_ = new GameOScene();
-			gameO_->Initialize();
-			//deleteとnewと初期化(初期化だけでもよさそう感)
-			//動きによっては別な場所へ
-			gameP_ = new GamePScene();
-			gameP_->Initialize(nowWave_);
+				if (gameO_->GetFlagRetry()) {
+					sceneNum_ = GPlayMode;
+				}
+				else {
+					sceneNum_ = TitleMode;
+					gameO_->SetFlagChange(false);
+				}
+
+
+				//deleteとnewと初期化(初期化だけでもよさそう感)
+				//動きによっては別な場所へ
+				saveData_->OnResultUpdate(maxWave_);
+				gameO_ = new GameOScene();
+				gameO_->Initialize();
+				//deleteとnewと初期化(初期化だけでもよさそう感)
+				//動きによっては別な場所へ
+				gameP_ = new GamePScene();
+				gameP_->Initialize(nowWave_);
+			}
 		}
 		break;
 
 	case PlayDataMode:
-		dataScene_->SetSaveData(saveData_);
-		dataScene_->Update();
+
+		if (changing_->GetNowEffectMode() == After) {
+			changing_->ChangeAfter();
+		}
+		else if (changing_->GetNowEffectMode() == Nochange) {
+			dataScene_->SetSaveData(saveData_);
+			dataScene_->Update();
+		}
 
 		if (dataScene_->GetSceneChangeFlag()) {
-			sceneNum_ = TitleMode;
-			dataScene_->SetSceneChangeFlag(false);
+
+			//変更フラグを受け取った時
+			changing_->SetNowEffectMode(Before);
+			changing_->ChangeBefore();
+			//変更フラグを受け取った時
+
+
+			if (changing_->GetNowEffectMode() == After) {
+				sceneNum_ = TitleMode;
+				dataScene_->SetSceneChangeFlag(false);
+			}
 		}
+
 		break;
 	default:
 
@@ -256,12 +350,14 @@ void SceneManager::Draw() {
 	case TitleMode:
 		title_->Draw();
 
+
+
 		break;
 
 	case WaveSelectMode:
 
 		waveS_->Draw();
-		
+
 
 		break;
 
@@ -287,6 +383,6 @@ void SceneManager::Draw() {
 		break;
 	}
 
-	
+	changing_->Draw();
 }
 

@@ -282,7 +282,7 @@ void GamePScene::Update()
 			//現在はIを押したときに移動
 			if ((preKeys[DIK_I] == 0 && keys[DIK_I] != 0) && changeTimingFrame_ >= changeTimingFrameMax_) {
 
-				if (nowWave_ == Wave3) {
+				if (nowWave_ == Wave4) {
 					flagChange_ = true;
 					changeTimingFrame_ = 0;
 				}
