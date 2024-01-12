@@ -62,6 +62,9 @@
     <Filter Include="UI\Tutrial">
       <UniqueIdentifier>{475f1d6f-592a-4c1d-84a7-a700b4d01d65}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PouseMode">
+      <UniqueIdentifier>{18b21a91-040e-4dc8-a130-495ca3cf63af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp">
@@ -252,6 +255,9 @@
     </ClCompile>
     <ClCompile Include="UI\BHpUI.cpp">
       <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Pause\PouseMode.cpp">
+      <Filter>PouseMode</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -504,12 +510,8 @@
     <ClInclude Include="UI\BHpUI.h">
       <Filter>UI</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Lunacy -月の宝珠-.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="icon1.ico" />
+    <ClInclude Include="Pause\PouseMode.h">
+      <Filter>PouseMode</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -154,6 +154,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MousePointer\MousePointer.cpp" />
     <ClCompile Include="Object\Object.cpp" />
+    <ClCompile Include="Pause\PouseMode.cpp" />
     <ClCompile Include="Player\Player.cpp" />
     <ClCompile Include="Player\PlayerJewel.cpp" />
     <ClCompile Include="Player\PlayerLAttack.cpp" />
@@ -244,6 +245,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="Item\SpRecoverItem.h" />
     <ClInclude Include="MousePointer\MousePointer.h" />
     <ClInclude Include="Object\Object.h" />
+    <ClInclude Include="Pause\PouseMode.h" />
     <ClInclude Include="Player\Player.h" />
     <ClInclude Include="Player\PlayerJewel.h" />
     <ClInclude Include="Player\PlayerLAttack.h" />

@@ -32,6 +32,8 @@ GamePScene::~GamePScene()
 
 	delete hitEffect_;
 
+	delete pouseMode_;
+
 }
 
 void GamePScene::Initialize(Wave& nowWave)
@@ -91,6 +93,9 @@ void GamePScene::Initialize(Wave& nowWave)
 		EnemyPopFrame_ = consEnemyPopFrameWave3_;
 	}
 
+	pouseMode_ = new PouseMode();
+	pouseMode_->Initialize();
+
 }
 
 void GamePScene::Initialize()
@@ -121,6 +126,9 @@ void GamePScene::Initialize()
 
 	//多分後で変わる(初期化内容からがっつり変わる可能性)
 	nowWave_ = Tutorial;
+
+	pouseMode_ = new PouseMode();
+	pouseMode_->Initialize();
 
 }
 
@@ -219,7 +227,6 @@ void GamePScene::Update()
 #pragma endregion
 
 			//敵の発生
-			//EnemyPoping();
 			EnemyPoping(nowWave_);
 
 			//ここプレイヤーからUIに変化点を受け取っておく
@@ -269,11 +276,17 @@ void GamePScene::Update()
 
 
 			///ポーズへ
-			if ((preKeys[DIK_P] == 0 && keys[DIK_P] != 0) && changeTimingFrame_ >= changeTimingFrameMax_) {
+			if (((preKeys[DIK_P] == 0 && keys[DIK_P] != 0) || (pouseMode_->GetChangeFrag() == true))&& changeTimingFrame_ >= changeTimingFrameMax_) {
 				GameMove_ = false;
 				gameSModeNow_ = Pause;
 				changeTimingFrame_ = 0;
+				pouseMode_->SetChangeFrag(false);
 			}
+
+			////ポーズ関連の動き
+			pouseMode_->Update(gameSModeNow_);
+			gameSModeNow_ = pouseMode_->GetGameSModeNow();
+
 			//確認用
 			CountNum_ += 1;
 			///シーン変換
@@ -318,13 +331,17 @@ void GamePScene::Update()
 
 	case Pause:
 
-
+		
 		//解除
-		if ((preKeys[DIK_P] == 0 && keys[DIK_P] != 0) && changeTimingFrame_ >= changeTimingFrameMax_) {
+		if (((preKeys[DIK_P] == 0 && keys[DIK_P] != 0) || (pouseMode_->GetChangeFrag() == true)) && changeTimingFrame_ >= changeTimingFrameMax_) {
 			GameMove_ = true;
 			gameSModeNow_ = None;
 			changeTimingFrame_ = 0;
+			pouseMode_->SetChangeFrag(false);
 		}
+
+		pouseMode_->Update(gameSModeNow_);
+		gameSModeNow_ = pouseMode_->GetGameSModeNow();
 
 		break;
 
@@ -438,13 +455,19 @@ void GamePScene::Draw()
 
 	
 
+	///ここにポーズ関連の描写をまとめる
+
 	switch (gameSModeNow_)
 	{
+
+	case None:
+
+		pouseMode_->Draw(gameSModeNow_, hitEffect_->GetShakePos());
+		break;
+
 	case Pause:
+		pouseMode_->Draw(gameSModeNow_, hitEffect_->GetShakePos());
 
-		Novice::DrawBox(0,0,kWindowWidth,kWindowHeight,0.0f,0x000000A5,kFillModeSolid);
-
-		Novice::ScreenPrintf(500,400,"Tatlenimodoru,Pdege-munimodoru,setumeinogazougaattakigasuru");
 		break;
 
 	default:

@@ -7,6 +7,7 @@
 #include "UI/SpUI.h"
 #include "UI/TimerUI.h"
 #include "UI/WaveTextUI.h"
+#include "UI/BHpUI.h"
 #pragma endregion
 #include "Player/Player.h"
 #include "Item/PopItem.h"
@@ -18,7 +19,7 @@
 #include "Event/ApostelEvent/ApostelEvent.h"
 #include "Enemy/Frying/FryingPopEnemy.h"
 #include "Animation/Effect/HitEffect.h"
-#include "UI/BHpUI.h"
+#include "Pause/PouseMode.h"
 
 /// <summary>
 /// プレイシーンのクラス
@@ -199,7 +200,6 @@ private:
 
 	//アイテムポップ関数
 	std::list<PopItem*>popItem_;
-	//PopItem* popItem_;
 
 	//waveが変わったときに入れる時間の奴
 	const int timerMax = 3600;
@@ -210,6 +210,9 @@ private:
 	int countEnemy_;
 	//敵が出てこなかったときに数える奴
 	int enemyNotAppeared_;
+
+	//ポーズ関連のクラスをロード
+	PouseMode* pouseMode_ = nullptr;
 
 	
 
