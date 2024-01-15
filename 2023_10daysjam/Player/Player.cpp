@@ -465,7 +465,7 @@ void Player::CoolCheak()
 			hitCoolTime_ = 0;
 
 #ifdef _DEBUG
-			if (maindStateNow_ == Normal) {
+			if (playerAttackTypeNow_ == Plane) {
 				charaBase_.color_ = WHITE;
 			}
 			else {
