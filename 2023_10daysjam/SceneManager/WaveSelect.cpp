@@ -61,6 +61,9 @@ void WaveSelect::Initialize(int& maxWave)
 	decisionEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/maou_se_system13.wav");
 	//音の尺が短すぎて機能してない(意味ない)かも
 	selectEffectPlay_ = 0;
+	//画像を少しデカくしたらおもろそう
+	ScaleSizeX = 0.25f;
+	ScaleSizeY = 0.25f;
 	
 }
 
@@ -98,7 +101,7 @@ void WaveSelect::Draw()
 		Novice::DrawSprite(selectLetter_[i].x_, selectLetter_[i].y_, image_[i],1,1, 0.0f,selectColor_[i].color);
 	}
 
-	Novice::DrawSprite(selectLetter_[0].x_, 10, backTitleImage_, 0.25, 0.25, 0.0f, WHITE);
+	Novice::DrawSprite(selectLetter_[0].x_, 10, backTitleImage_, ScaleSizeX, ScaleSizeY, 0.0f, WHITE);
 }
 
 void WaveSelect::MouseBottonChack()
@@ -264,14 +267,34 @@ void WaveSelect::MouseBottonChack()
 			&&
 			(mousePos_.y_ >= 10 && mousePos_.y_ <= 10 + tutrialSize_.y_))
 		{
+			//連続でならないようにするやつ
+			if (OnselectBackPlay_ == false) {
+
+				OnselectBackPlay_ = true;
+
+				//マウスに触れたときに音が鳴る
+				if (Novice::IsPlayingAudio(selectEffectPlay_) == 0) {
+					Novice::PlayAudio(selectEffect_, 0, 1);
+				}
+			}
+
+			ScaleSizeX = 0.30f; ScaleSizeY = 0.30f;
+
 		
 			if (Novice::IsTriggerMouse(0) && changeTimingFrame_ >= changeTimingFrameMax_) {
 				flagChange_ = true;
 				titleChangeFlag_ = true;
 				changeTimingFrame_ = 0;
+				Novice::StopAudio(selectEffect_);
+				Novice::PlayAudio(decisionEffect_, 0, 2);
+				ScaleSizeX = 0.25f; ScaleSizeY = 0.25f;
 			}
 
 
+		}
+		else {
+			OnselectBackPlay_ = false;
+			ScaleSizeX = 0.25f; ScaleSizeY = 0.25f;
 		}
 #pragma endregion
 }

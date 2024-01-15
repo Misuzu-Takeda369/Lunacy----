@@ -64,6 +64,7 @@ private:
 	//音の尺が短すぎて機能してない(意味ない)かも
 	int selectEffectPlay_ = 0;
 	bool OnselectBackPlay_ = false;
+	
 
 };
 

@@ -113,7 +113,10 @@ private:
 	bool OnselectWavePlay_[4] = {
 		false,false,false,false
 	};
-	
+	bool OnselectBackPlay_ = false;
+	//画像を少しデカくしたらおもろそう
+	float ScaleSizeX = 0.25f;
+	float ScaleSizeY = 0.25f;
 
 
 	//チュートリアル用の文字サイズ
