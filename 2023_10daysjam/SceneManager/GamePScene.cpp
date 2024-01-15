@@ -324,6 +324,7 @@ void GamePScene::Update()
 				GameMove_ = false;
 			}
 
+
 #pragma endregion 
 		}
 
@@ -338,6 +339,15 @@ void GamePScene::Update()
 			gameSModeNow_ = None;
 			changeTimingFrame_ = 0;
 			pouseMode_->SetChangeFrag(false);
+		}
+
+		///ポーズからタイトルに戻る処理(ここじゃないとタイミングが変になる)
+		if (pouseMode_->GettitleChangeFrag()) {
+
+			flagChange_ = true;
+			flagTitle_ = true;
+			GameMove_ = false;
+			gameSModeNow_ = None;
 		}
 
 		pouseMode_->Update(gameSModeNow_);

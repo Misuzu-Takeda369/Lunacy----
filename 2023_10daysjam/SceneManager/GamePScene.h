@@ -120,6 +120,12 @@ public:
 	bool GetFlagGameOver() { return flagGameOver_; };
 
 	/// <summary>
+	/// タイトルに戻るためのフラグのゲッター
+	/// </summary>
+	/// <returns></returns>
+	bool GetFlagTitle() { return flagTitle_; };
+
+	/// <summary>
 	/// 現在のwaveを受け取る
 	/// </summary>
 	/// <param name="nowWave"></param>
@@ -131,6 +137,9 @@ private:
 	bool flagChange_ = false;
 	//クリアとoverを判別するためのフラグ
 	bool flagGameOver_ = false;
+
+	//タイトルに戻る為のフラグ
+	bool flagTitle_ = false;
 
 	//仮挙動
 	int CountNum_ = 0;

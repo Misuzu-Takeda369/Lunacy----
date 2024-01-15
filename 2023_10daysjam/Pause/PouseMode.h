@@ -63,6 +63,14 @@ public:
 		changeFrag_ = flag;
 	}
 
+	/// <summary>
+	/// タイトルに戻るフラグ
+	/// </summary>
+	/// <returns></returns>
+	bool GettitleChangeFrag() {
+		return titleChangeFrag_;
+	}
+
 private:
 
 	//ポーズ文字(ゲーム画面)
@@ -77,6 +85,8 @@ private:
 	int yesImage_;
 	int noImage_;
 	int textFrameImage_;
+	int chacktextImage_;
+
 
 	//ゲームモードの時に出てくる文字の奴
 	IntState GMPauseTextPos_;
@@ -105,7 +115,7 @@ private:
 	//モード
 	int gameSModeNow_;
 
-	///フラグ
+	///フラグ(ポーズとゲームか)
 	bool changeFrag_ = false;
 	//タイトルに戻るフラグ
 	bool titleChangeFrag_ = false;

@@ -198,10 +198,13 @@ void SceneManager::Update() {
 				if (gameP_->GetFlagGameOver()) {
 					sceneNum_ = GOverMode;
 				}
+				//ここにポーズからタイトル戻れるようにする
+				else if (gameP_->GetFlagTitle()) {
+					sceneNum_ = TitleMode;
+				}
 				else {
 					sceneNum_ = GClearMode;
 				}
-				//ここにポーズからタイトル戻れるようにする
 
 				//現在のwaveを受け取る
 				nowWave_ = gameP_->GetNowWave();

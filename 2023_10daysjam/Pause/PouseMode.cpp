@@ -8,8 +8,9 @@ void PouseMode::Initialize()
 	imagePlayBackText_ = Novice::LoadTexture("./Resources/images/Text/PTGameBack.png");
 	imageTitleBackText_ = Novice::LoadTexture("./Resources/images/Text/PTTitleBack.png");
 	textFrameImage_ = Novice::LoadTexture("./Resources/images/Back/Textfream.png");
-	yesImage_ = Novice::LoadTexture("./Resources/images/Text/ChackNO.png");
-	noImage_ = Novice::LoadTexture("./Resources/images/Text/ChackYES.png");
+	yesImage_ = Novice::LoadTexture("./Resources/images/Text/ChackYES.png");
+	noImage_ = Novice::LoadTexture("./Resources/images/Text/ChackNO.png");
+	chacktextImage_ = Novice::LoadTexture("./Resources/images/Text/ChackQ.png");
 
 
 	GMPauseTextPos_ = { 1100,10 };
@@ -17,6 +18,9 @@ void PouseMode::Initialize()
 	PMPauseTextPos_[0] = {500,20};
 	PMPauseTextPos_[1] = { 100,200 };
 	PMPauseTextPos_[2] = { 100,500 };
+
+	chackTextPos_[0] = { 330, 200 };
+	chackTextPos_[1] = { 330, 200 };
 
 }
 
@@ -60,6 +64,7 @@ void PouseMode::Update(int gameSModeNow)
 
 				if (Novice::IsTriggerMouse(0)) {
 					changeFrag_ = true;
+
 				}
 
 			}
@@ -141,9 +146,46 @@ void PouseMode::Draw(int gameSModeNow, Vector2 ShakePos)
 
 void PouseMode::ChackUpdate()
 {
+	if ((mousePos_.x_ >= chackTextPos_[0].x_ && mousePos_.x_ <= chackTextPos_[0].x_ + size_.x_)
+		&&
+		(mousePos_.y_ >= chackTextPos_[0].y_+100 && mousePos_.y_ <= chackTextPos_[0].y_ + 100 + size_.y_))
+	{
+
+		chackColor_[0].color = RED;
+
+		if (Novice::IsTriggerMouse(0)) {
+			changeFrag_ = false;
+			titleChangeFrag_ = true;
+			chackFrage_ = false;
+		}
+
+	}
+	else {
+		chackColor_[0].color = WHITE;
+	}
+
+	if ((mousePos_.x_ >= chackTextPos_[1].x_ +350 && mousePos_.x_ <= chackTextPos_[1].x_+350 + size_.x_)
+		&&
+		(mousePos_.y_ >= chackTextPos_[1].y_ + 100 && mousePos_.y_ <= chackTextPos_[1].y_ + 100 + size_.y_))
+	{
+
+		chackColor_[1].color = RED;
+
+		if (Novice::IsTriggerMouse(0)) {
+			chackFrage_ = false;
+		}
+
+	}
+	else {
+		chackColor_[1].color = WHITE;
+	}
 }
 
 void PouseMode::ChackDraw()
 {
 	Novice::DrawSprite(330, 200, textFrameImage_, 1, 1, 0.0f, WHITE);
+	Novice::DrawSprite(330, 200, chacktextImage_, 1, 1, 0.0f, WHITE);
+	Novice::DrawSprite(chackTextPos_[0].x_, chackTextPos_[0].y_, yesImage_, 1, 1, 0.0f, chackColor_[0].color);
+	Novice::DrawSprite(chackTextPos_[1].x_, chackTextPos_[1].y_, noImage_, 1, 1, 0.0f, chackColor_[1].color);
+
 }
