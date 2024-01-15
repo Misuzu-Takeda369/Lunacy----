@@ -163,7 +163,8 @@ void GamePScene::Update()
 
 		
 			//シーン変換(オーバーかクリアか)
-			if ((timerUi_->GetterTimer() <= 0) || ((player_->GetHp() <= 0) || (player_->GetSp() <= 0))) {
+			if (((player_->GetHp() <= 0) || (player_->GetSp() <= 0))) {
+				//エフェクトぶち込んでもおもろそう
 				flagChange_ = true;
 			}
 

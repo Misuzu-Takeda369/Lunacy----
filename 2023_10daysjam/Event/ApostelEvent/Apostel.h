@@ -74,7 +74,8 @@ protected:
 	const int MaxHitCoolTime_ = 10;
 
 	bool _right; //アニメーションに渡すようの向き
-	const float maxHP_ = 666;
+	//最大体力
+	const float maxHP_ = 444;
 
 	STATE state_ = IDOL;
 	SABSTATE sabState_ = SABSTATE::_NONE;
