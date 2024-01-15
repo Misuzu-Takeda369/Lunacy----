@@ -63,6 +63,15 @@ void Player::Initialize()
 	getItem_ = false;
 	getCoolTime_ = 0;
 
+	///音響関連
+	//音関連
+	attackNomalEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/Sword_practice_swing1.wav");
+	attackMacgiEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/maou_se_magic_ice02.wav");
+
+	//ハンドル
+	attackNomalPlay_ = 0;
+	attackMacgiPlay_ = 0;
+
 }
 
 void Player::Update(char* keys, char* preKeys)

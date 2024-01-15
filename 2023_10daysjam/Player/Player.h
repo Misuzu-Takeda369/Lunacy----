@@ -107,8 +107,8 @@ public:
 	/// UIに投げるよう
 	/// </summary>
 	/// <returns></returns>
-	float GetSpChangingPoint() {return spChangingPoint_;};
-	
+	float GetSpChangingPoint() { return spChangingPoint_; };
+
 
 	/// <summary>
 	/// 近距離の攻撃のゲッター
@@ -140,13 +140,13 @@ public:
 	/// <param name="spPoint"></param>
 	/// <returns></returns>
 	void SetSpChangingPoint(float spPoint) { spChangingPoint_ = spPoint; };
-	
+
 
 private:
 
 	//マウスの位置(Yも無いと関数動かん)
-	IntState mousePos_ = {0,0};
-	
+	IntState mousePos_ = { 0,0 };
+
 	//STATE用変数
 	STATE playerState_ = IDOL;
 	SABSTATE sabState_ = _NONE;
@@ -183,13 +183,13 @@ private:
 	//int jumpLag_ = 0;
 	///ジャンプ関連
 	const float baseJumpSpeed_ = 35.f;
-	
+
 	///攻撃関連
 	//現在の攻撃type
 	PlayerAttackType playerAttackTypeNow_ = Plane;
 	//近距離攻撃できるかフラグ(近距離)
 	bool attackFrag_ = false;
-	
+
 
 	//最初にいる位置
 	Vector2 standardPos_;
@@ -207,6 +207,14 @@ private:
 	//狂気時の被弾倍率
 	const float hitMagnification_ = 0.2f;
 
-	
+	///音響関連
+	//音関連
+	int attackNomalEffect_ = 0;
+	int attackMacgiEffect_ = 0;
+
+	//ハンドル
+	int attackNomalPlay_ = 0;
+	int attackMacgiPlay_ = 0;
+
 };
 

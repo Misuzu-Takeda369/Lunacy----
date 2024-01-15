@@ -38,7 +38,7 @@ void SceneManager::Initialize() {
 	gameP_->Initialize(nowWave_);
 	gameC_->Initialize();
 	gameO_->Initialize();
-	waveS_->Initialize();
+	waveS_->Initialize(maxWave_);
 
 	saveData_->Initialize();
 	dataScene_->Initialize();
