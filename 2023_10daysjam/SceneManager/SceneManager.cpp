@@ -34,7 +34,8 @@ void SceneManager::Initialize() {
 
 	//初期化
 	title_->Initialize();
-	gameP_->Initialize();
+	//
+	gameP_->Initialize(nowWave_);
 	gameC_->Initialize();
 	gameO_->Initialize();
 	waveS_->Initialize();

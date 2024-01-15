@@ -38,7 +38,7 @@ private:
 
 	//体力の最大値
 	const float maxHp_ = 10.0f;
-
+	float Hp_;
 	//コイツの火力
 	const float nomalPoint_ = 50.0f;
 

@@ -19,7 +19,7 @@ void FHEnemy::Initialize(Vector2 pos, Vector2 speed, float radius)
 	//グラフ？何倍か(基準が1なので)
 	ampli = 3.0f;
 
-	hp_ = maxHp_;
+	Hp_ = maxHp_;
 
 	//プレイヤーに影響する攻撃力
 	attackPoint_ = nomalPoint_;

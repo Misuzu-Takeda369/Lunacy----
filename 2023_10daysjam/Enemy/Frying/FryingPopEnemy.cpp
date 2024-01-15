@@ -80,14 +80,14 @@ void FryingEnemy::Update()
 	//ゲージ処理用
 	decreasedHp_ = maxHp_ - hp_;
 
-	eHUi_->Update(decreasedHp_, charaBase_.pos_);
+	eHUi_->Update(hp_, charaBase_.pos_);
 
 
 #ifdef _DEBUG
 #pragma region ImGui関連
 
-	ImGui::Begin("EnemyHp");
-	ImGui::Text("EnemyHp %f\n", hp_);
+	ImGui::Begin("EnemyFryHp");
+	ImGui::Text("EnemyFryHp %f\n", hp_);
 	ImGui::Text("enemyNotAppeared_ %d\n", enemyNotAppeared_);
 	ImGui::End();
 
@@ -182,7 +182,7 @@ void FryingEnemy::EnemyBorn()
 		hp_ = fhEnemy_->GetHp();
 
 		hp_ = fhEnemy_->GetHpMax();
-		maxHp_ = (fhEnemy_->GetHpMax());
+		maxHp_ = fhEnemy_->GetHpMax();
 
 		decreasedHp_ = maxHp_ - hp_;
 		

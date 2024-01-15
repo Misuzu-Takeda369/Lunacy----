@@ -45,7 +45,7 @@ public:
 	/// </summary>
 	void Initialize(Wave& nowWave);
 
-	void Initialize();
+	//void Initialize();
 
 	/// <summary>
 	/// 毎フレーム処理

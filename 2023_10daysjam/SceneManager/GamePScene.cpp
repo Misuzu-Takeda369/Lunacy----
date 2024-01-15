@@ -98,40 +98,6 @@ void GamePScene::Initialize(Wave& nowWave)
 
 }
 
-void GamePScene::Initialize()
-{
-	CountNum_ = 0;
-	player_ = new Player();
-	player_->Initialize();
-
-
-	hpUi_ = new HpUI();
-	hpUi_->Initialize();
-
-	spUi_ = new SpUI();
-	spUi_->Initialize();
-
-	timerUi_ = new TimerUI();
-	timerUi_->Initialize();
-
-	backGround_ = new BackGround();
-	backGround_->Initialize();
-
-	tutrialSystem_ = new TutrialSystem;
-	tutrialSystem_->Initialize(player_->GetPlayerSpeedX());
-
-	//boss
-	apostelEvent_ = new ApostelEvent;
-	apostelEvent_->Initialize();
-
-	//多分後で変わる(初期化内容からがっつり変わる可能性)
-	nowWave_ = Tutorial;
-
-	pouseMode_ = new PouseMode();
-	pouseMode_->Initialize();
-
-}
-
 void GamePScene::Update()
 {
 	memcpy(preKeys, keys, 256);
@@ -320,7 +286,7 @@ void GamePScene::Update()
 			//ここのif文でシーン移行出来るかを判別
 			//現在はOを押したときに移動(がめおべ)
 			if ((player_->GetHp() <= 0) || (player_->GetSp() <= 0)) {
-				//flagChange_ = true;
+				flagChange_ = true;
 				flagGameOver_ = true;
 				GameMove_ = false;
 			}
