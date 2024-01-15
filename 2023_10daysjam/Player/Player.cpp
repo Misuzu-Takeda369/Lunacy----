@@ -287,6 +287,9 @@ void Player::Attack()
 			newlAttack->Initialize(playerAttackTypeNow_, maindStateNow_, playerDirectionM_, charaBase_.pos_);
 			lAttack_.push_back(newlAttack);
 		}
+		else {
+
+		}
 
 		attackFrag_ = true;
 		//SP関連の処理
@@ -303,7 +306,7 @@ void Player::Attack()
 
 
 		//攻撃力の設定
-		mAttack_->DeterminingAttackPower(hp_, maxHp_,sp_,maxSp_);
+		mAttack_->DeterminingAttackPower(hp_, maxHp_, sp_, maxSp_);
 
 		for (PlayerLAttack* lAttack : lAttack_) {
 			lAttack->DeterminingAttackPower(hp_, maxHp_,sp_,maxSp_);
@@ -445,7 +448,7 @@ void Player::UsedItem(float& recover) {
 		sp_ += recover;
 		getItem_ = true;
 
-		spChangingPoint_ += 5.0f;
+		spChangingPoint_ += 2.0f;
 		if (spChangingPoint_ >= maxSp_) {
 			spChangingPoint_ = maxSp_;
 		}

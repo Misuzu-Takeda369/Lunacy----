@@ -129,6 +129,9 @@ void PopEnemy::OnCollision(float& damege)
 
 	if (!hit_) {
 		hp_ -= damege;
+		if (hp_ < 1.0f) {
+			hp_ = 0.0f;
+		}
 		hit_ = true;
 	}
 

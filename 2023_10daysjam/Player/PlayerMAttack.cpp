@@ -71,7 +71,18 @@ void PlayerMAttack::DeterminingAttackPower(float hp, float maxHp, float sp, floa
 
 	}
 	else {
-		attackPoint_ = nomalAttackPoint_;
+		//attackPoint_ = nomalAttackPoint_;
+
+		if (maindStateNow_ == 0) {
+			attackPoint_ = nomalAttackPoint_;
+		}
+		else {
+			//magicAttackPoint_ = magicAttackPoint_ + ((maxHp - hp) * attackMultiples_);
+			float multiplyHp = std::clamp(((maxHp - hp) / hp), 1.0f, 3.0f);
+			float multiplySp = std::clamp((1.0f + (maxSp - sp) / sp), 1.0f, 3.0f);
+			attackPoint_ = nomalAttackPoint_ * (multiplyHp + multiplySp);
+
+		}
 	}
 }
 
