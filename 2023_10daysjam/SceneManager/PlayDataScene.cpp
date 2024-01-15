@@ -8,6 +8,16 @@ void PlayDataScene::Initialize()
 	commentBack_ = Novice::LoadTexture("./Resources/images/Back/sleep.png");
 	dataText1_= Novice::LoadTexture("./Resources/images/Text/dataText1.png");
 	koron_ = Novice::LoadTexture("./Resources/images/number/koron.png");
+
+	selectEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/maou_se_system26.wav");
+	decisionEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/maou_se_system13.wav");
+
+	OnselectBackPlay_ = false;
+	selectEffectPlay_ = 0;
+
+	//画像を少しデカくしたらおもろそう
+	ScaleSizeX = 0.25f;
+	ScaleSizeY = 0.25f;
 }
 
 void PlayDataScene::Update()
@@ -41,7 +51,7 @@ void PlayDataScene::Draw()
 	Novice::DrawSprite(0, 0, dataText1_, 1, 1, 0, WHITE);
 	Novice::DrawSprite(512, 0, commentBack_, 1, 1, 0, WHITE);
 	Novice::DrawSprite(512, 0, tips_[tipsNum_], 1, 1, 0, WHITE);
-	Novice::DrawSprite(backButtonPos_.x_, backButtonPos_.y_, backTitleButton_, 0.25f, 0.25f, 0, WHITE);
+	Novice::DrawSprite(backButtonPos_.x_, backButtonPos_.y_, backTitleButton_, ScaleSizeX, ScaleSizeY, 0, WHITE);
 	Novice::DrawSprite(200, 160, numSprite[data_->GetLastWave()], 0.75f, 0.75f, 0, WHITE);
 	for (int i = 0; i < 2; i++) {
 		Novice::DrawSprite(i * 60 + 50, 400, numSprite[time_[i]], 0.75f, 0.75f, 0, WHITE);
@@ -64,8 +74,28 @@ void PlayDataScene::MouseBottonChack()
 		&&
 		(mousePos_.y_ >= backButtonPos_.y_&& mousePos_.y_ <= backButtonPos_.y_ + buttonSize_)) {
 
+		//連続でならないようにするやつ
+		if (OnselectBackPlay_ == false) {
+
+			OnselectBackPlay_ = true;
+
+			//マウスに触れたときに音が鳴る
+			if (Novice::IsPlayingAudio(selectEffectPlay_) == 0) {
+				Novice::PlayAudio(selectEffect_, 0, 1);
+			}
+		}
+
+		ScaleSizeX = 0.30f; ScaleSizeY = 0.30f;
+
 		if (Novice::IsTriggerMouse(0)) {
 			backTitleFlag = true;
+			Novice::StopAudio(selectEffect_);
+			Novice::PlayAudio(decisionEffect_, 0, 2);
+			ScaleSizeX = 0.25f; ScaleSizeY = 0.25f;
 		}
+	}
+	else {
+		OnselectBackPlay_ = false;
+		ScaleSizeX = 0.25f; ScaleSizeY = 0.25f;
 	}
 }

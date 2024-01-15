@@ -78,6 +78,15 @@ private:
 	int retryImage_ = 0;
 	int toTitleImage_ = 0;
 
+	///音関連(リソース) 
+	int selectEffect_ = 0;
+	int decisionEffect_ = 0;
+	//音の尺が短すぎて機能してない(意味ない)かも
+	int selectEffectPlay_ = 0;
+
+	bool OnselectRetryPlay_ = false;
+	bool OnselectTitlePlay_ = false;
+
 	IntState retryPos_;
 	IntState toTitlePos_;
 	const int textSizeX_ = 384;

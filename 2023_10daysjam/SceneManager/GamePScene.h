@@ -223,6 +223,7 @@ private:
 	//ポーズ関連のクラスをロード
 	PouseMode* pouseMode_ = nullptr;
 
+
 	
 
 };

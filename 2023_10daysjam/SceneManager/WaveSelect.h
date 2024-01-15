@@ -105,6 +105,16 @@ private:
 	int backImage_;
 	int backTitleImage_;
 
+	///音関連(リソース) 
+	int selectEffect_ = 0;
+	int decisionEffect_ = 0;
+	//音の尺が短すぎて機能してない(意味ない)かも
+	int selectEffectPlay_ = 0;
+	bool OnselectWavePlay_[4] = {
+		false,false,false,false
+	};
+	
+
 
 	//チュートリアル用の文字サイズ
 	const IntState tutrialSize_={

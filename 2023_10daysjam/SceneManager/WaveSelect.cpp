@@ -55,6 +55,13 @@ void WaveSelect::Initialize(int& maxWave)
 	backTitleImage_ = Novice::LoadTexture("./Resources/images/UI/backbutton.png");
 
 	ColorLode();
+
+	///音関連(リソース) 
+	selectEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/maou_se_system26.wav");
+	decisionEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/maou_se_system13.wav");
+	//音の尺が短すぎて機能してない(意味ない)かも
+	selectEffectPlay_ = 0;
+	
 }
 
 void WaveSelect::Update()
@@ -107,17 +114,31 @@ void WaveSelect::MouseBottonChack()
 		{
 
 			selectColor_[0].color = RED;
+			//連続でならないようにするやつ
+			if (OnselectWavePlay_[0] == false) {
+
+				OnselectWavePlay_[0] = true;
+
+				//マウスに触れたときに音が鳴る
+				if (Novice::IsPlayingAudio(selectEffectPlay_) == 0) {
+					Novice::PlayAudio(selectEffect_, 0, 1);
+				}
+			}
+
 			//はじめるに入っている場合左クリックするとスターとする
 			if (Novice::IsTriggerMouse(0) && changeTimingFrame_ >= changeTimingFrameMax_) {
 				flagChange_ = true;
 				nowWave_ = Tutorial;
 				changeTimingFrame_ = 0;
+				Novice::StopAudio(selectEffect_);
+				Novice::PlayAudio(decisionEffect_, 0, 2);
 			}
 
 
 		}
 		else {
 			selectColor_[0].color = WHITE;
+			OnselectWavePlay_[0] = false;
 		}
 	}
 
@@ -130,16 +151,30 @@ void WaveSelect::MouseBottonChack()
 			(mousePos_.y_ >= selectLetter_[1].y_ && mousePos_.y_ <= selectLetter_[1].y_ + textSize_.y_))
 		{
 			selectColor_[1].color = RED;
+			//連続でならないようにするやつ
+			if (OnselectWavePlay_[1] == false) {
+
+				OnselectWavePlay_[1] = true;
+
+				//マウスに触れたときに音が鳴る
+				if (Novice::IsPlayingAudio(selectEffectPlay_) == 0) {
+					Novice::PlayAudio(selectEffect_, 0, 1);
+				}
+			}
+
 			//はじめるに入っている場合左クリックするとスターとする
 			if (Novice::IsTriggerMouse(0) && changeTimingFrame_ >= changeTimingFrameMax_) {
 				flagChange_ = true;
 				nowWave_ = Wave1;
 				changeTimingFrame_ = 0;
+				Novice::StopAudio(selectEffect_);
+				Novice::PlayAudio(decisionEffect_, 0, 2);
 			}
 
 		}
 		else {
 			selectColor_[1].color = WHITE;
+			OnselectWavePlay_[1] = false;
 		}
 
 	}
@@ -154,16 +189,31 @@ void WaveSelect::MouseBottonChack()
 			(mousePos_.y_ >= selectLetter_[2].y_ && mousePos_.y_ <= selectLetter_[2].y_ + textSize_.y_))
 		{
 			selectColor_[2].color = RED;
+
+			//連続でならないようにするやつ
+			if (OnselectWavePlay_[2] == false) {
+
+				OnselectWavePlay_[2] = true;
+
+				//マウスに触れたときに音が鳴る
+				if (Novice::IsPlayingAudio(selectEffectPlay_) == 0) {
+					Novice::PlayAudio(selectEffect_, 0, 1);
+				}
+			}
+
 			//はじめるに入っている場合左クリックするとスターとする
 			if (Novice::IsTriggerMouse(0) && changeTimingFrame_ >= changeTimingFrameMax_) {
 				flagChange_ = true;
 				nowWave_ = Wave2;
 				changeTimingFrame_ = 0;
+				Novice::StopAudio(selectEffect_);
+				Novice::PlayAudio(decisionEffect_, 0, 2);
 			}
 
 		}
 		else {
 			selectColor_[2].color = WHITE;
+			OnselectWavePlay_[2] = false; 
 		}
 	}
 
@@ -177,17 +227,32 @@ void WaveSelect::MouseBottonChack()
 			(mousePos_.y_ >= selectLetter_[3].y_ && mousePos_.y_ <= selectLetter_[3].y_ + textSize_.y_))
 		{
 			selectColor_[3].color = RED;
+
+			//連続でならないようにするやつ
+			if (OnselectWavePlay_[3] == false) {
+
+				OnselectWavePlay_[3] = true;
+
+				//マウスに触れたときに音が鳴る
+				if (Novice::IsPlayingAudio(selectEffectPlay_) == 0) {
+					Novice::PlayAudio(selectEffect_, 0, 1);
+				}
+			}
+
 			//はじめるに入っている場合左クリックするとスターとする
 			if (Novice::IsTriggerMouse(0) && changeTimingFrame_ >= changeTimingFrameMax_) {
 				flagChange_ = true;
 				nowWave_ = Wave3;
 				changeTimingFrame_ = 0;
+				Novice::StopAudio(selectEffect_);
+				Novice::PlayAudio(decisionEffect_, 0, 2);
 			}
 
 
 		}
 		else {
 			selectColor_[3].color = WHITE;
+			OnselectWavePlay_[3] = false;
 		}
 	}
 
@@ -195,7 +260,6 @@ void WaveSelect::MouseBottonChack()
 
 #pragma region BackTitle
 
-	
 		if ((mousePos_.x_ >= selectLetter_[0].x_ && mousePos_.x_ <= selectLetter_[0].x_ + tutrialSize_.x_)
 			&&
 			(mousePos_.y_ >= 10 && mousePos_.y_ <= 10 + tutrialSize_.y_))
@@ -209,9 +273,6 @@ void WaveSelect::MouseBottonChack()
 
 
 		}
-	
-	
-
 #pragma endregion
 }
 

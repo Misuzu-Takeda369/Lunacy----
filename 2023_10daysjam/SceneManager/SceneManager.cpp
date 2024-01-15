@@ -22,6 +22,7 @@ void SceneManager::Initialize() {
 	memcpy(preKeys, preKeys, 256);
 	Novice::GetHitKeyStateAll(keys);
 
+
 	//インスタンス作成
 	title_ = new TitleScene();
 	gameP_ = new GamePScene();
@@ -34,7 +35,6 @@ void SceneManager::Initialize() {
 
 	//初期化
 	title_->Initialize();
-	//
 	gameP_->Initialize(nowWave_);
 	gameC_->Initialize();
 	gameO_->Initialize();

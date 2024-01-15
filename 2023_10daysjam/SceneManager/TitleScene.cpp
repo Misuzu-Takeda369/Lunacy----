@@ -10,6 +10,14 @@ void TitleScene::Initialize()
 	startImage_ = Novice::LoadTexture("./Resources/images/Text/Start.png");
 	titleBack_= Novice::LoadTexture("./Resources/images/Back/Titleback_2.png");
 
+	selectEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/maou_se_system26.wav");
+	decisionEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/maou_se_system13.wav");
+
+	OnselectNextPlay_ = false;
+	OnselectBookPlay_ = false;
+	selectEffectPlay_ = 0;
+	//decisionEffecttPlay_ = 0;
+
 	startPos_ = {
 		750,350
 	};
@@ -67,7 +75,7 @@ void TitleScene::Draw()
 	//文字の奴
 	Novice::DrawSprite(startPos_.x_, startPos_.y_, startImage_, 1.0f, 1.0f, 0.0f, startColor_.color);
 
-	Novice::DrawSprite(bookPos_.x_, bookPos_.y_, bookMark_, 0.25f, 0.25f, 0, WHITE);
+	Novice::DrawSprite(bookPos_.x_, bookPos_.y_, bookMark_, 0.25f, 0.25f, 0, bookColor_.color);
 }
 
 void TitleScene::MouseBottonChack()
@@ -80,24 +88,62 @@ void TitleScene::MouseBottonChack()
 		(mousePos_.y_ >= startPos_.y_ && mousePos_.y_ <= startPos_.y_ + startSizeY_))
 	{
 		startColor_.color = RED;
+
+		//連続でならないようにするやつ
+		if (OnselectNextPlay_ == false) {
+
+			OnselectNextPlay_ = true;
+
+			//マウスに触れたときに音が鳴る
+			if (Novice::IsPlayingAudio(selectEffectPlay_) == 0) {
+				Novice::PlayAudio(selectEffect_, 0, 1);
+			}
+		}
+
 		//はじめるに入っている場合左クリックするとスターとする
 		if (Novice::IsTriggerMouse(0) && changeTimingFrame_ >= changeTimingFrameMax_) {
 			flagChange_ = true;
 			changeTimingFrame_ = 0;
+
+			Novice::StopAudio(selectEffect_);
+			Novice::PlayAudio(decisionEffect_, 0, 2);
 		}
 	}
 	else {
 		startColor_.color = WHITE;
+		OnselectNextPlay_ = false;
 	}
 
+	//セーブデータの奴
 	if ((mousePos_.x_ >= bookPos_.x_ && mousePos_.x_ <= bookPos_.x_ + bookSize_)
 		&&
 		(mousePos_.y_ >= bookPos_.y_ && mousePos_.y_ <= bookPos_.y_ + bookSize_)) {
 
+		bookColor_.color = RED;
+
+		//連続でならないようにするやつ
+		if (OnselectBookPlay_ == false) {
+
+			OnselectBookPlay_ = true;
+
+			//マウスに触れたときに音が鳴る
+			if (Novice::IsPlayingAudio(selectEffectPlay_) == 0) {
+				Novice::PlayAudio(selectEffect_, 0, 1);
+			}
+		}
+
 		if (Novice::IsTriggerMouse(0)) {
 			toPlayData_ = true;
+			Novice::StopAudio(selectEffect_);
+			Novice::PlayAudio(decisionEffect_, 0, 2);
 		}
 	}
+	else {
+		bookColor_.color = WHITE;
+		OnselectBookPlay_ = false;
+	}
+
 }
+
 
 

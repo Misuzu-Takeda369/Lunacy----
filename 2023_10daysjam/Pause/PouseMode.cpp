@@ -12,6 +12,19 @@ void PouseMode::Initialize()
 	noImage_ = Novice::LoadTexture("./Resources/images/Text/ChackNO.png");
 	chacktextImage_ = Novice::LoadTexture("./Resources/images/Text/ChackQ.png");
 
+	selectEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/maou_se_system26.wav");
+	decisionEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/maou_se_system13.wav");
+
+	OnselectPousePlay_ = false;
+	OnSelectPTextPlay_[0] = false;
+	OnSelectPTextPlay_[1] = false;
+
+	OnSelectPChackPlay_[0] = false;
+	OnSelectPChackPlay_[1] = false;
+
+	selectEffectPlay_ = 0;
+	//decisionEffecttPlay_ = 0;
+
 
 	GMPauseTextPos_ = { 1100,10 };
 
@@ -21,6 +34,7 @@ void PouseMode::Initialize()
 
 	chackTextPos_[0] = { 330, 200 };
 	chackTextPos_[1] = { 330, 200 };
+
 
 }
 
@@ -39,14 +53,28 @@ void PouseMode::Update(int gameSModeNow)
 		{
 
 			imageColor_.color = YELLOW;
+			//連続でならないようにするやつ
+			if (OnselectPousePlay_ == false) {
+
+				OnselectPousePlay_ = true;
+
+				//マウスに触れたときに音が鳴る
+				if (Novice::IsPlayingAudio(selectEffectPlay_) == 0) {
+					Novice::PlayAudio(selectEffect_, 0, 1);
+				}
+			}
 
 			if (Novice::IsTriggerMouse(0)) {
 				changeFrag_ = true;
+
+				Novice::StopAudio(selectEffect_);
+				Novice::PlayAudio(decisionEffect_, 0, 2);
 			}
 
 		}
 		else {
 			imageColor_.color = WHITE;
+			OnselectPousePlay_ = false;
 		}
 		break;
 
@@ -61,15 +89,29 @@ void PouseMode::Update(int gameSModeNow)
 			{
 
 				PimageColor_[0].color = RED;
+				//連続でならないようにするやつ
+				if (OnSelectPTextPlay_[0] == false) {
+
+					OnSelectPTextPlay_[0] = true;
+
+					//マウスに触れたときに音が鳴る
+					if (Novice::IsPlayingAudio(selectEffectPlay_) == 0) {
+						Novice::PlayAudio(selectEffect_, 0, 1);
+					}
+				}
 
 				if (Novice::IsTriggerMouse(0)) {
 					changeFrag_ = true;
+
+					Novice::StopAudio(selectEffect_);
+					Novice::PlayAudio(decisionEffect_, 0, 2);
 
 				}
 
 			}
 			else {
 				PimageColor_[0].color = WHITE;
+				OnSelectPTextPlay_[0] = false;
 			}
 
 
@@ -79,14 +121,27 @@ void PouseMode::Update(int gameSModeNow)
 			{
 
 				PimageColor_[1].color = RED;
+				//連続でならないようにするやつ
+				if (OnSelectPTextPlay_[1] == false) {
+
+					OnSelectPTextPlay_[1] = true;
+
+					//マウスに触れたときに音が鳴る
+					if (Novice::IsPlayingAudio(selectEffectPlay_) == 0) {
+						Novice::PlayAudio(selectEffect_, 0, 1);
+					}
+				}
 
 				if (Novice::IsTriggerMouse(0)) {
 					chackFrage_ = true;
+					Novice::StopAudio(selectEffect_);
+					Novice::PlayAudio(decisionEffect_, 0, 2);
 				}
 
 			}
 			else {
 				PimageColor_[1].color = WHITE;
+				OnSelectPTextPlay_[1] = false;
 			}
 		}
 		else {
@@ -153,15 +208,31 @@ void PouseMode::ChackUpdate()
 
 		chackColor_[0].color = RED;
 
+		//連続でならないようにするやつ
+		if (OnSelectPChackPlay_[0] == false) {
+
+			OnSelectPChackPlay_[0] = true;
+
+			//マウスに触れたときに音が鳴る
+			if (Novice::IsPlayingAudio(selectEffectPlay_) == 0) {
+				Novice::PlayAudio(selectEffect_, 0, 1);
+			}
+		}
+
 		if (Novice::IsTriggerMouse(0)) {
 			changeFrag_ = false;
 			titleChangeFrag_ = true;
 			chackFrage_ = false;
+
+			Novice::StopAudio(selectEffect_);
+			Novice::PlayAudio(decisionEffect_, 0, 2);
+
 		}
 
 	}
 	else {
 		chackColor_[0].color = WHITE;
+		OnSelectPChackPlay_[0] = false;
 	}
 
 	if ((mousePos_.x_ >= chackTextPos_[1].x_ +350 && mousePos_.x_ <= chackTextPos_[1].x_+350 + size_.x_)
@@ -171,13 +242,27 @@ void PouseMode::ChackUpdate()
 
 		chackColor_[1].color = RED;
 
+		//連続でならないようにするやつ
+		if (OnSelectPChackPlay_[1] == false) {
+
+			OnSelectPChackPlay_[1] = true;
+
+			//マウスに触れたときに音が鳴る
+			if (Novice::IsPlayingAudio(selectEffectPlay_) == 0) {
+				Novice::PlayAudio(selectEffect_, 0, 1);
+			}
+		}
+
 		if (Novice::IsTriggerMouse(0)) {
 			chackFrage_ = false;
+			Novice::StopAudio(selectEffect_);
+			Novice::PlayAudio(decisionEffect_, 0, 2);
 		}
 
 	}
 	else {
 		chackColor_[1].color = WHITE;
+		OnSelectPChackPlay_[1] = false;
 	}
 }
 

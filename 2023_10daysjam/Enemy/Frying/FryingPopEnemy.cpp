@@ -77,8 +77,8 @@ void FryingEnemy::Update()
 		break;
 	}
 
-	//ゲージ処理用
-	decreasedHp_ = maxHp_ - hp_;
+	//ゲージ処理用(ゲージ未使用になったので不要に)
+	//decreasedHp_ = maxHp_ - hp_;
 
 	eHUi_->Update(hp_, charaBase_.pos_);
 

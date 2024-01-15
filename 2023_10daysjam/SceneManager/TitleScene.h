@@ -62,6 +62,7 @@ public:
 	bool GetToPlayDataFlag() { return toPlayData_; }
 	void SetToPlayDataFlag(bool flag) { toPlayData_ = flag; }
 
+
 private:
 
 	//シーン変更できるかどうか
@@ -83,6 +84,16 @@ private:
 	int startImage_ = 0;
 	int titleBack_ = 0;
 
+	///音関連(リソース) 
+	int selectEffect_ = 0;
+	int decisionEffect_ = 0;
+
+	//音の尺が短すぎて機能してない(意味ない)かも
+	int selectEffectPlay_ = 0;
+	
+	bool OnselectNextPlay_ = false;
+	bool OnselectBookPlay_ = false;
+
 	IntState startPos_;
 	const int startSizeX_ = 384;
 	const int startSizeY_ = 128;
@@ -97,5 +108,7 @@ private:
 	bool toPlayData_ = false;
 	IntState bookPos_ = { 1150,580 };
 	int bookSize_ = int(512 * 0.25);
+	UnitColor bookColor_ = { 255,255,255,255,0xFFFFFFFF };
+	
 
 };

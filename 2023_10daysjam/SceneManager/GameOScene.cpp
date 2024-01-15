@@ -11,6 +11,13 @@ void GameOScene::Initialize()
 	retryImage_ = Novice::LoadTexture("./Resources/images/Text/Retry.png"); 
 	toTitleImage_ = Novice::LoadTexture("./Resources/images/Text/toTitle.png");
 
+	selectEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/maou_se_system26.wav");
+	decisionEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/maou_se_system13.wav");
+
+	OnselectRetryPlay_ = false;
+	OnselectTitlePlay_ = false;
+	selectEffectPlay_ = 0;
+
 
 	retryPos_ = { 450,350 };
 	toTitlePos_ = { 450,550 };
@@ -76,15 +83,30 @@ void GameOScene::MouseBottonChack()
 		(mousePos_.y_ >= retryPos_.y_ && mousePos_.y_ <= retryPos_.y_ + textSizeY_))
 	{
 		retryColor_.color = RED;
+
+		//連続でならないようにするやつ
+		if (OnselectRetryPlay_ == false) {
+
+			OnselectRetryPlay_ = true;
+
+			//マウスに触れたときに音が鳴る
+			if (Novice::IsPlayingAudio(selectEffectPlay_) == 0) {
+				Novice::PlayAudio(selectEffect_, 0, 1);
+			}
+		}
+
 		//範囲に入っている場合に入っている場合左クリックするとスターとする
 		if (Novice::IsTriggerMouse(0)) {
 			flagChange_ = true;
 			flagRetry_ = true;
-			
+
+			Novice::StopAudio(selectEffect_);
+			Novice::PlayAudio(decisionEffect_, 0, 2);
 		}
 	}
 	else {
 		retryColor_.color = WHITE;
+		OnselectRetryPlay_ = false;
 	}
 #pragma endregion
 
@@ -94,13 +116,28 @@ void GameOScene::MouseBottonChack()
 		(mousePos_.y_ >= toTitlePos_.y_ && mousePos_.y_ <= toTitlePos_.y_ + textSizeY_))
 	{
 		toTitleColor_.color = RED;
+		//連続でならないようにするやつ
+		if (OnselectTitlePlay_ == false) {
+
+			OnselectTitlePlay_ = true;
+
+			//マウスに触れたときに音が鳴る
+			if (Novice::IsPlayingAudio(selectEffectPlay_) == 0) {
+				Novice::PlayAudio(selectEffect_, 0, 1);
+			}
+		}
+
 		//範囲に入っている場合に入っている場合左クリックするとスターとする
 		if (Novice::IsTriggerMouse(0) ) {
 			flagChange_ = true;
+			Novice::StopAudio(selectEffect_);
+			Novice::PlayAudio(decisionEffect_, 0, 2);
+
 		}
 	}
 	else {
 		toTitleColor_.color = WHITE;
+		OnselectTitlePlay_ = false;
 	}
 #pragma endregion
 

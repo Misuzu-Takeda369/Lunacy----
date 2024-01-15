@@ -87,6 +87,16 @@ private:
 	int textFrameImage_;
 	int chacktextImage_;
 
+	///音関連(リソース) 
+	int selectEffect_ = 0;
+	int decisionEffect_ = 0;
+
+	//音の尺が短すぎて機能してない(意味ない)かも
+	int selectEffectPlay_ = 0;
+	bool OnselectPousePlay_ = false;
+	bool OnSelectPTextPlay_[2] = {};
+	bool OnSelectPChackPlay_[2] = {};
+
 
 	//ゲームモードの時に出てくる文字の奴
 	IntState GMPauseTextPos_;
