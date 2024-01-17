@@ -43,6 +43,13 @@ void PopEnemy::Initialize(MaindState maindStateNow, Wave nowWave, int enemyNotAp
 	eHUi_ = new EHpUI();
 	eHUi_->Initialize(charaBase_.pos_, float(hp_));
 
+	///音響
+	hitEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/blow6.wav");
+	walkEffect_ =Novice::LoadAudio("./Resources/Music/SoundEffect/Wriggling_tentacles.wav");
+	//ハンドル
+	hitPlay_ = 0;
+	walkPlay_ = 0;
+
 }
 
 void PopEnemy::Update()
@@ -54,6 +61,10 @@ void PopEnemy::Update()
 	{
 	case HPNOMAL:
 		nHEnemy_->Update();
+
+		if (Novice::IsPlayingAudio(walkPlay_) == 0) {
+			walkPlay_ = Novice::PlayAudio(walkEffect_, 0, 0.3f);
+		}
 
 		attackPoint_ = nHEnemy_->GetAttackPoint();
 		charaBase_.pos_.x = nHEnemy_->GetPosX();
@@ -67,6 +78,10 @@ void PopEnemy::Update()
 		break;
 
 	case SPNOMAL:
+
+		if (Novice::IsPlayingAudio(walkPlay_) == 0) {
+			walkPlay_ = Novice::PlayAudio(walkEffect_, 0, 0.3f);
+		}
 
 		nSEnemy_->Update();
 
@@ -84,7 +99,6 @@ void PopEnemy::Update()
 		break;
 	}
 
-	
 
 	eHUi_->Update(float(hp_), charaBase_.pos_);
 
@@ -127,6 +141,13 @@ void PopEnemy::OnCollision(float& damege)
 	//damege;
 	//hp_ -= 10.0f;
 
+	//効果音
+	Novice::PauseAudio(walkPlay_);
+
+	if (Novice::IsPlayingAudio(hitPlay_) == 0) {
+		Novice::PlayAudio(hitEffect_, 0, 0.6f);
+	}
+
 	if (!hit_) {
 		hp_ -= damege;
 		if (hp_ < 1.0f) {
@@ -137,11 +158,11 @@ void PopEnemy::OnCollision(float& damege)
 
 	if (hp_ <= 0.0f) {
 		isDead_ = true;
+
+		Novice::StopAudio(walkPlay_);
 	}
 
 }
-
-
 
 void PopEnemy::EnemyBorn(Wave nowWave)
 {
@@ -314,8 +335,15 @@ void PopEnemy::CoolCheak()
 		if (hitCoolTime_ >= MaxHitCoolTime_) {
 			hit_ = false;
 			hitCoolTime_ = 0;
+			Novice::ResumeAudio(walkPlay_);
 		}
 	}
+}
+
+void PopEnemy::StopMusic()
+{
+	Novice::StopAudio(walkPlay_);
+	Novice::StopAudio(hitPlay_);
 }
 
 

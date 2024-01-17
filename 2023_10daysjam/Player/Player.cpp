@@ -67,10 +67,12 @@ void Player::Initialize()
 	//音関連
 	attackNomalEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/Sword_practice_swing1.wav");
 	attackMacgiEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/maou_se_magic_ice02.wav");
+	walkEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/run_in_hall.wav");
 
 	//ハンドル
 	attackNomalPlay_ = 0;
 	attackMacgiPlay_ = 0;
+	walkPlay_ = 0;
 
 }
 
@@ -192,12 +194,25 @@ void Player::Move(char* keys, char* preKeys)
 {
 
 	if (1) {
+
 		//横移動
 		if (keys[DIK_LEFT] || keys[DIK_A]) {
 			if (charaBase_.pos_.x >= MimWindowWidth + boxSize_.x) {
 				charaBase_.pos_.x -= charaBase_.speed_.x;
 			}
 			playerDirectionM_ = LEFT;
+
+			//ジャンプの時は消す(走行音)
+			//ジャンプの時は消す(走行音)
+			if (jumpFrag_) {
+				Novice::StopAudio(walkPlay_);
+			}
+			else {
+				if (Novice::IsPlayingAudio(walkPlay_) == 0) {
+					walkPlay_ = Novice::PlayAudio(walkEffect_, 0, 0.4f);
+				}
+			}
+
 			//playerState_ = MOVE;
 		}
 		else if (keys[DIK_RIGHT] || keys[DIK_D]) {
@@ -205,12 +220,29 @@ void Player::Move(char* keys, char* preKeys)
 				charaBase_.pos_.x += charaBase_.speed_.x;
 			}
 			playerDirectionM_ = RIGHT;
+
+			//ジャンプの時は消す(走行音)
+			if (jumpFrag_) {
+				Novice::StopAudio(walkPlay_);
+			}
+			else {
+				if (Novice::IsPlayingAudio(walkPlay_) == 0) {
+					walkPlay_ = Novice::PlayAudio(walkEffect_, 0, 0.4f);
+				}
+			}
+			
 			//playerState_ = MOVE;
 		}
+		else {
+			Novice::StopAudio(walkPlay_);
+		}
+		
 	}
+	
 	//縦
 	Jump();
 	if (((preKeys[DIK_UP] == 0 && keys[DIK_UP] != 0) || (preKeys[DIK_W] == 0 && keys[DIK_W] != 0))) {
+		
 		jumpFrag_ = true;
 	}
 
@@ -282,6 +314,11 @@ void Player::Attack()
 		//現在SP使う攻撃の時に弾が出るようになる
 		if ((playerAttackTypeNow_ == Magic)) {
 
+			//効果音(魔法っぽいやつ)
+			if (Novice::IsPlayingAudio(attackMacgiPlay_) == 0) {
+				Novice::PlayAudio(attackMacgiEffect_, 0, 1);
+			}
+
 			PlayerLAttack* newlAttack = new PlayerLAttack();
 			//newlAttack->Initialize(playerAttackTypeNow_, maindStateNow_, playerDirectionA_, charaBase_.pos_);
 			newlAttack->Initialize(playerAttackTypeNow_, maindStateNow_, playerDirectionM_, charaBase_.pos_);
@@ -289,6 +326,11 @@ void Player::Attack()
 		}
 		else {
 
+			//効果音(ぶん回す音)
+			//効果音(魔法っぽいやつ)
+			if (Novice::IsPlayingAudio(attackNomalPlay_) == 0) {
+				Novice::PlayAudio(attackNomalEffect_, 0, 1);
+			}
 		}
 
 		attackFrag_ = true;

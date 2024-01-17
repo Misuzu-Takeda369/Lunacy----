@@ -211,10 +211,12 @@ private:
 	//音関連
 	int attackNomalEffect_ = 0;
 	int attackMacgiEffect_ = 0;
+	int walkEffect_ = 0;
 
 	//ハンドル
 	int attackNomalPlay_ = 0;
 	int attackMacgiPlay_ = 0;
+	int walkPlay_ = 0;
 
 };
 

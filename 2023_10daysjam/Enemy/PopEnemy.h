@@ -52,6 +52,11 @@ public:
 	 /// <param name="num">回数</param>
 	 int EnemyNotAppeared() {return enemyNotAppeared_;}
 
+	 /// <summary>
+	 /// シーン変換の時に音を止める関数
+	 /// </summary>
+	 void StopMusic();
+
 private:
 
 	//通常の敵
@@ -74,5 +79,15 @@ private:
 	//敵が出てこなかったときに数える奴
 	int enemyNotAppeared_;
 
+	///音響関連
+	//音関連
+	int hitEffect_ = 0;
+	int walkEffect_ = 0;
+	//ハンドル
+	int hitPlay_ = 0;
+	int walkPlay_ = 0;
+
+
+	
 };
 

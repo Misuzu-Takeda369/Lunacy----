@@ -248,6 +248,11 @@ void GamePScene::Update()
 				gameSModeNow_ = Pause;
 				changeTimingFrame_ = 0;
 				pouseMode_->SetChangeFrag(false);
+				
+
+				for (PopEnemy* enemies : enemy_) {
+					enemies->StopMusic();
+				}
 			}
 
 			////ポーズ関連の動き
@@ -265,7 +270,12 @@ void GamePScene::Update()
 				if (nowWave_ == Wave4) {
 					flagChange_ = true;
 					changeTimingFrame_ = 0;
+
+					for (PopEnemy* enemies : enemy_) {
+						enemies->StopMusic();
+					}
 				}
+
 			}
 			//ここのif文でシーン移行出来るかを判別
 			//現在はOを押したときに移動(がめおべ)
@@ -273,6 +283,10 @@ void GamePScene::Update()
 				flagChange_ = true;
 				flagGameOver_ = true;
 				changeTimingFrame_ = 0;
+
+				for (PopEnemy* enemies : enemy_) {
+					enemies->StopMusic();
+				}
 			}
 #endif // DEBUG
 			///クリア条件の変更
@@ -280,6 +294,11 @@ void GamePScene::Update()
 				if (nowWave_ == Wave4) {
 					flagChange_ = true;
 					changeTimingFrame_ = 0;
+
+					//念のため
+					for (PopEnemy* enemies : enemy_) {
+						enemies->StopMusic();
+					}
 				}
 
 			}
@@ -289,6 +308,10 @@ void GamePScene::Update()
 				flagChange_ = true;
 				flagGameOver_ = true;
 				GameMove_ = false;
+
+				for (PopEnemy* enemies : enemy_) {
+					enemies->StopMusic();
+				}
 			}
 
 
