@@ -248,11 +248,8 @@ void GamePScene::Update()
 				gameSModeNow_ = Pause;
 				changeTimingFrame_ = 0;
 				pouseMode_->SetChangeFrag(false);
-				
 
-				for (PopEnemy* enemies : enemy_) {
-					enemies->StopMusic();
-				}
+				AllStopMusic();
 			}
 
 			////ポーズ関連の動き
@@ -271,9 +268,7 @@ void GamePScene::Update()
 					flagChange_ = true;
 					changeTimingFrame_ = 0;
 
-					for (PopEnemy* enemies : enemy_) {
-						enemies->StopMusic();
-					}
+					AllStopMusic();
 				}
 
 			}
@@ -284,9 +279,7 @@ void GamePScene::Update()
 				flagGameOver_ = true;
 				changeTimingFrame_ = 0;
 
-				for (PopEnemy* enemies : enemy_) {
-					enemies->StopMusic();
-				}
+				AllStopMusic();
 			}
 #endif // DEBUG
 			///クリア条件の変更
@@ -296,9 +289,7 @@ void GamePScene::Update()
 					changeTimingFrame_ = 0;
 
 					//念のため
-					for (PopEnemy* enemies : enemy_) {
-						enemies->StopMusic();
-					}
+					AllStopMusic();
 				}
 
 			}
@@ -309,9 +300,7 @@ void GamePScene::Update()
 				flagGameOver_ = true;
 				GameMove_ = false;
 
-				for (PopEnemy* enemies : enemy_) {
-					enemies->StopMusic();
-				}
+				AllStopMusic();
 			}
 
 
@@ -949,4 +938,13 @@ void GamePScene::WaveChange()
 
 #endif // _DEBUG
 
+}
+
+void GamePScene::AllStopMusic()
+{
+	for (PopEnemy* enemies : enemy_) {
+		enemies->StopMusic();
+	}
+
+	player_->StopMusic();
 }

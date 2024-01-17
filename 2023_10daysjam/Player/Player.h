@@ -141,6 +141,11 @@ public:
 	/// <returns></returns>
 	void SetSpChangingPoint(float spPoint) { spChangingPoint_ = spPoint; };
 
+	/// <summary>
+	/// 曲を止めるよう
+	/// </summary>
+	void StopMusic()override;
+
 
 private:
 
@@ -208,15 +213,34 @@ private:
 	const float hitMagnification_ = 0.2f;
 
 	///音響関連
-	//音関連
+	//音(本体) 
 	int attackNomalEffect_ = 0;
+	//音(本体) 
 	int attackMacgiEffect_ = 0;
+	//音(本体) 
 	int walkEffect_ = 0;
+	//音(本体) 
+	int jumpEffect_ = 0;
+	//音(本体) 
+	int hitHpEffect_ = 0;
+	//音(本体) 
+	int hitSpEffect_ = 0;
+	//音(本体) 
+	int usedItemEffect_ = 0;
 
 	//ハンドル
 	int attackNomalPlay_ = 0;
+	//ハンドル
 	int attackMacgiPlay_ = 0;
+	//ハンドル
 	int walkPlay_ = 0;
+	//ハンドル
+	int jumpPlay_ = 0;
+	//ハンドル
+	int hitHpPlay_ = 0;
+	//ハンドル
+	int hitSpPlay_ = 0;
+	//ハンドル
+	int usedItemPlay_ = 0;
 
 };
-

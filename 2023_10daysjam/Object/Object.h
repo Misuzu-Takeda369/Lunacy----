@@ -114,6 +114,8 @@ public:
 
 	virtual MaindState GetMaindStateNow() { return maindStateNow_; };
 
+	virtual void StopMusic();
+
 protected:
 
 	//基準となる情報(ここからアニメーション用に引っ張る)

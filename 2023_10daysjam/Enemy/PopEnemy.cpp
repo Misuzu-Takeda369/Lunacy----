@@ -50,6 +50,7 @@ void PopEnemy::Initialize(MaindState maindStateNow, Wave nowWave, int enemyNotAp
 	hitPlay_ = 0;
 	walkPlay_ = 0;
 
+
 }
 
 void PopEnemy::Update()
@@ -145,7 +146,7 @@ void PopEnemy::OnCollision(float& damege)
 	Novice::PauseAudio(walkPlay_);
 
 	if (Novice::IsPlayingAudio(hitPlay_) == 0) {
-		Novice::PlayAudio(hitEffect_, 0, 0.6f);
+		Novice::PlayAudio(hitEffect_, 0, 0.5f);
 	}
 
 	if (!hit_) {

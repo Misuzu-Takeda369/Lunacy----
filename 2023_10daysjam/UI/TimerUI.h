@@ -4,6 +4,7 @@
 #include <Novice.h>
 #include "ImGuiManager.h"
 #include "Function/UtilityStruct.h"
+#include <math.h>
 
 class TimerUI
 {
@@ -44,13 +45,13 @@ public:
 	/// タイマーのゲッター
 	/// </summary>
 	/// <returns></returns>
-	int GetterTimer() { return timer_; };
+	float GetterTimer() { return timer_; };
 
 	/// <summary>
 	/// タイマーのセッター
 	/// </summary>
 	/// <returns></returns>
-	void SetterTimer(int timer) { timer_ = timer; };
+	void SetterTimer(float timer) { timer_ = timer; };
 
 	/// <summary>
 	/// 移動量のリセット
@@ -62,7 +63,7 @@ private:
 
 	IntState timerUIPos_;
 	
-	int timer_;
+	float timer_;
 	int timerMaxDis_;
 	int timerDisplay_;
 
@@ -80,7 +81,7 @@ private:
 	//移動した合計
 	int moveX_ = 0;
 	//移動する量(HPが1減るたびに動く量)
-	int moveSpeedX_ = 9;
+	int moveSpeedX_ = 17;
 
 	UnitColor color_;
 };

@@ -23,4 +23,8 @@ void Object::CoolCheak()
 {
 }
 
+void Object::StopMusic()
+{
+}
+
 

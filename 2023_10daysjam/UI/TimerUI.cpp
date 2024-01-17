@@ -4,8 +4,8 @@
 void TimerUI::Initialize()
 {
 	timerUIPos_ = { 50,650 };
-	timer_ = 3600;
-	timerDisplay_ = timer_ / 60;
+	timer_ = 1800.0f;
+	timerDisplay_ = int(timer_) / 60;
 	timerMaxDis_ = 60;
 
 	color_.color = YELLOW;
@@ -20,20 +20,20 @@ void TimerUI::Initialize()
 
 	//移動した合計
 	moveX_ = 0;
-	//移動する量(HPが1減るたびに動く量)
-	moveSpeedX_ = 8;
+	
+	moveSpeedX_ = 17;
 }
 
 void TimerUI::Update()
 {
 	timer_--;
-	timerDisplay_ = timer_ / 60;
+	timerDisplay_ = int(timer_) / 60;
 
 	ConversionUIVer2();
 	//ConversionUIVer1();
 
-	if (timer_ <= 0) {
-		timer_ = 0;
+	if (timer_ <= 0.0f) {
+		timer_ = 0.0f;
 		moveX_ = 0;
 	}
 
@@ -45,7 +45,7 @@ void TimerUI::Update(Wave nowWave)
 		timer_--;
 	}
 
-	timerDisplay_ = timer_ / 60;
+	timerDisplay_ = int(timer_ )/ 60;
 
 	ConversionUIVer2();
 	//ConversionUIVer1();
@@ -55,6 +55,18 @@ void TimerUI::Update(Wave nowWave)
 		moveX_ = 0;
 	}
 
+
+#pragma region ImGum関連
+
+#ifdef _DEBUG
+	ImGui::Begin("Timer");
+
+	ImGui::Text("timerDisplay_: %d\n", timerDisplay_);
+
+	ImGui::End();
+#endif // DEBUG
+
+#pragma endregion
 }
 
 void TimerUI::Draw()
@@ -98,7 +110,7 @@ void TimerUI::ConversionUIVer1()
 
 void TimerUI::ConversionUIVer2()
 {
-	if (timer_ % 7 == 0) {
+	if (fmod(timer_,0.277f)== 0) {
 
 		moveX_ += 1;
 	}

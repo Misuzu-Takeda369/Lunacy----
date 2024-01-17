@@ -55,7 +55,7 @@ public:
 	 /// <summary>
 	 /// シーン変換の時に音を止める関数
 	 /// </summary>
-	 void StopMusic();
+	 void StopMusic() override;
 
 private:
 

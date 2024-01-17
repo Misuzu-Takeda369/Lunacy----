@@ -99,6 +99,11 @@ public:
 	/// </summary>
 	void WaveChange();
 
+	/// <summary>
+	/// すべての音楽を止める奴(総括的な？)
+	/// </summary>
+	void AllStopMusic();
+
 	///ゲッターセッター
 
 	/// <summary>
@@ -211,7 +216,7 @@ private:
 	std::list<PopItem*>popItem_;
 
 	//waveが変わったときに入れる時間の奴
-	const int timerMax = 3600;
+	const float timerMax = 1800.0f;
 
 	//チュートリアルの挙動用
 	TutrialSystem* tutrialSystem_ = nullptr;
