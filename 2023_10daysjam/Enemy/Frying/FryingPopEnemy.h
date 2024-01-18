@@ -103,7 +103,8 @@ private:
 	//ダメージを連続で食らわせて良いか
 	bool damageFrag_ = false;
 
-	const float continuousDamage_ = 10.0f;
+	//ダメージ
+	const float continuousDamage_ = 8.0f;
 
 };
 

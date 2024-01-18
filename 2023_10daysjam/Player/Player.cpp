@@ -512,8 +512,8 @@ void Player::OnContinuousDamage(float& damage, int& timer, bool& flag)
 
 		hp_ -= damage;
 
-		if (Novice::IsPlayingAudio(attackMacgiPlay_) == 0) {
-			hitHpPlay_ = Novice::PlayAudio(attackMacgiEffect_, 0, 1);
+		if (Novice::IsPlayingAudio(hitHpPlay_) == 0) {
+			hitHpPlay_ = Novice::PlayAudio(hitHpEffect_, 0, 1);
 		}
 	}
 
