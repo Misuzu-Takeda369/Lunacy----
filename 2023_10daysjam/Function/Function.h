@@ -85,4 +85,29 @@ void CircumferentialMovement(Vector2& v, const float& theta);
 /// <returns></returns>
 bool IsCollision(Object* objA, Object* objB);
 
+/// <summary>
+/// スプライトを回転させたいときに
+/// </summary>
+/// <param name="pos">座標(中心)</param>
+/// <param name="size">画像サイズ(1フレーム分)</param>
+/// <param name="srcX">画像上で表示する左上座標X</param>
+/// <param name="srcY">画像上で表示する左上座標Y</param>
+/// <param name="textureHandle">テクスチャハンドル</param>
+/// <param name="color">色</param>
+/// <param name="theta">回転角度?</param>
+void DrawRotateSprite(Vector2 pos, Vector2 size, int srcX, int srcY, int textureHandle,
+	unsigned int color, float theta);
 
+
+////// <summary>
+/// スプライトを回転させたいときに
+/// </summary>
+/// <param name="pos">座標(中心)</param>
+/// <param name="size">画像サイズ(1フレーム分)</param>
+/// <param name="srcX">画像上で表示する左上座標X</param>
+/// <param name="srcY">画像上で表示する左上座標Y</param>
+/// <param name="textureHandle">テクスチャハンドル</param>
+/// <param name="color">色</param>
+/// <param name="scale">拡大率</param>
+/// <param name="theta">回転角度?</param>
+void DrawRotateScaleSprite(Vector2 pos, Vector2 size, int srcX, int srcY, int textureHandle, unsigned int color, float scale, float theta);
