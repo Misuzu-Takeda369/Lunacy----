@@ -58,6 +58,12 @@ private:
 	float groundLevel_ = 614.f; //地面の位置
 	int blinkingTimer_ = 0;
 	bool blinking_ = true;
+
+	///音源
+	//時限爆弾爆発
+	int timeBombExplosionEffect_ = 0;
+	//時限爆弾爆発
+	int timeBombExplosionPlay_ = 0;
 };
 
 /*

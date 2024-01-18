@@ -22,6 +22,12 @@ void Apostel_ThrowMine::Initialize(CharaBase owner, Vector2 playerPos)
 	t_ = 0;
 	blinkingTimer_ = 0;
 	blinking_ = true;
+
+	//時限爆弾爆発
+	timeBombExplosionEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/mini_bomb1.wav");
+	//時限爆弾爆発
+	timeBombExplosionPlay_ = 0;
+
 }
 
 void Apostel_ThrowMine::Update()
@@ -34,6 +40,11 @@ void Apostel_ThrowMine::Update()
 	
 	//攻撃が広がる
 	if (isActive_) {
+
+		if (Novice::IsPlayingAudio(timeBombExplosionPlay_) == 0) {
+			timeBombExplosionPlay_ = Novice::PlayAudio(timeBombExplosionEffect_, 0, 0.8f);
+		}
+
 		charaBase_.color_ = ORANGE;
 		charaBase_.radius_+=6;
 		if (charaBase_.radius_ >= maxRadius_) {

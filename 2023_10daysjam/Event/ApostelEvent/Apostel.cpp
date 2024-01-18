@@ -39,9 +39,17 @@ void Apostel::Initialize(Vector2 pos, Vector2 speed, float radius)
 
 	///音響
 	hitEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/blow6.wav");
-	//walkEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/Wriggling_tentacles.wav");
+	//通常弾発射
+	nomalBombEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/button02b.wav");
+	//次元爆弾発射
+	timeBombLaunchEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/select02.wav");
+	
 	//ハンドル
 	hitPlay_ = 0;
+	nomalBombPlay_ = 0;
+	//次元爆弾発射
+	timeBombLaunchPlay_ = 0;
+	
 
 }
 
@@ -428,6 +436,11 @@ void Apostel::DeleteProjectile()
 
 void Apostel::MagicBallFire()
 {
+	//ただの弾の奴(生成時に鳴らしたいのでここ)
+	if (Novice::IsPlayingAudio(nomalBombPlay_) == 0) {
+		Novice::PlayAudio(nomalBombEffect_, 0, 0.8f);
+	}
+
 	Apostel_MagicBall* newMagicBall = new Apostel_MagicBall;
 	newMagicBall->Initialize(charaBase_);
 	_right = newMagicBall->GetDirection();
@@ -436,6 +449,11 @@ void Apostel::MagicBallFire()
 
 void Apostel::ThrowMineFire()
 {
+	//次元爆弾(生成時に鳴らしたいのでここ)
+	if (Novice::IsPlayingAudio(timeBombLaunchPlay_) == 0) {
+		Novice::PlayAudio(timeBombLaunchEffect_, 0, 0.8f);
+	}
+
 	Apostel_ThrowMine* newThrowMine = new Apostel_ThrowMine;
 	newThrowMine->Initialize(charaBase_, playerBase_.pos_);
 	_right = newThrowMine->GetDirection();

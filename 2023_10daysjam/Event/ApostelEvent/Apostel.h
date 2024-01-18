@@ -108,9 +108,19 @@ protected:
 	///音響関連
 	//音関連
 	int hitEffect_ = 0;
-	//int walkEffect_ = 0;
+	//通常弾発射
+	int nomalBombEffect_ = 0;
+	//次元爆弾発射
+	int timeBombLaunchEffect_ = 0;
+	
+
 	//ハンドル
 	int hitPlay_ = 0;
-	//int walkPlay_ = 0;
+	//通常弾発射
+	int nomalBombPlay_ = 0;
+	//次元爆弾発射
+	int timeBombLaunchPlay_ = 0;
+	
+
 };
 
