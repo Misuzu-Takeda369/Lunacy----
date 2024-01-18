@@ -44,6 +44,29 @@ public:
 	/// <param name="num">回数</param>
 	int EnemyNotAppeared() { return enemyNotAppeared_; }
 
+	/// <summary>
+	/// ダメージまでの時間
+	/// </summary>
+	/// <returns></returns>
+	int GetDamageLimitTime() { return damageLimitTime_; };
+
+	/// <summary>
+	/// 連続でダメージ食らわせていいか
+	/// </summary>
+	/// <returns></returns>
+	bool GetDamageFrag() { return damageFrag_; };
+
+	/// <summary>
+	/// 連続ダメージ関連の関数
+	/// </summary>
+	void ContinuousDamage();
+
+	/// <summary>
+	/// 連続ダメージの値(もしなんか増えても統一)
+	/// </summary>
+	/// <returns></returns>
+	float GetContinuousDamage() { return continuousDamage_; };
+
 private:
 
 	//通常時の浮遊
@@ -69,6 +92,18 @@ private:
 	int hitEffect_ = 0;
 	//ハンドル
 	int hitPlay_ = 0;
+
+	//制限時間(最初)
+	const int damageLimitTimeFMax_ = 500;
+	//制限時間(2回目以降)
+	const int damageLimitTimeMax_ = 180;
+	//制限時間(ダメージ食らうまで)
+	int damageLimitTime_ = 0;
+
+	//ダメージを連続で食らわせて良いか
+	bool damageFrag_ = false;
+
+	const float continuousDamage_ = 10.0f;
 
 };
 

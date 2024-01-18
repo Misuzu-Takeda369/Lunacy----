@@ -41,6 +41,7 @@ void FryingEnemy::Initialize(MaindState maindStateNow, int enemyNotAppeared)
 	//ハンドル
 	hitPlay_ = 0;
 
+	damageLimitTime_ = damageLimitTimeFMax_;
 
 }
 
@@ -58,6 +59,8 @@ void FryingEnemy::Update()
 		charaBase_.pos_.x = fhEnemy_->GetPosX();
 		charaBase_.pos_.y = fhEnemy_->GetPosY();
 
+		ContinuousDamage();
+
 		//ここがゲームシーンにこの個体が消滅している伝えるよう
 		if (fhEnemy_->GetIsDead()) {
 			isDead_ = true;
@@ -67,16 +70,6 @@ void FryingEnemy::Update()
 
 	case SPNOMAL:
 
-		//nSEnemy_->Update();
-
-		//attackPoint_ = nSEnemy_->GetAttackPoint();
-		//charaBase_.pos_.x = nSEnemy_->GetPosX();
-		//charaBase_.pos_.y = nSEnemy_->GetPosY();
-
-		////ここがゲームシーンにこの個体が消滅している伝えるよう
-		//if (nSEnemy_->GetIsDead()) {
-		//	isDead_ = true;
-		//}
 		break;
 
 	default:
@@ -95,6 +88,7 @@ void FryingEnemy::Update()
 	ImGui::Begin("EnemyFryHp");
 	ImGui::Text("EnemyFryHp %f\n", hp_);
 	ImGui::Text("enemyNotAppeared_ %d\n", enemyNotAppeared_);
+	ImGui::Text("damageLimitTime_ %d\n", damageLimitTime_);
 	ImGui::End();
 
 #pragma endregion
@@ -128,7 +122,7 @@ void FryingEnemy::OnCollision(float& damege)
 	//hp_ -= 10.0f;
 
 	if (Novice::IsPlayingAudio(hitPlay_) == 0) {
-		Novice::PlayAudio(hitEffect_, 0, 0.5f);
+		hitPlay_=Novice::PlayAudio(hitEffect_, 0, 0.5f);
 	}
 
 
@@ -146,8 +140,6 @@ void FryingEnemy::OnCollision(float& damege)
 	}
 
 }
-
-
 
 void FryingEnemy::EnemyBorn()
 {
@@ -208,16 +200,6 @@ void FryingEnemy::EnemyBorn()
 	case SPNOMAL:
 
 
-		//nSEnemy_ = new NSEnemy();
-		//nSEnemy_->Initialize(charaBase_.pos_, charaBase_.speed_, charaBase_.radius_);
-		//nSEnemy_->SetDirection(right);
-
-		//hp_ = nSEnemy_->GetHp();
-
-		//maxHp_ = (nSEnemy_->GetHpMax());
-
-		//decreasedHp_ = maxHp_ - hp_;
-
 		break;
 
 	default:
@@ -237,6 +219,20 @@ void FryingEnemy::CoolCheak()
 			hitCoolTime_ = 0;
 		}
 	}
+}
+
+void FryingEnemy::ContinuousDamage()
+{
+	damageLimitTime_--;
+
+	if (damageLimitTime_ <= 0) {
+		damageFrag_ = true;
+		damageLimitTime_ = damageLimitTimeMax_;
+	}
+	else {
+		damageFrag_ = false;
+	}
+	
 }
 
 

@@ -83,10 +83,10 @@ void GamePScene::Initialize(Wave& nowWave)
 	bossHpUi_->Initialize();
 
 	//敵のスポーン
-	if (nowWave_==Wave1) {
+	if (nowWave_ == Wave1) {
 		EnemyPopFrame_ = consEnemyPopFrameWave1_;
 	}
-	else if(nowWave_ == Wave2){
+	else if (nowWave_ == Wave2) {
 		EnemyPopFrame_ = consEnemyPopFrameWave2_;
 	}
 	else if (nowWave_ == Wave3) {
@@ -127,7 +127,7 @@ void GamePScene::Update()
 			}
 #endif // DEBUG
 
-		
+
 			//シーン変換(オーバーかクリアか)
 			if (((player_->GetHp() <= 0) || (player_->GetSp() <= 0))) {
 				//エフェクトぶち込んでもおもろそう
@@ -243,7 +243,7 @@ void GamePScene::Update()
 
 
 			///ポーズへ
-			if (((preKeys[DIK_P] == 0 && keys[DIK_P] != 0) || (pouseMode_->GetChangeFrag() == true))&& changeTimingFrame_ >= changeTimingFrameMax_) {
+			if (((preKeys[DIK_P] == 0 && keys[DIK_P] != 0) || (pouseMode_->GetChangeFrag() == true)) && changeTimingFrame_ >= changeTimingFrameMax_) {
 				GameMove_ = false;
 				gameSModeNow_ = Pause;
 				changeTimingFrame_ = 0;
@@ -311,7 +311,7 @@ void GamePScene::Update()
 
 	case Pause:
 
-		
+
 		//解除
 		if (((preKeys[DIK_P] == 0 && keys[DIK_P] != 0) || (pouseMode_->GetChangeFrag() == true)) && changeTimingFrame_ >= changeTimingFrameMax_) {
 			GameMove_ = true;
@@ -419,7 +419,8 @@ void GamePScene::Draw()
 
 #ifdef _DEBUG
 	Novice::ScreenPrintf(500, 500, "%d", CountNum_);
-	Novice::ScreenPrintf(500, 600, "%d", enemyNotAppeared_);
+	//Novice::ScreenPrintf(500, 600, "%d", enemyNotAppeared_);
+
 
 #endif // _DEBUG
 
@@ -442,7 +443,7 @@ void GamePScene::Draw()
 	}
 	waveTextUi_->Draw(hitEffect_->GetShakePos());
 
-	
+
 
 	///ここにポーズ関連の描写をまとめる
 
@@ -642,8 +643,8 @@ void GamePScene::CheckCollisionAll()
 
 #pragma region プレイヤー近距離と浮遊敵
 
-		//わざと魔法でしか倒せない敵でも面白そう
-		if (playerMA && player_->GetPlayerAttackTypeNow() == Magic) {
+		//わざと魔法でしか倒せない敵でも面白そう(ギミック追加したので没)
+		if (playerMA) {
 			for (FryingEnemy* enemies : fryingEnemy_) {
 
 				if (IsCollision(playerMA, enemies) == true) {
@@ -678,6 +679,20 @@ void GamePScene::CheckCollisionAll()
 			}
 
 		}
+#pragma endregion
+
+#pragma region 時間制限連続ダメージ
+
+		for (FryingEnemy* enemies : fryingEnemy_) {
+
+
+			float damege = enemies->GetContinuousDamage();
+			int timer = enemies->GetDamageLimitTime();
+			bool flag = enemies->GetDamageFrag();
+			//フラグとダメージ数とタイマー
+			player_->OnContinuousDamage(damege, timer, flag);
+		}
+
 #pragma endregion
 	}
 }
@@ -731,7 +746,7 @@ void GamePScene::EnemyDead()
 
 void GamePScene::FryingEnemyDead()
 {
-	
+
 	fryingEnemy_.remove_if([](FryingEnemy* fryenemies) {
 		if (fryenemies->GetIsDead()) {
 			delete fryenemies;
@@ -766,7 +781,7 @@ void GamePScene::FryEnemyPoping()
 
 
 		FryingEnemy* newEnemy = new FryingEnemy();
-		
+
 		newEnemy->Initialize(player_->GetMaindStateNow(), enemyNotAppeared_);
 		enemyNotAppeared_ = newEnemy->EnemyNotAppeared();
 		fryingEnemy_.push_back(newEnemy);

@@ -87,6 +87,14 @@ public:
 	void OnCollision(float& damage, EnemyType& enemytype);
 
 	/// <summary>
+	/// 連続ダメージ
+	/// </summary>
+	/// <param name="damage">ダメージ</param>
+	/// <param name="timer">チェックタイマー</param>
+	/// <param name="flag">やっていいか否か</param>
+	void OnContinuousDamage(float& damage,int& timer,bool& flag);
+
+	/// <summary>
 	/// 当たった時の挙動
 	/// </summary>
 	void UsedItem(float& recover);
@@ -97,7 +105,7 @@ public:
 	void CoolCheak() override;
 
 	/// <summary>
-	/// 
+	/// アイテムを連続でゲットしないよう？
 	/// </summary>
 	void ItemCoolCheak();
 

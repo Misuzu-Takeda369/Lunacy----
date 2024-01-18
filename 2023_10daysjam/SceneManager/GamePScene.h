@@ -195,9 +195,9 @@ private:
 	int EnemyPopFrame_ = 0;
 
 	//敵がポップする間隔(浮遊)
-	const int consEnemyPopFrameFry_ = 360;
+	const int consEnemyPopFrameFry_ = 250;
 	//敵がポップするまでを数える(浮遊)
-	int fryEnemyPopFrame_ = 0;
+	int fryEnemyPopFrame_ = consEnemyPopFrameFry_;
 
 
 

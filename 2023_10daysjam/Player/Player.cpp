@@ -236,19 +236,19 @@ void Player::Move(char* keys, char* preKeys)
 					walkPlay_ = Novice::PlayAudio(walkEffect_, 0, 0.4f);
 				}
 			}
-			
+
 			//playerState_ = MOVE;
 		}
 		else {
 			Novice::StopAudio(walkPlay_);
 		}
-		
+
 	}
-	
+
 	//縦
 	Jump();
 	if (((preKeys[DIK_UP] == 0 && keys[DIK_UP] != 0) || (preKeys[DIK_W] == 0 && keys[DIK_W] != 0))) {
-		
+
 		if (Novice::IsPlayingAudio(jumpPlay_) == 0) {
 			Novice::PlayAudio(jumpEffect_, 0, 1.5f);
 		}
@@ -361,7 +361,7 @@ void Player::Attack()
 		mAttack_->DeterminingAttackPower(hp_, maxHp_, sp_, maxSp_);
 
 		for (PlayerLAttack* lAttack : lAttack_) {
-			lAttack->DeterminingAttackPower(hp_, maxHp_,sp_,maxSp_);
+			lAttack->DeterminingAttackPower(hp_, maxHp_, sp_, maxSp_);
 		}
 
 	}
@@ -373,7 +373,7 @@ void Player::Attack()
 		if (mAttack_) {
 			//mAttack_->Update(charaBase_.pos_, playerDirectionA_);
 			mAttack_->Update(charaBase_.pos_, playerDirectionM_);
-			
+
 		}
 
 		//アニメーション入るまで仮フレーム
@@ -478,7 +478,7 @@ void Player::OnCollision(float& damage, EnemyType& enemytype)
 		{
 			///狂気モードの時に被弾したら通常時よりも減少量が増える
 			if (enemytype == HPNOMAL) {
-				hp_ -= damage + ((hitMagnification_ * decreasedHp_)+10);
+				hp_ -= damage + ((hitMagnification_ * decreasedHp_) + 10);
 				hit_ = true;
 
 				if (Novice::IsPlayingAudio(hitHpPlay_) == 0) {
@@ -494,7 +494,7 @@ void Player::OnCollision(float& damage, EnemyType& enemytype)
 				}
 			}
 		}
-		
+
 
 
 
@@ -503,6 +503,21 @@ void Player::OnCollision(float& damage, EnemyType& enemytype)
 #endif // _DEBUG
 
 	}
+}
+
+void Player::OnContinuousDamage(float& damage, int& timer, bool& flag)
+{
+
+	if (flag) {
+
+		hp_ -= damage;
+
+		if (Novice::IsPlayingAudio(attackMacgiPlay_) == 0) {
+			hitHpPlay_ = Novice::PlayAudio(attackMacgiEffect_, 0, 1);
+		}
+	}
+
+	timer;
 }
 
 void Player::UsedItem(float& recover) {
