@@ -128,7 +128,7 @@ void Apostel::NaturalDeath()
 void Apostel::OnCollision(float& damege)
 {
 	if (Novice::IsPlayingAudio(hitPlay_) == 0) {
-		hitPlay_ = Novice::PlayAudio(hitEffect_, 0, 0.5f);
+		hitPlay_=Novice::PlayAudio(hitEffect_, 0, 0.5f);
 	}
 
 	if (!hit_) {
@@ -378,6 +378,7 @@ void Apostel::CoolCheak()
 		if (hitCoolTime_ >= MaxHitCoolTime_) {
 			hit_ = false;
 			hitCoolTime_ = 0;
+			Novice::StopAudio(hitPlay_);
 		}
 	}
 }
