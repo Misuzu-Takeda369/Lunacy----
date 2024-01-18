@@ -178,6 +178,9 @@ void GamePScene::Update()
 				break;
 
 			case Wave4:
+
+				
+
 				apostelEvent_->SetPlayerInfo(player_->GetCharaBase());
 				apostelEvent_->Update();
 
@@ -391,6 +394,7 @@ void GamePScene::Draw()
 		}
 		break;
 	case Wave4:
+
 		apostelEvent_->Draw();
 		break;
 
@@ -677,9 +681,10 @@ void GamePScene::CheckCollisionAll()
 				}
 
 			}
+#pragma endregion
 
 		}
-#pragma endregion
+
 
 #pragma region 時間制限連続ダメージ
 
