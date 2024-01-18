@@ -64,5 +64,11 @@ private:
 
 	//敵が出てこなかったときに数える奴
 	int enemyNotAppeared_;
+
+	//音関連
+	int hitEffect_ = 0;
+	//ハンドル
+	int hitPlay_ = 0;
+
 };
 

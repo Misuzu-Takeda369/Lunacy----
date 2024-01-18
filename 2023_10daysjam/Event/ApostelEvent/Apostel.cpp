@@ -36,6 +36,13 @@ void Apostel::Initialize(Vector2 pos, Vector2 speed, float radius)
 	flowingTheta_ = 0;
 	phase_ = first;
 	color_.R = 255; color_.G = 255; color_.B = 255; color_.A = 255;
+
+	///音響
+	hitEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/blow6.wav");
+	//walkEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/Wriggling_tentacles.wav");
+	//ハンドル
+	hitPlay_ = 0;
+
 }
 
 void Apostel::Update()
@@ -120,6 +127,10 @@ void Apostel::NaturalDeath()
 
 void Apostel::OnCollision(float& damege)
 {
+	if (Novice::IsPlayingAudio(hitPlay_) == 0) {
+		hitPlay_ = Novice::PlayAudio(hitEffect_, 0, 0.5f);
+	}
+
 	if (!hit_) {
 		hp_ -= damege;
 		hit_ = true;

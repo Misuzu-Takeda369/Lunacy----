@@ -103,5 +103,14 @@ protected:
 
 	std::list<Apostel_MagicBall*> magicBall_;
 	std::list<Apostel_ThrowMine*> throwMine_;
+
+
+	///音響関連
+	//音関連
+	int hitEffect_ = 0;
+	//int walkEffect_ = 0;
+	//ハンドル
+	int hitPlay_ = 0;
+	//int walkPlay_ = 0;
 };
 

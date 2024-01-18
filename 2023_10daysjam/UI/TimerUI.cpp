@@ -110,8 +110,8 @@ void TimerUI::ConversionUIVer1()
 
 void TimerUI::ConversionUIVer2()
 {
-	if (fmod(timer_,0.277f)== 0) {
+	if (fmod(timer_,3.5f)== 0) {
 
-		moveX_ += 1;
+		moveX_ += 2;
 	}
 }

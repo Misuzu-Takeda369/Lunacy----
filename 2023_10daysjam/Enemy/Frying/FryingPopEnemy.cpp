@@ -36,6 +36,12 @@ void FryingEnemy::Initialize(MaindState maindStateNow, int enemyNotAppeared)
 	eHUi_ = new EHpUI();
 	eHUi_->Initialize(charaBase_.pos_,6);
 
+	///音響
+	hitEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/blow6.wav");
+	//ハンドル
+	hitPlay_ = 0;
+
+
 }
 
 void FryingEnemy::Update()
@@ -120,6 +126,12 @@ void FryingEnemy::OnCollision(float& damege)
 {
 	//damege;
 	//hp_ -= 10.0f;
+
+	if (Novice::IsPlayingAudio(hitPlay_) == 0) {
+		Novice::PlayAudio(hitEffect_, 0, 0.5f);
+	}
+
+
 
 	if (!hit_) {
 		hp_ -= damege;
