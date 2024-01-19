@@ -31,6 +31,7 @@ void PopEnemy::Initialize(MaindState maindStateNow, Wave nowWave, int enemyNotAp
 	boxSize_ = { charaBase_.radius_,charaBase_.radius_ };
 
 	enemyNotAppeared_ = enemyNotAppeared;
+	nowWave_ = Tutorial;
 
 	/*if (enemyNotAppeared_ >= 2) {
 		enemyNotAppeared_ = 0;
@@ -45,7 +46,7 @@ void PopEnemy::Initialize(MaindState maindStateNow, Wave nowWave, int enemyNotAp
 
 	///音響
 	hitEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/blow6.wav");
-	walkEffect_ =Novice::LoadAudio("./Resources/Music/SoundEffect/Wriggling_tentacles.wav");
+	walkEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/Wriggling_tentacles.wav");
 	//ハンドル
 	hitPlay_ = 0;
 	walkPlay_ = 0;
@@ -74,6 +75,9 @@ void PopEnemy::Update()
 		//ここがゲームシーンにこの個体が消滅している伝えるよう
 		if (nHEnemy_->GetIsDead()) {
 			isDead_ = true;
+
+			Novice::StopAudio(walkPlay_);
+
 		}
 
 		break;
@@ -93,6 +97,8 @@ void PopEnemy::Update()
 		//ここがゲームシーンにこの個体が消滅している伝えるよう
 		if (nSEnemy_->GetIsDead()) {
 			isDead_ = true;
+
+			Novice::StopAudio(walkPlay_);
 		}
 		break;
 
@@ -114,6 +120,7 @@ void PopEnemy::Update()
 
 #pragma endregion
 #endif // DEBUG
+
 }
 
 void PopEnemy::Draw()
@@ -168,8 +175,9 @@ void PopEnemy::OnCollision(float& damege)
 void PopEnemy::EnemyBorn(Wave nowWave)
 {
 	bool right = true;
+	nowWave_ = nowWave;
 
-	switch (nowWave)
+	switch (nowWave_)
 	{
 	case Tutorial:
 		enemyType_ = HPNOMAL;

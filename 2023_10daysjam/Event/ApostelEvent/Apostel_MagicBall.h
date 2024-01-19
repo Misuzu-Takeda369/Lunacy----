@@ -36,5 +36,8 @@ private:
 	float fallSpeed_ = 0;
 	int moveDirection_ = 1;
 	float attackPoint_ = 30.f;
+	float spriteScale = 0;
+	unsigned int sprite_;
+
 };
 

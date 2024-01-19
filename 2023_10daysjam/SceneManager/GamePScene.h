@@ -20,6 +20,7 @@
 #include "Enemy/Frying/FryingPopEnemy.h"
 #include "Animation/Effect/HitEffect.h"
 #include "Pause/PouseMode.h"
+#include "BGMManage/BGMManage.h"
 
 /// <summary>
 /// プレイシーンのクラス
@@ -188,7 +189,7 @@ private:
 	//敵がポップする間隔
 	const int consEnemyPopFrameWave2_ = 90;
 	//敵がポップする間隔
-	const int consEnemyPopFrameWave3_ = 90;
+	const int consEnemyPopFrameWave3_ = 120;
 	//敵がポップする間隔
 	const int consEnemyPopFrameBoss_ = 360;
 	//敵がポップするまでを数える
@@ -227,5 +228,7 @@ private:
 
 	//ポーズ関連のクラスをロード
 	PouseMode* pouseMode_ = nullptr;
+	//BGM関連のクラスをロード
+	BGMManage* bgm_ = nullptr;
 
 };

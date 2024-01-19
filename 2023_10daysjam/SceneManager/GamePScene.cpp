@@ -34,6 +34,8 @@ GamePScene::~GamePScene()
 
 	delete pouseMode_;
 
+	delete bgm_;
+
 }
 
 void GamePScene::Initialize(Wave& nowWave)
@@ -95,6 +97,9 @@ void GamePScene::Initialize(Wave& nowWave)
 
 	pouseMode_ = new PouseMode();
 	pouseMode_->Initialize();
+
+	bgm_ = new BGMManage();
+	bgm_->Initialize();
 
 }
 
@@ -195,6 +200,13 @@ void GamePScene::Update()
 				break;
 			}
 #pragma endregion
+
+			//BGM用
+			float Php = player_->GetHp();
+			float Psp = player_->GetSp();
+			Wave Nwa = nowWave_;
+
+			bgm_->Update(Php, Psp, Nwa);
 
 			//敵の発生
 			EnemyPoping(nowWave_);
@@ -967,4 +979,12 @@ void GamePScene::AllStopMusic()
 	}
 
 	player_->StopMusic();
+
+	if (gameSModeNow_ == Pause) {
+		bgm_->PauseBGM();
+	}
+	else {
+		bgm_->StopBGM();
+	}
+	
 }

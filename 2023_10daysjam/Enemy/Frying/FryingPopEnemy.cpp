@@ -38,8 +38,10 @@ void FryingEnemy::Initialize(MaindState maindStateNow, int enemyNotAppeared)
 
 	///音響
 	hitEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/blow6.wav");
+	alarmEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/button02b.wav");
 	//ハンドル
 	hitPlay_ = 0;
+	alarmPlay_ = 0;
 
 	damageLimitTime_ = damageLimitTimeFMax_;
 
@@ -224,6 +226,12 @@ void FryingEnemy::CoolCheak()
 void FryingEnemy::ContinuousDamage()
 {
 	damageLimitTime_--;
+
+	if (damageLimitTime_ / 60 == 1) {
+		if (Novice::IsPlayingAudio(alarmPlay_) == 0) {
+			alarmPlay_ = Novice::PlayAudio(alarmEffect_, 0, 0.8f);
+		}
+	}
 
 	if (damageLimitTime_ <= 0) {
 		damageFrag_ = true;

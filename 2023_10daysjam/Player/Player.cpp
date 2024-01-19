@@ -72,6 +72,8 @@ void Player::Initialize()
 	hitHpEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/Kick_practice2.wav");
 	hitSpEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/maou_se_magical18.wav");
 	usedItemEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/recovery_magic1.wav");
+	changeAttackEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/reflection.wav");
+
 	//ハンドル
 	attackNomalPlay_ = 0;
 	attackMacgiPlay_ = 0;
@@ -80,7 +82,7 @@ void Player::Initialize()
 	hitHpPlay_ = 0;
 	hitSpPlay_ = 0;
 	usedItemPlay_ = 0;
-
+	changeAttackPlay_ = 0;
 }
 
 void Player::Update(char* keys, char* preKeys)
@@ -284,6 +286,10 @@ void Player::AttackTypeChange()
 {
 	//右クリックしたら攻撃のモードが変わる(攻撃中は変わらない)
 	if (Novice::IsTriggerMouse(1) && !attackFrag_) {
+
+		if (Novice::IsPlayingAudio(changeAttackPlay_) == 0) {
+			Novice::PlayAudio(changeAttackEffect_, 0, 0.8f);
+		}
 
 		if (playerAttackTypeNow_ == Plane) {
 			playerAttackTypeNow_ = Magic;

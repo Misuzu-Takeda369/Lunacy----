@@ -27,6 +27,8 @@ void ApostelEvent::Initialize()
 
 void ApostelEvent::Update()
 {
+	getHp_ = int(apostel_->GetDecreasedHp());
+
 	if (!isApostelActive_) {
 		//ここに登場シーンを 1秒用
 		time_++;
@@ -79,6 +81,7 @@ void ApostelEvent::Update()
 	if (apostel_->GetIsDead()) {
 		//angel_->Update();
 	}
+
 }
 
 void ApostelEvent::Draw()

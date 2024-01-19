@@ -127,6 +127,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="Animation\PlayerJump.cpp" />
     <ClCompile Include="Animation\PlayerRunAnim.cpp" />
     <ClCompile Include="Back\BackGround.cpp" />
+    <ClCompile Include="BGMManage\BGMManage.cpp" />
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\StringUtility.cpp" />
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp" />
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\WinApp.cpp" />
@@ -196,6 +197,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="Animation\PlayerJump.h" />
     <ClInclude Include="Animation\PlayerRunAnim.h" />
     <ClInclude Include="Back\BackGround.h" />
+    <ClInclude Include="BGMManage\BGMManage.h" />
     <ClInclude Include="C:\KamataEngine\DirectXGame\base\StringUtility.h" />
     <ClInclude Include="C:\KamataEngine\DirectXGame\math\Matrix4x4.h" />
     <ClInclude Include="C:\KamataEngine\DirectXGame\math\Vector2.h" />

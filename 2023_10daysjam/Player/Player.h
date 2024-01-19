@@ -235,6 +235,9 @@ private:
 	int hitSpEffect_ = 0;
 	//音(本体) 
 	int usedItemEffect_ = 0;
+	//音
+	int changeAttackEffect_ = 0;
+
 
 	//ハンドル
 	int attackNomalPlay_ = 0;
@@ -250,5 +253,6 @@ private:
 	int hitSpPlay_ = 0;
 	//ハンドル
 	int usedItemPlay_ = 0;
-
+	//ハンドル
+	int changeAttackPlay_ = 0;
 };

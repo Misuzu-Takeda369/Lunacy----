@@ -90,8 +90,10 @@ private:
 
 	//音関連
 	int hitEffect_ = 0;
+	int alarmEffect_ = 0;
 	//ハンドル
 	int hitPlay_ = 0;
+	int alarmPlay_ = 0;
 
 	//制限時間(最初)
 	const int damageLimitTimeFMax_ = 500;
@@ -104,7 +106,7 @@ private:
 	bool damageFrag_ = false;
 
 	//ダメージ
-	const float continuousDamage_ = 8.0f;
+	const float continuousDamage_ = 5.0f;
 
 };
 

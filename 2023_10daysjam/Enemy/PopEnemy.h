@@ -87,7 +87,7 @@ private:
 	int hitPlay_ = 0;
 	int walkPlay_ = 0;
 
-
+	Wave nowWave_ = Tutorial;
 	
 };
 

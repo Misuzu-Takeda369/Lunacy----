@@ -100,7 +100,7 @@ void DrawRotateSprite(Vector2 pos, Vector2 size, int srcX, int srcY, int texture
 
 
 ////// <summary>
-/// スプライトを回転させたいときに
+/// スプライトを拡縮/回転させたいときに
 /// </summary>
 /// <param name="pos">座標(中心)</param>
 /// <param name="size">画像サイズ(1フレーム分)</param>
@@ -109,5 +109,8 @@ void DrawRotateSprite(Vector2 pos, Vector2 size, int srcX, int srcY, int texture
 /// <param name="textureHandle">テクスチャハンドル</param>
 /// <param name="color">色</param>
 /// <param name="scale">拡大率</param>
-/// <param name="theta">回転角度?</param>
+/// <param name="theta">回転角度(ラジアン)</param>
 void DrawRotateScaleSprite(Vector2 pos, Vector2 size, int srcX, int srcY, int textureHandle, unsigned int color, float scale, float theta);
+
+Vector2 AdjustSpriteScale(Vector2 spriteSize, Vector2 radius);
+float AdjustSpriteScale(float spriteSize, float radius);

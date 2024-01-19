@@ -28,6 +28,9 @@ void EnemyBase::NaturalDeath()
 		isDead_ = true;
 		//moveEnemy_.x <= 1400.0f;
 	}
+	else if(moveEnemy_.x >= 1500.0f){
+		isDead_ = true;
+	}
 }
 
 void EnemyBase::OnCollision(float& damege)

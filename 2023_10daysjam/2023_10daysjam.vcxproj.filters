@@ -65,6 +65,9 @@
     <Filter Include="PouseMode">
       <UniqueIdentifier>{18b21a91-040e-4dc8-a130-495ca3cf63af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="BGM">
+      <UniqueIdentifier>{0cdcaa4f-e0cb-43ab-a188-e09fc661edf6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp">
@@ -258,6 +261,9 @@
     </ClCompile>
     <ClCompile Include="Pause\PouseMode.cpp">
       <Filter>PouseMode</Filter>
+    </ClCompile>
+    <ClCompile Include="BGMManage\BGMManage.cpp">
+      <Filter>BGM</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -512,6 +518,9 @@
     </ClInclude>
     <ClInclude Include="Pause\PouseMode.h">
       <Filter>PouseMode</Filter>
+    </ClInclude>
+    <ClInclude Include="BGMManage\BGMManage.h">
+      <Filter>BGM</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

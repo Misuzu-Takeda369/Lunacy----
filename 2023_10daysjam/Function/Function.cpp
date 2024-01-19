@@ -325,3 +325,28 @@ void DrawRotateScaleSprite(Vector2 pos, Vector2 size, int srcX, int srcY, int te
 }
 
 
+Vector2 AdjustSpriteScale(Vector2 spriteSize, Vector2 radius) {
+	//Vector2 num = {
+	//num.x = 1 / radius.x,
+	//num.y = 1 / radius.y };
+
+	Vector2 num2 = {
+		num2.x = spriteSize.x / radius.x,
+		num2.y = spriteSize.y / radius.y,
+	};
+
+	Vector2 divNum2{
+		divNum2.x = 1 / num2.x,
+		divNum2.y = 1 / num2.y,
+	};
+
+	return divNum2;
+}
+
+float AdjustSpriteScale(float spriteSize, float radius) {
+
+	//float num = 1 / radius;
+	float num2 = spriteSize / radius;
+	float result = 1 / num2;
+	return result;
+}
