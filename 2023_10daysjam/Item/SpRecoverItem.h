@@ -49,6 +49,9 @@ private:
 	float downLineLunatic_;
 	//狂気ラインダウン(定数)
 	const float downLineLunaticAmount_ = 2.0f;
+
+	//最初にいる位置
+	Vector2 standardPos_;
 	
 };
 

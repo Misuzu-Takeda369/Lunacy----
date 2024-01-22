@@ -5,6 +5,7 @@ void SpRecoverItem::Initialize(Vector2& pos)
 	//多分敵のドロップか時間経過か
 	charaBase_.pos_ = pos;
 	charaBase_.radius_ = 32.0f;
+	charaBase_.speed_.y = 2.0f;
 	//画像サイズ
 	sizeX_ = 32; sizeY_ = 32;
 	image_= Novice::LoadTexture("./Resources/images/Item/Item_2.png");
@@ -13,6 +14,9 @@ void SpRecoverItem::Initialize(Vector2& pos)
 	recoverSp_ = recoveryAmount_;
 	//ラインが下がる量
 	downLineLunatic_ = downLineLunaticAmount_;
+
+	standardPos_ = { 0.0f,580.0f };
+
 }
 
 void SpRecoverItem::Update()
@@ -24,7 +28,12 @@ void SpRecoverItem::Update()
 		isDead_ = true;
 	}
 	
-
+	if (charaBase_.pos_.y >= standardPos_.y) {
+		charaBase_.pos_.y = standardPos_.y;
+	}
+	else {
+		charaBase_.pos_.y += charaBase_.speed_.y;
+	}
 }
 
 void SpRecoverItem::Draw()

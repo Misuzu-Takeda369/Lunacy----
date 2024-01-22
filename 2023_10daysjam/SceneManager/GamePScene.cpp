@@ -184,7 +184,7 @@ void GamePScene::Update()
 
 			case Wave4:
 
-				
+
 
 				apostelEvent_->SetPlayerInfo(player_->GetCharaBase());
 				apostelEvent_->Update();
@@ -765,6 +765,17 @@ void GamePScene::EnemyDead()
 void GamePScene::FryingEnemyDead()
 {
 
+	for (FryingEnemy* enemies : fryingEnemy_) {
+		if (enemies->GetIsDead()) {
+
+			PopItem* newItem = new PopItem();
+			Vector2 pos = { enemies->GetPosX(), enemies->GetPosY() };
+			newItem->Initialize(pos);
+
+			popItem_.push_back(newItem);
+		}
+	}
+
 	fryingEnemy_.remove_if([](FryingEnemy* fryenemies) {
 		if (fryenemies->GetIsDead()) {
 			delete fryenemies;
@@ -910,7 +921,7 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 
 void GamePScene::WaveChange()
 {
-	
+
 	//右クリック押したら終わる
 	if ((nowWave_ == Tutorial) && tutrialSystem_->GetIsDead()) {
 		nowWave_ = Wave1;
@@ -996,5 +1007,5 @@ void GamePScene::AllStopMusic()
 	else {
 		bgm_->StopBGM();
 	}
-	
+
 }
