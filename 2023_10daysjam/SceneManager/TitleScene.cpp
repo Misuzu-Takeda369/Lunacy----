@@ -26,6 +26,23 @@ void TitleScene::Initialize()
 	changeTimingFrame_ = 0;
 
 	bookMark_ = Novice::LoadTexture("./Resources/images/databook.png");
+
+
+	chackTextPos_[0] = { 330, 200 };
+	chackTextPos_[1] = { 330, 200 };
+
+	//チェック用
+	chackColor_[0] = { 0,0,0,0,0xFFFFFFFF };
+	chackColor_[1] = { 0,0,0,0,0xFFFFFFFF };
+	//音が連続でならないようにするやつ
+	OnSelectPChackPlay_[0] = false;
+	OnSelectPChackPlay_[1] = false;
+
+	textFrameImage_ = Novice::LoadTexture("./Resources/images/Back/Textfream.png");
+	yesImage_ = Novice::LoadTexture("./Resources/images/Text/ChackYES.png");
+	noImage_ = Novice::LoadTexture("./Resources/images/Text/ChackNO.png");
+	chacktextImage_ = Novice::LoadTexture("./Resources/images/Text/ChackR.png");
+
 }
 
 void TitleScene::Update()
@@ -60,6 +77,12 @@ void TitleScene::Update()
 		/*今は多分いらん
 			case Option:
 				break;*/
+
+	case Chackreset:
+
+		ResetPlayChack();
+
+		break;
 	default:
 		break;
 	}
@@ -76,6 +99,17 @@ void TitleScene::Draw()
 	Novice::DrawSprite(startPos_.x_, startPos_.y_, startImage_, 1.0f, 1.0f, 0.0f, startColor_.color);
 
 	Novice::DrawSprite(bookPos_.x_, bookPos_.y_, bookMark_, 0.25f, 0.25f, 0, bookColor_.color);
+
+	//タイトルから移動する前に確認させる用の描写
+	if (titleSModeNow_== Chackreset) {
+
+		Novice::DrawSprite(330, 200, textFrameImage_, 1, 1, 0.0f, WHITE);
+		Novice::DrawSprite(330, 200, chacktextImage_, 1, 1, 0.0f, WHITE);
+		Novice::DrawSprite(chackTextPos_[0].x_, chackTextPos_[0].y_, yesImage_, 1, 1, 0.0f, chackColor_[0].color);
+		Novice::DrawSprite(chackTextPos_[1].x_, chackTextPos_[1].y_, noImage_, 1, 1, 0.0f, chackColor_[1].color);
+
+	}
+	
 }
 
 void TitleScene::MouseBottonChack()
@@ -102,7 +136,15 @@ void TitleScene::MouseBottonChack()
 
 		//はじめるに入っている場合左クリックするとスターとする
 		if (Novice::IsTriggerMouse(0) && changeTimingFrame_ >= changeTimingFrameMax_) {
-			flagChange_ = true;
+			
+			//リセットするか？
+			if (maxWave_ !=0) {
+				titleSModeNow_ = Chackreset;
+			}
+			else {
+				flagChange_ = true;
+			}
+		
 			changeTimingFrame_ = 0;
 
 			Novice::StopAudio(selectEffect_);
@@ -143,6 +185,81 @@ void TitleScene::MouseBottonChack()
 		OnselectBookPlay_ = false;
 	}
 
+}
+
+void TitleScene::ResetPlayChack()
+{
+	Novice::GetMousePosition(&mousePos_.x_, &mousePos_.y_);
+
+	//YES
+	if ((mousePos_.x_ >= chackTextPos_[0].x_ && mousePos_.x_ <= chackTextPos_[0].x_ + size_.x_)
+		&&
+		(mousePos_.y_ >= chackTextPos_[0].y_ + 100 && mousePos_.y_ <= chackTextPos_[0].y_ + 100 + size_.y_))
+	{
+
+		chackColor_[0].color = RED;
+
+		//連続でならないようにするやつ
+		if (OnSelectPChackPlay_[0] == false) {
+
+			OnSelectPChackPlay_[0] = true;
+
+			//マウスに触れたときに音が鳴る
+			if (Novice::IsPlayingAudio(selectEffectPlay_) == 0) {
+				Novice::PlayAudio(selectEffect_, 0, 1);
+			}
+		}
+
+		if (Novice::IsTriggerMouse(0)) {
+
+			flagChange_ = true;
+			onReset_ = true;
+			titleSModeNow_ = None;
+
+			Novice::StopAudio(selectEffect_);
+			Novice::PlayAudio(decisionEffect_, 0, 2);
+
+		}
+
+	}
+	else {
+		chackColor_[0].color = WHITE;
+		OnSelectPChackPlay_[0] = false;
+	}
+
+	//NO
+	if ((mousePos_.x_ >= chackTextPos_[1].x_ + 350 && mousePos_.x_ <= chackTextPos_[1].x_ + 350 + size_.x_)
+		&&
+		(mousePos_.y_ >= chackTextPos_[1].y_ + 100 && mousePos_.y_ <= chackTextPos_[1].y_ + 100 + size_.y_))
+	{
+
+		chackColor_[1].color = RED;
+
+		//連続でならないようにするやつ
+		if (OnSelectPChackPlay_[1] == false) {
+
+			OnSelectPChackPlay_[1] = true;
+
+			//マウスに触れたときに音が鳴る
+			if (Novice::IsPlayingAudio(selectEffectPlay_) == 0) {
+				Novice::PlayAudio(selectEffect_, 0, 1);
+			}
+		}
+
+		if (Novice::IsTriggerMouse(0)) {
+			flagChange_ = true;
+			onReset_ = false;
+			titleSModeNow_ = None;
+
+			Novice::StopAudio(selectEffect_);
+			Novice::PlayAudio(decisionEffect_, 0, 2);
+		}
+
+	}
+	else {
+		chackColor_[1].color = WHITE;
+		OnSelectPChackPlay_[1] = false;
+	}
 }
 
 

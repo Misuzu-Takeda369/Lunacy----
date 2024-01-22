@@ -43,10 +43,10 @@ void SceneManager::Initialize() {
 	saveData_->Initialize();
 	dataScene_->Initialize();
 
-	//nowWave_ = Tutorial;
-	//maxWave_ = Tutorial;
-	maxWave_ = saveData_->GetLastWave();
-	nowWave_ = Wave(maxWave_);
+	nowWave_ = Tutorial;
+	maxWave_ = Tutorial;
+	//maxWave_ = saveData_->GetLastWave();
+	//nowWave_ = Wave(maxWave_);
 
 	changing_ = new SceneChangeEase();
 	changing_->Initialize();
@@ -65,6 +65,7 @@ void SceneManager::Update() {
 			changing_->ChangeAfter();
 		}
 		else if (changing_->GetNowEffectMode() == Nochange) {
+			title_->SetMaxWave(maxWave_);
 			title_->Update();
 		}
 
@@ -80,14 +81,26 @@ void SceneManager::Update() {
 
 			if (changing_->GetNowEffectMode() == After) {
 
-				//初めて起動したとき
+
+				//初めて起動したときorもしくはクリア画面を見た場合
 				if (maxWave_ == Tutorial) {
 					sceneNum_ = GPlayMode;
 					gameP_ = new GamePScene();
 					nowWave_ = Tutorial;
 					gameP_->Initialize(nowWave_);
 					title_->SetFlagChange(false);
+					
 
+				}
+				else if ((maxWave_ != Tutorial) && (title_->GetOnReset() == true)) {
+					sceneNum_ = GPlayMode;
+					gameP_ = new GamePScene();
+					nowWave_ = Tutorial;
+					maxWave_ = Tutorial;
+					gameP_->Initialize(nowWave_);
+					title_->SetFlagChange(false);
+
+					
 				}
 				else {
 
@@ -95,8 +108,7 @@ void SceneManager::Update() {
 					sceneNum_ = WaveSelectMode;
 					title_->SetFlagChange(false);
 
-					//deleteとnewと初期化(初期化だけでもよさそう感)
-					//動きによっては別な場所へ
+
 					title_ = new TitleScene();
 					title_->Initialize();
 
@@ -198,10 +210,12 @@ void SceneManager::Update() {
 
 				if (gameP_->GetFlagGameOver()) {
 					sceneNum_ = GOverMode;
+					saveData_->OnResultUpdate((maxWave_));
 				}
 				//ここにポーズからタイトル戻れるようにする
 				else if (gameP_->GetFlagTitle()) {
 					sceneNum_ = TitleMode;
+					saveData_->OnResultUpdate(maxWave_);
 				}
 				else {
 					sceneNum_ = GClearMode;
@@ -248,8 +262,9 @@ void SceneManager::Update() {
 				//deleteとnewと初期化(初期化だけでもよさそう感)
 				//動きによっては別な場所へ
 
-				//wave数消えるので没
-				/*maxWave_ = Tutorial;*/
+
+				//クリアするとリセットする
+				maxWave_ = Tutorial;
 
 				saveData_->OnResultUpdate(maxWave_);
 				gameC_ = new GameCScene();
@@ -291,7 +306,7 @@ void SceneManager::Update() {
 
 				//deleteとnewと初期化(初期化だけでもよさそう感)
 				//動きによっては別な場所へ
-				saveData_->OnResultUpdate(maxWave_);
+
 				gameO_ = new GameOScene();
 				gameO_->Initialize();
 				//deleteとnewと初期化(初期化だけでもよさそう感)

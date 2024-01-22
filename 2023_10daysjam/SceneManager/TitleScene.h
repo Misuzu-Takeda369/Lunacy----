@@ -10,7 +10,7 @@ class TitleScene
 public:
 
 	enum TitleSMode {
-		None, Expriense, Option
+		None, Expriense, Option, Chackreset
 		//何もなし,操作説明,オプション？
 	};
 	/// <summary>
@@ -62,6 +62,19 @@ public:
 	bool GetToPlayDataFlag() { return toPlayData_; }
 	void SetToPlayDataFlag(bool flag) { toPlayData_ = flag; }
 
+	/// <summary>
+	/// リセット確認中の挙動
+	/// </summary>
+	void ResetPlayChack();
+
+	/// <summary>
+	/// 最初からやり直すか
+	/// </summary>
+	/// <returns>フラグ</returns>
+	bool GetOnReset() {return onReset_;};
+
+	//すでに0の場合に上を起動させない奴
+	void  SetMaxWave(int maxWave) {  maxWave_= maxWave; };
 
 private:
 
@@ -109,6 +122,26 @@ private:
 	IntState bookPos_ = { 1150,580 };
 	int bookSize_ = int(512 * 0.25);
 	UnitColor bookColor_ = { 255,255,255,255,0xFFFFFFFF };
-	
 
+	///シーン変わるときに質問する奴
+	//確認時に出てくる文字の奴
+	IntState chackTextPos_[2];
+	//チェック用
+	UnitColor chackColor_[2] = { {0,0,0,0,0xFFFFFFFF},{0,0,0,0,0xFFFFFFFF} };
+	//音が連続でならないようにするやつ
+	bool OnSelectPChackPlay_[2] = {};
+
+	int yesImage_;
+	int noImage_;
+	int textFrameImage_;
+	int chacktextImage_;
+
+	const IntState size_ = {
+		256,128
+	};
+
+	//リセットするか
+	bool onReset_ = false;
+
+	int maxWave_ = 0;
 };

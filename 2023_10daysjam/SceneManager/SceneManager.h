@@ -66,6 +66,7 @@ public:
 
 	//mainに渡す用
 	SaveData* GetSaveData() { return saveData_; }
+
 	
 
 private:
