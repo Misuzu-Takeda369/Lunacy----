@@ -61,3 +61,8 @@ void NSEnemy::Draw()
 	
 
 }
+
+void NSEnemy::SetState(STATE state)
+{
+	animation_->SetState(state);
+}

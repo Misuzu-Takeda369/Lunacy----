@@ -73,4 +73,9 @@ void NHEnemy::Draw()
 	animation_->Draw(charaBase_.color_);
 }
 
+void NHEnemy::SetState(STATE state)
+{
+	animation_->SetState(state);
+}
+
 

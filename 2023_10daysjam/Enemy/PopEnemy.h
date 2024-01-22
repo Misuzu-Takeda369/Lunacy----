@@ -57,6 +57,16 @@ public:
 	 /// </summary>
 	 void StopMusic() override;
 
+	 /// <summary>
+	 /// 攻撃
+	 /// </summary>
+	 void AttackMotion();
+
+	 /// <summary>
+	 /// 攻撃のモーション状態
+	 /// </summary>
+	 void AttackCool();
+
 private:
 
 	//通常の敵
@@ -88,6 +98,9 @@ private:
 	int walkPlay_ = 0;
 
 	Wave nowWave_ = Tutorial;
+
+	bool attackFrag_ = false;
 	
+	int attacktimer_ = 0;
 };
 

@@ -28,6 +28,8 @@ public:
 	/// </summary>
 	/// <returns></returns>
 	float GetHpMax() { return maxHp_; };
+
+	void SetState(STATE state);
 	
 private:
 
@@ -40,6 +42,8 @@ private:
 	//アニメーション
 	//Enemy1Anim* animation_ = nullptr;
 	BladeSlimeAnim* animation_ = nullptr;
+
+	
 
 };
 

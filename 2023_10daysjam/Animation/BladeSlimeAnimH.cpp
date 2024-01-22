@@ -56,7 +56,7 @@ void BladeSlimeAnim::Draw(unsigned int color)
 {
 	if (maindState_ == Normal) {
 		if (state_ == ATTACK) {
-			Novice::DrawSpriteRect((int)(_pos.x - _spriteRadius.x * _direction), (int)(_pos.y - _spriteRadius.y), 256 * atkFrame, 0, 128, 128, rectTexATK_,
+			Novice::DrawSpriteRect((int)(_pos.x - _spriteRadius.x * _direction), (int)(_pos.y - _spriteRadius.y), 256 * atkFrame, 0, 256, 128, rectTexATK_,
 				1 * _direction * 0.2f, 1, 0, WHITE);
 		}
 		else {

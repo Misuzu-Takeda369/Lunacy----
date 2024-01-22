@@ -107,6 +107,7 @@ void PopEnemy::Update()
 	}
 
 
+	AttackCool();
 	eHUi_->Update(float(hp_), charaBase_.pos_);
 
 
@@ -353,6 +354,57 @@ void PopEnemy::StopMusic()
 {
 	Novice::StopAudio(walkPlay_);
 	Novice::StopAudio(hitPlay_);
+}
+
+void PopEnemy::AttackMotion()
+{
+	switch (enemyType_)
+	{
+	case HPNOMAL:
+		nHEnemy_->SetState(ATTACK);
+
+		break;
+
+	case SPNOMAL:
+		nSEnemy_->SetState(ATTACK);
+		break;
+
+	default:
+		break;
+
+	}
+
+	attackFrag_ = true;
+
+}
+
+void PopEnemy::AttackCool()
+{
+	
+	if (attackFrag_) {
+		attacktimer_++;
+
+		if (attacktimer_>= 10) {
+			attackFrag_ = false;
+			attacktimer_ = 0;
+
+			switch (enemyType_)
+			{
+			case HPNOMAL:
+				nHEnemy_->SetState(MOVE);
+
+				break;
+
+			case SPNOMAL:
+				nSEnemy_->SetState(MOVE);
+				break;
+
+			default:
+				break;
+
+			}
+		}
+	}
 }
 
 

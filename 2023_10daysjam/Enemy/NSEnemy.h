@@ -30,6 +30,12 @@ public:
 	/// <returns></returns>
 	float GetHpMax() { return maxHp_; };
 
+	/// <summary>
+	///　状態受け取り
+	/// </summary>
+	/// <param name="state"></param>
+	void SetState(STATE state);
+
 private:
 
 	const float maxHp_ = 10.0f;
@@ -40,5 +46,7 @@ private:
 	//アニメーション
 	//enemy1anim* animation_ = nullptr;
 	BladeSlimeAnimS* animation_ = nullptr;
+
+	
 };
 
