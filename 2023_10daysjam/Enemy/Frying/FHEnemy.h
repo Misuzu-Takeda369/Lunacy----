@@ -40,6 +40,18 @@ public:
 	/// <param name="flag">フラグ</param>
 	void SetColorChange(bool flag) { ColorChange = flag; };
 
+	///// <summary>
+	///// ダメージ食らわせていいか
+	///// </summary>
+	///// <param name="frag"></param>
+	//void SetDamageFrag(bool frag) { damageFrag_ = frag; };
+
+	///// <summary>
+	///// ここでやる
+	///// </summary>
+	///// <param name="state"></param>
+	//void SetState(STATE state);*/
+
 private:
 
 	//体力の最大値
@@ -60,6 +72,11 @@ private:
 
 	//攻撃合図用
 	bool ColorChange = false;
+
+	//ダメージを連続で食らわせて良いか
+	bool damageFrag_ = false;
+
+	STATE nowState_ = MOVE;
 
 };
 

@@ -38,4 +38,12 @@ void EnemyBase::OnCollision(float& damege)
 	damege;
 }
 
+void EnemyBase::AttackMotion()
+{
+}
+
+void EnemyBase::AttackCool()
+{
+}
+
 

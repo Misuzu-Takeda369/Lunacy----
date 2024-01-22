@@ -650,7 +650,7 @@ void GamePScene::CheckCollisionAll()
 				EnemyType enemytype = enemies->GetEnemyType();
 				player_->OnCollision(damege, enemytype);
 				hitEffect_->OnColistion();
-				//enemies->
+				//enemies->AttackMotion();
 			}
 			//enemies;
 

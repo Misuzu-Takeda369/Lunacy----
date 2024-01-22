@@ -45,11 +45,11 @@ void FHEnemy::Update()
 
 	if (ColorChange) {
 		flyeye_->SetState(ATTACK);
+		//flyeye_->SetDamageFrag(damageFrag_);
 	}
 	else {
 		flyeye_->SetState(MOVE);
 	}
-	
 	
 }
 
@@ -69,3 +69,8 @@ void FHEnemy::Move()
 
 	
 }
+
+//void FHEnemy::SetState(STATE state)
+//{
+//	flyeye_->SetState(state);
+//}

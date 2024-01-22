@@ -67,6 +67,16 @@ public:
 	/// <returns></returns>
 	float GetContinuousDamage() { return continuousDamage_; };
 
+	///// <summary>
+	// /// 攻撃
+	// /// </summary>
+	//void AttackMotion();
+
+	///// <summary>
+	///// 攻撃のモーション状態
+	///// </summary>
+	//void AttackCool() override;
+
 private:
 
 	//通常時の浮遊
@@ -108,5 +118,9 @@ private:
 	//ダメージ
 	const float continuousDamage_ = 5.0f;
 
+
+	bool attackFrag_ = false;
+
+	int attacktimer_ = 0;
 };
 

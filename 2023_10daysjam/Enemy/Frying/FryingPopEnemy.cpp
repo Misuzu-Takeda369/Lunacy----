@@ -63,6 +63,8 @@ void FryingEnemy::Update()
 
 		ContinuousDamage();
 
+		//fhEnemy_->SetDamageFrag(damageFrag_);
+
 		//ここがゲームシーンにこの個体が消滅している伝えるよう
 		if (fhEnemy_->GetIsDead()) {
 			isDead_ = true;
@@ -81,6 +83,7 @@ void FryingEnemy::Update()
 	//ゲージ処理用(ゲージ未使用になったので不要に)
 	//decreasedHp_ = maxHp_ - hp_;
 
+	AttackCool();
 	eHUi_->Update(hp_, charaBase_.pos_);
 
 
@@ -250,6 +253,48 @@ void FryingEnemy::ContinuousDamage()
 	}
 	
 }
+
+//void FryingEnemy::AttackMotion()
+//{
+//	switch (enemyType_)
+//	{
+//	case HPNOMAL:
+//		fhEnemy_->SetState(ATTACK);
+//		break;
+//
+//	default:
+//		break;
+//
+//	}
+//
+//	attackFrag_ = true;
+//	//fhEnemy_->SetDamageFrag(attackFrag_);
+//}
+//
+//void FryingEnemy::AttackCool()
+//{
+//	if (attackFrag_) {
+//		attacktimer_++;
+//
+//		if (attacktimer_ >= 60) {
+//			attackFrag_ = false;
+//			attacktimer_ = 0;
+//
+//			switch (enemyType_)
+//			{
+//			case HPNOMAL:
+//				fhEnemy_->SetState(MOVE);
+//
+//				break;
+//
+//			default:
+//				break;
+//
+//			}
+//		}
+//	}
+//}
+//
 
 
 

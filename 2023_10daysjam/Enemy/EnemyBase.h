@@ -40,6 +40,17 @@ public:
 		_right =right;
 	};
 
+
+	/// <summary>
+	 /// 攻撃
+	 /// </summary>
+	virtual void AttackMotion();
+
+	/// <summary>
+	/// 攻撃のモーション状態
+	/// </summary>
+	virtual void AttackCool();
+
 protected:
 
 
