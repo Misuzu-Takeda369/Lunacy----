@@ -16,5 +16,10 @@ private:
 	Vector2 _pos;
 	unsigned int _lunaTexture[1];
 
+	
+	unsigned int _midleTexture = 0;
+	const int _midleTexPosX =64;
+	const int _midleTexPosY = 64;
+	int _midleDicrection_ = 0;
 };
 

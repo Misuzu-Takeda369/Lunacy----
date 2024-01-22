@@ -51,6 +51,12 @@ public:
 	virtual float SetSp(float sp) { return sp_ = sp; };
 
 	/// <summary>
+	/// 現在のHP
+	/// </summary>
+	/// <returns></returns>
+	virtual float SetHp(float hp) { return hp_ = hp; };
+
+	/// <summary>
 	/// 最大値のHP
 	/// </summary>
 	/// <returns></returns>

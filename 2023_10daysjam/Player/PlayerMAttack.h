@@ -61,5 +61,6 @@ private:
 	//攻撃力(magic時　変動あり)
 	float magicAttackPoint_ = 10.0f;
 
+
 };
 

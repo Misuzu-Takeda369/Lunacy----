@@ -255,4 +255,8 @@ private:
 	int usedItemPlay_ = 0;
 	//ハンドル
 	int changeAttackPlay_ = 0;
+
+	//画像
+	int magicImage_ = 0;
+
 };

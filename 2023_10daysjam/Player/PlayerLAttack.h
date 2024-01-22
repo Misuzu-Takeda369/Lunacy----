@@ -48,6 +48,12 @@ public:
 	/// </summary>
 	void OnCollision();
 
+	/// <summary>
+	/// 画像受け取りセッター(読み込みたくねぇため)
+	/// </summary>
+	/// <param name="Image"></param>
+	void SetImage(int Image) { magicImage_= Image; };
+
 private:
 
 
@@ -71,6 +77,8 @@ private:
 
 	//攻撃力(magic時　変動あり)
 	float magicAttackPoint_ = 5.0f;
+
+	int magicImage_ = 0;
 
 };
 

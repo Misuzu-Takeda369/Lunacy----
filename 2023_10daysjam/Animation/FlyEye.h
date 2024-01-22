@@ -1,5 +1,7 @@
 ﻿#pragma once
 #include "Animation.h"
+#include "ColorDefineEx.h"
+
 //赤のみ
 class FlyEye :public Animation
 {

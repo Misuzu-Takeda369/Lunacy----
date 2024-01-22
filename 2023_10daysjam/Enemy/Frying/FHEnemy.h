@@ -34,6 +34,12 @@ public:
 	/// </summary>
 	void Move()override;
 
+	/// <summary>
+	/// 色変え合図
+	/// </summary>
+	/// <param name="flag">フラグ</param>
+	void SetColorChange(bool flag) { ColorChange = flag; };
+
 private:
 
 	//体力の最大値
@@ -51,6 +57,9 @@ private:
 
 	//浮遊敵情報
 	FlyEye* flyeye_ = nullptr;
+
+	//攻撃合図用
+	bool ColorChange = false;
 
 };
 

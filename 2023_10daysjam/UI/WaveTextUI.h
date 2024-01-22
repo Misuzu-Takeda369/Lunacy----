@@ -28,6 +28,11 @@ public:
 	void Draw();
 	void Draw(Vector2 ShakePos);
 
+	/// <summary>
+	/// 音鳴らす用
+	/// </summary>
+	void WaveChangeMusic();
+
 
 private:
 
@@ -46,6 +51,10 @@ private:
 	const int sizeX_ = 125;
 	const int sizeY_ = 64;
 
-	
+	//音源
+	int changeEffect_ = 0;
+
+	int changePlay_ = 0;
+
 };
 

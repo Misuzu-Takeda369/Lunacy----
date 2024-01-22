@@ -57,7 +57,7 @@ void FlyEye::Draw(unsigned int color)
 	/*	Novice::DrawSpriteRect((int)(_pos.x - _spriteRadius.x * _direction), (int)(_pos.y - _spriteRadius.y), 512 * atkFrame, 0, 512, 512, rectTexATK_,
 			0.25f * _direction * 0.166f, 0.25f, 0, WHITE);*/
 		Novice::DrawSpriteRect((int)(_pos.x - _spriteRadius.x * _direction), (int)(_pos.y - _spriteRadius.y), 128 * atkFrame, 0, 128, 128, rectTexATK_,
-			1.0f * _direction * 0.166f, 1.0f, 0, WHITE);
+			1.0f * _direction * 0.166f, 1.0f, 0, RED);
 
 	}
 	else {

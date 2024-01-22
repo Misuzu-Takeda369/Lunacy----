@@ -83,6 +83,9 @@ void Player::Initialize()
 	hitSpPlay_ = 0;
 	usedItemPlay_ = 0;
 	changeAttackPlay_ = 0;
+
+	//画像
+	magicImage_ = Novice::LoadTexture("./Resources/Images/Player_Magic.png");
 }
 
 void Player::Update(char* keys, char* preKeys)
@@ -339,6 +342,10 @@ void Player::Attack()
 			//newlAttack->Initialize(playerAttackTypeNow_, maindStateNow_, playerDirectionA_, charaBase_.pos_);
 			newlAttack->Initialize(playerAttackTypeNow_, maindStateNow_, playerDirectionM_, charaBase_.pos_);
 			lAttack_.push_back(newlAttack);
+
+			for (PlayerLAttack* lAttack : lAttack_) {
+				lAttack->SetImage(magicImage_);
+			}
 		}
 		else {
 

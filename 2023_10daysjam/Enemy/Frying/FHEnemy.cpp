@@ -42,6 +42,14 @@ void FHEnemy::Update()
 	NaturalDeath();
 	flyeye_->Update(charaBase_.pos_);
 	flyeye_->SetDirection(_right);
+
+	if (ColorChange) {
+		flyeye_->SetState(ATTACK);
+	}
+	else {
+		flyeye_->SetState(MOVE);
+	}
+	
 	
 }
 

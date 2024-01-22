@@ -232,10 +232,18 @@ void FryingEnemy::ContinuousDamage()
 			alarmPlay_ = Novice::PlayAudio(alarmEffect_, 0, 0.8f);
 		}
 	}
+	
+	if (damageLimitTime_ <= 60) {
+		fhEnemy_->SetColorChange(true);
+	}
+	else {
+		fhEnemy_->SetColorChange(false);
+	}
 
 	if (damageLimitTime_ <= 0) {
 		damageFrag_ = true;
 		damageLimitTime_ = damageLimitTimeMax_;
+		
 	}
 	else {
 		damageFrag_ = false;

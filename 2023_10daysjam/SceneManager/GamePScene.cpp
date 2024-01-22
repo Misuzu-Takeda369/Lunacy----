@@ -909,9 +909,7 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 
 void GamePScene::WaveChange()
 {
-	/*if (tutrialSystem_->GetIsDead() == true) {
-		delete tutrialSystem_;
-	}*/
+	
 	//右クリック押したら終わる
 	if ((nowWave_ == Tutorial) && tutrialSystem_->GetIsDead()) {
 		nowWave_ = Wave1;
@@ -919,22 +917,33 @@ void GamePScene::WaveChange()
 		/*timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);*/
 		player_->SetSp(player_->GetSpMax());
+		player_->SetHp(player_->GetHpMax());
+		//ここにHpも作っておく
+
+		//wave変わった時に鳴らす奴
+
 	}
 	else if ((nowWave_ == Wave1) && (timerUi_->GetterTimer() <= 0)) {
 		nowWave_ = Wave2;
 		timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);
+		//wave変わった時に鳴らす奴
+		waveTextUi_->WaveChangeMusic();
 
 	}
 	else if ((nowWave_ == Wave2) && (timerUi_->GetterTimer() <= 0)) {
 		nowWave_ = Wave3;
 		timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);
+		//wave変わった時に鳴らす奴
+		waveTextUi_->WaveChangeMusic();
 	}
 	else if ((nowWave_ == Wave3) && (timerUi_->GetterTimer() <= 0)) {
 		nowWave_ = Wave4;
 		timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);
+		//wave変わった時に鳴らす奴
+		waveTextUi_->WaveChangeMusic();
 	}
 
 
