@@ -31,6 +31,9 @@ void BGMManage::Update(float& Hp, float& Sp, Wave& NowWave)
 			//念のためisplayつかっとく
 			dangerPlay_ = Novice::PlayAudio(dangerBGM_, 1, 0.4f);
 		}
+		else {
+			Novice::ResumeAudio(dangerPlay_);
+		}
 
 	}
 	else {
