@@ -208,24 +208,35 @@ void SceneManager::Update() {
 
 			if (changing_->GetNowEffectMode() == After) {
 
-				if (gameP_->GetFlagGameOver()) {
-					sceneNum_ = GOverMode;
-					saveData_->OnResultUpdate((maxWave_));
-				}
-				//ここにポーズからタイトル戻れるようにする
-				else if (gameP_->GetFlagTitle()) {
-					sceneNum_ = TitleMode;
-					saveData_->OnResultUpdate(maxWave_);
-				}
-				else {
-					sceneNum_ = GClearMode;
-				}
-
 				//現在のwaveを受け取る
 				nowWave_ = gameP_->GetNowWave();
 				if (maxWave_ < nowWave_) {
 					maxWave_ = nowWave_;
 				}
+
+				if (gameP_->GetFlagGameOver()) {
+					sceneNum_ = GOverMode;
+
+					int Set = maxWave_;
+					if (maxWave_ != Tutorial) {
+						Set = maxWave_ - 1;
+					}
+					saveData_->OnResultUpdate((Set));
+				}
+				//ここにポーズからタイトル戻れるようにする
+				else if (gameP_->GetFlagTitle()) {
+					sceneNum_ = TitleMode;
+
+					int Set = maxWave_;
+					if (maxWave_ != Tutorial) {
+						Set = maxWave_ - 1;
+					}
+					saveData_->OnResultUpdate((Set));
+				}
+				else {
+					sceneNum_ = GClearMode;
+				}
+
 
 				gameP_->SetFlagChange(false);
 

@@ -182,8 +182,7 @@ void GamePScene::Update()
 
 				break;
 
-			case Wave4:
-
+			case Boss:
 
 
 				apostelEvent_->SetPlayerInfo(player_->GetCharaBase());
@@ -279,7 +278,7 @@ void GamePScene::Update()
 			//現在はIを押したときに移動
 			if ((preKeys[DIK_I] == 0 && keys[DIK_I] != 0) && changeTimingFrame_ >= changeTimingFrameMax_) {
 
-				if (nowWave_ == Wave4) {
+				if (nowWave_ == Boss) {
 					flagChange_ = true;
 					changeTimingFrame_ = 0;
 
@@ -299,7 +298,7 @@ void GamePScene::Update()
 #endif // DEBUG
 			///クリア条件の変更
 			if (apostelEvent_->GetIsDead()) {
-				if (nowWave_ == Wave4) {
+				if (nowWave_ == Boss) {
 					flagChange_ = true;
 					changeTimingFrame_ = 0;
 
@@ -405,7 +404,7 @@ void GamePScene::Draw()
 			fryingenemis->Draw();
 		}
 		break;
-	case Wave4:
+	case Boss:
 
 		apostelEvent_->Draw();
 		break;
@@ -451,7 +450,7 @@ void GamePScene::Draw()
 
 	hpUi_->Draw(hitEffect_->GetShakePos());
 	spUi_->Draw(hitEffect_->GetShakePos());
-	if (nowWave_ == Wave4) {
+	if (nowWave_ == Boss) {
 		bossHpUi_->Draw(hitEffect_->GetShakePos());
 	}
 	else {
@@ -587,7 +586,7 @@ void GamePScene::CheckCollisionAll()
 	}
 #pragma endregion
 
-	if (nowWave_ == Wave4) {
+	if (nowWave_ == Boss) {
 #pragma region プレイヤー攻撃とボス
 		if (playerMA) {
 
@@ -896,7 +895,7 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 		}
 
 		break;
-	case Wave4:
+	case Boss:
 
 		///SP回復の手助け(救済処置用に123の時より遅いペースで出現させるようにしている)
 		//EnemyPopFrame_++;
@@ -931,7 +930,7 @@ void GamePScene::WaveChange()
 		player_->SetSp(player_->GetSpMax());
 		player_->SetHp(player_->GetHpMax());
 		//ここにHpも作っておく
-
+		waveTextUi_->Update(nowWave_);
 		//wave変わった時に鳴らす奴
 
 	}
@@ -941,6 +940,7 @@ void GamePScene::WaveChange()
 		timerUi_->SetterMoveX(0);
 		//wave変わった時に鳴らす奴
 		waveTextUi_->WaveChangeMusic();
+		waveTextUi_->Update(nowWave_);
 
 	}
 	else if ((nowWave_ == Wave2) && (timerUi_->GetterTimer() <= 0)) {
@@ -949,13 +949,15 @@ void GamePScene::WaveChange()
 		timerUi_->SetterMoveX(0);
 		//wave変わった時に鳴らす奴
 		waveTextUi_->WaveChangeMusic();
+		waveTextUi_->Update(nowWave_);
 	}
 	else if ((nowWave_ == Wave3) && (timerUi_->GetterTimer() <= 0)) {
-		nowWave_ = Wave4;
+		nowWave_ = Boss;
 		timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);
 		//wave変わった時に鳴らす奴
 		waveTextUi_->WaveChangeMusic();
+		waveTextUi_->Update(nowWave_);
 	}
 
 
@@ -980,7 +982,7 @@ void GamePScene::WaveChange()
 		waveTextUi_->Update(nowWave_);
 	}
 	else if ((nowWave_ == Wave3) && (!keys[DIK_0] && preKeys[DIK_0])) {
-		nowWave_ = Wave4;
+		nowWave_ = Boss;
 		timerUi_->SetterTimer(timerMax);
 		timerUi_->SetterMoveX(0);
 		waveTextUi_->Update(nowWave_);

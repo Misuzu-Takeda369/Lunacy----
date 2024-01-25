@@ -10,7 +10,7 @@ ApostelEvent::~ApostelEvent()
 void ApostelEvent::Initialize()
 {
 	apostel_ = new Apostel;
-	apostel_->Initialize({500,100},{0,0},10.f);
+	apostel_->Initialize({ 500,100 }, { 0,0 }, 10.f);
 	//angel_ = new LunaticAngel;
 	//angel_->Initialize({ 0,0 }, { 0,0 }, 0);
 	time_ = 0;
@@ -22,6 +22,7 @@ void ApostelEvent::Initialize()
 	warpGateImage_ = Novice::LoadTexture("./Resources/Images/WarpGate.png");
 	gateColor_.R = 255; gateColor_.G = 255; gateColor_.B = 255; gateColor_.A = 0;
 
+	isApostelActive_ = false;
 
 }
 
@@ -32,14 +33,14 @@ void ApostelEvent::Update()
 	if (!isApostelActive_) {
 		//ここに登場シーンを 1秒用
 		time_++;
-		
+
 		gateTheta_ += 0.18f;
-		if (time_<=30) {
-			
+		if (time_ <= 30) {
+
 			if (warpScale_ < 2.f) {
 				warpScale_ += 0.1f;
 			}
-			
+
 		}
 		if (gateColor_.A < 255) {
 			gateColor_.A += 10;
@@ -49,9 +50,9 @@ void ApostelEvent::Update()
 		}
 
 		if (time_ >= 30) {
-			
+
 			isWarped_ = true;
-			
+
 		}
 		if (time_ >= 40) {
 			if (warpScale_ > 0) {
@@ -67,10 +68,10 @@ void ApostelEvent::Update()
 			radiusSpeed_ = -radiusSpeed_;
 			isWarped_ = true;
 		}*/
-		if (time_>=60) {
+		if (time_ >= 60) {
 			isApostelActive_ = true;
 		}
-		gateColor_.color=GetColorValue(gateColor_.R, gateColor_.G, gateColor_.B, gateColor_.A);
+		gateColor_.color = GetColorValue(gateColor_.R, gateColor_.G, gateColor_.B, gateColor_.A);
 	}
 	else {
 		if (warpScale_ > 0) {
@@ -78,6 +79,7 @@ void ApostelEvent::Update()
 		}
 		apostel_->Update();
 	}
+
 	if (apostel_->GetIsDead()) {
 		//angel_->Update();
 	}
@@ -88,11 +90,13 @@ void ApostelEvent::Draw()
 {
 	//angel_->Draw();
 	if (isWarped_) {
-	apostel_->Draw();
+		apostel_->Draw();
 	}
 	//Novice::DrawEllipse((int)warpPos_.x, (int)warpPos_.y, warpRadius_, warpRadius_, 0, BLACK, kFillModeSolid);
 	//DrawRotateSprite(warpPos_, { 64.f,64.f }, 64*warpFrame_, 0, warpGateImage_, gateColor_.color, gateTheta_);
 	DrawRotateScaleSprite(warpPos_, { 64.f,64.f }, 0, 0, warpGateImage_, gateColor_.color, warpScale_, gateTheta_);
+
+	Novice::ScreenPrintf(300,400,"Flag: %d", int(isWarped_));
 }
 
 void ApostelEvent::SetPlayerInfo(CharaBase player)

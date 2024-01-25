@@ -38,7 +38,7 @@ void BGMManage::Update(float& Hp, float& Sp, Wave& NowWave)
 	}
 	else {
 
-		if ((NowWave != Tutorial) && (NowWave != Wave4)) {
+		if ((NowWave != Tutorial) && (NowWave != Boss)) {
 
 			//曲が成っていた場合は止める
 			if ((Novice::IsPlayingAudio(dangerPlay_) == 1)) {
@@ -56,7 +56,7 @@ void BGMManage::Update(float& Hp, float& Sp, Wave& NowWave)
 
 
 		}
-		else if (NowWave == Wave4) {
+		else if (NowWave == Boss) {
 
 			Novice::StopAudio(nomalPlay_);
 

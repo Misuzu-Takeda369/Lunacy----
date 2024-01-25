@@ -1,6 +1,8 @@
 ﻿#include "Apostel_ThrowMine.h"
 #include <Novice.h>
 #include "ColorDefineEx.h"
+#include "Function/Function.h"
+#include <algorithm>
 
 void Apostel_ThrowMine::Initialize(CharaBase owner, Vector2 playerPos)
 {
@@ -28,6 +30,16 @@ void Apostel_ThrowMine::Initialize(CharaBase owner, Vector2 playerPos)
 	//時限爆弾爆発
 	timeBombExplosionPlay_ = 0;
 
+	//sprite
+	sprite_ = Novice::LoadTexture("./Resources/Images/AnimResources/mine.png");
+	theta_ = 0;
+	rotateSpeed_ = (float)RandomRange(3, 9) * 0.1f;
+	effect_ = Novice::LoadTexture("./Resources/Images/AnimResources/mine_light.png");
+	effectFlag_ = false;
+	effectTheta_ = 0;
+	effectScale_ = 0;
+	effectScaleFlag_ = false;
+	effectScaleSpeed_ = 0;
 }
 
 void Apostel_ThrowMine::Update()
@@ -56,6 +68,7 @@ void Apostel_ThrowMine::Update()
 		if (charaBase_.pos_.y < groundLevel_) {
 			charaBase_.pos_.x = (1.0f - t_) * start_.x + t_ * target_.x;
 			charaBase_.pos_.y = (1.0f - t_) * start_.y + t_ * target_.y;
+			theta_ += rotateSpeed_;
 		}
 		else {
 			charaBase_.pos_.y = groundLevel_ + 1;
@@ -70,12 +83,30 @@ void Apostel_ThrowMine::Update()
 				}
 				blinkingTimer_ = 0;
 			}
+			if (timeCounter_ >= (baseActiveTime_ - 10)) {
+				effectFlag_ = true;
+			}
 		}
-		charaBase_.color_ = MAGENTA;
+		charaBase_.color_ = 0x00000000;
 	}
 	//一定時間で起爆
 	if (timeCounter_ >= baseActiveTime_) {
 		isActive_ = true;
+		effectFlag_ = false;
+	}
+
+	if (effectFlag_) {
+		effectTheta_ += 0.23f;
+		if (!effectScaleFlag_) {
+			effectScaleSpeed_ += 0.1f;
+			effectScale_ += effectScaleSpeed_;
+			if (effectScale_ >= 0.5f) {
+				effectScaleFlag_ = true;
+			}
+		}
+		else {
+			effectScale_ = std::clamp(effectScale_ - 0.05f, 0.0f, 0.5f);
+		}
 	}
 	
 }
@@ -83,7 +114,11 @@ void Apostel_ThrowMine::Update()
 void Apostel_ThrowMine::Draw()
 {
 	if (blinking_) {
+		DrawRotateScaleSprite(charaBase_.pos_, { 128.f,128.f }, 0, 0, sprite_, WHITE, 0.25f, theta_);
 		Novice::DrawEllipse((int)charaBase_.pos_.x, (int)charaBase_.pos_.y,
 			(int)charaBase_.radius_, (int)charaBase_.radius_, 0, charaBase_.color_, kFillModeSolid);
+	}
+	if (effectFlag_) {
+		DrawRotateScaleSprite(charaBase_.pos_, { 128.f,128.f }, 0, 0, effect_, WHITE, effectScale_, effectTheta_);
 	}
 }

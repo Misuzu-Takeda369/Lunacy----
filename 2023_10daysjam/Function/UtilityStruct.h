@@ -49,7 +49,7 @@ enum CollisionType
 ///Wave関連
 //wave関連
 enum Wave {
-	Tutorial, Wave1, Wave2, Wave3, Wave4
+	Tutorial, Wave1, Wave2, Wave3, Boss
 };
 
 

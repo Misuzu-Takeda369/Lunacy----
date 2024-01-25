@@ -7,7 +7,7 @@ public:
 	/// <summary>
 	/// 初期化
 	/// </summary>
-	void Initialize(CharaBase owner,Vector2 playerPos);
+	void Initialize(CharaBase owner, Vector2 playerPos);
 
 	/// <summary>
 	/// 毎フレーム処理
@@ -64,6 +64,15 @@ private:
 	int timeBombExplosionEffect_ = 0;
 	//時限爆弾爆発
 	int timeBombExplosionPlay_ = 0;
+
+	int sprite_;
+	float theta_ = 0;
+	float rotateSpeed_ = 0;
+	unsigned int effect_;
+	bool effectFlag_ = false; bool effectScaleFlag_ = false;
+	float effectTheta_ = 0;
+	float effectScale_ = 0;
+	float effectScaleSpeed_ = 0;
 };
 
 /*

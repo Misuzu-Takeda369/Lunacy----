@@ -44,12 +44,17 @@ void WaveSelect::Initialize(int& maxWave)
 	selectLetter_[3] = {
 		450,50 + (textSize_.y_ * 4)
 	};
-	
+
+	selectLetter_[4] = {
+		1020,50 + (textSize_.y_ * 4)
+	};
+
+
 	image_[0] = Novice::LoadTexture("./Resources/images/Text/tutrial.png");
 	image_[1] = Novice::LoadTexture("./Resources/images/Text/wave1.png");
 	image_[2] = Novice::LoadTexture("./Resources/images/Text/wave2.png");
 	image_[3] = Novice::LoadTexture("./Resources/images/Text/wave3.png");
-	//image_[4] = Novice::LoadTexture("./Resources/images/Text/wave3.png");
+	image_[4] = Novice::LoadTexture("./Resources/images/Text/Boss.png");
 	
 	backImage_ = Novice::LoadTexture("./Resources/images/Back/Titleback_1.png");
 	backTitleImage_ = Novice::LoadTexture("./Resources/images/UI/backbutton.png");
@@ -101,6 +106,7 @@ void WaveSelect::Draw()
 		Novice::DrawSprite(selectLetter_[i].x_, selectLetter_[i].y_, image_[i],1,1, 0.0f,selectColor_[i].color);
 	}
 
+	//バックの奴
 	Novice::DrawSprite(selectLetter_[0].x_, 10, backTitleImage_, ScaleSizeX, ScaleSizeY, 0.0f, WHITE);
 }
 
@@ -256,6 +262,45 @@ void WaveSelect::MouseBottonChack()
 		else {
 			selectColor_[3].color = WHITE;
 			OnselectWavePlay_[3] = false;
+		}
+	}
+
+#pragma endregion
+
+#pragma region Boss
+
+	if (maxWave_ >= Boss) {
+		if ((mousePos_.x_ >= selectLetter_[4].x_ && mousePos_.x_ <= selectLetter_[4].x_ + textSize_.x_)
+			&&
+			(mousePos_.y_ >= selectLetter_[4].y_ && mousePos_.y_ <= selectLetter_[4].y_ + textSize_.y_))
+		{
+			selectColor_[4].color = RED;
+
+			//連続でならないようにするやつ
+			if (OnselectWavePlay_[4] == false) {
+
+				OnselectWavePlay_[4] = true;
+
+				//マウスに触れたときに音が鳴る
+				if (Novice::IsPlayingAudio(selectEffectPlay_) == 0) {
+					Novice::PlayAudio(selectEffect_, 0, 1);
+				}
+			}
+
+			//はじめるに入っている場合左クリックするとスターとする
+			if (Novice::IsTriggerMouse(0) && changeTimingFrame_ >= changeTimingFrameMax_) {
+				flagChange_ = true;
+				nowWave_ = Boss;
+				changeTimingFrame_ = 0;
+				Novice::StopAudio(selectEffect_);
+				Novice::PlayAudio(decisionEffect_, 0, 2);
+			}
+
+
+		}
+		else {
+			selectColor_[4].color = WHITE;
+			OnselectWavePlay_[4] = false;
 		}
 	}
 

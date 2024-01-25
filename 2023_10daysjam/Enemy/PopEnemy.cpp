@@ -233,7 +233,7 @@ void PopEnemy::EnemyBorn(Wave nowWave)
 		break;
 	case Wave2:
 	case Wave3:
-	case Wave4:
+	case Boss:
 
 #pragma region ポップした時の判別
 		rumNum_ = RandomRange(1, 5);

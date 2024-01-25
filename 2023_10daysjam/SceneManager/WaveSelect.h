@@ -3,7 +3,7 @@
 #include "Function/UtilityStruct.h"
 
 //何個選択肢があるのか
-const int selectNum_ = 4;
+const int selectNum_ = 5;
 
 class WaveSelect
 {
@@ -110,8 +110,8 @@ private:
 	int decisionEffect_ = 0;
 	//音の尺が短すぎて機能してない(意味ない)かも
 	int selectEffectPlay_ = 0;
-	bool OnselectWavePlay_[4] = {
-		false,false,false,false
+	bool OnselectWavePlay_[selectNum_] = {
+		false,false,false,false,false
 	};
 	bool OnselectBackPlay_ = false;
 	//画像を少しデカくしたらおもろそう
