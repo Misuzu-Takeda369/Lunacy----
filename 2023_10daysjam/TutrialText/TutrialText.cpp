@@ -72,19 +72,6 @@ void TutrialText::Update()
 		1,2
 		};
 		break;
-	case 10:
-
-		DisplayNum = {
-		2,2
-		};
-		break;
-	case 11:
-
-		DisplayNum = {
-		3,2
-		};
-
-		break;
 
 	default:
 		break;

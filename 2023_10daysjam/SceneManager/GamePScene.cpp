@@ -150,7 +150,7 @@ void GamePScene::Update()
 
 				tutrialSystem_->Update(player_->GetMaindStateNow(), player_->GetPlayerAttackTypeNow());
 
-				if (tutrialSystem_->GetNowExprestion() == 4) {
+				if ((tutrialSystem_->GetNowExprestion() == 4) || (tutrialSystem_->GetNowExprestion() == 5)) {
 					player_->SetSpChangingPoint(500.0f);
 				}
 				else {
@@ -519,12 +519,12 @@ void GamePScene::CheckCollisionAll()
 				enemies->OnCollision(damege);
 
 				///チュートリアル用
-				if ((tutrialSystem_->GetNowExprestion() == 1) && (enemies->GetIsDead() == true)) {
-					tutrialSystem_->SetNowExprestion(2);
+				if ((tutrialSystem_->GetNowExprestion() == 2) && (enemies->GetIsDead() == true)) {
+					tutrialSystem_->SetNowExprestion(3);
 				}
 				///チュートリアル用
-				if ((tutrialSystem_->GetNowExprestion() == 3) && (enemies->GetIsDead() == true)) {
-					tutrialSystem_->SetNowExprestion(4);
+				if ((tutrialSystem_->GetNowExprestion() == 4) && (enemies->GetIsDead() == true)) {
+					tutrialSystem_->SetNowExprestion(5);
 				}
 			}
 
@@ -749,8 +749,20 @@ void GamePScene::EnemyDead()
 				popItem_.push_back(newItem);
 			}
 		}
+
+		///チュートリアル用
+		if ((tutrialSystem_->GetNowExprestion() == 2) && (enemies->GetIsDead() == true)) {
+			tutrialSystem_->SetNowExprestion(3);
+		}
+		///チュートリアル用
+		if ((tutrialSystem_->GetNowExprestion() == 4) && (enemies->GetIsDead() == true)) {
+			tutrialSystem_->SetNowExprestion(5);
+		}
+
 	}
+
 	enemy_.remove_if([](PopEnemy* enemies) {
+
 		if (enemies->GetIsDead()) {
 			delete enemies;
 			return true;
@@ -758,6 +770,8 @@ void GamePScene::EnemyDead()
 
 		return false;
 		});
+
+
 
 }
 
@@ -826,7 +840,7 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 	{
 	case Tutorial:
 
-		if ((tutrialSystem_->GetNowExprestion() == 1) && countEnemy_ == 0) {
+		if ((tutrialSystem_->GetNowExprestion() == 2) && countEnemy_ == 0) {
 			PopEnemy* newEnemy = new PopEnemy();
 
 			newEnemy->Initialize(player_->GetMaindStateNow(), nowWave, enemyNotAppeared_);
@@ -835,13 +849,13 @@ void GamePScene::EnemyPoping(Wave& nowWave)
 			countEnemy_ = 1;
 		}
 
-		if ((tutrialSystem_->GetNowExprestion() == 3) && countEnemy_ == 1) {
+		if ((tutrialSystem_->GetNowExprestion() == 4) && countEnemy_ == 1) {
 			PopEnemy* newEnemy = new PopEnemy();
 
 			newEnemy->Initialize(player_->GetMaindStateNow(), nowWave, enemyNotAppeared_);
 			enemyNotAppeared_ = newEnemy->EnemyNotAppeared();
 			enemy_.push_back(newEnemy);
-			countEnemy_ = 4;
+			countEnemy_ = 2;
 		}
 
 		break;

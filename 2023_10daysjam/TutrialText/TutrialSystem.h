@@ -9,9 +9,13 @@ class TutrialSystem
 {
 public:
 
+	//enum TutrialAction {
+	//	//移動の説明,攻撃(通常),チェンジ,魔法攻撃,狂気モード,フリー,ジャンプ
+	//	Move,AttackNomal,AttackChange ,AttackMagic,LunaMode,Free, Junp
+	//};
+
 	enum TutrialAction {
-		//移動の説明,攻撃(通常),チェンジ,魔法攻撃,狂気モード,フリー,ジャンプ
-		Move,AttackNomal,AttackChange ,AttackMagic,LunaMode,Free, Junp
+		Move, Junp, AttackNomal, NExplanation,AttackLuna,LExplanation,none
 	};
 
 	//デストラクタ
