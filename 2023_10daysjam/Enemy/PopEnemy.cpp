@@ -216,7 +216,7 @@ void PopEnemy::EnemyBorn(Wave nowWave)
 
 		}
 		else {
-			if (enemyNotAppeared_ >= 2) {
+			if (enemyNotAppeared_ >= 1) {
 				enemyType_ = HPNOMAL;
 				enemyNotAppeared_ = 0;
 			}

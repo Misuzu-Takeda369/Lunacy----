@@ -101,6 +101,8 @@ void GamePScene::Initialize(Wave& nowWave)
 	bgm_ = new BGMManage();
 	bgm_->Initialize();
 
+	fryEnemyPopFrame_ = consEnemyPopFrameFry_;
+
 }
 
 void GamePScene::Update()
