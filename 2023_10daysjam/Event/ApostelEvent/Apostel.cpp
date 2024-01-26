@@ -17,7 +17,7 @@ Apostel::~Apostel()
 
 void Apostel::Initialize(Vector2 pos, Vector2 speed, float radius)
 {
-	//charaBase_.pos_ = pos;
+	charaBase_.pos_ = pos;
 	charaBase_.pos_ = { 1200.f,300.f };
 	charaBase_.speed_ = speed;
 	charaBase_.radius_ = radius;
@@ -62,6 +62,7 @@ void Apostel::Update()
 		if (hp_ <= maxHP_ * 0.5f) {
 			phase_ = second; //HP50%以下でフェーズ2に移行
 			state_ = IDOL;
+			anim_->SetMaskBreak(true);
 		}
 		break;
 	case Apostel::second:

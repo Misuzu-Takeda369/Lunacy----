@@ -362,5 +362,8 @@ void WaveSelect::ColorLode()
 	if (maxWave_ >= 3) {
 		selectColor_[3].color = WHITE;
 	}
+	if (maxWave_ >= 4) {
+		selectColor_[4].color = WHITE;
+	}
 
 }

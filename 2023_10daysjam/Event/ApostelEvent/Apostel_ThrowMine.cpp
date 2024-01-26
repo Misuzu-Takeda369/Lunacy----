@@ -40,6 +40,9 @@ void Apostel_ThrowMine::Initialize(CharaBase owner, Vector2 playerPos)
 	effectScale_ = 0;
 	effectScaleFlag_ = false;
 	effectScaleSpeed_ = 0;
+
+	bombEffect_ = Novice::LoadTexture("./Resources/Images/AnimResources/bomb.png");
+	bombRadius_ = 0;
 }
 
 void Apostel_ThrowMine::Update()
@@ -57,11 +60,12 @@ void Apostel_ThrowMine::Update()
 			timeBombExplosionPlay_ = Novice::PlayAudio(timeBombExplosionEffect_, 0, 0.8f);
 		}
 
-		charaBase_.color_ = ORANGE;
+		charaBase_.color_ = WHITE;
 		charaBase_.radius_+=6;
 		if (charaBase_.radius_ >= maxRadius_) {
 			isDead_ = true;
 		}
+		bombRadius_ = AdjustSpriteScale(128.f, charaBase_.radius_);
 		blinking_ = true;
 	}
 	else {
@@ -115,8 +119,9 @@ void Apostel_ThrowMine::Draw()
 {
 	if (blinking_) {
 		DrawRotateScaleSprite(charaBase_.pos_, { 128.f,128.f }, 0, 0, sprite_, WHITE, 0.25f, theta_);
-		Novice::DrawEllipse((int)charaBase_.pos_.x, (int)charaBase_.pos_.y,
-			(int)charaBase_.radius_, (int)charaBase_.radius_, 0, charaBase_.color_, kFillModeSolid);
+		//Novice::DrawEllipse((int)charaBase_.pos_.x, (int)charaBase_.pos_.y,
+		//	(int)charaBase_.radius_, (int)charaBase_.radius_, 0, charaBase_.color_, kFillModeSolid);
+		DrawRotateScaleSprite(charaBase_.pos_, { 128.f,128.f }, 0, 0, bombEffect_, charaBase_.color_, bombRadius_, 0);
 	}
 	if (effectFlag_) {
 		DrawRotateScaleSprite(charaBase_.pos_, { 128.f,128.f }, 0, 0, effect_, WHITE, effectScale_, effectTheta_);

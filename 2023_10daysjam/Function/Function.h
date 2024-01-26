@@ -111,6 +111,7 @@ void DrawRotateSprite(Vector2 pos, Vector2 size, int srcX, int srcY, int texture
 /// <param name="scale">拡大率</param>
 /// <param name="theta">回転角度(ラジアン)</param>
 void DrawRotateScaleSprite(Vector2 pos, Vector2 size, int srcX, int srcY, int textureHandle, unsigned int color, float scale, float theta);
+void DrawRotateScaleSprite(Vector2 pos, Vector2 size, int srcX, int srcY, int textureHandle, unsigned int color, Vector2 scale, float theta);
 
 Vector2 AdjustSpriteScale(Vector2 spriteSize, Vector2 radius);
 float AdjustSpriteScale(float spriteSize, float radius);

@@ -9,7 +9,9 @@ public:
 	void SetState(STATE state);
 	void SetDirection(bool right)override;
 	void SetColorRGBA(int R, int G, int B, int A);
+	void SetMaskBreak(bool flag);
 private:
+	void LoadTexture();
 	static const int maxFrame = 1;
 	unsigned int rectTex_;
 	unsigned int rectTexATK_;//準備してない
@@ -21,5 +23,21 @@ private:
 	bool _right;
 	MaindState maindState_ = MaindState::Normal;
 	unsigned int color_ = WHITE;
+	bool maskBreak_ = false;
+
+	//スプライト用
+	struct CharaParts
+	{
+		unsigned int hair_back;
+		unsigned int hair_front;
+		unsigned int hair_side;
+		unsigned int eye;
+		unsigned int mask;
+		unsigned int mask_eye;
+		unsigned int mouth;
+		unsigned int head;
+		unsigned int body;
+	};
+	CharaParts sprite_;
 };
 

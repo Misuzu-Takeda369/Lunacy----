@@ -7,7 +7,7 @@ public:
 	/// <summary>
 	/// 初期化
 	/// </summary>
-	void Initialize(CharaBase owner, Vector2 playerPos);
+	void Initialize(CharaBase owner,Vector2 playerPos);
 
 	/// <summary>
 	/// 毎フレーム処理
@@ -73,6 +73,8 @@ private:
 	float effectTheta_ = 0;
 	float effectScale_ = 0;
 	float effectScaleSpeed_ = 0;
+	unsigned int bombEffect_;
+	float bombRadius_ = 0;
 };
 
 /*

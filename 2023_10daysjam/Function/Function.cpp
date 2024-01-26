@@ -324,6 +324,60 @@ void DrawRotateScaleSprite(Vector2 pos, Vector2 size, int srcX, int srcY, int te
 		, srcX, srcY, (int)size.x, (int)size.y, textureHandle, color);
 }
 
+void DrawRotateScaleSprite(Vector2 pos, Vector2 size, int srcX, int srcY, int textureHandle, unsigned int color, Vector2 scale, float theta)
+{
+	struct Vector2Int
+	{
+		int x; int y;
+	};
+	Vector2 lTop = {//left top
+		-size.x * scale.x,
+		-size.y * scale.y
+	};
+	Vector2 rTop = {//right top
+		+size.x * scale.x,
+		-size.y * scale.y
+	};
+	Vector2 lBottom = {//left bottom
+		-size.x * scale.x,
+		+size.y * scale.y
+	};
+	Vector2 rBottom = {//right bottom
+		+size.x * scale.x,
+		+size.y * scale.y
+	};
+
+	float LeftTopRotated_x = float(lTop.x * cosf(theta) - lTop.y * sinf(theta));
+	float LeftTopRotated_y = lTop.y * cosf(theta) + lTop.x * sinf(theta);
+	float LeftBottomRotated_x = lBottom.x * cosf(theta) - lBottom.y * sinf(theta);
+	float LeftBottomRotated_y = lBottom.y * cosf(theta) + lBottom.x * sinf(theta);
+	float RightTopRotated_x = rTop.x * cosf(theta) - rTop.y * sinf(theta);
+	float RightTopRotated_y = rTop.y * cosf(theta) + rTop.x * sinf(theta);
+	float RightBottomRotated_x = rBottom.x * cosf(theta) - rBottom.y * sinf(theta);
+	float RightBottomRotated_y = rBottom.y * cosf(theta) + rBottom.x * sinf(theta);
+
+	Vector2Int lTopPos = {//left top
+		(int)LeftTopRotated_x + (int)pos.x,
+		(int)LeftTopRotated_y + (int)pos.y
+	};
+	Vector2Int rTopPos = {//right top
+		 (int)RightTopRotated_x + (int)pos.x ,
+		 (int)RightTopRotated_y + (int)pos.y
+	};
+	Vector2Int lBottomPos = {//left bottom
+		(int)LeftBottomRotated_x + (int)pos.x ,
+		(int)LeftBottomRotated_y + (int)pos.y
+	};
+	Vector2Int rBottomPos = {//right bottom
+		(int)RightBottomRotated_x + (int)pos.x ,
+		(int)RightBottomRotated_y + (int)pos.y
+	};
+
+	Novice::DrawQuad(lTopPos.x, lTopPos.y, rTopPos.x, rTopPos.y, lBottomPos.x, lBottomPos.y, rBottomPos.x, rBottomPos.y
+		, srcX, srcY, (int)size.x, (int)size.y, textureHandle, color);
+}
+
+
 
 Vector2 AdjustSpriteScale(Vector2 spriteSize, Vector2 radius) {
 	//Vector2 num = {
