@@ -56,6 +56,13 @@ public:
 		return IsDead_;
 	};
 
+
+	/// <summary>
+	/// 攻撃してる場合じゃねぇフラグ
+	/// </summary>
+	/// <returns></returns>
+	bool GetNotAttackFrag() { return notAttackFrag_; };
+
 private:
 
 	// キー入力結果を受け取る箱
@@ -95,5 +102,10 @@ private:
 
 	int frameCool_ = 0;
 	const int frameCoolMAX_ = 60;
+
+
+	//攻撃してる場合じゃねえーフラグ
+	bool notAttackFrag_ = false;
+
 };
 

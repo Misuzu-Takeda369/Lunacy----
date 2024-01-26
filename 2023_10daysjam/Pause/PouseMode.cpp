@@ -52,6 +52,8 @@ void PouseMode::Update(int gameSModeNow)
 			(mousePos_.y_ >= GMPauseTextPos_.y_ && mousePos_.y_ <= GMPauseTextPos_.y_ + size_.y_))
 		{
 
+			notAttackFrag_ = true;
+
 			imageColor_.color = YELLOW;
 			//連続でならないようにするやつ
 			if (OnselectPousePlay_ == false) {
@@ -75,6 +77,7 @@ void PouseMode::Update(int gameSModeNow)
 		else {
 			imageColor_.color = WHITE;
 			OnselectPousePlay_ = false;
+			notAttackFrag_ = false;
 		}
 		break;
 

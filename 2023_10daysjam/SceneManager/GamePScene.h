@@ -55,6 +55,7 @@ public:
 
 
 
+
 	/// <summary>
 	/// 前景描画
 	/// </summary>
@@ -137,6 +138,11 @@ public:
 	/// <param name="nowWave"></param>
 	Wave GetNowWave() { return nowWave_; };
 
+
+	/// <summary>
+	/// 攻撃モーションが反応しないか
+	/// </summary>
+	void ChackNotAttack();
 
 private:
 	// シーン変更できるかどうか
@@ -230,5 +236,7 @@ private:
 	PouseMode* pouseMode_ = nullptr;
 	//BGM関連のクラスをロード
 	BGMManage* bgm_ = nullptr;
+
+	
 
 };

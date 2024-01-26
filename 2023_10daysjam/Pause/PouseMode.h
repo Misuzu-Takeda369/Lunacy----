@@ -71,6 +71,13 @@ public:
 		return titleChangeFrag_;
 	}
 
+
+	/// <summary>
+	/// 攻撃してる場合じゃねぇフラグ
+	/// </summary>
+	/// <returns></returns>
+	bool GetNotAttackFrag() {return notAttackFrag_;};
+
 private:
 
 	//ポーズ文字(ゲーム画面)
@@ -131,6 +138,10 @@ private:
 	bool titleChangeFrag_ = false;
 	//確認
 	bool chackFrage_ = false;
+
+
+	//攻撃し
+	bool notAttackFrag_ = false;
 
 };
 

@@ -88,6 +88,7 @@ void TutrialSystem::Update(MaindState Pmaind, PlayerAttackType Patteck)
 	case TutrialSystem::NExplanation:
 		///説明
 		imageNum_ = 5;
+		notAttackFrag_ = true;
 
 		frameCool_++;
 		//ゲージあげてチラ見せでもいいかもしれない
@@ -99,12 +100,15 @@ void TutrialSystem::Update(MaindState Pmaind, PlayerAttackType Patteck)
 		break;
 	case TutrialSystem::AttackLuna:
 		///攻撃(ゲームプレイの方で処理)
+		notAttackFrag_ = false;
 		imageNum_ = 6;
 
 		break;
 
 	case TutrialSystem::LExplanation:
 		///最後の説明
+
+		notAttackFrag_ = true;
 
 		if (imageNum_ == 6) {
 			imageNum_ = 7;
@@ -133,6 +137,7 @@ void TutrialSystem::Update(MaindState Pmaind, PlayerAttackType Patteck)
 				frameCool_ = 0;
 				//狂気ゲージの為
 				nowExprestion_ = none;
+				notAttackFrag_ = false;
 				IsDead_ = true;
 			}
 		}
@@ -142,6 +147,7 @@ void TutrialSystem::Update(MaindState Pmaind, PlayerAttackType Patteck)
 		break;
 	}
 
+	///旧チュートリアル
 	//switch (nowExprestion_)
 	//{
 	//case TutrialSystem::Move:
@@ -330,6 +336,7 @@ void TutrialSystem::Draw()
 	}
 
 
+	Novice::ScreenPrintf(900, 350, "flag:%d",notAttackFrag_);
 #endif // _DEBUG
 
 

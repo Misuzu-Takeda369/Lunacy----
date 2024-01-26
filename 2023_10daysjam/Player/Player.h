@@ -155,6 +155,19 @@ public:
 	void StopMusic()override;
 
 
+	/// <summary>
+	/// 攻撃してる場合じゃねぇフラグ
+	/// </summary>
+	/// <param name="flag">フラグ(だいたいon)</param>
+	void SetNotAttackFrag(bool flag) {notAttackFrag_ = flag;};
+
+	/// <summary>
+	/// 攻撃してる場合じゃねぇフラグ
+	/// </summary>
+	/// <returns></returns>
+	bool GetNotAttackFrag() { return notAttackFrag_; };
+
+
 private:
 
 	//マウスの位置(Yも無いと関数動かん)
@@ -202,6 +215,9 @@ private:
 	PlayerAttackType playerAttackTypeNow_ = Plane;
 	//近距離攻撃できるかフラグ(近距離)
 	bool attackFrag_ = false;
+
+	//攻撃してる場合じゃねえーフラグ
+	bool notAttackFrag_ = false;
 
 
 	//最初にいる位置

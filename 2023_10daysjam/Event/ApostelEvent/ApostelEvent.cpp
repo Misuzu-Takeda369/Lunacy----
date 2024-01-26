@@ -96,7 +96,7 @@ void ApostelEvent::Draw()
 	//DrawRotateSprite(warpPos_, { 64.f,64.f }, 64*warpFrame_, 0, warpGateImage_, gateColor_.color, gateTheta_);
 	DrawRotateScaleSprite(warpPos_, { 64.f,64.f }, 0, 0, warpGateImage_, gateColor_.color, warpScale_, gateTheta_);
 
-	Novice::ScreenPrintf(300,400,"Flag: %d", int(isWarped_));
+	//Novice::ScreenPrintf(300,400,"Flag: %d", int(isWarped_));
 }
 
 void ApostelEvent::SetPlayerInfo(CharaBase player)

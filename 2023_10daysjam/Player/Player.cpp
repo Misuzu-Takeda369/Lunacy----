@@ -94,8 +94,19 @@ void Player::Update(char* keys, char* preKeys)
 	Move(keys, preKeys);
 	//攻撃モードの変移
 	AttackTypeChange();
+
 	//攻撃
-	Attack();
+	if (!notAttackFrag_) {
+		Attack();
+	}
+	else {
+		attackFrag_ = false;
+
+		if (mAttack_) {
+			delete mAttack_;
+			mAttack_ = nullptr;
+		}
+	}
 
 	//アニメーション
 	playerAnimation_->Update(Vector2(charaBase_.pos_.x, charaBase_.pos_.y), playerState_, sabState_);
@@ -145,6 +156,7 @@ void Player::Update(char* keys, char* preKeys)
 	ImGui::InputFloat("Sp:\n", &sp_);
 	ImGui::InputFloat("spChangingPoint:", &spChangingPoint_);
 	ImGui::InputFloat("attackSpDown:\n", &attackSpDown_);
+	ImGui::Text("notAttackFrag_: %d\n", notAttackFrag_);
 
 	ImGui::End();
 #endif // DEBUG

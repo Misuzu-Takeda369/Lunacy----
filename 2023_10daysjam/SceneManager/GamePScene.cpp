@@ -152,6 +152,7 @@ void GamePScene::Update()
 
 				tutrialSystem_->Update(player_->GetMaindStateNow(), player_->GetPlayerAttackTypeNow());
 
+				///ゲージ
 				if ((tutrialSystem_->GetNowExprestion() == 4) || (tutrialSystem_->GetNowExprestion() == 5)) {
 					player_->SetSpChangingPoint(500.0f);
 				}
@@ -215,6 +216,8 @@ void GamePScene::Update()
 			//ここプレイヤーからUIに変化点を受け取っておく
 			spUi_->SetSpChangingPoint(player_->GetSpChangingPoint());
 
+			//攻撃のリアクションするか
+			ChackNotAttack();
 			//プレイヤーの挙動
 			player_->Update(keys, preKeys);
 
@@ -258,19 +261,21 @@ void GamePScene::Update()
 #pragma region シーン変更含む
 
 
-			///ポーズへ
 			if (((preKeys[DIK_P] == 0 && keys[DIK_P] != 0) || (pouseMode_->GetChangeFrag() == true)) && changeTimingFrame_ >= changeTimingFrameMax_) {
-				GameMove_ = false;
-				gameSModeNow_ = Pause;
-				changeTimingFrame_ = 0;
-				pouseMode_->SetChangeFrag(false);
 
-				AllStopMusic();
+					GameMove_ = false;
+					gameSModeNow_ = Pause;
+					changeTimingFrame_ = 0;
+					pouseMode_->SetChangeFrag(false);
+
+					AllStopMusic();
+
 			}
 
 			////ポーズ関連の動き
 			pouseMode_->Update(gameSModeNow_);
 			gameSModeNow_ = pouseMode_->GetGameSModeNow();
+			
 
 			//確認用
 			CountNum_ += 1;
@@ -1026,4 +1031,23 @@ void GamePScene::AllStopMusic()
 		bgm_->StopBGM();
 	}
 
+}
+
+void GamePScene::ChackNotAttack()
+{
+	if ((pouseMode_->GetNotAttackFrag() == false) && (tutrialSystem_->GetNotAttackFrag() == true)) {
+		player_->SetNotAttackFrag(true);
+	}
+	else if ((pouseMode_->GetNotAttackFrag() == true) && (tutrialSystem_->GetNotAttackFrag() == false)) {
+		player_->SetNotAttackFrag(true);
+	}
+	else if ((pouseMode_->GetNotAttackFrag() == false) && (tutrialSystem_->GetNotAttackFrag() == false)) {
+		player_->SetNotAttackFrag(false);
+	}
+	else {
+		player_->SetNotAttackFrag(true);
+	}
+
+
+	//player_->SetNotAttackFrag(true);
 }
