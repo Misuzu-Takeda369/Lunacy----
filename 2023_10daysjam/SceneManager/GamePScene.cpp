@@ -141,7 +141,6 @@ void GamePScene::Update()
 				flagChange_ = true;
 			}
 
-
 		}
 		else {
 
@@ -274,6 +273,7 @@ void GamePScene::Update()
 
 			////ポーズ関連の動き
 			pouseMode_->Update(gameSModeNow_);
+			//pouseMode_->UpdatePlay();
 			gameSModeNow_ = pouseMode_->GetGameSModeNow();
 			
 
@@ -331,7 +331,6 @@ void GamePScene::Update()
 		break;
 
 	case Pause:
-
 
 		//解除
 		if (((preKeys[DIK_P] == 0 && keys[DIK_P] != 0) || (pouseMode_->GetChangeFrag() == true)) && changeTimingFrame_ >= changeTimingFrameMax_) {

@@ -164,6 +164,115 @@ void PouseMode::Update(int gameSModeNow)
 	Novice::GetMousePosition(&mousePos_.x_, &mousePos_.y_);
 }
 
+void PouseMode::UpdatePlay()
+{
+	if ((mousePos_.x_ >= GMPauseTextPos_.x_ && mousePos_.x_ <= GMPauseTextPos_.x_ + size_.x_)
+		&&
+		(mousePos_.y_ >= GMPauseTextPos_.y_ && mousePos_.y_ <= GMPauseTextPos_.y_ + size_.y_))
+	{
+
+		notAttackFrag_ = true;
+
+		imageColor_.color = YELLOW;
+		//連続でならないようにするやつ
+		if (OnselectPousePlay_ == false) {
+
+			OnselectPousePlay_ = true;
+
+			//マウスに触れたときに音が鳴る
+			if (Novice::IsPlayingAudio(selectEffectPlay_) == 0) {
+				Novice::PlayAudio(selectEffect_, 0, 1);
+			}
+		}
+
+		if (Novice::IsTriggerMouse(0)) {
+			changeFrag_ = true;
+
+			Novice::StopAudio(selectEffect_);
+			Novice::PlayAudio(decisionEffect_, 0, 2);
+			notAttackFrag_ = false;
+		}
+
+	}
+	else {
+		imageColor_.color = WHITE;
+		OnselectPousePlay_ = false;
+		notAttackFrag_ = false;
+	}
+}
+
+void PouseMode::UpdatePouse()
+{
+	if (!chackFrage_) {
+
+		//ゲームを続けるかタイトルに戻るかを選択する
+		if ((mousePos_.x_ >= PMPauseTextPos_[1].x_ && mousePos_.x_ <= PMPauseTextPos_[1].x_ + size_.x_ + 128)
+			&&
+			(mousePos_.y_ >= PMPauseTextPos_[1].y_ && mousePos_.y_ <= PMPauseTextPos_[1].y_ + size_.y_))
+		{
+
+			PimageColor_[0].color = RED;
+			//連続でならないようにするやつ
+			if (OnSelectPTextPlay_[0] == false) {
+
+				OnSelectPTextPlay_[0] = true;
+
+				//マウスに触れたときに音が鳴る
+				if (Novice::IsPlayingAudio(selectEffectPlay_) == 0) {
+					Novice::PlayAudio(selectEffect_, 0, 1);
+				}
+			}
+
+			if (Novice::IsTriggerMouse(0)) {
+				changeFrag_ = true;
+
+				Novice::StopAudio(selectEffect_);
+				Novice::PlayAudio(decisionEffect_, 0, 2);
+
+			}
+
+		}
+		else {
+			PimageColor_[0].color = WHITE;
+			OnSelectPTextPlay_[0] = false;
+		}
+
+
+		if ((mousePos_.x_ >= PMPauseTextPos_[2].x_ && mousePos_.x_ <= PMPauseTextPos_[2].x_ + size_.x_ + 128)
+			&&
+			(mousePos_.y_ >= PMPauseTextPos_[2].y_ && mousePos_.y_ <= PMPauseTextPos_[2].y_ + size_.y_))
+		{
+
+			PimageColor_[1].color = RED;
+			//連続でならないようにするやつ
+			if (OnSelectPTextPlay_[1] == false) {
+
+				OnSelectPTextPlay_[1] = true;
+
+				//マウスに触れたときに音が鳴る
+				if (Novice::IsPlayingAudio(selectEffectPlay_) == 0) {
+					Novice::PlayAudio(selectEffect_, 0, 1);
+				}
+			}
+
+			if (Novice::IsTriggerMouse(0)) {
+				chackFrage_ = true;
+				Novice::StopAudio(selectEffect_);
+				Novice::PlayAudio(decisionEffect_, 0, 2);
+			}
+
+		}
+		else {
+			PimageColor_[1].color = WHITE;
+			OnSelectPTextPlay_[1] = false;
+		}
+	}
+	else {
+		//YESかNOか
+		ChackUpdate();
+	}
+}
+
 void PouseMode::Draw(int gameSModeNow, Vector2 ShakePos)
 {
 	gameSModeNow_ = gameSModeNow;

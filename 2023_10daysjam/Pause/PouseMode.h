@@ -23,6 +23,10 @@ public:
 	/// <param name="gameSModeNow">現在のゲームモード</param>
 	void Update(int gameSModeNow);
 
+	void UpdatePlay();
+
+	void UpdatePouse();
+
 	/// <summary>
 	/// 描写
 	/// </summary>
