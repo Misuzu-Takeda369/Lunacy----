@@ -10,6 +10,7 @@ public:
 	void SetDirection(bool right)override;
 	void SetColorRGBA(int R, int G, int B, int A);
 	void SetMaskBreak(bool flag);
+	void SetNowPhase(int num);
 private:
 	void LoadTexture();
 	static const int maxFrame = 1;
@@ -24,6 +25,7 @@ private:
 	MaindState maindState_ = MaindState::Normal;
 	unsigned int color_ = WHITE;
 	bool maskBreak_ = false;
+	int nowPhase_;
 
 	//スプライト用
 	struct CharaParts
@@ -34,10 +36,26 @@ private:
 		unsigned int eye;
 		unsigned int mask;
 		unsigned int mask_eye;
+		unsigned int mask_eye_third;
 		unsigned int mouth;
+		unsigned int mouth_third;
+		unsigned int mouth_dead;
 		unsigned int head;
 		unsigned int body;
+		unsigned int halfmask;
+		unsigned int halfmask_third;
+		unsigned int eye_second;
+		unsigned int body_second;
+		unsigned int body_third;
+		unsigned int armR_third;
+		unsigned int armL_third;
 	};
+	unsigned int body_back;
+	int body_backCount = 0;
+	int body_backFrame = 0;
+	float thirdRotateArm_ = 0;
+	float thirdRotateArmSpeed_ = 0.05f;
+	Vector2 armLPos; Vector2 armRPos;
 	CharaParts sprite_;
 };
 

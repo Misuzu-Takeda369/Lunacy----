@@ -15,7 +15,7 @@ public:
 	/// <summary>
 	/// 被弾した時のリアクション
 	/// </summary>
-	void OnColistion();
+	void OnColistion(EnemyType type);
 
 	/// <summary>
 	/// 揺れた分のゲッター
@@ -31,7 +31,8 @@ public:
 	void Update();
 
 	void Draw();
-		
+
+	void SetPlayerSP(float sp);
 
 private:
 
@@ -59,6 +60,15 @@ private:
 	/// 時間図る奴
 	/// </summary>
 	int shakeFrame_ = 30;
+
+	/// <summary>
+	/// ダメージ属性
+	/// </summary>
+	EnemyType type_;
+
+	unsigned int psychoDamageEffect_[2];
+	UnitColor SPColor_;
+	float playerSP_;
 
 
 };

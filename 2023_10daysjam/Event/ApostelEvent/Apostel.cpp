@@ -92,6 +92,7 @@ void Apostel::Update()
 	default:
 		break;
 	}
+	anim_->SetNowPhase((int)phase_);
 	anim_->Update(charaBase_.pos_);
 	anim_->SetDirection(_right);
 	anim_->SetState(state_);
@@ -457,6 +458,6 @@ void Apostel::ThrowMineFire()
 
 	Apostel_ThrowMine* newThrowMine = new Apostel_ThrowMine;
 	newThrowMine->Initialize(charaBase_, playerBase_.pos_);
-	_right = newThrowMine->GetDirection();
+	//_right = newThrowMine->GetDirection();
 	throwMine_.push_back(newThrowMine);
 }

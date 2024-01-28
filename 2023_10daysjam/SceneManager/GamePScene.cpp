@@ -505,7 +505,7 @@ void GamePScene::CheckCollisionAll()
 			float damege = enemies->GetAttackPoint();
 			EnemyType enemytype = enemies->GetEnemyType();
 			player_->OnCollision(damege, enemytype);
-			hitEffect_->OnColistion();
+			hitEffect_->OnColistion(enemytype);
 			enemies->AttackMotion();
 
 		}
@@ -625,7 +625,7 @@ void GamePScene::CheckCollisionAll()
 				float damage = magicBall->GetAttackPoint();
 				EnemyType enemytype = magicBall->GetAttributeType();
 				player_->OnCollision(damage, enemytype);
-				hitEffect_->OnColistion();
+				hitEffect_->OnColistion(enemytype);
 			}
 
 		}
@@ -637,7 +637,7 @@ void GamePScene::CheckCollisionAll()
 					float damage = mine->GetAttackPoint();
 					EnemyType enemytype = mine->GetAttributeType();
 					player_->OnCollision(damage, enemytype);
-					hitEffect_->OnColistion();
+					hitEffect_->OnColistion(enemytype);
 				}
 			}
 
@@ -654,7 +654,7 @@ void GamePScene::CheckCollisionAll()
 				float damege = enemies->GetAttackPoint();
 				EnemyType enemytype = enemies->GetEnemyType();
 				player_->OnCollision(damege, enemytype);
-				hitEffect_->OnColistion();
+				hitEffect_->OnColistion(enemytype);
 				//enemies->AttackMotion();
 			}
 			//enemies;
