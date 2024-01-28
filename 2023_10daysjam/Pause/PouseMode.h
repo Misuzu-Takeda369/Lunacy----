@@ -98,6 +98,9 @@ private:
 	int textFrameImage_;
 	int chacktextImage_;
 
+	//説明の画像
+	int explanationImage_;
+
 	///音関連(リソース) 
 	int selectEffect_ = 0;
 	int decisionEffect_ = 0;

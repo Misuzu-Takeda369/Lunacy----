@@ -274,10 +274,11 @@ void SceneManager::Update() {
 				//動きによっては別な場所へ
 
 
+				
+				saveData_->OnResultUpdate(maxWave_);
 				//クリアするとリセットする
 				maxWave_ = Tutorial;
 
-				saveData_->OnResultUpdate(maxWave_);
 				gameC_ = new GameCScene();
 				gameC_->Initialize();
 			}

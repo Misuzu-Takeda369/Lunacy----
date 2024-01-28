@@ -7,7 +7,7 @@ void WaveTextUI::Initialize(Wave& nowWave)
 	//右下端
 	Rpos_ = { sizeX_,sizeY_ };
 	//画像
-	image_ = Novice::LoadTexture("./Resources/images/Text/WaveLatterA.png");
+	image_ = Novice::LoadTexture("./Resources/images/Text/WaveLatter.png");
 
 
 	nowWave_ = nowWave;

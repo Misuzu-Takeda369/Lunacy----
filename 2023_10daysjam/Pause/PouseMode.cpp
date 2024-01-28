@@ -11,6 +11,7 @@ void PouseMode::Initialize()
 	yesImage_ = Novice::LoadTexture("./Resources/images/Text/ChackYES.png");
 	noImage_ = Novice::LoadTexture("./Resources/images/Text/ChackNO.png");
 	chacktextImage_ = Novice::LoadTexture("./Resources/images/Text/ChackQ.png");
+	explanationImage_ = Novice::LoadTexture("./Resources/images/Text/ex.png");
 
 	selectEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/maou_se_system26.wav");
 	decisionEffect_ = Novice::LoadAudio("./Resources/Music/SoundEffect/maou_se_system13.wav");
@@ -296,6 +297,7 @@ void PouseMode::Draw(int gameSModeNow, Vector2 ShakePos)
 			Novice::DrawSprite(PMPauseTextPos_[1].x_, PMPauseTextPos_[1].y_, imagePlayBackText_, 1, 1, 0.0f, PimageColor_[0].color);
 			Novice::DrawSprite(PMPauseTextPos_[2].x_, PMPauseTextPos_[2].y_, imageTitleBackText_, 1, 1, 0.0f, PimageColor_[1].color);
 		
+			Novice::DrawSprite(620, 150,explanationImage_,1,1,0.0f,WHITE);
 
 			if (chackFrage_) {
 				ChackDraw();
