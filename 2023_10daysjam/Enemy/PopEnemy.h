@@ -67,6 +67,9 @@ public:
 	 /// </summary>
 	 void AttackCool();
 
+
+	 void DeadEnemyEffect();
+
 private:
 
 	//通常の敵

@@ -94,14 +94,19 @@ void TutrialSystem::Update(MaindState Pmaind, PlayerAttackType Patteck)
 		//ゲージあげてチラ見せでもいいかもしれない
 		if ((Novice::IsTriggerMouse(0)) && frameCool_ >= frameCoolMAX_) {
 			nowExprestion_ = AttackLuna;
-			frameCool_ = 0;
+
+			//ここでは無くて次のシーンで0にすることで0になるだけなって連打しまくってシーンが変わらん問題を変更する
+			//処理がずれてる...?
+
 		}
 
+		
 		break;
 	case TutrialSystem::AttackLuna:
 		///攻撃(ゲームプレイの方で処理)
 		notAttackFrag_ = false;
 		imageNum_ = 6;
+		frameCool_ = 0;
 
 		break;
 
@@ -306,30 +311,30 @@ void TutrialSystem::Draw()
 	{
 	case TutrialSystem::Move:
 
-		Novice::ScreenPrintf(900, 300, "0");
+		Novice::ScreenPrintf(900, 300, "system:0");
 		break;
 	case TutrialSystem::Junp:
 
-		Novice::ScreenPrintf(900, 300, "1");
+		Novice::ScreenPrintf(900, 300, "system:1");
 		break;
 
 	case TutrialSystem::AttackNomal:
 
-		Novice::ScreenPrintf(900, 300, "2");
+		Novice::ScreenPrintf(900, 300, "system:2");
 		break;
 
 	case TutrialSystem::NExplanation:
 
-		Novice::ScreenPrintf(900, 300, "3");
+		Novice::ScreenPrintf(900, 300, "system:3");
 		break;
 	case TutrialSystem::AttackLuna:
 
-		Novice::ScreenPrintf(900, 300, "4");
+		Novice::ScreenPrintf(900, 300, "system:4");
 		break;
 
 	case TutrialSystem::LExplanation:
 	
-		Novice::ScreenPrintf(900, 300, "5");
+		Novice::ScreenPrintf(900, 300, "system:5");
 		break;
 	default:
 		break;
@@ -337,6 +342,8 @@ void TutrialSystem::Draw()
 
 
 	Novice::ScreenPrintf(900, 350, "flag:%d",notAttackFrag_);
+	Novice::ScreenPrintf(950, 350, "frameCool_:%d", frameCool_);
+	
 #endif // _DEBUG
 
 

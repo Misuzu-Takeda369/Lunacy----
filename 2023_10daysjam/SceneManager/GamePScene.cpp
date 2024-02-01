@@ -207,7 +207,7 @@ void GamePScene::Update()
 			float Psp = player_->GetSp();
 			Wave Nwa = nowWave_;
 
-			bgm_->Update(Php, Psp, Nwa);
+			//bgm_->Update(Php, Psp, Nwa);
 
 			//敵の発生
 			EnemyPoping(nowWave_);
