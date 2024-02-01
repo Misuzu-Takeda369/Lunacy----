@@ -67,7 +67,7 @@ void TutrialSystem::Update(MaindState Pmaind, PlayerAttackType Patteck)
 		}
 
 		//3回飛ばせる
-		if ((preKeys[DIK_W] == 0 && keys[DIK_W] != 0) || (preKeys[DIK_UP] == 0 && keys[DIK_UP] != 0)) {
+		if ((preKeys[DIK_W] == 0 && keys[DIK_W] != 0) || (preKeys[DIK_UP] == 0 && keys[DIK_UP] != 0) || (preKeys[DIK_SPACE] == 0 && keys[DIK_SPACE] != 0)) {
 			//押した分だけカウント
 			jumpCount_++;
 		}

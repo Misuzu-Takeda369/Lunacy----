@@ -273,7 +273,7 @@ void GamePScene::Update()
 
 			////ポーズ関連の動き
 			pouseMode_->Update(gameSModeNow_);
-			//pouseMode_->UpdatePlay();
+			
 			gameSModeNow_ = pouseMode_->GetGameSModeNow();
 			
 
