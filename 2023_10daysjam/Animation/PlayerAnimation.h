@@ -39,5 +39,8 @@ private:
     float _jumpSpeed;
 
     UnitColor _defaultColor = defaultColor;
+
+    //パーティクル画像読み込み
+    int _LunaEffectImage = 0;
 };
 

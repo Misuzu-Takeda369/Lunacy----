@@ -39,6 +39,8 @@ void PlayerAnimation::Initialize()
 	_now->Initialize();
 	_isDirectionRight = 1;
 	_lunaEffectTimer = 0;
+
+	_LunaEffectImage = Novice::LoadTexture("./Resources/images/Particle/LunaParticle.png");
 }
 
 void PlayerAnimation::Update(Vector2 pos, STATE main, SABSTATE sab)
@@ -182,6 +184,7 @@ void PlayerAnimation::AddLunaEffect(const Vector2& pos)
 {
 	LunaMentalEffect* obj = new LunaMentalEffect();
 	obj->Initialize(pos);
+	obj->SetImageHandle(_LunaEffectImage);
 	_lunaticEffect.push_back(obj);
 }
 

@@ -1,4 +1,4 @@
-#include "Animation/Effect/LunaMental.h"
+﻿#include "Animation/Effect/LunaMental.h"
 #include "Function/Function.h"
 #include "Novice.h"
 #include "Function/Easing.h"
@@ -28,6 +28,7 @@ LunaMentalEffect::~LunaMentalEffect()
 		RandomRange(50,150),
 		255,
 	};
+	
 	_radius = RandomRange(5, 15);
 	_isArrive = true;
 	_t = 0;
@@ -37,7 +38,8 @@ LunaMentalEffect::~LunaMentalEffect()
 	}
 	_side = RandomRange(1, 3);
 	
-	
+	_image = 0;
+	_Scale = (float)RandomRange(1, 3);
 }
 
  void LunaMentalEffect::Update(Vector2 pos)
@@ -73,5 +75,7 @@ LunaMentalEffect::~LunaMentalEffect()
 
 void LunaMentalEffect::Draw()
 {
-	Novice::DrawEllipse((int)_pos.x, (int)_pos.y, _radius, _radius, 0, _color.color, kFillModeSolid);
+	//Novice::DrawEllipse((int)_pos.x, (int)_pos.y, _radius, _radius, 0, _color.color, kFillModeSolid);
+	
+	Novice::DrawSprite((int)_pos.x, (int)_pos.y, _image, _Scale, _Scale,0.0f, _color.color);
 }
