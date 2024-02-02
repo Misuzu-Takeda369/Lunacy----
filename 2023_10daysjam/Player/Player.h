@@ -186,7 +186,7 @@ private:
 	//精神状態が変わる値の変数(koko)
 	float spChangingPoint_ = 250.0f;
 	//magic攻撃時のSP減少量
-	float attackSpDown_ = 50.0f;
+	float attackSpDown_ = 25.0f;
 
 	//近距離用の当たり判定用クラス
 	PlayerMAttack* mAttack_ = nullptr;

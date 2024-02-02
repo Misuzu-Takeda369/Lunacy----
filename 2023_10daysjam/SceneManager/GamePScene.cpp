@@ -687,18 +687,21 @@ void GamePScene::CheckCollisionAll()
 
 		for (FryingEnemy* enemies : fryingEnemy_) {
 
-
 			for (PlayerLAttack* playerLAtteck : playerLA) {
 
 				if (playerLAtteck) {
 
-					if (IsCollision(playerLAtteck, enemies) == true) {
+					//画面外の物には反応しない
+					if ((playerLAtteck->GetPosX() >= MimWindowWidth) && (playerLAtteck->GetPosX() <= kWindowWidth)) {
 
-						float damege = playerLAtteck->GetAttackPoint();
-						enemies->OnCollision(damege);
-						playerLAtteck->OnCollision();
+						if (IsCollision(playerLAtteck, enemies) == true) {
+
+							float damege = playerLAtteck->GetAttackPoint();
+							enemies->OnCollision(damege);
+							playerLAtteck->OnCollision();
 
 
+						}
 					}
 				}
 

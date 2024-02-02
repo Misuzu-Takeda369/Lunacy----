@@ -2,6 +2,7 @@
 #include "Object/Object.h"
 #include <iostream>
 #include <algorithm>
+#include "ScreenSize.h"
 
 
 class PlayerLAttack : public Object
