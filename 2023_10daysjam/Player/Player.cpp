@@ -265,7 +265,7 @@ void Player::Move(char* keys, char* preKeys)
 	//縦
 	Jump();
 
-	if (((preKeys[DIK_UP] == 0 && keys[DIK_UP] != 0) || (preKeys[DIK_W] == 0 && keys[DIK_W] != 0)|| (preKeys[DIK_SPACE] == 0 && keys[DIK_SPACE] !=0))) {
+	if (((preKeys[DIK_UP] == 0 && keys[DIK_UP] != 0) || (preKeys[DIK_SPACE] == 0 && keys[DIK_SPACE] !=0))) {
 
 		if (Novice::IsPlayingAudio(jumpPlay_) == 0) {
 			Novice::PlayAudio(jumpEffect_, 0, 1.5f);

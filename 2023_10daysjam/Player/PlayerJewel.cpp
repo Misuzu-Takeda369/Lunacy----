@@ -4,7 +4,7 @@ void PlayerJewel::Initialize(unsigned int& color)
 {
 	jewelstate_ = {
 		{-200.0f,-200.0f},{0.0f,0.0f},0.0f,0.0f,color,
-		Novice::LoadTexture("./Resources/images/AnimResources/PlayerAttackImage_kari.png")
+		Novice::LoadTexture("./Resources/images/AnimResources/PlayerAttackImage.png")
 	};
 }
 
@@ -16,7 +16,7 @@ void PlayerJewel::Update(Vector2& pos, PlayerAttackType& playerAttackType, Playe
 		dposX = pos.x - playerDistance_.x_;
 	}
 	else {
-		dposX = pos.x + playerDistance_.x_;
+		dposX = pos.x + (playerDistance_.x_*1.5f);
 	}
 	
 	jewelstate_.pos_ = { dposX ,pos.y- playerDistance_.y_ };
@@ -31,5 +31,5 @@ void PlayerJewel::Update(Vector2& pos, PlayerAttackType& playerAttackType, Playe
 
 void PlayerJewel::Draw()
 {
-	Novice::DrawSprite(int(jewelstate_.pos_.x) - (imageSize_.x_/2), int(jewelstate_.pos_.y) - (imageSize_.y_ / 2), jewelstate_.image_,1.0f,1.0f,0.0f, jewelstate_.color_);
+	Novice::DrawSprite(int(jewelstate_.pos_.x) - (imageSize_.x_), int(jewelstate_.pos_.y) - (imageSize_.y_ / 2), jewelstate_.image_,1.0f,1.0f,0.0f, jewelstate_.color_);
 }

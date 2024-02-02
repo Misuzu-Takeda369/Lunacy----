@@ -26,10 +26,10 @@ private:
 	CharaBase jewelstate_;
 
 	//画像サイズ
-	const IntState imageSize_ = {16,16};
+	const IntState imageSize_ = {32,32};
 
 
 	//プレイヤーからの距離
-	const IntState playerDistance_ = {48,32 };
+	const IntState playerDistance_ = {64,32 };
 };
 
