@@ -37,7 +37,7 @@ private:
 	const float maxHp_ = 10.0f;
 
 	//コイツの火力
-	const float nomalPoint_ = 50.0f;
+	const float nomalPoint_ = 25.0f;
 
 	//アニメーション
 	//Enemy1Anim* animation_ = nullptr;

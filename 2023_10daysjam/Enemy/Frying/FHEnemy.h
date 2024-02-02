@@ -58,7 +58,7 @@ private:
 	const float maxHp_ = 10.0f;
 	float Hp_;
 	//コイツの火力
-	const float nomalPoint_ = 50.0f;
+	const float nomalPoint_ = 25.0f;
 
 	//縦の移動(移動の中心地)
 	float center = 0.0f;
