@@ -21,6 +21,7 @@
 #include "Animation/Effect/HitEffect.h"
 #include "Pause/PouseMode.h"
 #include "BGMManage/BGMManage.h"
+#include "ScreenSize.h"
 
 /// <summary>
 /// プレイシーンのクラス

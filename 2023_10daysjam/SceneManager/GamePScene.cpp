@@ -520,19 +520,19 @@ void GamePScene::CheckCollisionAll()
 	if (playerMA) {
 		for (PopEnemy* enemies : enemy_) {
 
-			if ((IsCollision(playerMA, enemies) == true) && enemies->GetHit() == false) {
-				float damege = playerMA->GetAttackPoint();
-				enemies->OnCollision(damege);
+				if ((IsCollision(playerMA, enemies) == true) && enemies->GetHit() == false) {
+					float damege = playerMA->GetAttackPoint();
+					enemies->OnCollision(damege);
 
-				///チュートリアル用
-				if ((tutrialSystem_->GetNowExprestion() == 2) && (enemies->GetIsDead() == true)) {
-					tutrialSystem_->SetNowExprestion(3);
+					///チュートリアル用
+					if ((tutrialSystem_->GetNowExprestion() == 2) && (enemies->GetIsDead() == true)) {
+						tutrialSystem_->SetNowExprestion(3);
+					}
+					///チュートリアル用
+					if ((tutrialSystem_->GetNowExprestion() == 4) && (enemies->GetIsDead() == true)) {
+						tutrialSystem_->SetNowExprestion(5);
+					}
 				}
-				///チュートリアル用
-				if ((tutrialSystem_->GetNowExprestion() == 4) && (enemies->GetIsDead() == true)) {
-					tutrialSystem_->SetNowExprestion(5);
-				}
-			}
 
 		}
 	}
@@ -548,23 +548,27 @@ void GamePScene::CheckCollisionAll()
 
 			if (playerLAtteck) {
 
-				if (IsCollision(playerLAtteck, enemies) == true) {
+				if ((playerLAtteck->GetPosX() >= MimWindowWidth) && (playerLAtteck->GetPosX() <= kWindowWidth)) {
 
-					float damege = playerLAtteck->GetAttackPoint();
-					enemies->OnCollision(damege);
-					playerLAtteck->OnCollision();
+					if (IsCollision(playerLAtteck, enemies) == true) {
+
+						float damege = playerLAtteck->GetAttackPoint();
+						enemies->OnCollision(damege);
+						playerLAtteck->OnCollision();
 
 
-					///チュートリアル用(事故った時用)
-					if ((tutrialSystem_->GetNowExprestion() == 1) && (enemies->GetIsDead() == true)) {
-						tutrialSystem_->SetNowExprestion(2);
+						///チュートリアル用
+						if ((tutrialSystem_->GetNowExprestion() == 1) && (enemies->GetIsDead() == true)) {
+							tutrialSystem_->SetNowExprestion(2);
+						}
+						///チュートリアル用
+						if ((tutrialSystem_->GetNowExprestion() == 3) && (enemies->GetIsDead() == true)) {
+							tutrialSystem_->SetNowExprestion(4);
+						}
+
 					}
-					///チュートリアル用
-					if ((tutrialSystem_->GetNowExprestion() == 3) && (enemies->GetIsDead() == true)) {
-						tutrialSystem_->SetNowExprestion(4);
-					}
-
 				}
+				
 			}
 
 		}

@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "Animation/Animation.h"
 #include "Function/UtilityStruct.h"
+
 class BladeSlimeAnim:public Animation
 {
 public:

@@ -1,5 +1,6 @@
 ﻿#include "BladeSlimeAnimS.h"
 #include "Function/Function.h"
+#include "ScreenSize.h"
 
 void BladeSlimeAnimS::Initialize()
 {
@@ -53,14 +54,17 @@ void BladeSlimeAnimS::Update(Vector2 pos)
 void BladeSlimeAnimS::Draw(unsigned int color)
 {
 	
-	if (maindState_ == Lunatic) {
-		if (state_ == ATTACK) {
-			Novice::DrawSpriteRect((int)(_pos.x - _spriteRadius.x * _direction), (int)(_pos.y - _spriteRadius.y), 256 * atkFrame, 0, 256, 128, lunaTexATK_,
-				1 * _direction * 0.2f, 1, 0, WHITE);
-		}
-		else {
-			Novice::DrawSpriteRect((int)(_pos.x - _spriteRadius.x * _direction), (int)(_pos.y - _spriteRadius.y), 256 * frame2, 0, 256, 128, lunaTex_,
-				1 * _direction * 0.2f, 1, 0, WHITE);
+	if (((int)(_pos.x - _spriteRadius.x * _direction) <= kWindowWidth + _spriteSize.x) && ((int)(_pos.x - _spriteRadius.x * _direction) >= MimWindowWidth - _spriteSize.x)) {
+
+		if (maindState_ == Lunatic) {
+			if (state_ == ATTACK) {
+				Novice::DrawSpriteRect((int)(_pos.x - _spriteRadius.x * _direction), (int)(_pos.y - _spriteRadius.y), 256 * atkFrame, 0, 256, 128, lunaTexATK_,
+					1 * _direction * 0.2f, 1, 0, WHITE);
+			}
+			else {
+				Novice::DrawSpriteRect((int)(_pos.x - _spriteRadius.x * _direction), (int)(_pos.y - _spriteRadius.y), 256 * frame2, 0, 256, 128, lunaTex_,
+					1 * _direction * 0.2f, 1, 0, WHITE);
+			}
 		}
 	}
 
