@@ -1,10 +1,18 @@
 ﻿#pragma once
 #include "Novice.h"
 #include "CharaBase.h"
+#include"UI/AttackTypeDisPlay.h"
+
 //攻撃typeを視認的に分かるようにするためのクラス
 class PlayerJewel
 {
 public:
+
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
+	~PlayerJewel();
+	
 	/// <summary>
 	/// 初期化
 	/// </summary>
@@ -31,5 +39,8 @@ private:
 
 	//プレイヤーからの距離
 	const IntState playerDistance_ = {64,32 };
+
+	//上の表示用クラス
+	AttackTypeDisPlay* atdp_ = nullptr;
 };
 

@@ -16,24 +16,30 @@ void BGMManage::Initialize()
 void BGMManage::Update(float& Hp, float& Sp, Wave& NowWave)
 {
 
-	if ((Hp < ChangeBGM) && (Sp < ChangeBGM)) {
+	if ((Hp < ChangeBGM) || (Sp < ChangeBGM)) {
 
-		//曲が成っていた場合は止める
-		if ((Novice::IsPlayingAudio(nomalPlay_) == 1)) {
-			Novice::PauseAudio(nomalPlay_);
-		}
-		//曲が成っていた場合は止める
-		if ((Novice::IsPlayingAudio(bossPlay_) == 1)) {
-			Novice::PauseAudio(bossPlay_);
-		}
+		//チュートリアルはならさない
+		if (NowWave != Tutorial) {
 
-		if ((Novice::IsPlayingAudio(dangerPlay_) == 0) && (dangerPlay_ = -1)) {
-			//念のためisplayつかっとく
-			dangerPlay_ = Novice::PlayAudio(dangerBGM_, 1, 0.4f);
+			//曲が成っていた場合は止める
+			if ((Novice::IsPlayingAudio(nomalPlay_) == 1)) {
+				Novice::PauseAudio(nomalPlay_);
+			}
+			//曲が成っていた場合は止める
+			if ((Novice::IsPlayingAudio(bossPlay_) == 1)) {
+				Novice::PauseAudio(bossPlay_);
+			}
+
+			if ((Novice::IsPlayingAudio(dangerPlay_) == 0) && (dangerPlay_ = -1)) {
+				//念のためisplayつかっとく
+				dangerPlay_ = Novice::PlayAudio(dangerBGM_, 1, 0.4f);
+			}
+			else {
+				Novice::ResumeAudio(dangerPlay_);
+			}
+
 		}
-		else {
-			Novice::ResumeAudio(dangerPlay_);
-		}
+		
 
 	}
 	else {

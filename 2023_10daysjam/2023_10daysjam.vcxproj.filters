@@ -265,6 +265,9 @@
     <ClCompile Include="BGMManage\BGMManage.cpp">
       <Filter>BGM</Filter>
     </ClCompile>
+    <ClCompile Include="UI\AttackTypeDisPlay.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -521,6 +524,9 @@
     </ClInclude>
     <ClInclude Include="BGMManage\BGMManage.h">
       <Filter>BGM</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\AttackTypeDisPlay.h">
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

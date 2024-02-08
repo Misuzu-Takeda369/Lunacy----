@@ -15,7 +15,7 @@ void MousePointer::Initialize()
 {
 	mousePos_ = { 0,0 };
 
-	pointerImage_ = Novice::LoadTexture("./Resources/images/UI/mousepointer.png");
+	pointerImage_ = Novice::LoadTexture("./Resources/images/UI/mousepointer_min.png");
 }
 
 void MousePointer::Update()
