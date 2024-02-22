@@ -30,7 +30,27 @@ public:
 	/// </summary>
 	virtual void NaturalDeath();
 
+	/// <summary>
+	/// 被弾した時に動く奴
+	/// </summary>
+	/// <param name="damege"></param>
 	virtual void OnCollision(float& damege) override;
+
+	/// <summary>
+	/// 被弾した時に後ろに下がる挙動
+	/// </summary>
+	/// <param name="m">移動量</param>
+	virtual void OncollBackMove(float m);
+
+	/// <summary>
+	/// 被弾時のエフェクト(多分種類ごとに挙動違う)
+	/// </summary>
+	virtual void OncollEffect();
+
+	/// <summary>
+	/// 敵の死亡モーション(共通にしようかねぇと)
+	/// </summary>
+	virtual void DeadEnemyEffect();
 
 	//敵が死んでいるか
 	virtual bool GetIsDead() { return isDead_; };
@@ -51,6 +71,18 @@ public:
 	/// </summary>
 	virtual void AttackCool();
 
+	/// <summary>
+	/// 向きによってバックさせる向きを変更するため
+	/// </summary>
+	/// <param name="Bm"></param>
+	void SetBaseMoveX(float Bm) { BaseMoveX_ = Bm; };
+
+	/// <summary>
+	/// 移動量定数
+	/// </summary>
+	/// <returns></returns>
+	float GetkBaseMoveX_() { return kBaseMoveX_; };
+
 protected:
 
 
@@ -65,5 +97,21 @@ protected:
 	const int MaxHitCoolTime_ = 10;
 
 	bool _right;
+
+	//被弾した時に下がる最大量(基準)
+	const float kBaseMoveX_ = 3.0f;
+
+	//判別用(向きによって変わる為)
+	float BaseMoveX_ = kBaseMoveX_;
+
+	//どれぐらい下がったか確認用
+	float MoveX_ = 0.0f;
+
+	//スピード定数
+	const float kBackSpeedX_ = 1.5f;
+
+	//スピード定数(向き適応版)
+	float BackSpeedX_ = kBackSpeedX_;
+
 };
 

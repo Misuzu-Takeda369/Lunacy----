@@ -184,7 +184,6 @@ void PlayerAnimation::AddLunaEffect(const Vector2& pos)
 {
 	LunaMentalEffect* obj = new LunaMentalEffect();
 	obj->Initialize(pos);
-	obj->SetImageHandle(_LunaEffectImage);
 	_lunaticEffect.push_back(obj);
 }
 

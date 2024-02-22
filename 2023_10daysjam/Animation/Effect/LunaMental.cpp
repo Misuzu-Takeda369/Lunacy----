@@ -1,4 +1,4 @@
-﻿#include "Animation/Effect/LunaMental.h"
+#include "Animation/Effect/LunaMental.h"
 #include "Function/Function.h"
 #include "Novice.h"
 #include "Function/Easing.h"
@@ -13,22 +13,22 @@ LunaMentalEffect::~LunaMentalEffect()
 
  void LunaMentalEffect::Initialize(Vector2 pos)
 {
-	_standard = pos;
+	 sprite_ = Novice::LoadTexture("./Resources/Images/apos_bullet.png");
+	 _standard = {0,0};
 	_digree = RandomRange(0, 359);
 	_effectRange = (float)RandomRange(10, 20);
 	if (_side != 1 && _side != 2) {
-		_effectRange = (float)RandomRange(40, 60);
+		_effectRange = (float)RandomRange(60, 100);
 	}
 	_radian = DegreeToRadian((float)_digree);
-	_target.x = (_effectRange * cosf(_radian) - _effectRange * sinf(_radian)) + pos.x;
-	_target.y = (_effectRange * cosf(_radian) + _effectRange * sinf(_radian)) + pos.y;
+	_target.x = (_effectRange * cosf(_radian) - _effectRange * sinf(_radian)) + 0;
+	_target.y = (_effectRange * cosf(_radian) + _effectRange * sinf(_radian)) + 0;
 	_color = {
 		RandomRange(50,150),
 		0,
 		RandomRange(50,150),
 		255,
 	};
-	
 	_radius = RandomRange(5, 15);
 	_isArrive = true;
 	_t = 0;
@@ -38,8 +38,7 @@ LunaMentalEffect::~LunaMentalEffect()
 	}
 	_side = RandomRange(1, 3);
 	
-	_image = 0;
-	_Scale = (float)RandomRange(1, 3);
+	
 }
 
  void LunaMentalEffect::Update(Vector2 pos)
@@ -71,11 +70,11 @@ LunaMentalEffect::~LunaMentalEffect()
 	 }
 	 // _pos.x=Easeing(_t, _EaseInCubic);
 	 // _pos.y=Easeing(_t,_EaseInCubic);
+	 _radi = AdjustSpriteScale(64.f, (float)_radius);
  }
 
 void LunaMentalEffect::Draw()
 {
-	//Novice::DrawEllipse((int)_pos.x, (int)_pos.y, _radius, _radius, 0, _color.color, kFillModeSolid);
-	
-	Novice::DrawSprite((int)_pos.x, (int)_pos.y, _image, _Scale, _Scale,0.0f, _color.color);
+	//Novice::DrawEllipse((int)_pos.x+(int)_playerPos.x, (int)_pos.y+(int)_playerPos.y, _radius, _radius, 0, _color.color, kFillModeSolid);
+	DrawRotateScaleSprite({ _pos.x + _playerPos.x,_pos.y + _playerPos.y }, { 64.f,64.f }, 0, 0, sprite_, _color.color, _radi, 0);
 }

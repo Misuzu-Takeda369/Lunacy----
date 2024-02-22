@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include "Vector2.h"
 #include "Function/UtilityStruct.h"
 class LunaMentalEffect
@@ -11,11 +11,7 @@ public:
 	void Draw();
 	bool GetIsArrive() { return _isArrive; }
 
-	/// <summary>
-	/// 画像を読み込む関数
-	/// </summary>
-	/// <param name="Image">画像</param>
-	void SetImageHandle(int Image) {this->_image = Image;};
+
 
 private:
 	Vector2 _pos;
@@ -31,11 +27,10 @@ private:
 	float _direction = 1.0f;
 	int _side = 0;
 	int _radius = 10;
+	float _radi;
+	uint32_t sprite_;
 
-	//パーティクルの画像
-	int _image = 0;
-	//画像の大きさ
-	float _Scale;
+
 };
 
 

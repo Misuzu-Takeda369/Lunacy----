@@ -62,7 +62,18 @@ void PopEnemy::Update()
 	switch (enemyType_)
 	{
 	case HPNOMAL:
-		nHEnemy_->Update();
+
+		//被弾してない時に通常(している時は被弾エフェクトモード)
+		if (!hit_) {
+			nHEnemy_->Update();
+		}
+		else {
+			///エフェクトの挙動
+			//エフェクト
+			OncollEffect();
+			//バックする
+			OncollBackMove(BaseMoveX_);
+		}
 
 		if (Novice::IsPlayingAudio(walkPlay_) == 0) {
 			walkPlay_ = Novice::PlayAudio(walkEffect_, 0, 0.3f);
@@ -88,7 +99,17 @@ void PopEnemy::Update()
 			walkPlay_ = Novice::PlayAudio(walkEffect_, 0, 0.3f);
 		}
 
-		nSEnemy_->Update();
+		//被弾してない時に通常(している時は被弾エフェクトモード)
+		if (!hit_) {
+			nSEnemy_->Update();
+		}
+		else {
+			///エフェクトの挙動
+			//エフェクト
+			OncollEffect();
+			//バックする
+			OncollBackMove(BaseMoveX_);
+		}
 
 		attackPoint_ = nSEnemy_->GetAttackPoint();
 		charaBase_.pos_.x = nSEnemy_->GetPosX();
@@ -250,6 +271,8 @@ void PopEnemy::EnemyBorn(Wave nowWave)
 			enemyType_ = HPNOMAL;
 			charaBase_.pos_.x = -100.0f;
 			charaBase_.speed_.x = -charaBase_.speed_.x;
+
+
 			right = false;
 		}
 		else if (rumNum_ == 3) {
@@ -274,6 +297,7 @@ void PopEnemy::EnemyBorn(Wave nowWave)
 
 			charaBase_.pos_.x = -100.0f;
 			charaBase_.speed_.x = -charaBase_.speed_.x;
+
 			right = false;
 		}
 		else {
@@ -345,6 +369,7 @@ void PopEnemy::CoolCheak()
 		if (hitCoolTime_ >= MaxHitCoolTime_) {
 			hit_ = false;
 			hitCoolTime_ = 0;
+			MoveX_ = 0.0f;
 			Novice::ResumeAudio(walkPlay_);
 		}
 	}
@@ -405,6 +430,57 @@ void PopEnemy::AttackCool()
 			}
 		}
 	}
+}
+
+
+void PopEnemy::OncollEffect()
+{
+	//場合分け
+	switch (enemyType_)
+	{
+	case HPNOMAL:
+
+		break;
+
+	case SPNOMAL:
+
+		break;
+
+	case NONE:
+
+		break;
+
+	default:
+		break;
+	}
+}
+
+void PopEnemy::OncollBackMove(float m)
+{
+
+	//場合分け
+	switch (enemyType_)
+	{
+	case HPNOMAL:
+
+		nHEnemy_->OncollBackMove(m);
+
+		break;
+
+	case SPNOMAL:
+
+		nSEnemy_->OncollBackMove(m);
+
+		break;
+
+	case NONE:
+
+		break;
+
+	default:
+		break;
+	}
+
 }
 
 

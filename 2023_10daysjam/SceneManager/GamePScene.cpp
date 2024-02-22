@@ -521,6 +521,8 @@ void GamePScene::CheckCollisionAll()
 		for (PopEnemy* enemies : enemy_) {
 
 				if ((IsCollision(playerMA, enemies) == true) && enemies->GetHit() == false) {
+
+					ChackEToPDicrection(enemies);
 					float damege = playerMA->GetAttackPoint();
 					enemies->OnCollision(damege);
 
@@ -532,6 +534,7 @@ void GamePScene::CheckCollisionAll()
 					if ((tutrialSystem_->GetNowExprestion() == 4) && (enemies->GetIsDead() == true)) {
 						tutrialSystem_->SetNowExprestion(5);
 					}
+
 				}
 
 		}
@@ -552,6 +555,7 @@ void GamePScene::CheckCollisionAll()
 
 					if (IsCollision(playerLAtteck, enemies) == true) {
 
+						ChackEToPDicrection(enemies);
 						float damege = playerLAtteck->GetAttackPoint();
 						enemies->OnCollision(damege);
 						playerLAtteck->OnCollision();
@@ -601,6 +605,7 @@ void GamePScene::CheckCollisionAll()
 		if (playerMA) {
 
 			if (IsCollision(playerMA, apostelEvent_->GetObjectInfo()) == true) {
+
 				float damege = playerMA->GetAttackPoint();
 				apostelEvent_->OnCollision(damege);
 			}
@@ -1057,3 +1062,15 @@ void GamePScene::ChackNotAttack()
 
 	//player_->SetNotAttackFrag(true);
 }
+
+void GamePScene::ChackEToPDicrection(EnemyBase* enemy)
+{
+	if (player_->GetPosX() >= enemy->GetPosX()) {
+		enemy->SetBaseMoveX(-enemy->GetkBaseMoveX_());
+	}
+	else {
+		enemy->SetBaseMoveX(enemy->GetkBaseMoveX_());
+	}
+
+}
+

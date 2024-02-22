@@ -20,11 +20,15 @@ public:
 	//後から場所だけ敵から受け取る
 	//void Initialize(MaindState maindStateNow);
 
-	void Initialize(MaindState maindStateNow,Wave nowWave, int enemyNotAppeared);
+	void Initialize(MaindState maindStateNow, Wave nowWave, int enemyNotAppeared);
 
 	void Update() override;
 	void Draw() override;
 
+	/// <summary>
+	/// 被弾モーション
+	/// </summary>
+	/// <param name="damege"></param>
 	void OnCollision(float& damege);
 
 
@@ -35,40 +39,50 @@ public:
 	void EnemyBorn(Wave nowWave);
 
 	/// <summary>
-	/// クールタイムか否か
+	/// クールタイムか否か(被弾時の) 
 	/// </summary>
-	 void CoolCheak() override;
+	void CoolCheak() override;
 
 
-	 /// <summary>
-	 /// 当たり判定用に使う敵のタイプ
-	 /// </summary>
-	 /// <returns></returns>
-	 EnemyType GetEnemyType() { return enemyType_; };
+	/// <summary>
+	/// 当たり判定用に使う敵のタイプ
+	/// </summary>
+	/// <returns></returns>
+	EnemyType GetEnemyType() { return enemyType_; };
 
-	 /// <summary>
-	 /// 敵が出てきていない回数
-	 /// </summary>
-	 /// <param name="num">回数</param>
-	 int EnemyNotAppeared() {return enemyNotAppeared_;}
+	/// <summary>
+	/// 敵が出てきていない回数
+	/// </summary>
+	/// <param name="num">回数</param>
+	int EnemyNotAppeared() { return enemyNotAppeared_; }
 
-	 /// <summary>
-	 /// シーン変換の時に音を止める関数
-	 /// </summary>
-	 void StopMusic() override;
+	/// <summary>
+	/// シーン変換の時に音を止める関数
+	/// </summary>
+	void StopMusic() override;
 
-	 /// <summary>
-	 /// 攻撃
-	 /// </summary>
-	 void AttackMotion();
+	/// <summary>
+	/// 攻撃
+	/// </summary>
+	void AttackMotion();
 
-	 /// <summary>
-	 /// 攻撃のモーション状態
-	 /// </summary>
-	 void AttackCool();
+	/// <summary>
+	/// 攻撃のモーション状態
+	/// </summary>
+	void AttackCool();
 
 
-	 void DeadEnemyEffect();
+	/// <summary>
+	/// 被弾時のエフェクト(多分種類ごとに挙動違う)
+	/// </summary>
+	void OncollEffect() override;
+
+	/// <summary>
+    /// 被弾した時に後ろに下がる挙動
+    /// </summary>
+	void OncollBackMove(float m) override;
+
+
 
 private:
 
@@ -103,7 +117,8 @@ private:
 	Wave nowWave_ = Tutorial;
 
 	bool attackFrag_ = false;
-	
+
 	int attacktimer_ = 0;
+
 };
 

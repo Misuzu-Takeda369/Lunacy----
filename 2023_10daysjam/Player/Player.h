@@ -156,13 +156,13 @@ public:
 
 
 	/// <summary>
-	/// 攻撃してる場合じゃねぇフラグ
+	/// 攻撃してる場合じゃねぇフラグセッター
 	/// </summary>
 	/// <param name="flag">フラグ(だいたいon)</param>
 	void SetNotAttackFrag(bool flag) {notAttackFrag_ = flag;};
 
 	/// <summary>
-	/// 攻撃してる場合じゃねぇフラグ
+	/// 攻撃してる場合じゃねぇフラグゲッター
 	/// </summary>
 	/// <returns></returns>
 	bool GetNotAttackFrag() { return notAttackFrag_; };

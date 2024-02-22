@@ -145,6 +145,11 @@ public:
 	/// </summary>
 	void ChackNotAttack();
 
+	/// <summary>
+	/// 敵被弾時の向き確認用の変数
+	/// </summary>
+	void ChackEToPDicrection(EnemyBase* enemy);
+
 private:
 	// シーン変更できるかどうか
 	bool flagChange_ = false;

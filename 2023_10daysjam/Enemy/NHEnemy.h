@@ -30,6 +30,8 @@ public:
 	float GetHpMax() { return maxHp_; };
 
 	void SetState(STATE state);
+
+
 	
 private:
 
