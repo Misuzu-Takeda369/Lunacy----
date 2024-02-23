@@ -207,7 +207,7 @@ void GamePScene::Update()
 			float Psp = player_->GetSp();
 			Wave Nwa = nowWave_;
 
-			bgm_->Update(Php, Psp, Nwa);
+			//bgm_->Update(Php, Psp, Nwa);
 
 			//敵の発生
 			EnemyPoping(nowWave_);
@@ -456,6 +456,7 @@ void GamePScene::Draw()
 
 	hpUi_->Draw(hitEffect_->GetShakePos());
 	spUi_->Draw(hitEffect_->GetShakePos());
+
 	if (nowWave_ == Boss) {
 		bossHpUi_->Draw(hitEffect_->GetShakePos());
 	}
@@ -556,6 +557,7 @@ void GamePScene::CheckCollisionAll()
 					if (IsCollision(playerLAtteck, enemies) == true) {
 
 						ChackEToPDicrection(enemies);
+
 						float damege = playerLAtteck->GetAttackPoint();
 						enemies->OnCollision(damege);
 						playerLAtteck->OnCollision();

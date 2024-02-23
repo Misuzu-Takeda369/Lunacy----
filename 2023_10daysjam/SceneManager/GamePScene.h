@@ -146,7 +146,7 @@ public:
 	void ChackNotAttack();
 
 	/// <summary>
-	/// 敵被弾時の向き確認用の変数
+	/// 敵被弾時の向き確認用の変数()
 	/// </summary>
 	void ChackEToPDicrection(EnemyBase* enemy);
 

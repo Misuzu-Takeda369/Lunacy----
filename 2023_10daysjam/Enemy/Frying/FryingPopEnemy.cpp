@@ -52,10 +52,23 @@ void FryingEnemy::Update()
 
 	CoolCheak();
 
+
 	switch (enemyType_)
 	{
 	case HPNOMAL:
-		fhEnemy_->Update();
+
+		//被弾してない時に通常(している時は被弾エフェクトモード)
+		if (!hit_) {
+			fhEnemy_->Update();
+		}
+		else {
+			///エフェクトの挙動
+			//エフェクト
+			OncollEffect();
+			//バックする
+			fhEnemy_->OncollBackMove(BaseMoveX_);
+		}
+
 
 		attackPoint_ = fhEnemy_->GetAttackPoint();
 		charaBase_.pos_.x = fhEnemy_->GetPosX();
@@ -254,47 +267,6 @@ void FryingEnemy::ContinuousDamage()
 	
 }
 
-//void FryingEnemy::AttackMotion()
-//{
-//	switch (enemyType_)
-//	{
-//	case HPNOMAL:
-//		fhEnemy_->SetState(ATTACK);
-//		break;
-//
-//	default:
-//		break;
-//
-//	}
-//
-//	attackFrag_ = true;
-//	//fhEnemy_->SetDamageFrag(attackFrag_);
-//}
-//
-//void FryingEnemy::AttackCool()
-//{
-//	if (attackFrag_) {
-//		attacktimer_++;
-//
-//		if (attacktimer_ >= 60) {
-//			attackFrag_ = false;
-//			attacktimer_ = 0;
-//
-//			switch (enemyType_)
-//			{
-//			case HPNOMAL:
-//				fhEnemy_->SetState(MOVE);
-//
-//				break;
-//
-//			default:
-//				break;
-//
-//			}
-//		}
-//	}
-//}
-//
 
 
 
