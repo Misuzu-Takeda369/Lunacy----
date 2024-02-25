@@ -80,11 +80,16 @@ void EnemyBase::OncollBackMove(float m)
 
 void EnemyBase::OncollEffect()
 {
-
 }
 
 void EnemyBase::DeadEnemyEffect()
 {
+
+}
+
+void EnemyBase::AddDeadEffect(const Vector2& pos)
+{
+
 }
 
 void EnemyBase::AttackMotion()
@@ -94,5 +99,6 @@ void EnemyBase::AttackMotion()
 void EnemyBase::AttackCool()
 {
 }
+
 
 

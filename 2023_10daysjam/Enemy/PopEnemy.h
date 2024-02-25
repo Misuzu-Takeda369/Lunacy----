@@ -84,6 +84,8 @@ public:
 
 
 
+
+
 private:
 
 	//通常の敵

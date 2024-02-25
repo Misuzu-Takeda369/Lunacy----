@@ -132,6 +132,8 @@ void PopEnemy::Update()
 	eHUi_->Update(float(hp_), charaBase_.pos_);
 
 
+
+
 #ifdef _DEBUG
 #pragma region ImGui関連
 
@@ -188,9 +190,10 @@ void PopEnemy::OnCollision(float& damege)
 
 	if (hp_ <= 0.0f) {
 		isDead_ = true;
-
 		Novice::StopAudio(walkPlay_);
 	}
+
+	
 
 }
 
@@ -482,6 +485,3 @@ void PopEnemy::OncollBackMove(float m)
 	}
 
 }
-
-
-
