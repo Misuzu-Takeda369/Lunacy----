@@ -762,7 +762,7 @@ void GamePScene::EnemyDead()
 {
 	for (PopEnemy* enemies : enemy_) {
 		if (enemies->GetIsDead()) {
-			int rum = RandomRange(1, 2);
+			int rum = RandomRange(4, 6);
 
 			if (rum % 2 == 0) {
 
@@ -1069,6 +1069,7 @@ void GamePScene::ChackNotAttack()
 	//player_->SetNotAttackFrag(true);
 }
 
+///没(使わなくなった)
 void GamePScene::ChackEToPDicrection(EnemyBase* enemy)
 {
 	if (player_->GetPosX() >= enemy->GetPosX()) {

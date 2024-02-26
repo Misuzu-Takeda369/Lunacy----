@@ -75,7 +75,7 @@ protected:
 
 	bool _right; //アニメーションに渡すようの向き
 	//最大体力
-	const float maxHP_ = 444;
+	const float maxHP_ = 400;
 
 	STATE state_ = IDOL;
 	SABSTATE sabState_ = SABSTATE::_NONE;
