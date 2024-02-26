@@ -65,8 +65,8 @@ void FryingEnemy::Update()
 			///エフェクトの挙動
 			//エフェクト
 			OncollEffect();
-			//バックする
-			fhEnemy_->OncollBackMove(BaseMoveX_);
+			//バックする(処理だるい)
+			//fhEnemy_->OncollBackMove(BaseMoveX_);
 		}
 
 

@@ -72,7 +72,7 @@ void PopEnemy::Update()
 			//エフェクト
 			OncollEffect();
 			//バックする
-			OncollBackMove(BaseMoveX_);
+			//OncollBackMove(BaseMoveX_);
 		}
 
 		if (Novice::IsPlayingAudio(walkPlay_) == 0) {
@@ -108,7 +108,7 @@ void PopEnemy::Update()
 			//エフェクト
 			OncollEffect();
 			//バックする
-			OncollBackMove(BaseMoveX_);
+			//OncollBackMove(BaseMoveX_);
 		}
 
 		attackPoint_ = nSEnemy_->GetAttackPoint();
@@ -192,8 +192,6 @@ void PopEnemy::OnCollision(float& damege)
 		isDead_ = true;
 		Novice::StopAudio(walkPlay_);
 	}
-
-	
 
 }
 

@@ -40,7 +40,7 @@ void EnemyBase::OnCollision(float& damege)
 
 void EnemyBase::OncollBackMove(float m)
 {
-	BaseMoveX_ = m;
+	//m;
 
 	//スピードの判定
 	if (BaseMoveX_ >= 0) {

@@ -15,6 +15,8 @@ GamePScene::~GamePScene()
 
 	delete bossHpUi_;
 
+	delete MindUi_;
+
 	//delete enemy_;
 
 	for (PopEnemy* enemies : enemy_) {
@@ -63,7 +65,8 @@ void GamePScene::Initialize(Wave& nowWave)
 	waveTextUi_ = new WaveTextUI;
 	waveTextUi_->Initialize(nowWave_);
 
-
+	MindUi_ = new PlayerMindDisPlay();
+	MindUi_->Initialize();
 
 	tutrialSystem_ = new TutrialSystem;
 	tutrialSystem_->Initialize(player_->GetPlayerSpeedX());
@@ -71,12 +74,6 @@ void GamePScene::Initialize(Wave& nowWave)
 	apostelEvent_ = new ApostelEvent;
 	apostelEvent_->Initialize();
 
-	//ここで敵を産むすぐに殺す
-	/*enemyImage_[0];
-	enemyImage_[1];
-	enemyImage_[2];
-	enemyImage_[3];*/
-	//ここで敵を産むすぐに殺す(重くなるタイミングが2回出てきた)
 
 	hitEffect_ = new HitEffect();
 	hitEffect_->Initialize();
@@ -252,6 +249,8 @@ void GamePScene::Update()
 			//ここ...?
 			hitEffect_->Update();
 
+			MaindState Playernow = player_->GetMaindStateNow();
+			MindUi_->Update(Playernow);
 #pragma endregion
 
 			WaveChange();
@@ -465,6 +464,7 @@ void GamePScene::Draw()
 	}
 	waveTextUi_->Draw(hitEffect_->GetShakePos());
 
+	MindUi_->Draw();
 
 
 	///ここにポーズ関連の描写をまとめる
@@ -681,6 +681,8 @@ void GamePScene::CheckCollisionAll()
 			for (FryingEnemy* enemies : fryingEnemy_) {
 
 				if (IsCollision(playerMA, enemies) == true) {
+					ChackEToPDicrection(enemies);
+
 					float damege = playerMA->GetAttackPoint();
 					enemies->OnCollision(damege);
 				}
@@ -702,6 +704,8 @@ void GamePScene::CheckCollisionAll()
 					if ((playerLAtteck->GetPosX() >= MimWindowWidth) && (playerLAtteck->GetPosX() <= kWindowWidth)) {
 
 						if (IsCollision(playerLAtteck, enemies) == true) {
+
+							ChackEToPDicrection(enemies);
 
 							float damege = playerLAtteck->GetAttackPoint();
 							enemies->OnCollision(damege);
@@ -1068,7 +1072,7 @@ void GamePScene::ChackNotAttack()
 void GamePScene::ChackEToPDicrection(EnemyBase* enemy)
 {
 	if (player_->GetPosX() >= enemy->GetPosX()) {
-		enemy->SetBaseMoveX(-enemy->GetkBaseMoveX_());
+		enemy->SetBaseMoveX(-(enemy->GetkBaseMoveX_()));
 	}
 	else {
 		enemy->SetBaseMoveX(enemy->GetkBaseMoveX_());

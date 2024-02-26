@@ -8,6 +8,7 @@
 #include "UI/TimerUI.h"
 #include "UI/WaveTextUI.h"
 #include "UI/BHpUI.h"
+#include "UI/PlayerMindDisPlay.h"
 #pragma endregion
 #include "Player/Player.h"
 #include "Item/PopItem.h"
@@ -223,6 +224,8 @@ private:
 
 	HitEffect* hitEffect_ = nullptr;
 	BHpUI* bossHpUi_ = nullptr;
+	
+	PlayerMindDisPlay* MindUi_ = nullptr;
 	
 
 	//アイテムポップ関数

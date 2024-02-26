@@ -13,7 +13,7 @@ void AttackTypeDisPlay::Initialize()
 
 
 	//画像
-	Image_ = Novice::LoadTexture("./Resources/images/Text/MindStale.png");
+	Image_ = Novice::LoadTexture("./Resources/images/Text/AttackStale.png");
 	imageNum_ = 0;
 }
 
