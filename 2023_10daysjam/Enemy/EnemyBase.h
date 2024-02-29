@@ -61,6 +61,9 @@ public:
 	//敵が死んでいるか
 	virtual bool GetIsDead() { return isDead_; };
 
+	//敵が死んでいるかセッター
+	virtual void SetIsDead(bool flag) {  isDead_= flag; };
+
 	virtual void SetDirection(bool right)
 	{
 		_right =right;

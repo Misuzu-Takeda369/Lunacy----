@@ -32,6 +32,11 @@ GamePScene::~GamePScene()
 		delete popItem;
 	}
 
+	for (EnemyDeadEffect* deadEffect : deadeffect_) {
+		delete deadEffect;
+
+	}
+
 	delete hitEffect_;
 
 	delete pouseMode_;
@@ -148,6 +153,24 @@ void GamePScene::Update()
 
 				tutrialSystem_->Update(player_->GetMaindStateNow(), player_->GetPlayerAttackTypeNow());
 
+				//敵の動き
+				for (PopEnemy* enemies : enemy_) {
+					enemies->Update();
+				}
+
+				for (EnemyDeadEffect* deadEffect : deadeffect_) {
+					if (!deadEffect->GetIsDead()) {
+						deadEffect->Update();
+					}
+				}
+
+			
+
+				//敵を消去してよいか
+				EnemyDead();
+
+				EnemyEffectDead();
+
 				///ゲージ
 				if ((tutrialSystem_->GetNowExprestion() == 4) || (tutrialSystem_->GetNowExprestion() == 5)) {
 					player_->SetSpChangingPoint(500.0f);
@@ -156,18 +179,50 @@ void GamePScene::Update()
 					player_->SetSpChangingPoint(250.0f);
 				}
 
+
 				break;
 			case Wave1:
-
-				break;
-
 			case Wave2:
+			
+				//敵の動き
+				for (PopEnemy* enemies : enemy_) {
+					enemies->Update();
+				}
+
+				for (EnemyDeadEffect* deadEffect : deadeffect_) {
+					if (!deadEffect->GetIsDead()) {
+						deadEffect->Update();
+					}
+				}
 
 
+				//敵を消去してよいか
+				EnemyDead();
+				
+				EnemyEffectDead();
 
 				break;
 
+		
 			case Wave3:
+
+				//敵の動き
+				for (PopEnemy* enemies : enemy_) {
+					enemies->Update();
+				}
+
+				for (EnemyDeadEffect* deadEffect : deadeffect_) {
+					if (!deadEffect->GetIsDead()) {
+						deadEffect->Update();
+					}
+				}
+
+
+				//敵を消去してよいか
+				EnemyDead();
+				
+				EnemyEffectDead();
+
 				//飛ぶ敵の出現処理
 				FryEnemyPoping();
 
@@ -183,6 +238,10 @@ void GamePScene::Update()
 
 			case Boss:
 
+				//敵の動き
+				for (PopEnemy* enemies : enemy_) {
+					enemies->StopMusic();
+				}
 
 				apostelEvent_->SetPlayerInfo(player_->GetCharaBase());
 				apostelEvent_->Update();
@@ -192,6 +251,8 @@ void GamePScene::Update()
 				//Hpゲージの挙動
 				bossHpUi_->Update(apostelEvent_->GetDicHp());
 
+
+				BossAttackCool++;
 				break;
 
 			default:
@@ -204,10 +265,22 @@ void GamePScene::Update()
 			float Psp = player_->GetSp();
 			Wave Nwa = nowWave_;
 
-			//bgm_->Update(Php, Psp, Nwa);
+			bgm_->Update(Php, Psp, Nwa);
 
 			//敵の発生
 			EnemyPoping(nowWave_);
+			//当たり判定
+			CheckCollisionAll();
+
+			//アイテムの挙動
+			for (PopItem* popItem : popItem_) {
+				if (!popItem->IsDead()) {
+					popItem->Update();
+				}
+			}
+
+			//アイテムを消してよいか
+			ItemDead();
 
 			//ここプレイヤーからUIに変化点を受け取っておく
 			spUi_->SetSpChangingPoint(player_->GetSpChangingPoint());
@@ -217,25 +290,7 @@ void GamePScene::Update()
 			//プレイヤーの挙動
 			player_->Update(keys, preKeys);
 
-			//敵の動き
-			for (PopEnemy* enemies : enemy_) {
-				enemies->Update();
-			}
-
-			//アイテムの挙動
-			for (PopItem* popItem : popItem_) {
-				if (!popItem->IsDead()) {
-					popItem->Update();
-				}
-			}
-
-			//当たり判定
-			CheckCollisionAll();
-
-			//敵を消去してよいか
-			EnemyDead();
-			//アイテムを消してよいか
-			ItemDead();
+		
 			backGround_->SetPlayerSP(player_->GetSp(), player_->GetSpMax());
 #pragma region UI関連
 
@@ -391,18 +446,64 @@ void GamePScene::Draw()
 	case Tutorial:
 
 		tutrialSystem_->Draw();
+		for (PopEnemy* enemies : enemy_) {
+
+			//if (enemies->GetIsDead()) {
+			enemies->Draw();
+			//}
+
+		}
+
+
+		for (EnemyDeadEffect* deadEffect : deadeffect_) {
+
+			if (!deadEffect->GetIsDead()) {
+				deadEffect->Draw();
+			}
+
+		}
 
 		break;
 
 	case Wave1:
-
-		break;
-
 	case Wave2:
+
+		for (PopEnemy* enemies : enemy_) {
+
+			//if (enemies->GetIsDead()) {
+			enemies->Draw();
+			//}
+
+		}
+
+
+		for (EnemyDeadEffect* deadEffect : deadeffect_) {
+
+			if (!deadEffect->GetIsDead()) {
+				deadEffect->Draw();
+			}
+
+		}
 
 		break;
 
 	case Wave3:
+
+		for (PopEnemy* enemies : enemy_) {
+
+			//if (enemies->GetIsDead()) {
+			enemies->Draw();
+			//}
+
+		}
+
+		for (EnemyDeadEffect* deadEffect : deadeffect_) {
+
+			if (!deadEffect->GetIsDead()) {
+				deadEffect->Draw();
+			}
+
+		}
 
 		//敵の動き
 		for (FryingEnemy* fryingenemis : fryingEnemy_) {
@@ -419,22 +520,18 @@ void GamePScene::Draw()
 	}
 #pragma endregion
 
-	player_->Draw();
-
-	for (PopEnemy* enemies : enemy_) {
-
-		//if (enemies->GetIsDead()) {
-		enemies->Draw();
-		//}
-
-	}
-
 	for (PopItem* popItem : popItem_) {
 		if (!popItem->IsDead()) {
 			popItem->Draw();
 		}
 	}
 
+
+	hitEffect_->Draw();
+
+	player_->Draw();
+
+	
 
 
 #ifdef _DEBUG
@@ -444,7 +541,7 @@ void GamePScene::Draw()
 
 #endif // _DEBUG
 
-	hitEffect_->Draw();
+	
 
 #pragma region UI関連(一番前に写す)
 
@@ -497,29 +594,29 @@ void GamePScene::CheckCollisionAll()
 	PlayerMAttack* playerMA = player_->GetMAttack();
 	//アイテム(複数)
 
-
+	if (nowWave_ != Boss) {
 #pragma region プレイヤー本体と敵本体
-	//player_->OnCollision();
-	for (PopEnemy* enemies : enemy_) {
+		//player_->OnCollision();
+		for (PopEnemy* enemies : enemy_) {
 
-		if (IsCollision(player_, enemies) == true) {
-			float damege = enemies->GetAttackPoint();
-			EnemyType enemytype = enemies->GetEnemyType();
-			player_->OnCollision(damege, enemytype);
-			hitEffect_->OnColistion(enemytype);
-			enemies->AttackMotion();
+			if (IsCollision(player_, enemies) == true) {
+				float damege = enemies->GetAttackPoint();
+				EnemyType enemytype = enemies->GetEnemyType();
+				player_->OnCollision(damege, enemytype);
+				hitEffect_->OnColistion(enemytype);
+				enemies->AttackMotion();
+
+			}
+			//enemies;
+
 
 		}
-		//enemies;
-
-
-	}
 #pragma endregion
 
 
 #pragma region プレイヤー近距離と敵本体
-	if (playerMA) {
-		for (PopEnemy* enemies : enemy_) {
+		if (playerMA) {
+			for (PopEnemy* enemies : enemy_) {
 
 				if ((IsCollision(playerMA, enemies) == true) && enemies->GetHit() == false) {
 
@@ -538,49 +635,51 @@ void GamePScene::CheckCollisionAll()
 
 				}
 
+			}
 		}
-	}
 #pragma endregion
 
 #pragma region プレイヤー遠距離と敵本体
 
 
-	for (PopEnemy* enemies : enemy_) {
+		for (PopEnemy* enemies : enemy_) {
 
 
-		for (PlayerLAttack* playerLAtteck : playerLA) {
+			for (PlayerLAttack* playerLAtteck : playerLA) {
 
-			if (playerLAtteck) {
+				if (playerLAtteck) {
 
-				if ((playerLAtteck->GetPosX() >= MimWindowWidth) && (playerLAtteck->GetPosX() <= kWindowWidth)) {
+					if ((playerLAtteck->GetPosX() >= MimWindowWidth) && (playerLAtteck->GetPosX() <= kWindowWidth)) {
 
-					if (IsCollision(playerLAtteck, enemies) == true) {
+						if (IsCollision(playerLAtteck, enemies) == true) {
 
-						ChackEToPDicrection(enemies);
+							ChackEToPDicrection(enemies);
 
-						float damege = playerLAtteck->GetAttackPoint();
-						enemies->OnCollision(damege);
-						playerLAtteck->OnCollision();
+							float damege = playerLAtteck->GetAttackPoint();
+							enemies->OnCollision(damege);
+							playerLAtteck->OnCollision();
 
 
-						///チュートリアル用
-						if ((tutrialSystem_->GetNowExprestion() == 1) && (enemies->GetIsDead() == true)) {
-							tutrialSystem_->SetNowExprestion(2);
+							///チュートリアル用
+							if ((tutrialSystem_->GetNowExprestion() == 1) && (enemies->GetIsDead() == true)) {
+								tutrialSystem_->SetNowExprestion(2);
+							}
+							///チュートリアル用
+							if ((tutrialSystem_->GetNowExprestion() == 3) && (enemies->GetIsDead() == true)) {
+								tutrialSystem_->SetNowExprestion(4);
+							}
+
 						}
-						///チュートリアル用
-						if ((tutrialSystem_->GetNowExprestion() == 3) && (enemies->GetIsDead() == true)) {
-							tutrialSystem_->SetNowExprestion(4);
-						}
-
 					}
+
 				}
-				
+
 			}
 
 		}
+#pragma endregion
 
 	}
-#pragma endregion
 
 #pragma region プレイヤー本体とアイテム
 	for (PopItem* popItem : popItem_) {
@@ -603,11 +702,12 @@ void GamePScene::CheckCollisionAll()
 #pragma endregion
 
 	if (nowWave_ == Boss) {
+
 #pragma region プレイヤー攻撃とボス
 		if (playerMA) {
 
 			if (IsCollision(playerMA, apostelEvent_->GetObjectInfo()) == true) {
-
+				BossItemPop();
 				float damege = playerMA->GetAttackPoint();
 				apostelEvent_->OnCollision(damege);
 			}
@@ -619,6 +719,7 @@ void GamePScene::CheckCollisionAll()
 
 				if (IsCollision(playerLAtteck, apostelEvent_->GetObjectInfo()) == true) {
 
+					BossItemPop();
 					float damege = playerLAtteck->GetAttackPoint();
 					apostelEvent_->OnCollision(damege);
 					playerLAtteck->OnCollision();
@@ -749,22 +850,15 @@ void GamePScene::ItemDead()
 
 		return false;
 		});
-
-
-	/*
-	if (popItem_->IsDead()) {
-		delete popItem_;
-	}
-	*/
 }
 
 void GamePScene::EnemyDead()
 {
 	for (PopEnemy* enemies : enemy_) {
 		if (enemies->GetIsDead()) {
-			int rum = RandomRange(4, 6);
+			int rum = RandomRange(1, 6);
 
-			if (rum % 2 == 0) {
+			if (rum <= 4) {
 
 				PopItem* newItem = new PopItem();
 				Vector2 pos = { enemies->GetPosX(), enemies->GetPosY() };
@@ -772,6 +866,13 @@ void GamePScene::EnemyDead()
 
 				popItem_.push_back(newItem);
 			}
+
+
+			//エフェクト
+			EnemyDeadEffect* deadEffect = new EnemyDeadEffect();
+			Vector2 pos = { enemies->GetPosX(), enemies->GetPosY() };
+			deadEffect->Initialize(pos);
+			deadeffect_.push_back(deadEffect);
 		}
 
 		///チュートリアル用
@@ -810,12 +911,34 @@ void GamePScene::FryingEnemyDead()
 			newItem->Initialize(pos);
 
 			popItem_.push_back(newItem);
+
+
+
+			//エフェクト
+			EnemyDeadEffect* deadEffect = new EnemyDeadEffect();
+			//Vector2 pos = { enemies->GetPosX(), enemies->GetPosY() };
+			deadEffect->Initialize(pos);
+
+			deadeffect_.push_back(deadEffect);
 		}
 	}
 
 	fryingEnemy_.remove_if([](FryingEnemy* fryenemies) {
 		if (fryenemies->GetIsDead()) {
 			delete fryenemies;
+			return true;
+		}
+
+		return false;
+		});
+}
+
+void GamePScene::EnemyEffectDead()
+{
+
+	deadeffect_.remove_if([](EnemyDeadEffect* deadEffect) {
+		if (deadEffect->GetIsDead()) {
+			delete deadEffect;
 			return true;
 		}
 
@@ -1050,6 +1173,39 @@ void GamePScene::AllStopMusic()
 
 }
 
+void GamePScene::BossItemPop()
+{
+	if (BossAttackCool >= 60) {
+
+		BossAttackCool = 0;
+		int rum = RandomRange(1, 12);
+
+		if (rum == 1) {
+
+			PopItem* newItem = new PopItem();
+			Vector2 pos = { 420,10 };
+			newItem->Initialize(pos);
+
+			popItem_.push_back(newItem);
+		}
+		if (rum == 2) {
+			PopItem* newItem = new PopItem();
+			Vector2 pos = { 840, 10 };
+			newItem->Initialize(pos);
+			popItem_.push_back(newItem);
+		}
+		if (rum == 3) {
+			PopItem* newItem = new PopItem();
+			Vector2 pos = { 1240, 10 };
+			newItem->Initialize(pos);
+			popItem_.push_back(newItem);
+		}
+
+	}
+
+
+}
+
 void GamePScene::ChackNotAttack()
 {
 	if ((pouseMode_->GetNotAttackFrag() == false) && (tutrialSystem_->GetNotAttackFrag() == true)) {
@@ -1072,12 +1228,5 @@ void GamePScene::ChackNotAttack()
 ///没(使わなくなった)
 void GamePScene::ChackEToPDicrection(EnemyBase* enemy)
 {
-	if (player_->GetPosX() >= enemy->GetPosX()) {
-		enemy->SetBaseMoveX(-(enemy->GetkBaseMoveX_()));
-	}
-	else {
-		enemy->SetBaseMoveX(enemy->GetkBaseMoveX_());
-	}
-
 }
 

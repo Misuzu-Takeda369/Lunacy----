@@ -138,6 +138,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="DummyObject.cpp" />
     <ClCompile Include="Enemy\EnemyBase.cpp" />
     <ClCompile Include="Enemy\EnemyBullet.cpp" />
+    <ClCompile Include="Enemy\EnemyDeadEffect.cpp" />
     <ClCompile Include="Enemy\Frying\FHEnemy.cpp" />
     <ClCompile Include="Enemy\Frying\FryingPopEnemy.cpp" />
     <ClCompile Include="Enemy\NSEnemy.cpp" />
@@ -232,6 +233,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="DummyObject.h" />
     <ClInclude Include="Enemy\EnemyBase.h" />
     <ClInclude Include="Enemy\EnemyBullet.h" />
+    <ClInclude Include="Enemy\EnemyDeadEffect.h" />
     <ClInclude Include="Enemy\Frying\FHEnemy.h" />
     <ClInclude Include="Enemy\Frying\FryingPopEnemy.h" />
     <ClInclude Include="Enemy\NSEnemy.h" />

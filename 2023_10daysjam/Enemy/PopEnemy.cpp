@@ -10,6 +10,7 @@ PopEnemy::~PopEnemy()
 	delete nHEnemy_;
 	delete nSEnemy_;
 	delete eHUi_;
+	Novice::StopAudio(walkPlay_);
 }
 
 
@@ -76,7 +77,7 @@ void PopEnemy::Update()
 		}
 
 		if (Novice::IsPlayingAudio(walkPlay_) == 0) {
-			walkPlay_ = Novice::PlayAudio(walkEffect_, 0, 0.3f);
+			walkPlay_ = Novice::PlayAudio(walkEffect_, 0, 0.9f);
 		}
 
 		attackPoint_ = nHEnemy_->GetAttackPoint();
@@ -88,15 +89,15 @@ void PopEnemy::Update()
 			isDead_ = true;
 
 			Novice::StopAudio(walkPlay_);
-
 		}
+
 
 		break;
 
 	case SPNOMAL:
 
 		if (Novice::IsPlayingAudio(walkPlay_) == 0) {
-			walkPlay_ = Novice::PlayAudio(walkEffect_, 0, 0.3f);
+			walkPlay_ = Novice::PlayAudio(walkEffect_, 0, 0.9f);
 		}
 
 		//被弾してない時に通常(している時は被弾エフェクトモード)
@@ -115,12 +116,11 @@ void PopEnemy::Update()
 		charaBase_.pos_.x = nSEnemy_->GetPosX();
 		charaBase_.pos_.y = nSEnemy_->GetPosY();
 
-		//ここがゲームシーンにこの個体が消滅している伝えるよう
 		if (nSEnemy_->GetIsDead()) {
 			isDead_ = true;
-
 			Novice::StopAudio(walkPlay_);
 		}
+
 		break;
 
 	default:
@@ -177,7 +177,7 @@ void PopEnemy::OnCollision(float& damege)
 	Novice::PauseAudio(walkPlay_);
 
 	if (Novice::IsPlayingAudio(hitPlay_) == 0) {
-		Novice::PlayAudio(hitEffect_, 0, 0.5f);
+		Novice::PlayAudio(hitEffect_, 0, 1.5f);
 	}
 
 	if (!hit_) {

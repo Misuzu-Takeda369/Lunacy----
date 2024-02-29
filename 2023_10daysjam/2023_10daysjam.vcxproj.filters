@@ -271,6 +271,9 @@
     <ClCompile Include="UI\PlayerMindDisPlay.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy\EnemyDeadEffect.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -533,6 +536,9 @@
     </ClInclude>
     <ClInclude Include="UI\PlayerMindDisPlay.h">
       <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy\EnemyDeadEffect.h">
+      <Filter>Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

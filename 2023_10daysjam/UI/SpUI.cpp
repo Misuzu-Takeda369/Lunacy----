@@ -28,6 +28,16 @@ void SpUI::Update(float decreasedSp)
 	int decreaseSp = int(decreasedSp);
 	moveX_ = (moveSpeedX_)*decreaseSp;
 
+	if (decreaseSp > 475) {
+		color_.color = RED;
+	}
+	else if (decreaseSp > 350) {
+		color_.color = 0x732CA3FF;
+	}
+	else {
+		color_.color = CYAN;
+	}
+
 }
 
 

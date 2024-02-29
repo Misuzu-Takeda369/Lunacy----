@@ -18,7 +18,7 @@ void Player::Initialize()
 	standardPos_ = { 150.0f,550.0f };
 
 	charaBase_ = {
-		{standardPos_.x,standardPos_.y},{5.0f,-1.8f },64.0f,0.0f,WHITE
+		{standardPos_.x,standardPos_.y},{5.0f,-1.8f },32.0f,0.0f,WHITE
 	};
 
 	hp_ = maxHp_;
@@ -232,7 +232,7 @@ void Player::Move(char* keys, char* preKeys)
 			}
 			else {
 				if (Novice::IsPlayingAudio(walkPlay_) == 0) {
-					walkPlay_ = Novice::PlayAudio(walkEffect_, 0, 0.4f);
+					walkPlay_ = Novice::PlayAudio(walkEffect_, 0, 1.2f);
 				}
 			}
 
@@ -250,7 +250,7 @@ void Player::Move(char* keys, char* preKeys)
 			}
 			else {
 				if (Novice::IsPlayingAudio(walkPlay_) == 0) {
-					walkPlay_ = Novice::PlayAudio(walkEffect_, 0, 0.4f);
+					walkPlay_ = Novice::PlayAudio(walkEffect_, 0, 1.2f);
 				}
 			}
 
@@ -268,7 +268,7 @@ void Player::Move(char* keys, char* preKeys)
 	if ((preKeys[DIK_SPACE] == 0 && keys[DIK_SPACE] !=0) || (preKeys[DIK_W] == 0 && keys[DIK_W] != 0) || (preKeys[DIK_UP] == 0 && keys[DIK_UP] != 0)) {
 
 		if (Novice::IsPlayingAudio(jumpPlay_) == 0) {
-			Novice::PlayAudio(jumpEffect_, 0, 1.5f);
+			Novice::PlayAudio(jumpEffect_, 0, 4.5f);
 		}
 
 		jumpFrag_ = true;
@@ -365,7 +365,7 @@ void Player::Attack()
 			//効果音(ぶん回す音)
 			//効果音(魔法っぽいやつ)
 			if (Novice::IsPlayingAudio(attackNomalPlay_) == 0) {
-				Novice::PlayAudio(attackNomalEffect_, 0, 0.8f);
+				Novice::PlayAudio(attackNomalEffect_, 0, 2.4f);
 			}
 		}
 
@@ -488,7 +488,7 @@ void Player::OnCollision(float& damage, EnemyType& enemytype)
 				hit_ = true;
 
 				if (Novice::IsPlayingAudio(hitHpPlay_) == 0) {
-					hitHpPlay_ = Novice::PlayAudio(hitHpEffect_, 0, 1);
+					hitHpPlay_ = Novice::PlayAudio(hitHpEffect_, 0, 3);
 				}
 			}
 			else {
@@ -496,7 +496,7 @@ void Player::OnCollision(float& damage, EnemyType& enemytype)
 				hit_ = true;
 
 				if (Novice::IsPlayingAudio(hitSpPlay_) == 0) {
-					hitSpPlay_ = Novice::PlayAudio(hitSpEffect_, 0, 1);
+					hitSpPlay_ = Novice::PlayAudio(hitSpEffect_, 0, 3);
 				}
 			}
 		}
@@ -508,7 +508,7 @@ void Player::OnCollision(float& damage, EnemyType& enemytype)
 				hit_ = true;
 
 				if (Novice::IsPlayingAudio(hitHpPlay_) == 0) {
-					hitHpPlay_ = Novice::PlayAudio(hitHpEffect_, 0, 1);
+					hitHpPlay_ = Novice::PlayAudio(hitHpEffect_, 0, 3);
 				}
 			}
 			else {
@@ -516,7 +516,7 @@ void Player::OnCollision(float& damage, EnemyType& enemytype)
 				hit_ = true;
 
 				if (Novice::IsPlayingAudio(hitSpPlay_) == 0) {
-					hitSpPlay_ = Novice::PlayAudio(hitSpEffect_, 0, 1);
+					hitSpPlay_ = Novice::PlayAudio(hitSpEffect_, 0, 3);
 				}
 			}
 		}
@@ -539,7 +539,7 @@ void Player::OnContinuousDamage(float& damage, int& timer, bool& flag)
 		hp_ -= damage;
 
 		if (Novice::IsPlayingAudio(hitHpPlay_) == 0) {
-			hitHpPlay_ = Novice::PlayAudio(hitHpEffect_, 0, 1);
+			hitHpPlay_ = Novice::PlayAudio(hitHpEffect_, 0, 3);
 		}
 	}
 
@@ -558,7 +558,7 @@ void Player::UsedItem(float& recover) {
 		getItem_ = true;
 
 		if (Novice::IsPlayingAudio(usedItemPlay_) == 0) {
-			Novice::PlayAudio(usedItemEffect_, 0, 0.8f);
+			Novice::PlayAudio(usedItemEffect_, 0, 2.4f);
 		}
 
 		spChangingPoint_ += 2.0f;

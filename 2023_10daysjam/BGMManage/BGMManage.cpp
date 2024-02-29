@@ -32,7 +32,7 @@ void BGMManage::Update(float& Hp, float& Sp, Wave& NowWave)
 
 			if ((Novice::IsPlayingAudio(dangerPlay_) == 0) && (dangerPlay_ = -1)) {
 				//念のためisplayつかっとく
-				dangerPlay_ = Novice::PlayAudio(dangerBGM_, 1, 0.4f);
+				dangerPlay_ = Novice::PlayAudio(dangerBGM_, 1, 1.2f);
 			}
 			else {
 				Novice::ResumeAudio(dangerPlay_);
@@ -54,7 +54,7 @@ void BGMManage::Update(float& Hp, float& Sp, Wave& NowWave)
 
 			if ((Novice::IsPlayingAudio(nomalPlay_) == 0) && (nomalPlay_ = -1)) {
 				//念のためisplayつかっとく
-				nomalPlay_ = Novice::PlayAudio(nomalBGM_, 1, 0.8f);
+				nomalPlay_ = Novice::PlayAudio(nomalBGM_, 1, 2.4f);
 			}
 			else {
 				Novice::ResumeAudio(nomalPlay_);
@@ -74,7 +74,7 @@ void BGMManage::Update(float& Hp, float& Sp, Wave& NowWave)
 
 			if ((Novice::IsPlayingAudio(bossPlay_) == 0) && (bossPlay_ = -1)) {
 				//念のためisplayつかっとく
-				bossPlay_ = Novice::PlayAudio(bossBGM_, 1, 0.4f);
+				bossPlay_ = Novice::PlayAudio(bossBGM_, 1, 1.2f);
 			}
 			else {
 				Novice::ResumeAudio(bossPlay_);

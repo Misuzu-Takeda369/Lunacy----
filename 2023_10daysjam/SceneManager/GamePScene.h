@@ -23,6 +23,7 @@
 #include "Pause/PouseMode.h"
 #include "BGMManage/BGMManage.h"
 #include "ScreenSize.h"
+#include "Enemy/EnemyDeadEffect.h"
 
 /// <summary>
 /// プレイシーンのクラス
@@ -86,6 +87,11 @@ public:
 	void FryingEnemyDead();
 
 	/// <summary>
+	/// 敵のモーション消滅
+	/// </summary>
+	void EnemyEffectDead();
+
+	/// <summary>
 	/// 敵が実際にポップする関数(空中飛んでるやつ)
 	/// </summary>
 	void FryEnemyPoping();
@@ -107,6 +113,11 @@ public:
 	/// すべての音楽を止める奴(総括的な？)
 	/// </summary>
 	void AllStopMusic();
+
+	/// <summary>
+	/// ボス用アイテムドロップ
+	/// </summary>
+	void BossItemPop();
 
 	///ゲッターセッター
 
@@ -198,11 +209,11 @@ private:
 	std::list<FryingEnemy*>fryingEnemy_;
 
 	//敵がポップする間隔
-	const int consEnemyPopFrameWave1_ = 180;
+	const int consEnemyPopFrameWave1_ = 160;
 	//敵がポップする間隔
-	const int consEnemyPopFrameWave2_ = 90;
+	const int consEnemyPopFrameWave2_ = 80;
 	//敵がポップする間隔
-	const int consEnemyPopFrameWave3_ = 120;
+	const int consEnemyPopFrameWave3_ = 100;
 	//敵がポップする間隔
 	const int consEnemyPopFrameBoss_ = 360;
 	//敵がポップするまでを数える
@@ -231,6 +242,9 @@ private:
 	//アイテムポップ関数
 	std::list<PopItem*>popItem_;
 
+	//敵の死亡エフェクト
+	std::list<EnemyDeadEffect*>deadeffect_;
+
 	//waveが変わったときに入れる時間の奴
 	const float timerMax = 1800.0f;
 
@@ -247,5 +261,7 @@ private:
 	BGMManage* bgm_ = nullptr;
 
 	
+	//アイテム生成クール
+	int BossAttackCool = 0;
 
 };

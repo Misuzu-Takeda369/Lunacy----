@@ -37,6 +37,6 @@ private:
 	int dangerPlay_ = -1;
 
 	//この値になったらBGMカエル
-	const float ChangeBGM = 200.0f;
+	const float ChangeBGM = 150.0f;
 };
 

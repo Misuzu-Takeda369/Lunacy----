@@ -121,7 +121,7 @@ void PlayerAnimation::Update(Vector2 pos, STATE main, SABSTATE sab)
 
 	if (_maindState == Lunatic) {
 		_lunaEffectTimer++;
-		if (_lunaEffectTimer >= 3) {
+		if (_lunaEffectTimer >= 6) {
 			AddLunaEffect(pos);
 			_lunaEffectTimer = 0;
 		}

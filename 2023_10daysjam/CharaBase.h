@@ -8,9 +8,10 @@ struct CharaBase {
 	float radius_;
 	float attack_;
 	unsigned int color_;
-	//色の構造体適応するパターン
-	//UnitColor Color_;
 	int image_;
+
+	//色の構造体適応するパターン
+	UnitColor Color_;
 };
 
 ///プレイヤーの精神状態
