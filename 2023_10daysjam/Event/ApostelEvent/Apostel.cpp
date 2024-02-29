@@ -138,7 +138,7 @@ void Apostel::NaturalDeath()
 void Apostel::OnCollision(float& damege)
 {
 	if (Novice::IsPlayingAudio(hitPlay_) == 0) {
-		hitPlay_=Novice::PlayAudio(hitEffect_, 0, 0.5f);
+		hitPlay_=Novice::PlayAudio(hitEffect_, 0, 1.5f);
 	}
 
 	if (!hit_) {
@@ -440,7 +440,7 @@ void Apostel::MagicBallFire()
 {
 	//ただの弾の奴(生成時に鳴らしたいのでここ)
 	if (Novice::IsPlayingAudio(nomalBombPlay_) == 0) {
-		Novice::PlayAudio(nomalBombEffect_, 0, 0.8f);
+		Novice::PlayAudio(nomalBombEffect_, 0, 2.4f);
 	}
 
 	Apostel_MagicBall* newMagicBall = new Apostel_MagicBall;
@@ -453,7 +453,7 @@ void Apostel::ThrowMineFire()
 {
 	//次元爆弾(生成時に鳴らしたいのでここ)
 	if (Novice::IsPlayingAudio(timeBombLaunchPlay_) == 0) {
-		Novice::PlayAudio(timeBombLaunchEffect_, 0, 0.8f);
+		Novice::PlayAudio(timeBombLaunchEffect_, 0, 2.4f);
 	}
 
 	Apostel_ThrowMine* newThrowMine = new Apostel_ThrowMine;
